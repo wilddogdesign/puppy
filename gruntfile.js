@@ -180,6 +180,21 @@ module.exports = function(grunt) {
         }
       }
     },
+    bower_concat: {
+      all: {
+        dest: '.tmp/_bower.js',
+        exclude: ['modernizr']
+      }
+    },
+    concat: {
+      main: {
+        src: [
+          '.tmp/_bower.js',
+          'scripts/*.js'  // You site's scripts
+        ],
+        dest: 'build/scripts.js'
+      }
+    },
     uglify: {
       main: {
         files: [{

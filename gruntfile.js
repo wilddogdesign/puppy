@@ -40,6 +40,10 @@ module.exports = function(grunt) {
           livereload: true
         }
       },
+      images: {
+        files: ['<%= config.app %>/img/**/*.{png,jpg,gif,svg}'],
+        tasks: ['newer:imagemin'],
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -126,6 +130,9 @@ module.exports = function(grunt) {
         }],
       },
       server: {
+        options: {
+          map: true
+        },
         files: [{
           expand: true,
           flatten: true,
@@ -360,7 +367,17 @@ module.exports = function(grunt) {
         }]
       }
     },
-
+    symlink: {
+      // Enable overwrite to delete symlinks before recreating them
+      options: {
+        overwrite: true
+      },
+      // For sourcemaps functionality
+      sass: {
+        src: '<%= config.app %>/sass',
+        dest: '<%= config.dist %>/src/sass'
+      },
+    },
     // Run some tasks in parallel to speed up build process
     concurrent: {
       options: {
@@ -368,9 +385,8 @@ module.exports = function(grunt) {
       },
       server: [
         'sass:server',
-        'autoprefixer:server',
         'liquid:server',
-        'copy:index',
+        'newer:copy:index',
         'copy:fonts',
         'copy:nonmincsslibs',
         'copy:nonminjs',
@@ -415,12 +431,13 @@ module.exports = function(grunt) {
     'clean:dev',
     'wiredep',
     'sass:dev',
+    'autoprefixer:dev',
     'liquid:dev',
-    'newer:imagemin',
+    'imagemin',
     'newer:copy:index',
-    'newer:copy:fonts',
-    'newer:copy:nonmincsslibs',
-    'newer:copy:nonminjs',
+    'copy:fonts',
+    'copy:nonmincsslibs',
+    'copy:nonminjs',
     'copy:dev'
   ]);
 
@@ -429,13 +446,14 @@ module.exports = function(grunt) {
     'clean:live',
     'wiredep',
     'sass:live',
+    'autoprefixer:live',
     'uglify:main',
     'uglify:libs',
     'liquid:live',
     'newer:imagemin',
     'newer:copy:index',
-    'newer:copy:fonts',
-    'newer:copy:live'
+    'copy:fonts',
+    'copy:live'
   ]);
 
 
@@ -448,6 +466,8 @@ module.exports = function(grunt) {
     'clean:server',
     'wiredep',
     'concurrent:server',
+    'symlink:sass',
+    'autoprefixer:server',
     'connect:livereload',
     'watch'
   ]);

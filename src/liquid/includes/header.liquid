@@ -26,11 +26,12 @@
 
     <!-- build:css(.) assets/css/libs.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="../../../bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:css(.tmp) assets/css/main.css -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <!-- endbuild -->
 
     <link rel="icon" type="image/png" href="favicon.png">
@@ -45,7 +46,7 @@
     <![endif]-->
 
     <!-- build:js assets/js/libs/modernizr.js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="../bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
   <body class="{{ bodyclass }}">
@@ -53,18 +54,15 @@
       <section class="panel">
         <div class="container container-fluid">
           <ul class="skip-links">
-            <li class="navigation">
+            <li class="nav-trigger">
               <a href="#navigations" class="closed icon-fallback-text">
                 <span class="icon icon-menu-control" aria-hidden="true"></span>
                 <span class="text">site navigation</span>
               </a>
             </li>
-            <li class="content">
-              <a href="#content">main content</a>
-            </li>
           </ul>
           <div id="navigations" class="drop-menus clearfix">
-            <nav id="navigation" class="row clearfix">
+            <nav id="main-nav" class="nav row clearfix">
               <div class="menus clearfix">
                 <ul class="main clearfix">
                   <li>

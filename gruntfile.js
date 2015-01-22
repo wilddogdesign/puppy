@@ -10,7 +10,8 @@ module.exports = function(grunt) {
     app:  'src',
     dist: 'pre-build',
     dev:  'build/dev',
-    live: 'build/live'
+    live: 'build/live',
+    tmp:  '.tmp'
   };
 
   grunt.initConfig({
@@ -29,10 +30,6 @@ module.exports = function(grunt) {
         files: '<%= config.app %>/sass/{,*/}*.scss',
         tasks: ['sass:server', 'autoprefixer:server', 'copy:nonmincsslibs']
       },
-      // autoprefixer: {
-      //   files: '.tmp/css/{,*/}*.css',
-      //   task: ['autoprefixer:dev']
-      // },
       js: {
         files: '<%= config.app %>/js/{,*/}*.js',
         tasks: ['jshint', 'copy:nonminjs'],
@@ -49,11 +46,7 @@ module.exports = function(grunt) {
       },
       liquid: {
         files: '<%= config.app %>/liquid/{,*/}*.liquid',
-        tasks: ['liquid:server']
-      },
-      images: {
-        files: '<%= config.app %>/img/**/*.{png,jpg,gif,svg}',
-        tasks: ['newer:imagemin']
+        tasks: ['liquid:server','copy:html']
       },
       livereload: {
         options: {
@@ -63,7 +56,7 @@ module.exports = function(grunt) {
           '<%= config.dist %>/{,*/}*.html',
           '<%= config.dist %>/assets/css/{,*/}*.css',
           '<%= config.dist %>/assets/js/{,*/}*.js',
-          '<%= config.dist %>/assets/img/{,*/}*'
+          '<%= config.dist %>/assets/img/**/*'
         ]
       }
     },
@@ -119,25 +112,23 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           flatten: true,
-          src: '<%= config.dev %>/assets/css/*.css',
+          src:  '<%= config.dev %>/assets/css/*.css',
+          dest: '<%= config.dev %>/assets/css/*.css',
         }],
       },
       live: {
         files: [{
           expand: true,
           flatten: true,
-          src: '<%= config.live %>/assets/css/*.css',
+          src:  '<%= config.live %>/assets/css/*.css',
+          dest: '<%= config.live %>/assets/css/*.css',
         }],
       },
       server: {
         options: {
           map: true
         },
-        files: [{
-          expand: true,
-          flatten: true,
-          src: '<%= config.dist %>/assets/css/*.css',
-        }],
+        src:  '<%= config.dist %>/assets/css/main.css'
       }
     },
     liquid: {
@@ -149,7 +140,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: '<%= config.app %>/liquid',
           src: ['**/*.liquid', '!includes/*.liquid'],
-          dest: '<%= config.dev %>/',
+          dest: '<%= config.tmp %>/html',
           ext: '.html'
         }],
         options: {
@@ -163,7 +154,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: '<%= config.app %>/liquid',
           src: ['**/*.liquid', '!includes/*.liquid'],
-          dest: '<%= config.live %>/',
+          dest: '<%= config.tmp %>/html',
           ext: '.php'
         }],
         options: {
@@ -177,7 +168,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: '<%= config.app %>/liquid',
           src: ['**/*.liquid', '!includes/*.liquid'],
-          dest: '<%= config.dist %>/',
+          dest: '<%= config.tmp %>/html',
           ext: '.html'
         }],
         options: {
@@ -193,57 +184,58 @@ module.exports = function(grunt) {
         exclude: ['modernizr']
       }
     },
-    concat: {
-      main: {
-        src: [
-          '.tmp/_bower.js',
-          'scripts/*.js'  // You site's scripts
-        ],
-        dest: 'build/scripts.js'
-      }
-    },
-    uglify: {
-      main: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/js',
-          src: '*.js',
-          dest: '<%= config.live %>/assets/js',
-          ext: '.min.js',
-          extDot: 'last'
-        }]
-      },
-      libs: {
-        files: {
-          '<%= config.live %>/assets/js/libs.min.js': ['<%= config.app %>/js/libs/*.js']
-        },
-        mangle: false
-      }
-    },
-    cssmin: {
-      main: {
-        expand: true,
-        cwd: '<%= config.dist %>/assets/css',
-        src: ['*.css', '!*.min.css'],
-        dest: '<%= config.dist %>/assets/css',
-        ext: '.min.css'
-      },
-      libs: {
-        files: {
-          '<%= config.dist %>/assets/css/libs/libs.min.css': ['<%= config.app %>/css/libs/*.css']
-        }
-      }
-    },
+    // concat: {
+    //   main: {
+    //     src: [
+    //       '.tmp/_bower.js',
+    //       'scripts/*.js'  // You site's scripts
+    //     ],
+    //     dest: 'build/scripts.js'
+    //   }
+    // },
+    // uglify: {
+    //   main: {
+    //     files: [{
+    //       expand: true,
+    //       cwd: '<%= config.app %>/js',
+    //       src: '*.js',
+    //       dest: '<%= config.live %>/assets/js',
+    //       ext: '.min.js',
+    //       extDot: 'last'
+    //     }]
+    //   },
+    //   libs: {
+    //     files: {
+    //       '<%= config.live %>/assets/js/libs.min.js': ['<%= config.app %>/js/libs/*.js']
+    //     },
+    //     mangle: false
+    //   }
+    // },
+    // cssmin: {
+    //   main: {
+    //     expand: true,
+    //     cwd: '<%= config.dist %>/assets/css',
+    //     src: ['*.css', '!*.min.css'],
+    //     dest: '<%= config.dist %>/assets/css',
+    //     ext: '.min.css'
+    //   },
+    //   libs: {
+    //     files: {
+    //       '<%= config.dist %>/assets/css/libs/libs.min.css': ['<%= config.app %>/css/libs/*.css']
+    //     }
+    //   }
+    // },
     connect: {
       options: {
-        port: 8080,
+        port: 8888,
         hostname: '0.0.0.0',
         open: true,
         livereload: 35729
       },
       server: {
         options: {
-          base: '<%= config.dist %>'
+          base: '<%= config.dist %>',
+          livereload: true
         }
       },
       livereload: {
@@ -267,7 +259,7 @@ module.exports = function(grunt) {
       all: [
         'Gruntfile.js',
         '<%= config.app %>/js/{,*/}*.js',
-        '!<%= config.app %>/js/libs/*',
+        '!<%= config.app %>/js/vendor/*',
         '!<%= config.app %>/js/plugins.js',
         'test/spec/{,*/}*.js'
       ]
@@ -275,6 +267,12 @@ module.exports = function(grunt) {
     open: {
       server: {
         path: 'http://<%= connect.options.hostname %>:<%= connect.options.port %>'
+      }
+    },
+    useminPrepare: {
+      html: ['<%= config.tmp %>/html/**/*.{html,php}'],
+      options: {
+        dest: '<%= config.dist %>'
       }
     },
     usemin: {
@@ -295,6 +293,9 @@ module.exports = function(grunt) {
       }
     },
     clean: {
+      tmp: [
+        '<%= config.tmp %>/*'
+      ],
       dev: [
         '<%= config.dev %>/**/*.css',
         '<%= config.dev %>/**/*.js',
@@ -334,14 +335,6 @@ module.exports = function(grunt) {
           dest: '<%= config.live %>'
         }]
       },
-      nonminjs: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/js',
-          src: ['**/*'],
-          dest: '<%= config.dist %>/assets/js'
-        }]
-      },
       fonts: {
         files: [{
           expand: true,
@@ -350,12 +343,12 @@ module.exports = function(grunt) {
           dest: '<%= config.dist %>/assets/fonts'
         }]
       },
-      nonmincsslibs: {
+      html: {
         files: [{
           expand: true,
-          cwd: '<%= config.app %>/css/libs',
+          cwd: '<%= config.tmp %>/html',
           src: ['**/*'],
-          dest: '<%= config.dist %>/assets/css/libs'
+          dest: '<%= config.dist %>'
         }]
       },
       index: {
@@ -364,6 +357,22 @@ module.exports = function(grunt) {
           cwd: '<%= config.app %>/index',
           src: ['**/*'],
           dest: '<%= config.dist %>'
+        }]
+      },
+      nonminjs: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/js',
+          src: ['**/*'],
+          dest: '<%= config.dist %>/assets/js'
+        }]
+      },
+      nonmincsslibs: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/css/libs',
+          src: ['**/*'],
+          dest: '<%= config.dist %>/assets/css/libs'
         }]
       }
     },
@@ -426,8 +435,17 @@ module.exports = function(grunt) {
 
   // Custom tasks
 
+  grunt.registerTask('minify', [
+    'useminPrepare',
+    'concat',
+    'cssmin',
+    'uglify',
+    'usemin',
+  ]);
+
   // Dev builds - for local or staging
   grunt.registerTask('dev', [
+    'clean:tmp',
     'clean:dev',
     'wiredep',
     'sass:dev',
@@ -443,32 +461,30 @@ module.exports = function(grunt) {
 
   // Live builds - for web or app
   grunt.registerTask('live', [
+    'clean:tmp',
     'clean:live',
     'wiredep',
     'sass:live',
     'autoprefixer:live',
-    'uglify:main',
-    'uglify:libs',
-    'liquid:live',
+    'minify',
+    // 'uglify:main',
+    // 'uglify:libs',
+    // 'liquid:live',
     'newer:imagemin',
     'newer:copy:index',
     'copy:fonts',
     'copy:live'
   ]);
 
-
-  // grunt.registerTask('images', [
-  //   // 'clean:images',
-  //   'imagemin'
-  // ]);
-
   grunt.registerTask('server', [
+    'clean:tmp',
     'clean:server',
     'wiredep',
     'concurrent:server',
+    'copy:html',
     'symlink:sass',
     'autoprefixer:server',
-    'connect:livereload',
+    'connect:server',
     'watch'
   ]);
 

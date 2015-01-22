@@ -5,5 +5,5 @@ dist
 .sass-cache
 builds
 pre-build
-src/bower_components
+bower_components
 test/bower_components

@@ -1,0 +1,140 @@
+html{
+  zoom: 1;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body{
+  font: 300 15px/1.4 $source-sans;
+  color: $text-color;
+  min-height: 100%;
+  min-width: 320px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $source-sans;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 1.8em;
+  color: $burgundy;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: 400;
+  color: $burgundy;
+}
+
+h3 {
+  font-size: 1em;
+  margin: 1em 0 0.2em;
+  color: $burgundy;
+}
+
+h4 {
+  color: $burgundy;
+}
+
+h5 {
+}
+
+a {
+  color:  $burgundy;
+  outline: 0 none;
+  &:hover,
+  &:focus {
+    color: lighten($burgundy, 10%);
+    outline: 0 none;
+  }
+}
+
+b, strong {
+  font-weight: 400;
+}
+
+body {
+  position: relative;
+}
+
+header {
+  background-color: $burgundy;
+  height: 5em;
+  .skip-links {
+    margin: 0;
+    position: absolute;
+    z-index: 9;
+    li {
+      display: none;
+      &.navigation {
+        display: block;
+        a {
+          .icon:before {
+            display: block;
+            font-size: 2em;
+            height: 1em;
+            width: 1em;
+            margin: 1.2em .2em;
+            z-index: 10;
+            color: $white;          }
+          &.closed {
+            .icon:before {
+              content: #{map-get($icons, "menu-closed")};
+            }
+          }
+          &.open {
+            .icon:before {
+              content: #{map-get($icons, "menu-open")};
+            }
+          }
+        }
+      }
+    }
+  }
+  .nav {
+    background-color: $white;
+    a {
+      display: block;
+      color: $burgundy;
+    }
+  }
+}
+
+main {
+  position: relative;
+  padding: 2em;
+  background-color: $white;
+}
+
+footer {
+  position: relative;
+  padding: 2em;
+  background-color: $gray;
+}
+
+// Pages
+
+
+
+// Components
+
+.panel {
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 2em 0;
+}
+
+.more {
+  display: block;
+  &:hover{
+    text-decoration: none;
+  }
+  &:after {
+    @extend %icon;
+  }
+}

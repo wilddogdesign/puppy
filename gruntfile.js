@@ -1,4 +1,9 @@
 'use strict';
+
+var mountFolder = function (connect, dir) {
+    return connect.static(require('path').resolve(dir));
+};
+
 module.exports = function(grunt) {
 
   // show elapsed time at the end
@@ -126,9 +131,12 @@ module.exports = function(grunt) {
       },
       server: {
         options: {
-          map: true
+          // map: true
         },
-        src:  '<%= config.dist %>/assets/css/main.css'
+        expand: true,
+        cwd:  '<%= config.dist %>',
+        src:  'assets/**/*.css',
+        dest: '<%= config.dist %>'
       }
     },
     liquid: {
@@ -386,6 +394,10 @@ module.exports = function(grunt) {
         src: '<%= config.app %>/sass',
         dest: '<%= config.dist %>/src/sass'
       },
+      bower: {
+        src: './bower_components',
+        dest: '<%= config.dist %>/bower_components'
+      },
     },
     // Run some tasks in parallel to speed up build process
     concurrent: {
@@ -482,7 +494,7 @@ module.exports = function(grunt) {
     'wiredep',
     'concurrent:server',
     'copy:html',
-    'symlink:sass',
+    'symlink',
     'autoprefixer:server',
     'connect:server',
     'watch'

@@ -63,7 +63,6 @@ body {
 
 header {
   background-color: $burgundy;
-  height: 5em;
   .skip-links {
     margin: 0;
     position: absolute;
@@ -106,7 +105,7 @@ header {
 
 main {
   position: relative;
-  padding: 2em;
+  padding: 4em;
   background-color: $white;
 }
 

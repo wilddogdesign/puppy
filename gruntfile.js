@@ -97,7 +97,7 @@ module.exports = function(grunt) {
       },
       server: {
         options: {
-          outputStyle: 'nested',
+          outputStyle: 'compressed',
           sourceMap:    true
         },
         files: [{
@@ -131,7 +131,7 @@ module.exports = function(grunt) {
       },
       server: {
         options: {
-          // map: true
+          map: true
         },
         expand: true,
         cwd:  '<%= config.dist %>',
@@ -431,7 +431,7 @@ module.exports = function(grunt) {
         // Point to the files that should be updated when
         // you run `grunt wiredep`
         src: [
-          '<%= config.app %>/**/*.liquid',
+          '<%= config.tmp %>/**/*.html',
           '<%= config.app %>/sass/main.scss'
         ],
 
@@ -491,10 +491,10 @@ module.exports = function(grunt) {
   grunt.registerTask('server', [
     'clean:tmp',
     'clean:server',
-    'wiredep',
     'concurrent:server',
+    'wiredep',
     'copy:html',
-    'symlink',
+    // 'symlink',
     'autoprefixer:server',
     'connect:server',
     'watch'

@@ -379,7 +379,7 @@ module.exports = function(grunt) {
       ],
       dev:    [ '<%= config.dev %>/{,assets/js/,assets/css/,assets/fonts/}*' ],
       live:   [ '<%= config.live %>/{,assets/js/,assets/css/,assets/fonts/}*' ],
-      server: [ '<%= config.server %>/{,assets/js/,assets/css/,assets/fonts/}*' ],
+      server: [ '<%= config.dist %>/{,assets/js/,assets/css/,assets/fonts/}*' ],
       images: [ '<%= config.dist %>/assets/img/*' ]
     },
     copy: {

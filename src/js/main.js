@@ -34,12 +34,14 @@
   /* animation speed */
   var animationSpeed = 400;
 
-  /* INITIALIZE SLIDERS */
+  /* FIND SLIDERS */
   var sliderEl = $('.slider');
 
   /* SET UP HEADER SEARCH FIELD */
   var headerSearch = $('header .search-wrap');
 
+  /* FIND FORMS */
+  var forms = $('form');
 
   /* Functions
   -------------------------------*/
@@ -75,7 +77,7 @@
   function initNav(){
 
     var
-    nav     = $('#main-nav');
+    nav = $('#main-nav');
 
     $('body').on('click', '.nav-trigger .closed', function(e){
 
@@ -186,8 +188,7 @@
 
     //Firefox returns 'true' for touch events even though it doesn't support them so have to check against both
     var isFirefox = window.mozInnerScreenX !== null,
-        modernizrTouch = Modernizr.touch,
-        forms = $('form');
+        modernizrTouch = Modernizr.touch;
 
     var touchEnabled = (modernizrTouch && !isFirefox);
 
@@ -221,9 +222,7 @@
   checkMQs();
   checkFeatures();
   initNav();
-
   initSelects();
-  equalheight('.promotions .block');
 
   if ( sliderEl.length )     { initResponsiveSlider(); }
   if ( headerSearch.length ) { initHeaderSearch(); }

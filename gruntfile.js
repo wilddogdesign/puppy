@@ -51,7 +51,7 @@ module.exports = function(grunt) {
       },
       liquid: {
         files: '<%= config.app %>/liquid/{,*/}*.liquid',
-        tasks: ['liquid:server','copy:html']
+        tasks: ['liquid:server', 'wiredep', 'copy:html']
       },
       livereload: {
         options: {
@@ -250,9 +250,10 @@ module.exports = function(grunt) {
         options: {
           middleware: function(connect) {
             return [
-              connect.static('<%= config.dist %>'),
+              mountFolder( connect, config.dist ),
               connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static('<%= config.app %>')
+              connect().use('/<%= config.app %>/sass', connect.static('./<%= config.app %>/sass')),
+              mountFolder( connect, config.app )
             ];
           }
         }
@@ -428,6 +429,8 @@ module.exports = function(grunt) {
 
       main: {
 
+        exclude: [ 'bower_components/modernizr/modernizr.js' ],
+
         // Point to the files that should be updated when
         // you run `grunt wiredep`
         src: [
@@ -494,9 +497,8 @@ module.exports = function(grunt) {
     'concurrent:server',
     'wiredep',
     'copy:html',
-    // 'symlink',
     'autoprefixer:server',
-    'connect:server',
+    'connect:livereload',
     'watch'
   ]);
 

@@ -1,10 +1,13 @@
 {
-  "name": "tfa",
+  "name": "puppy",
   "version": "0.1.0",
   "dependencies": {
     "bootstrap": "~3.0.0",
-  	"bootstrap-sass-official": "~3.3.1",
+    "bootstrap-sass-official": "~3.3.1",
     "modernizr": "~2.6.2",
-    "jquery": "~1.9.1"
+    "jquery": "~1.9.1",
+    "bootstrap-select": "~1.6.3",
+    "jquery-icheck": "~1.0.2",
+    "bxslider-4": "~4.1.3"
   }
 }

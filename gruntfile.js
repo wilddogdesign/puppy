@@ -29,7 +29,7 @@ module.exports = function(grunt) {
       },
       bower: {
         files: ['bower.json'],
-        tasks: ['wiredep']
+        tasks: ['wiredep', 'copy:html']
       },
       css: {
         files: '<%= config.app %>/sass/{,*/}*.scss',
@@ -42,16 +42,24 @@ module.exports = function(grunt) {
           livereload: true
         }
       },
+      responsive_images: {
+        files: ['<%= config.app %>/img/media/**/*.{png,jpg,gif}'],
+        tasks: ['newer:responsive_images'],
+      },
       images: {
-        files: ['<%= config.app %>/img/**/*.{png,jpg,gif,svg}'],
+        files: ['<%= config.app %>/img/site/**/*.{png,jpg,gif,svg}'],
         tasks: ['newer:imagemin'],
+      },
+      fonts: {
+        files: ['<%= config.app %>/fonts/**/*.{ttf,eot,svg,woff,woff2}'],
+        tasks: ['newer:copy:fonts'],
       },
       gruntfile: {
         files: ['Gruntfile.js']
       },
       liquid: {
-        files: '<%= config.app %>/liquid/{,*/}*.liquid',
-        tasks: ['liquid:server', 'wiredep', 'copy:html']
+        files: ['<%= config.app %>/liquid/{,*/}*.liquid'],
+        tasks: ['liquid:server', 'wiredep', 'responsive_images_extender', 'copy:html']
       },
       livereload: {
         options: {
@@ -186,10 +194,73 @@ module.exports = function(grunt) {
         }
       }
     },
-    bower_concat: {
+    responsive_images: {
       all: {
-        dest: '.tmp/_bower.js',
-        exclude: ['modernizr']
+        options: {
+          sizes: [{
+            name:  'small',
+            width: 480
+          },
+          {
+            name: 'medium',
+            width: 960
+          },
+          {
+            name: 'large',
+            width: 1200,
+          }]
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/img/media',
+          src: ['**/*.{jpg,jpeg,gif,png}'],
+          custom_dest: '<%= config.dist %>/assets/img/media/'
+        }]
+      }
+    },
+    responsive_images_extender: {
+      complete: {
+        options: {
+          srcset: [{
+            suffix: '-small',
+            value: '480w'
+          },{
+            suffix: '-medium',
+            value: '960w'
+          },{
+            suffix: '-large',
+            value: '1200w'
+          }],
+          sizes: [{
+            selector: 'figure img',
+            sizeList: [{
+              cond: 'max-width: 30em',
+              size: '100vw'
+            },{
+              cond: 'max-width: 50em',
+              size: '50vw'
+            },{
+              cond: 'default',
+              size: 'calc(33vw - 100px)'
+            }]
+          }]
+        },
+        files: [{
+          expand: true,
+          src: ['**/*.{html,php}'],
+          cwd: '<%= config.tmp %>/html/',
+          dest: '<%= config.dist %>/'
+        }]
+      }
+    },
+    imagemin: {
+      dynamic: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/img/site/',
+          src: ['**/*.{png,jpg,gif,svg}'],
+          dest: '<%= config.dist %>/assets/img/site'
+        }]
       }
     },
     // concat: {
@@ -291,16 +362,6 @@ module.exports = function(grunt) {
       html: ['<%= config.live %>/{,*/}*.html'],
       css: ['<%= config.live %>/css/{,*/}*.css']
     },
-    imagemin: {
-      dynamic: {
-        files: [{
-          expand: true,                             // Enable dynamic expansion
-          cwd: '<%= config.app %>/img/',            // Src matches are relative to this path
-          src: ['**/*.{png,jpg,gif,svg}'],
-          dest: '<%= config.dist %>/assets/img'
-        }]
-      }
-    },
     clean: {
       tmp: [
         '<%= config.tmp %>/*'
@@ -385,21 +446,6 @@ module.exports = function(grunt) {
         }]
       }
     },
-    symlink: {
-      // Enable overwrite to delete symlinks before recreating them
-      options: {
-        overwrite: true
-      },
-      // For sourcemaps functionality
-      sass: {
-        src: '<%= config.app %>/sass',
-        dest: '<%= config.dist %>/src/sass'
-      },
-      bower: {
-        src: './bower_components',
-        dest: '<%= config.dist %>/bower_components'
-      },
-    },
     // Run some tasks in parallel to speed up build process
     concurrent: {
       options: {
@@ -412,15 +458,16 @@ module.exports = function(grunt) {
         'copy:fonts',
         'copy:nonmincsslibs',
         'copy:nonminjs',
+        'newer:responsive_images',
         'newer:imagemin'
       ],
       test: [
         'copy:styles'
       ],
       live: [
-        // 'sass',
         'sass:live',
         'copy:styles',
+        'newer:responsive_images',
         'newer:imagemin'
       ]
     },
@@ -466,7 +513,9 @@ module.exports = function(grunt) {
     'sass:dev',
     'autoprefixer:dev',
     'liquid:dev',
-    'imagemin',
+    'newer:responsive_images',
+    'responsive_images_extender',
+    'newer:imagemin',
     'newer:copy:index',
     'copy:fonts',
     'copy:nonmincsslibs',
@@ -481,10 +530,13 @@ module.exports = function(grunt) {
     'wiredep',
     'sass:live',
     'autoprefixer:live',
+    'liquid:live',
     'minify',
     // 'uglify:main',
     // 'uglify:libs',
     // 'liquid:live',
+    'newer:responsive_images',
+    'responsive_images_extender',
     'newer:imagemin',
     'newer:copy:index',
     'copy:fonts',
@@ -496,6 +548,7 @@ module.exports = function(grunt) {
     'clean:server',
     'concurrent:server',
     'wiredep',
+    'responsive_images_extender',
     'copy:html',
     'autoprefixer:server',
     'connect:livereload',

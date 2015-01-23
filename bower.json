@@ -8,6 +8,7 @@
     "jquery": "~1.9.1",
     "bootstrap-select": "~1.6.3",
     "jquery-icheck": "~1.0.2",
-    "bxslider-4": "~4.1.3"
+    "bxslider-4": "~4.1.3",
+    "picturefill": "~2.2.0"
   }
 }

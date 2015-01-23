@@ -333,7 +333,7 @@ module.exports = function(grunt) {
             return [
               mountFolder( connect, config.dist ),
               connect().use('/bower_components', connect.static('./bower_components')),
-              connect().use('/<%= config.app %>/sass', connect.static('./<%= config.app %>/sass')),
+              connect().use('/src/sass', connect.static('./src/sass')),
               mountFolder( connect, config.app )
             ];
           }

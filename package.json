@@ -24,7 +24,7 @@
     "grunt-responsive-images": "^0.1.4",
     "grunt-responsive-images-extender": "^1.0.0",
     "grunt-sass": "^0.17.0",
-    "grunt-usemin": "^2.6.2",
+    "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",
     "jshint-stylish": "~0.1.5",
     "load-grunt-tasks": "~0.2.0",

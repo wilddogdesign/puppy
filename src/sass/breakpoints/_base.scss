@@ -105,8 +105,20 @@ header {
 
 main {
   position: relative;
-  padding: 4em;
+  padding: 1em;
   background-color: $white;
+  figure {
+    img {
+      width: 100%;
+    }
+    figcaption {
+      border-top: 1px solid $burgundy;
+      margin-top: 1em;
+      padding-top: 1em;
+      text-align: center;
+      font-style: oblique;
+    }
+  }
 }
 
 footer {

@@ -4,12 +4,15 @@
 {% include "./includes/header" %}
 
 <main>
-  <section class="greeting visible-xs">
+  <section class="greeting">
     <div class="container">
       <h1>Congratulations!!</h1>
       <h2>You have spun off the starter Wild Dog project</h2>
       <figure>
-        <img src="assets/img/media/wilddogs.png" alt="Wild Dogs">
+        <img alt="Big Dog" src="assets/img/media/bigdog-small.jpg"
+             srcset="assets/img/media/bigdog-small.jpg  480w,
+                     assets/img/media/bigdog-medium.jpg 960w,
+                     assets/img/media/bigdog-large.jpg 1200w">
         <figcaption>Say "Hi!" to the dogs</figcaption>
       </figure>
     </div>

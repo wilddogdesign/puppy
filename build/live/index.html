@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
   <!--[if lt IE 7]>
     <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en">
@@ -17,38 +20,31 @@
 
   <head>
     <meta charset="utf-8">
-    <title>{% if titleattr %}{{ titleattr }} | {% endif %}Puppy!</title>
+    <title>Home | Puppy!</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" id="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Wild Dog Design">
 
 
-    <!-- build:css(./src/css) assets/css/vendor.min.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
+    <link rel="stylesheet" href="assets/css/vendor.min.css">
 
-    <!-- build:css assets/css/main.min.css -->
-    <link rel="stylesheet" href="assets/css/main.css">
-    <!-- endbuild -->
+    <link rel="stylesheet" href="assets/css/main.min.css">
 
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!--[if lte IE 9]>
-      <script src="assets/js/respond{% if MINIFIED == 'TRUE' %}.min{% endif %}.js"></script>
+      <script src="assets/js/respond.min.js"></script>
     <![endif]-->
 
     <!--[if lte IE 8]>
       <link rel="icon" type="image/x-icon" href="favicon.ico">
     <![endif]-->
 
-    <!-- build:js assets/js/libs/modernizr.min.js -->
-    <script src="../bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
+    <script src="assets/js/libs/modernizr.min.js"></script>
   </head>
-  <body class="{{ bodyclass }}">
+  <body class="pg-home">
     <header class="clearfix">
       <section class="panel">
         <div class="container container-fluid">
@@ -68,10 +64,10 @@
                     <a class="trigger" href="/">Home</a>
                   </li>
                   <li>
-                    <a class="trigger{% if bodyclass == 'pg-about' %} active{% endif %}" href="about{{ FILE_EXT }}">About us</a>
+                    <a class="trigger" href="about.html">About us</a>
                   </li>
                   <li>
-                    <a class="trigger{% if bodyclass == 'pg-contact' %} active{% endif %}" href="contact{{ FILE_EXT }}">Contact us</a>
+                    <a class="trigger" href="contact.html">Contact us</a>
                   </li>
                 </ul>
               </div>
@@ -80,3 +76,41 @@
         </div>
       </section>
     </header>
+
+<main>
+  <section class="greeting">
+    <div class="container">
+      <h1>Congratulations!!</h1>
+      <h2>You have spun off the starter Wild Dog project</h2>
+      <figure>
+        <img alt="Big Dog" src="assets/img/media/bigdog-small.jpg"
+             srcset="assets/img/media/bigdog-small.jpg  480w,
+                     assets/img/media/bigdog-medium.jpg 960w,
+                     assets/img/media/bigdog-large.jpg 1200w">
+        <figcaption>Say "Hi!" to the dogs</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+  <footer>
+
+  </footer>
+
+  <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+  <![endif]-->
+
+  <script src="assets/js/vendor.min.js"></script>
+
+  <script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src='//www.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+
+  <script src="assets/js/main.min.js"></script>
+
+</body>
+</html>

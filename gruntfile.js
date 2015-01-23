@@ -16,7 +16,12 @@ module.exports = function(grunt) {
     dist: 'pre-build',
     dev:  'build/dev',
     live: 'build/live',
-    tmp:  '.tmp'
+    tmp:  '.tmp',
+    extensions: {
+      server: '.html',
+      dev:    '.html',
+      live:   '.html'
+    }
   };
 
   grunt.initConfig({
@@ -44,11 +49,11 @@ module.exports = function(grunt) {
       },
       responsive_images: {
         files: ['<%= config.app %>/img/media/**/*.{png,jpg,gif}'],
-        tasks: ['newer:responsive_images'],
+        tasks: ['newer:responsive_images:server'],
       },
       images: {
         files: ['<%= config.app %>/img/site/**/*.{png,jpg,gif,svg}'],
-        tasks: ['newer:imagemin'],
+        tasks: ['newer:imagemin:server'],
       },
       fonts: {
         files: ['<%= config.app %>/fonts/**/*.{ttf,eot,svg,woff,woff2}'],
@@ -59,7 +64,7 @@ module.exports = function(grunt) {
       },
       liquid: {
         files: ['<%= config.app %>/liquid/{,*/}*.liquid'],
-        tasks: ['liquid:server', 'wiredep', 'responsive_images_extender', 'copy:html']
+        tasks: ['liquid:server', 'wiredep', /*'responsive_images_extender',*/ 'copy:html']
       },
       livereload: {
         options: {
@@ -99,7 +104,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: '<%= config.app %>/sass',
           src: ['*.{scss,sass}'],
-          dest: '<%= config.live %>/assets/css',
+          dest: '<%= config.tmp %>/assets/css',
           ext: '.css'
         }]
       },
@@ -130,12 +135,10 @@ module.exports = function(grunt) {
         }],
       },
       live: {
-        files: [{
-          expand: true,
-          flatten: true,
-          src:  '<%= config.live %>/assets/css/*.css',
-          dest: '<%= config.live %>/assets/css/*.css',
-        }],
+        expand: true,
+        cwd:  '<%= config.tmp %>',
+        src:  'assets/**/*.css',
+        dest: '<%= config.tmp %>',
       },
       server: {
         options: {
@@ -157,12 +160,12 @@ module.exports = function(grunt) {
           cwd: '<%= config.app %>/liquid',
           src: ['**/*.liquid', '!includes/*.liquid'],
           dest: '<%= config.tmp %>/html',
-          ext: '.html'
+          ext: config.extensions.dev
         }],
         options: {
           MINIFIED: 'FALSE',
           BUILD: 'DEV',
-          FILE_EXT: '.html'
+          FILE_EXT: config.extensions.dev
         }
       },
       live: {
@@ -171,12 +174,12 @@ module.exports = function(grunt) {
           cwd: '<%= config.app %>/liquid',
           src: ['**/*.liquid', '!includes/*.liquid'],
           dest: '<%= config.tmp %>/html',
-          ext: '.php'
+          ext: config.extensions.live
         }],
         options: {
           MINIFIED: 'TRUE',
           BUILD: 'LIVE',
-          FILE_EXT: '.php'
+          FILE_EXT: config.extensions.live
         }
       },
       server: {
@@ -185,89 +188,96 @@ module.exports = function(grunt) {
           cwd: '<%= config.app %>/liquid',
           src: ['**/*.liquid', '!includes/*.liquid'],
           dest: '<%= config.tmp %>/html',
-          ext: '.html'
+          ext: config.extensions.server
         }],
         options: {
           MINIFIED: 'FALSE',
           BUILD: 'DEV',
-          FILE_EXT: '.html'
+          FILE_EXT: config.extensions.server
         }
       }
     },
     responsive_images: {
-      all: {
-        options: {
-          sizes: [{
-            name:  'small',
-            width: 480
-          },
-          {
-            name: 'medium',
-            width: 960
-          },
-          {
-            name: 'large',
-            width: 1200,
-          }]
+      options: {
+        sizes: [{
+          name:  'small',
+          width: 480
         },
+        {
+          name: 'medium',
+          width: 960
+        },
+        {
+          name: 'large',
+          width: 1200,
+        }]
+      },
+      server: {
         files: [{
           expand: true,
-          cwd: '<%= config.app %>/img/media',
+          cwd: '<%= config.app %>/img/media/',
           src: ['**/*.{jpg,jpeg,gif,png}'],
-          custom_dest: '<%= config.dist %>/assets/img/media/'
+          dest: '<%= config.dist %>/assets/img/media/'
         }]
-      }
-    },
-    responsive_images_extender: {
-      complete: {
-        options: {
-          srcset: [{
-            suffix: '-small',
-            value: '480w'
-          },{
-            suffix: '-medium',
-            value: '960w'
-          },{
-            suffix: '-large',
-            value: '1200w'
-          }],
-          sizes: [{
-            selector: 'figure img',
-            sizeList: [{
-              cond: 'max-width: 30em',
-              size: '100vw'
-            },{
-              cond: 'max-width: 50em',
-              size: '50vw'
-            },{
-              cond: 'default',
-              size: 'calc(33vw - 100px)'
-            }]
-          }]
-        },
+      },
+      live: {
         files: [{
           expand: true,
-          src: ['**/*.{html,php}'],
-          cwd: '<%= config.tmp %>/html/',
-          dest: '<%= config.dist %>/'
+          cwd: '<%= config.app %>/img/media/',
+          src: ['**/*.{jpg,jpeg,gif,png}'],
+          dest: '<%= config.live %>/assets/img/media/'
         }]
-      }
+      },
     },
+    // responsive_images_extender: {
+    //   complete: {
+    //     options: {
+    //       sizes: [{
+    //         selector: 'figure img',
+    //         sizeList: [{
+    //           cond: 'max-width: 30em',
+    //           size: '100vw'
+    //         },
+    //         {
+    //           cond: 'max-width: 50em',
+    //           size: '50vw'
+    //         },
+    //         {
+    //           cond: 'default',
+    //           size: 'calc(33vw - 100px)'
+    //         }]
+    //       }]
+    //     },
+    //     files: [{
+    //       expand: true,
+    //       src: ['**/*.{html,php}'],
+    //       cwd: '<%= config.tmp %>/html/',
+    //       dest: '<%= config.dist %>/'
+    //     }]
+    //   }
+    // },
     imagemin: {
-      dynamic: {
+      server: {
         files: [{
           expand: true,
           cwd: '<%= config.app %>/img/site/',
           src: ['**/*.{png,jpg,gif,svg}'],
           dest: '<%= config.dist %>/assets/img/site'
         }]
-      }
+      },
+      live: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/img/site/',
+          src: ['**/*.{png,jpg,gif,svg}'],
+          dest: '<%= config.live %>/assets/img/site'
+        }]
+      },
     },
     // concat: {
     //   main: {
     //     src: [
-    //       '.tmp/_bower.js',
-    //       'scripts/*.js'  // You site's scripts
+    //       '<%= config.app %>/js/*.js'  // You site's scripts
     //     ],
     //     dest: 'build/scripts.js'
     //   }
@@ -350,43 +360,27 @@ module.exports = function(grunt) {
       }
     },
     useminPrepare: {
-      html: ['<%= config.tmp %>/html/**/*.{html,php}'],
+      html: '<%= config.tmp %>/html/index<%= config.extensions.live %>',
       options: {
-        dest: '<%= config.dist %>'
+        root: '<%= config.tmp %>',
+        dest: '<%= config.live %>'
       }
     },
     usemin: {
       options: {
         dirs: ['<%= config.live %>']
       },
-      html: ['<%= config.live %>/{,*/}*.html'],
-      css: ['<%= config.live %>/css/{,*/}*.css']
+      html: ['<%= config.tmp %>/html/{,*/}*<%= config.extensions.live %>'],
+      css: ['<%= config.live %>/assets/css/{,*/}*.css']
     },
     clean: {
       tmp: [
         '<%= config.tmp %>/*'
       ],
-      dev: [
-        '<%= config.dev %>/**/*.css',
-        '<%= config.dev %>/**/*.js',
-        '<%= config.dev %>/*.html',
-        '<%= config.dev %>/*'
-      ],
-      live: [
-        '<%= config.live %>/**/*.css',
-        '<%= config.live %>/**/*.js',
-        '<%= config.live %>/*.html',
-        '<%= config.live %>/*'
-      ],
-      server: [
-        '<%= config.dist %>/**/*.css',
-        '<%= config.dist %>/**/*.js',
-        '<%= config.dist %>/*.html',
-        '<%= config.dist %>/*'
-      ],
-      images: [
-        '<%= config.dist %>/assets/img/*'
-      ]
+      dev:    [ '<%= config.dev %>/{,assets/js/,assets/css/,assets/fonts/}*' ],
+      live:   [ '<%= config.live %>/{,assets/js/,assets/css/,assets/fonts/}*' ],
+      server: [ '<%= config.server %>/{,assets/js/,assets/css/,assets/fonts/}*' ],
+      images: [ '<%= config.dist %>/assets/img/*' ]
     },
     copy: {
       dev: {
@@ -400,9 +394,17 @@ module.exports = function(grunt) {
       live: {
         files: [{
           expand: true,
-          cwd: '<%= config.dist %>',
+          cwd: '<%= config.tmp %>/html',
           src: ['**/*'],
           dest: '<%= config.live %>'
+        }]
+      },
+      js: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/js',
+          src: ['**/*'],
+          dest: '<%= config.tmp %>/assets/js'
         }]
       },
       fonts: {
@@ -411,6 +413,14 @@ module.exports = function(grunt) {
           cwd: '<%= config.app %>/sass/fonts',
           src: ['**/*'],
           dest: '<%= config.dist %>/assets/fonts'
+        }]
+      },
+      fontsLive: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/sass/fonts',
+          src: ['**/*'],
+          dest: '<%= config.live %>/assets/fonts'
         }]
       },
       html: {
@@ -427,6 +437,14 @@ module.exports = function(grunt) {
           cwd: '<%= config.app %>/index',
           src: ['**/*'],
           dest: '<%= config.dist %>'
+        }]
+      },
+      indexLive: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/index',
+          src: ['**/*'],
+          dest: '<%= config.live %>'
         }]
       },
       nonminjs: {
@@ -458,17 +476,20 @@ module.exports = function(grunt) {
         'copy:fonts',
         'copy:nonmincsslibs',
         'copy:nonminjs',
-        'newer:responsive_images',
-        'newer:imagemin'
+        'newer:responsive_images:server',
+        'newer:imagemin:server'
       ],
       test: [
         'copy:styles'
       ],
       live: [
         'sass:live',
-        'copy:styles',
-        'newer:responsive_images',
-        'newer:imagemin'
+        'liquid:live',
+        'newer:copy:indexLive',
+        'copy:fontsLive',
+        'copy:js',
+        'newer:responsive_images:live',
+        'newer:imagemin:live'
       ]
     },
 
@@ -481,7 +502,7 @@ module.exports = function(grunt) {
         // Point to the files that should be updated when
         // you run `grunt wiredep`
         src: [
-          '<%= config.tmp %>/**/*.html',
+          '<%= config.tmp %>/html/**/*.{html,php}',
           '<%= config.app %>/sass/main.scss'
         ],
 
@@ -514,32 +535,24 @@ module.exports = function(grunt) {
     'autoprefixer:dev',
     'liquid:dev',
     'newer:responsive_images',
-    'responsive_images_extender',
+    // 'responsive_images_extender',
     'newer:imagemin',
     'newer:copy:index',
     'copy:fonts',
     'copy:nonmincsslibs',
     'copy:nonminjs',
-    'copy:dev'
+    // 'copy:dev'
   ]);
 
   // Live builds - for web or app
   grunt.registerTask('live', [
     'clean:tmp',
     'clean:live',
+    'concurrent:live',
     'wiredep',
-    'sass:live',
     'autoprefixer:live',
-    'liquid:live',
     'minify',
-    // 'uglify:main',
-    // 'uglify:libs',
-    // 'liquid:live',
-    'newer:responsive_images',
-    'responsive_images_extender',
-    'newer:imagemin',
-    'newer:copy:index',
-    'copy:fonts',
+    // 'responsive_images_extender',
     'copy:live'
   ]);
 
@@ -548,7 +561,7 @@ module.exports = function(grunt) {
     'clean:server',
     'concurrent:server',
     'wiredep',
-    'responsive_images_extender',
+    // 'responsive_images_extender',
     'copy:html',
     'autoprefixer:server',
     'connect:livereload',

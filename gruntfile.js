@@ -353,9 +353,14 @@ module.exports = function(grunt) {
       tmp: [
         '<%= config.tmp %>/*'
       ],
-      dev:    [ '<%= config.dev %>/{,assets/js/,assets/css/,assets/fonts/}*' ],
-      live:   [ '<%= config.live %>/{,assets/js/,assets/css/,assets/fonts/}*' ],
-      server: [ '<%= config.dist %>/{,assets/js/,assets/css/,assets/fonts/}*' ],
+      dev:    [ '<%= config.dev %>/*' ],
+      live:   [ '<%= config.live %>/*' ],
+      server: [
+        '<%= config.dist %>/assets/css/**/*',
+        '<%= config.dist %>/assets/js/**/*',
+        '<%= config.dist %>/assets/fonts/**/*',
+        '<%= config.dist %>/*<%= config.extensions.server %>',
+      ],
       images: [ '<%= config.dist %>/assets/img/*' ]
     },
     copy: {

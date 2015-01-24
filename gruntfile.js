@@ -274,46 +274,6 @@ module.exports = function(grunt) {
         }]
       },
     },
-    // concat: {
-    //   main: {
-    //     src: [
-    //       '<%= config.app %>/js/*.js'  // You site's scripts
-    //     ],
-    //     dest: 'build/scripts.js'
-    //   }
-    // },
-    // uglify: {
-    //   main: {
-    //     files: [{
-    //       expand: true,
-    //       cwd: '<%= config.app %>/js',
-    //       src: '*.js',
-    //       dest: '<%= config.live %>/assets/js',
-    //       ext: '.min.js',
-    //       extDot: 'last'
-    //     }]
-    //   },
-    //   libs: {
-    //     files: {
-    //       '<%= config.live %>/assets/js/libs.min.js': ['<%= config.app %>/js/libs/*.js']
-    //     },
-    //     mangle: false
-    //   }
-    // },
-    // cssmin: {
-    //   main: {
-    //     expand: true,
-    //     cwd: '<%= config.dist %>/assets/css',
-    //     src: ['*.css', '!*.min.css'],
-    //     dest: '<%= config.dist %>/assets/css',
-    //     ext: '.min.css'
-    //   },
-    //   libs: {
-    //     files: {
-    //       '<%= config.dist %>/assets/css/libs/libs.min.css': ['<%= config.app %>/css/libs/*.css']
-    //     }
-    //   }
-    // },
     connect: {
       options: {
         port: 8888,
@@ -513,7 +473,31 @@ module.exports = function(grunt) {
           // https://github.com/taptapship/wiredep#configuration
         }
       }
+    },
+
+    pagespeed: {
+      options: {
+        nokey: true,
+        url: 'https://developers.google.com'
+      },
+      prod: {
+        options: {
+          url: 'https://developers.google.com/speed/docs/insights/v1/getting_started',
+          locale: 'en_GB',
+          strategy: 'desktop',
+          threshold: 80
+        }
+      },
+      paths: {
+        options: {
+          paths: ['<%= config.live %>'],
+          locale: 'en_GB',
+          strategy: 'desktop',
+          threshold: 80
+        }
+      }
     }
+
   });
 
   // Custom tasks
@@ -553,7 +537,8 @@ module.exports = function(grunt) {
     'autoprefixer:live',
     'minify',
     // 'responsive_images_extender',
-    'copy:live'
+    'copy:live',
+    // 'pagespeed'
   ]);
 
   grunt.registerTask('server', [

@@ -21,6 +21,7 @@
     "grunt-liquid": "0.0.8",
     "grunt-newer": "^0.8.0",
     "grunt-open": "~0.2.0",
+    "grunt-pagespeed": "^0.4.1",
     "grunt-responsive-images": "^0.1.4",
     "grunt-responsive-images-extender": "^1.0.0",
     "grunt-sass": "^0.17.0",

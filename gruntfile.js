@@ -14,8 +14,8 @@ module.exports = function(grunt) {
   var config = {
     app:  'src',
     dist: 'pre-build',
-    dev:  'build/dev',
-    live: 'build/live',
+    dev:  'builds/dev',
+    live: 'builds/live',
     tmp:  '.tmp',
     extensions: {
       server: '.html',

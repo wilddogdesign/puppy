@@ -210,6 +210,10 @@ module.exports = function(grunt) {
         {
           name: 'large',
           width: 1200,
+        },
+        {
+          rename: false,
+          width: 640
         }]
       },
       server: {
@@ -229,33 +233,45 @@ module.exports = function(grunt) {
         }]
       },
     },
-    // responsive_images_extender: {
-    //   complete: {
-    //     options: {
-    //       sizes: [{
-    //         selector: 'figure img',
-    //         sizeList: [{
-    //           cond: 'max-width: 30em',
-    //           size: '100vw'
-    //         },
-    //         {
-    //           cond: 'max-width: 50em',
-    //           size: '50vw'
-    //         },
-    //         {
-    //           cond: 'default',
-    //           size: 'calc(33vw - 100px)'
-    //         }]
-    //       }]
-    //     },
-    //     files: [{
-    //       expand: true,
-    //       src: ['**/*.{html,php}'],
-    //       cwd: '<%= config.tmp %>/html/',
-    //       dest: '<%= config.dist %>/'
-    //     }]
-    //   }
-    // },
+    responsive_images_extender: {
+      complete: {
+        options: {
+          srcset: [{
+            suffix: '-small',
+            value: '480w'
+          },
+          {
+            suffix: '-medium',
+            value: '960w'
+          },
+          {
+            suffix: '-large',
+            value: '1200w'
+          }],
+          sizes: [{
+            selector: 'figure img',
+            sizeList: [{
+              cond: 'max-width: 480px',
+              size: 'calc(100vw - 30px)'
+            },
+            {
+              cond: 'max-width: 768px',
+              size: '50vw'
+            },
+            {
+              cond: 'default',
+              size: 'calc(66vw)'
+            }]
+          }]
+        },
+        files: [{
+          expand: true,
+          src: ['**/*.{html,php}'],
+          cwd: '<%= config.tmp %>/html',
+          dest: '<%= config.tmp %>/html'
+        }]
+      }
+    },
     imagemin: {
       server: {
         files: [{
@@ -546,7 +562,7 @@ module.exports = function(grunt) {
     'clean:server',
     'concurrent:server',
     'wiredep',
-    // 'responsive_images_extender',
+    'responsive_images_extender',
     'copy:html',
     'autoprefixer:server',
     'connect:livereload',

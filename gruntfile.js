@@ -81,12 +81,15 @@ module.exports = function(grunt) {
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
       options: {
-        loadPath: 'bower_components',
-        require:  'susy'
+        loadPath: [
+          'bower_components',
+          // 'bower_components/susy/sass',
+          ]
+        // require:  'susy'
       },
       dev: {
         options: {
-          outputStyle: 'nested'
+          style: 'nested'
         },
         files: [{
           expand: true,
@@ -98,7 +101,7 @@ module.exports = function(grunt) {
       },
       live: {
         options: {
-          outputStyle: 'compressed'
+          style: 'compressed'
         },
         files: [{
           expand: true,
@@ -110,8 +113,8 @@ module.exports = function(grunt) {
       },
       server: {
         options: {
-          outputStyle: 'compressed',
-          sourceMap:    true
+          style:     'compressed',
+          sourcemap: 'auto'
         },
         files: [{
           expand: true,

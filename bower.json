@@ -10,6 +10,7 @@
     "jquery-icheck": "~1.0.2",
     "bxslider-4": "~4.1.3",
     "picturefill": "~2.2.0",
-    "fastclick": "~1.0.3"
+    "fastclick": "~1.0.3",
+    "susy": "2.2.2.alpha.1"
   }
 }

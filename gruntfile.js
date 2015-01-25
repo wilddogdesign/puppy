@@ -560,7 +560,7 @@ module.exports = function(grunt) {
     'wiredep',
     'autoprefixer:live',
     'minify',
-    // 'responsive_images_extender',
+    'responsive_images_extender',
     'copy:live',
     // 'pagespeed'
   ]);

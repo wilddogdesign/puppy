@@ -9,7 +9,8 @@ module.exports = function(grunt) {
   // show elapsed time at the end
   require('time-grunt')(grunt);
   // load all grunt tasks
-  require('load-grunt-tasks')(grunt);
+  // require('load-grunt-tasks')(grunt);
+  require('jit-grunt')(grunt);
 
   var config = {
     app:  'src',
@@ -489,7 +490,7 @@ module.exports = function(grunt) {
       main: {
 
         exclude: [
-          'bower_components/modernizr/modernizr.js'
+          'bower_components/modernizr/modernizr.js',
           'bower_components/bootstrap/dist/css/bootstrap.css',
           'bower_components/bootstrap/dist/js/bootstrap.js',
           'bower_components/bootstrap-select/dist/css/bootstrap-select.css',

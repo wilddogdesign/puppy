@@ -47,7 +47,10 @@ module.exports = function(grunt) {
           livereload: true
         }
       },
+      /* jshint camelcase:false */
       responsive_images: {
+      /* jshint camelcase:true */
+
         files: ['<%= config.app %>/img/media/**/*.{png,jpg,gif}'],
         tasks: ['newer:responsive_images:server'],
       },
@@ -64,7 +67,7 @@ module.exports = function(grunt) {
       },
       liquid: {
         files: ['<%= config.app %>/liquid/{,*/}*.liquid'],
-        tasks: ['liquid:server', 'wiredep', /*'responsive_images_extender',*/ 'copy:html']
+        tasks: ['liquid:server', 'wiredep', 'responsive_images_extender', 'copy:html']
       },
       livereload: {
         options: {
@@ -94,7 +97,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.app %>/sass',
-          src: ['*.{scss,sass}'],
+          src: ['{,libs/}*.{scss,sass}'],
           dest: '<%= config.dev %>/assets/css',
           ext: '.css'
         }]
@@ -106,7 +109,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.app %>/sass',
-          src: ['*.{scss,sass}'],
+          src: ['{,libs/}*.{scss,sass}'],
           dest: '<%= config.tmp %>/assets/css',
           ext: '.css'
         }]
@@ -119,7 +122,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.app %>/sass',
-          src: ['*.{scss,sass}'],
+          src: ['{,libs/}*.{scss,sass}'],
           dest: '<%= config.dist %>/assets/css',
           ext: '.css'
         }]
@@ -200,7 +203,9 @@ module.exports = function(grunt) {
         }
       }
     },
+    /* jshint camelcase:false */
     responsive_images: {
+    /* jshint camelcase:true */
       options: {
         sizes: [{
           name:  'small',
@@ -236,7 +241,9 @@ module.exports = function(grunt) {
         }]
       },
     },
+    /* jshint camelcase:false */
     responsive_images_extender: {
+    /* jshint camelcase:true */
       complete: {
         options: {
           srcset: [{
@@ -481,7 +488,12 @@ module.exports = function(grunt) {
 
       main: {
 
-        exclude: [ 'bower_components/modernizr/modernizr.js' ],
+        exclude: [
+          'bower_components/modernizr/modernizr.js'
+          'bower_components/bootstrap/dist/css/bootstrap.css',
+          'bower_components/bootstrap/dist/js/bootstrap.js',
+          'bower_components/bootstrap-select/dist/css/bootstrap-select.css',
+        ],
 
         // Point to the files that should be updated when
         // you run `grunt wiredep`

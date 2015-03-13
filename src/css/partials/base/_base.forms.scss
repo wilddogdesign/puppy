@@ -1,0 +1,79 @@
+/*------------------------------------*\
+    $FORMS
+\*------------------------------------*/
+
+// setting up defaults
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+select, 
+textarea,
+.field {
+  display: block;
+  border-radius: 0;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  color: $color--text;
+  vertical-align: middle;
+  border: 0;
+  width: 100%;
+  z-index: 1;
+  margin-bottom: 10px;
+  cursor: pointer;
+  @include placeholder {
+    color: $color--grey;
+  }
+}
+
+// spacing out the password (thx @murtaugh)
+input[type="password"] {
+  letter-spacing: 0.3em;
+}
+
+input[type="submit"] {
+  height: 40px;
+  border-radius: 0;
+  border: 0;
+  width: 100%;
+  background: $color--grey-dark;
+  color: $color--white; 
+  @include appearance(none);
+}
+
+// textareas
+textarea {
+  max-width: 100%;
+  min-height: 120px;
+  line-height: 1.5em;
+  padding: 10px;
+  height: auto;
+}
+
+// selects
+select {
+  background: $color--white;
+  @include appearance(none);
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  font-size: 1.1em;
+  line-height: 1.8em;
+}

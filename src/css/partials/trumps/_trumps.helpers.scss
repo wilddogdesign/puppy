@@ -1,0 +1,178 @@
+/**
+ * Add/remove floats
+ */
+.float--right   { float:right!important; }
+.float--left    { float:left !important; }
+.float--none    { float:none !important; }
+
+
+/**
+ * Text alignment
+ */
+.text--left     { text-align:left  !important; }
+.text--center   { text-align:center!important; }
+.text--right    { text-align:right !important; }
+
+
+/**
+ * Font weights
+ */
+.weight--light      { font-weight:200!important; }
+.weight--normal     { font-weight:400!important; }
+.weight--semibold   { font-weight:600!important; }
+.weight--bold       { font-weight:800!important; }
+
+/**
+ * Add a help cursor to any element that gives the user extra information on
+ * `:hover`.
+ */
+.informative{
+    cursor:help!important;
+}
+
+/**
+ * Mute an object by reducing its opacity.
+ */
+.muted{
+    opacity:0.5!important;
+    filter:alpha(opacity = 50)!important;
+}
+
+/**
+ * Apply capital case to an element (usually a `strong`).
+ */
+.caps{
+    text-transform:uppercase!important;
+}
+
+/**
+ * Make text size smaller.
+ */
+.small {
+    font-size: .9em !important;
+}
+
+/**
+ * Apply specific color.
+ */
+.color--brand,
+.color--brand:hover {
+    color: $color--brand !important;
+}
+.color--text {
+    color: $inuit-base-text-color !important;
+}
+.color--white {
+    color: $color--white !important;
+}
+.color--black {
+    color: $color--black !important;
+}
+
+/**
+ * Apply specific color to background.
+ */
+.bg--brand,
+.bg--brand:hover {
+    background-color: $color--brand !important;
+}
+.bg--text {
+    background-color: $inuit-base-text-color !important;
+}
+.bg--white {
+    background-color: $color--white !important;
+}
+.bg--black {
+    background-color: $color--black !important;
+}
+.bg--grey {
+    background-color: $color--grey !important;
+}
+.bg--grey-dark {
+    background-color: $color--grey-dark !important;
+}
+.bg--grey-light {
+    background-color: $color--grey-light !important;
+}
+//Adds grey to bg and drops couple logos
+.bg--branded {
+    background-color: $color--grey-light;
+}
+.bg--branded:before,
+.bg--branded:after {
+    position: absolute;
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 0;
+}
+.bg--branded:before {
+    width: 300px;
+    height: 300px;
+    background: url(../img/logo.svg) 0 0/300px 300px;
+    right: 2%;
+    top: 20%;
+}
+.bg--branded:after {
+    width: 200px;
+    height: 200px;
+    background: url(../img/logo.svg) 0 0/200px 200px;
+    right: 20%;
+    top: 70%;
+}
+
+/**
+ * Create circle 
+ */
+.circled {
+    border-radius: 50%;
+}
+
+
+/**
+ * Push form item down so it's inline with elements that have label
+ */
+.label-fix {
+    margin-top: 32px;
+    @include media-query(portable) {
+        margin-top: 0;
+    }
+}
+
+
+/**
+ * Hide text inside element
+ */
+.text--hidden {
+    overflow: hidden;
+    text-indent: -9999px; 
+    white-space: nowrap; 
+}
+
+
+/**
+ * Hide content off-screen without resorting to `display:none;`, also provide
+ * breakpoint specific hidden elements.
+ */
+@mixin accessibility{ 
+    border:0!important;
+    clip:rect(0 0 0 0)!important;
+    height:1px!important;
+    margin:-1px!important;
+    overflow:hidden!important;
+    padding:0!important;
+    position: absolute!important;
+    width:1px!important;
+}
+.accessibility,
+.hidden {
+    @include accessibility;
+}
+@each $state in palm, lap, lap-and-up, portable, desk {
+    @include media-query(#{$state}){
+        .#{$state}--accessibility,
+        .#{$state}--hidden{
+            @include accessibility;
+        }
+    }
+}

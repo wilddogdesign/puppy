@@ -1,0 +1,58 @@
+// General
+.btn {
+	background: $color--grey-dark;
+	padding: 8px 10px;
+	border: 1px solid $color--grey-dark;
+	@include transition(all .2s ease-in-out);
+}
+.btn:hover {
+	background: $color--black;
+}
+.btn--grey {
+	background: $color--grey;
+	border-color: $color--grey;
+}
+.btn--grey:hover {
+	border-color: $color--grey-dark;	
+}
+.btn--brand {
+	background: $color--brand;
+	border-color: $color--brand;
+}
+.btn--brand:hover {
+	border-color: $color--grey-dark;	
+}
+.btn--light {
+	background: $color--white;
+	color: $color--grey-dark;
+}
+.btn--light:hover {
+	background: $color--grey-light;
+	color: $color--grey-dark;
+}
+
+// Transparent
+.btn--transparent {
+	background: transparent;
+	color: $color--grey-dark;
+}
+.btn--transparent:focus {
+	color: $color--grey-dark;
+}
+.btn--transparent:hover {
+	background: $color--grey-dark;
+	color: $color--white;
+}
+.btn--transparent.btn--light {
+	border: 1px solid $color--white;
+	color: $color--white;
+}
+.btn--transparent.btn--light:hover {
+	background: $color--white;
+	color: $color--grey-dark;
+}
+
+// Misc
+.btn--full {
+	width: 100%;
+}

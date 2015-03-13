@@ -1,0 +1,16 @@
+.layout--flex {
+	display: flex;
+	display: -ms-flexbox; 
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+.layout__item--flex {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}

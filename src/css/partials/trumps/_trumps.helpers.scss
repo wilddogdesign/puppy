@@ -72,8 +72,7 @@
 /**
  * Apply specific color to background.
  */
-.bg--brand,
-.bg--brand:hover {
+.bg--brand {
     background-color: $color--brand !important;
 }
 .bg--text {
@@ -94,49 +93,13 @@
 .bg--grey-light {
     background-color: $color--grey-light !important;
 }
-//Adds grey to bg and drops couple logos
-.bg--branded {
-    background-color: $color--grey-light;
-}
-.bg--branded:before,
-.bg--branded:after {
-    position: absolute;
-    content: '';
-    display: block;
-    position: absolute;
-    z-index: 0;
-}
-.bg--branded:before {
-    width: 300px;
-    height: 300px;
-    background: url(../img/logo.svg) 0 0/300px 300px;
-    right: 2%;
-    top: 20%;
-}
-.bg--branded:after {
-    width: 200px;
-    height: 200px;
-    background: url(../img/logo.svg) 0 0/200px 200px;
-    right: 20%;
-    top: 70%;
-}
+
 
 /**
  * Create circle 
  */
 .circled {
     border-radius: 50%;
-}
-
-
-/**
- * Push form item down so it's inline with elements that have label
- */
-.label-fix {
-    margin-top: 32px;
-    @include media-query(portable) {
-        margin-top: 0;
-    }
 }
 
 

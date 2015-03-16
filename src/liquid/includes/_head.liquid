@@ -1,13 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
- 	<meta charset="UTF-8">
- 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, user-scalable=0">
+  <!--[if IE 9]>
+    <html class="no-js lt-ie10 is-ie9" lang="en">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+    <html class="no-js" lang="en">
+  <!--<![endif]-->
 
-	<title>Wuff Wuff</title>
+  <head>
+   	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	<meta name="viewport" id="viewport" content="width=device-width, minimum-scale=1.0, user-scalable=0">
+    <meta name="description" content="">
+    <meta name="author" content="Wild Dog Design">
 
-	<link rel="stylesheet" href="assets/css/main.css">
-	
-    {% if debug %}<script src="//localhost:35729/livereload.js"></script>{% endif %}
-</head>
-<body class="{{page}}">
+  	<title>Wuff Wuff</title>
+
+
+    <!-- build:css(.) assets/css/vendor.min.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/main.min.css -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- endbuild -->
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+
+    <!-- build:js assets/js/libs/modernizr.min.js -->
+    <script src="../bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+
+  </head>
+  <body class="{{page}}">

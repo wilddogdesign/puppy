@@ -13,9 +13,15 @@ module.exports = function(grunt) {
     /* jshint camelcase:true */
   });
 
+  var config = {
+    minifyScripts: true
+  };
 
   // CONFIG
   grunt.initConfig({
+
+    config: config,
+
     pkg: grunt.file.readJSON('package.json'),
 
     // 'http-server': {
@@ -47,7 +53,7 @@ module.exports = function(grunt) {
             return [
               mountFolder( connect, 'dist' ),
               connect().use('/bower_components', connect.static('./bower_components')),
-              connect().use('/src/css', connect.static('./src/css')),
+              connect().use('/partials', connect.static('./src/css/partials')),
               mountFolder( connect, 'src' )
             ];
           }
@@ -78,7 +84,7 @@ module.exports = function(grunt) {
           }
         ],
         options: {
-          debug: true
+          debug:  true
         }
       },
       prod: {
@@ -92,7 +98,8 @@ module.exports = function(grunt) {
           }
         ],
         options: {
-          debug: false
+          debug: false,
+          minify: config.minifyScripts
         }
       },
     },
@@ -131,7 +138,8 @@ module.exports = function(grunt) {
     sass: {
       dev: {
         options: {
-          outputStyle: 'nested',
+          // For some reason, nested breaks source map functionality
+          outputStyle: 'compressed',
           sourceMap: true
         },
         files: [{
@@ -144,7 +152,7 @@ module.exports = function(grunt) {
       },
       prod: {
         options: {
-          outputStyle: 'compressed',
+          outputStyle: 'nested',
           sourceMap: false
         },
         files: [{
@@ -167,13 +175,13 @@ module.exports = function(grunt) {
         },
         expand: true,
         cwd:  'dist',
-        src:  'assets/css/*.css',
+        src:  'assets/css/main.css',
         dest: 'dist'
       },
       prod: {
         expand: true,
         cwd:  'dist',
-        src:  'assets/css/*.css',
+        src:  'assets/css/main.css',
         dest: 'dist',
       },
     },
@@ -190,7 +198,7 @@ module.exports = function(grunt) {
         // Point to the files that should be updated when
         // you run `grunt wiredep`
         src: [
-          'dist/**/*.{html,php}'
+          'dist/**/*.html'
           // 'src/css/main.scss'
         ],
 
@@ -233,10 +241,17 @@ module.exports = function(grunt) {
 
     clean: {
       dist: [ 'dist/' ],
-      unminified: [
-        'dist/assets/css/main.css',
-        'dist/assets/js/main.js'
-      ]
+      unminified: ( function () {
+        if ( config.minifyScripts ) {
+          return [
+            'dist/assets/css/main.css',
+            'dist/assets/js/main.js'
+          ];
+        } else {
+          // Scripts are not minified, nothing to clean
+          return [];
+        }
+      }() )
     },
 
     copy: {

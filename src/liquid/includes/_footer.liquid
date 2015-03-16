@@ -14,9 +14,9 @@
   <!-- endbuild -->
 
 
-  <!-- build:js assets/js/main.min.js -->
+  {% if minify %}<!-- build:js assets/js/main.min.js -->{% endif %}
   <script src="assets/js/main.js"></script>
-  <!-- endbuild -->
+  {% if minify %}<!-- endbuild -->{% endif %}
 
 </body>
 </html>

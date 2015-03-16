@@ -21,9 +21,9 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css assets/css/main.min.css -->
+    {% if minify %}<!-- build:css assets/css/main.min.css -->{% endif %}
     <link rel="stylesheet" href="assets/css/main.css">
-    <!-- endbuild -->
+    {% if minify %}<!-- endbuild -->{% endif %}
 
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">

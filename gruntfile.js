@@ -24,19 +24,10 @@ module.exports = function(grunt) {
 
     pkg: grunt.file.readJSON('package.json'),
 
-    // 'http-server': {
-    //   dev: {
-    //     root: "dist",
-    //     port: 8888,
-    //     host: "127.0.0.1",
-    //     runInBackground: true
-    //   }
-    // },
-
     connect: {
       options: {
         port: 8888,
-        hostname: 'localhost',
+        hostname: '127.0.0.1',
         open: true,
         livereload: 35729,
         useAvailablePort: true
@@ -103,36 +94,6 @@ module.exports = function(grunt) {
         }
       },
     },
-
-    // Ruby SASS
-    // sass: {
-    //   dev: {
-    //     options: {
-    //       outputStyle: 'nested',
-    //       sourceMap: true
-    //     },
-    //     files: [{
-    //       expand: true,
-    //       cwd: 'src/css',
-    //       src: '*.scss',
-    //       dest: 'dist/assets/css',
-    //       ext: '.css'
-    //     }]
-    //   },
-    //   prod: {
-    //     options: {
-    //       outputStyle: 'compressed',
-    //       sourceMap: false
-    //     },
-    //     files: [{
-    //       expand: true,
-    //       cwd: 'src/css',
-    //       src: '*.scss',
-    //       dest: 'dist/assets/css',
-    //       ext: '.css'
-    //     }]
-    //   }
-    // },
 
     // LibSass
     sass: {
@@ -210,18 +171,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
-    // uglify: {
-    //   src: {
-    //     files: [{
-    //         expand: true,
-    //         cwd: 'src/js',
-    //         src: 'app.js',
-    //         dest: 'dist/assets/js',
-    //         ext: '.js'
-    //     }]
-    //   }
-    // },
 
     jshint: {
       options: {
@@ -352,7 +301,6 @@ module.exports = function(grunt) {
     'liquid:prod',
     'wiredep',
     // 'concat',
-    // 'uglify',
     'copy:scripts',
     'useminPrepare',
     'concat:generated',

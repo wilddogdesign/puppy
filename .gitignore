@@ -3,6 +3,7 @@ node_modules
 dist
 .tmp
 .sass-cache
+.ftppass
 builds
 pre-build
 bower_components

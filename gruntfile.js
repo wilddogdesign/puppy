@@ -307,7 +307,6 @@ module.exports = function(grunt) {
 
 
   // TASKS
-
   grunt.registerTask('server', [
     'connect:livereload',
     'watch'

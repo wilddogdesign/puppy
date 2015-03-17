@@ -52,9 +52,33 @@ module.exports = function(grunt) {
       },
     },
 
+    /* 
+    FTP deploy
+    Create new file in project directory called .ftppass where you store user crediantials. Example:
+    {
+      "key": {
+        "username": "username1",
+        "password": "password1"
+      }
+    }
+    */
+    'ftp-deploy': {
+      build: {
+        auth: {
+          host: 'server.com',
+          port: 21,
+          authKey: 'key'
+        },
+        src: 'dist/',
+        dest: '/path/to/destination/folder',
+        exclusions: ['src/**/.DS_Store', 'src/**/Thumbs.db', 'dist/tmp']
+      }
+    },
+
     liquid: {
       options: {
         includes: 'src/liquid',
+        //example data
         list: [
           { item: "Item" },
           { item: "Item" },
@@ -73,10 +97,7 @@ module.exports = function(grunt) {
             dest: 'dist',
             ext: '.html'
           }
-        ],
-        options: {
-          debug:  true
-        }
+        ]
       },
       prod: {
         files: [
@@ -89,7 +110,6 @@ module.exports = function(grunt) {
           }
         ],
         options: {
-          debug: false,
           minify: config.minifyScripts
         }
       },
@@ -203,6 +223,17 @@ module.exports = function(grunt) {
       }() )
     },
 
+    imagemin: {
+      prod: {
+        files: [{
+          expand: true,
+          cwd: 'src/img/',
+          src: ['**/*.{png,svg,jpg,gif}'],
+          dest: 'dist/assets/img/'
+        }]
+      }
+    },
+
     copy: {
       fonts: {
         expand: true,
@@ -300,7 +331,6 @@ module.exports = function(grunt) {
     'autoprefixer:prod',
     'liquid:prod',
     'wiredep',
-    // 'concat',
     'copy:scripts',
     'useminPrepare',
     'concat:generated',
@@ -309,7 +339,7 @@ module.exports = function(grunt) {
     'usemin',
     'clean:unminified',
     'copy:fonts',
-    'copy:images'
+    'imagemin:prod'
   ]);
 
 };

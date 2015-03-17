@@ -1,22 +1,7 @@
-  <footer role="contentinfo" class="contentinfo pt+ pb++">
-  	<div class="container">
-  		<p>Hello world. I am footer.</p>
-  	</div>
-  </footer>
+<footer role="contentinfo" class="contentinfo pt+ pb++">
+	<div class="container">
+		<p>Hello world. I am footer.</p>
+	</div>
+</footer>
 
-  <!--[if lt IE 7]>
-      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-  <![endif]-->
-
-  <!-- build:js assets/js/vendor.min.js -->
-  <!-- bower:js -->
-  <!-- endbower -->
-  <!-- endbuild -->
-
-
-  {% if minify %}<!-- build:js assets/js/main.min.js -->{% endif %}
-  <script src="assets/js/main.js"></script>
-  {% if minify %}<!-- endbuild -->{% endif %}
-
-</body>
-</html>
+{% include "./includes/_footer-scripts" %}

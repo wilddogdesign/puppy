@@ -1,5 +1,10 @@
 /**
- * Add/remove floats
+ * Add/remove floats:
+ * Helper float classes.
+ *
+ * - `.float--right` - float right
+ * - `.float--left` - float left
+ * - `.float--none` - remove float
  */
 .float--right   { float:right!important; }
 .float--left    { float:left !important; }
@@ -7,7 +12,12 @@
 
 
 /**
- * Text alignment
+ * Text alignment:
+ * Helper text alignment classes.
+ *
+ * - `.text--left` - align text left
+ * - `.text--center` - center align text
+ * - `.text--right` - align text right
  */
 .text--left     { text-align:left  !important; }
 .text--center   { text-align:center!important; }
@@ -15,7 +25,13 @@
 
 
 /**
- * Font weights
+ * Font weights:
+ * Helper font weight classes.
+ *
+ * - `.weight--light` - font weight of 200
+ * - `.weight--normal` - font weight of 400
+ * - `.weight--semibold` - font weight of 600
+ * - `.weight--bold` - font weight of 800
  */
 .weight--light      { font-weight:200!important; }
 .weight--normal     { font-weight:400!important; }
@@ -23,7 +39,10 @@
 .weight--bold       { font-weight:800!important; }
 
 /**
- * Add a help cursor to any element that gives the user extra information on
+ * Information cursor:
+ * Helper to add information cursor to element.
+ *
+ * - `.informative` - add a help cursor to any element that gives the user extra information on
  * `:hover`.
  */
 .informative{
@@ -31,7 +50,10 @@
 }
 
 /**
+ * Muted element:
  * Mute an object by reducing its opacity.
+ *
+ * - `.muted` - mute an object.
  */
 .muted{
     opacity:0.5!important;
@@ -39,21 +61,33 @@
 }
 
 /**
+ * Capital case:
  * Apply capital case to an element (usually a `strong`).
+ *
+ * - `.caps` - apply caps
  */
 .caps{
     text-transform:uppercase!important;
 }
 
 /**
+ * Smaller text:
  * Make text size smaller.
+ *
+ * - `.small` - make text size smaller
  */
 .small {
     font-size: .9em !important;
 }
 
 /**
+ * Foreground colors:
  * Apply specific color.
+ *
+ * - `.color--brand` - brand colour
+ * - `.color--text` - main text colour
+ * - `.color--white` - white colour
+ * - `.color--black` - black colour
  */
 .color--brand,
 .color--brand:hover {
@@ -70,7 +104,16 @@
 }
 
 /**
+ * Background colors:
  * Apply specific color to background.
+ *
+ * - `.bg--brand` - brand colour
+ * - `.bg--text` - main text colour
+ * - `.bg--white` - white colour
+ * - `.bg--black` - black colour
+ * - `.bg--grey` - grey colour
+ * - `.bg--grey-dark` - dark grey colour
+ * - `.bg--grey-light` - light grey colour
  */
 .bg--brand {
     background-color: $color--brand !important;
@@ -96,7 +139,10 @@
 
 
 /**
- * Create circle 
+ * Circle:
+ * Create circle
+ *
+ * - `.circled` - circle in.
  */
 .circled {
     border-radius: 50%;
@@ -104,20 +150,27 @@
 
 
 /**
+ * Hide text:
  * Hide text inside element
+ *
+ * - `.text--hidden` - hide text
  */
 .text--hidden {
     overflow: hidden;
-    text-indent: -9999px; 
-    white-space: nowrap; 
+    text-indent: -9999px;
+    white-space: nowrap;
 }
 
 
 /**
+ * Accessibility-friendly hide:
  * Hide content off-screen without resorting to `display:none;`, also provide
  * breakpoint specific hidden elements.
+ *
+ * - `.accessibility`
+ * - `.hidden`
  */
-@mixin accessibility{ 
+@mixin accessibility{
     border:0!important;
     clip:rect(0 0 0 0)!important;
     height:1px!important;

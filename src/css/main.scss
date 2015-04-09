@@ -1,6 +1,40 @@
+/*!
+
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZ WILD DOG DESIGN ZZZZZZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ~ ...ZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ... ....ZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ. ..   ....+ZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZI.           .. ZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZ$+,.~IZZZZZZZZ?....       ... .ZZZZZZZ
+ZZZZZZZZZZZZZZZZZZ$... ...     .... ..          .. .?ZZZZZZZ
+ZZZZZZZZZZZZZZZZZ...                            .ZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZ....                            ~ZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZI.                             ..ZZZZZZZZZZZZ
+ZZZZZZZZZZ$+:....                            ...ZZZZZZZZZZZZ
+ZZZZZZZZ....  ...        .... .              ..,ZZZZZZZZZZZZ
+ZZZZZ=...... ...        .......              ..ZZZZZZZZZZZZZ
+ZZZZ......?:$ZZZ        ..,~...              ?ZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZ.   . ..ZZZZZZZZ7.. ..   ...ZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZ..   ...ZZZZZZZZZZZZ7..   ..ZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZ+. ...~$ZZZZZZZZZZZZZZ..   ..ZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZ... ZZZZZZZZZZZZZZZZZ .   . ZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZ....ZZZZZZZZZZZZZZZZZZ7 .....ZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZ+. ...ZZZZZZZZZZZZZZZZZZZ+.....,ZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZ=+IZZZZZZZZZZZZZZZZZZZZZZ?:~+$ZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+
+*/
+
 // Settings: Global variables, site-wide settings, config switches, etc.
-	$inuit-base-font-size: 			16px;
-	$inuit-base-line-height:    	18px; 
+	$inuit-base-font-size:   16px;
+	$inuit-base-line-height: 18px;
 	@import "bower_components/inuit-defaults/settings.defaults";
 	@import "bower_components/inuit-responsive-settings/settings.responsive";
 	@import "partials/settings/settings.local";
@@ -8,8 +42,8 @@
 // Tools: Site-wide mixins and functions.
 	@import "bower_components/inuit-functions/tools.functions";
 	@import "bower_components/inuit-mixins/tools.mixins";
-	@import "bower_components/inuit-responsive-tools/tools.responsive";	
-  
+	@import "bower_components/inuit-responsive-tools/tools.responsive";
+
 // Plugins: Third-party plugins
 	// Bourbon
 	@import "bower_components/bourbon/app/assets/stylesheets/bourbon";
@@ -17,25 +51,25 @@
 // Generic: Low-specificity, far-reaching rulesets (e.g. resets).
 	@import "bower_components/inuit-normalize/generic.normalize";
 	@import "bower_components/inuit-box-sizing/generic.box-sizing";
- 
+
 // Base: Unclassed HTML elements (e.g. a {}, blockquote {}, address {}).
-	$inuit-heading-size-1:  30px; 
+	$inuit-heading-size-1:  30px;
 	$inuit-heading-size-2:  22px;
 	$inuit-heading-size-3:  18px;
 	$inuit-heading-size-4:  16px;
 	$inuit-heading-size-5:  15px;
 	$inuit-heading-size-6:  12px;
-	@import "bower_components/inuit-page/base.page"; 
+	@import "bower_components/inuit-page/base.page";
 	@import "bower_components/inuit-images/base.images";
 	@import "bower_components/inuit-headings/base.headings";
 	@import "partials/base/base.forms";
 
 // Objects: Objects, abstractions, and design patterns (e.g. .media {}).
-	$inuit-enable-layout--tiny:     true;
-	$inuit-enable-layout--small:    true;
-	$inuit-enable-layout--large:    true;
-	$inuit-enable-layout--huge:     true;
-	$inuit-enable-layout--flush:    true;
+	$inuit-enable-layout--tiny:  true;
+	$inuit-enable-layout--small: true;
+	$inuit-enable-layout--large: true;
+	$inuit-enable-layout--huge:  true;
+	$inuit-enable-layout--flush: true;
 	@import "bower_components/inuit-layout/objects.layout";
 	@import "bower_components/inuit-buttons/objects.buttons";
 	@import "bower_components/inuit-pack/objects.pack";
@@ -53,18 +87,18 @@
 
 
 // Trumps: High-specificity, very explicit selectors. Overrides and helper classes (e.g. .hidden {}).
-	$inuit-enable-margins:			true;
-	$inuit-enable-margins--tiny:	true;
-	$inuit-enable-margins--small:	true;
-	$inuit-enable-margins--large:	true;
-	$inuit-enable-margins--huge:	true;
-	$inuit-enable-margins--none:	true;
-	$inuit-enable-paddings:			true;
-	$inuit-enable-paddings--tiny:	true;
-	$inuit-enable-paddings--small:	true;
-	$inuit-enable-paddings--large:	true;
-	$inuit-enable-paddings--huge:	true;
-	$inuit-enable-paddings--none:	true;
+	$inuit-enable-margins:         true;
+	$inuit-enable-margins--tiny:   true;
+	$inuit-enable-margins--small:  true;
+	$inuit-enable-margins--large:  true;
+	$inuit-enable-margins--huge:   true;
+	$inuit-enable-margins--none:   true;
+	$inuit-enable-paddings:        true;
+	$inuit-enable-paddings--tiny:	 true;
+	$inuit-enable-paddings--small: true;
+	$inuit-enable-paddings--large: true;
+	$inuit-enable-paddings--huge:  true;
+	$inuit-enable-paddings--none:  true;
 	@import "bower_components/inuit-widths/trumps.widths";
 	@import "bower_components/inuit-widths-responsive/trumps.widths-responsive";
 	@import "bower_components/inuit-spacing/trumps.spacing";

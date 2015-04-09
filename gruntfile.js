@@ -5,15 +5,16 @@ var mountFolder = function (connect, dir) {
 module.exports = function(grunt) {
 
   // REQUIRE
+
+  // measure the time
   require('time-grunt')(grunt);
-  // require('load-grunt-tasks')(grunt);
+  // load the tasks
   require('jit-grunt')(grunt, {
-    /* jshint camelcase:false */
     useminPrepare: 'grunt-usemin'
-    /* jshint camelcase:true */
   });
 
   var config = {
+    // Minify the scripts and css for production
     minifyScripts: true
   };
 
@@ -52,9 +53,11 @@ module.exports = function(grunt) {
       },
     },
 
-    /* 
+    /*
     FTP deploy
-    Create new file in project directory called .ftppass where you store user crediantials. Example:
+    Create new file in project directory called .ftppass where you store user credentials.
+    `key` is refered to from authKey option
+    Example:
     {
       "key": {
         "username": "username1",
@@ -71,7 +74,7 @@ module.exports = function(grunt) {
         },
         src: 'dist/',
         dest: '/path/to/destination/folder',
-        exclusions: ['src/**/.DS_Store', 'src/**/Thumbs.db', 'dist/tmp']
+        exclusions: ['dist/**/.DS_Store', 'dist/**/Thumbs.db', 'dist/.tmp']
       }
     },
 
@@ -143,6 +146,18 @@ module.exports = function(grunt) {
           dest: 'dist/assets/css',
           ext: '.css'
         }]
+      },
+      styleguide: {
+        options: {
+          outputStyle: 'compressed'
+        },
+        files: [{
+          expand: true,
+          cwd: 'src/styleguide',
+          src: ['*.{scss,sass}'],
+          dest: 'dist/styleguide/css',
+          ext: '.css'
+        }]
       }
     },
 
@@ -165,6 +180,15 @@ module.exports = function(grunt) {
         src:  'assets/css/main.css',
         dest: 'dist',
       },
+      styleguide: {
+        options: {
+          map: false
+        },
+        expand: true,
+        cwd:  'dist/styleguide/css',
+        src:  '*.css',
+        dest: 'dist/styleguide/css'
+      }
     },
 
     // Automatic Bower script and styles inclusion
@@ -229,7 +253,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'src/img/',
           src: ['**/*.{png,svg,jpg,gif}'],
-          dest: 'dist/assets/img/'
+          dest: 'dist/assets/img'
         }]
       }
     },
@@ -252,6 +276,14 @@ module.exports = function(grunt) {
         cwd: 'src',
         src: 'img/**',
         dest: 'dist/assets/',
+      },
+      styleguide: {
+        files: [{
+          expand: true,
+          cwd: 'src/img/site',
+          src: ['**/*'],
+          dest: 'dist/styleguide/img'
+        }]
       }
     },
 
@@ -266,8 +298,50 @@ module.exports = function(grunt) {
       options: {
         dirs: ['dist']
       },
-      html: ['dist/{,*/}*.html'],
-      css:  ['dist/assets/css/{,*/}*.css']
+      html: ['dist/**/*.html'],
+      css:  ['dist/assets/css/**/*.css']
+    },
+
+    // Styleguide
+    styledown: {
+      build: {
+        files: {
+          'dist/styleguide/index.html': [
+            'src/styleguide/config.md',
+            'src/css/partials/settings/_settings.local.scss',
+            'src/css/partials/base/_base.forms.scss',
+            'src/css/partials/objects/*.scss',
+            'src/css/partials/components/*.scss',
+            'src/css/partials/trumps/*.scss'
+          ]
+        },
+        options: {
+          css: [
+            '../assets/css/vendor.min.css',
+            '../assets/css/main.min.css',
+            'css/styleguide.css'
+            ],
+          js: [
+            '../assets/js/libs/modernizr.min.js',
+            '../assets/js/vendor.min.js',
+            '../assets/js/main.min.js'
+          ],
+          title: 'Puppy Style Guide'
+        }
+      },
+    },
+
+    concurrent: {
+      options: {
+        limit: 8
+      },
+      prod: [
+        'sass:prod',
+        'liquid:prod',
+        'copy:scripts',
+        'imagemin:prod',
+        'copy:fonts'
+      ]
     },
 
     watch: {
@@ -307,6 +381,15 @@ module.exports = function(grunt) {
 
 
   // TASKS
+  grunt.registerTask('minify', [
+    'useminPrepare',
+    'concat:generated',
+    'cssmin:generated',
+    'uglify:generated',
+    'usemin',
+  ]);
+
+
   grunt.registerTask('server', [
     'connect:livereload',
     'watch'
@@ -326,19 +409,20 @@ module.exports = function(grunt) {
   grunt.registerTask('prod', [
     'jshint',
     'clean:dist',
-    'sass:prod',
-    'autoprefixer:prod',
-    'liquid:prod',
+    'concurrent:prod',
     'wiredep',
-    'copy:scripts',
-    'useminPrepare',
-    'concat:generated',
-    'cssmin:generated',
-    'uglify:generated',
-    'usemin',
+    'minify',
+    'autoprefixer:prod',
     'clean:unminified',
-    'copy:fonts',
-    'imagemin:prod'
+  ]);
+
+
+  // Styleguide compilation task
+  grunt.registerTask('styleguide', [
+    'styledown',
+    'sass:styleguide',
+    'autoprefixer:styleguide',
+    'copy:styleguide'
   ]);
 
 };

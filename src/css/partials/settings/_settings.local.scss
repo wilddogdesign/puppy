@@ -1,12 +1,30 @@
-$color--brand			: #BADA55;
+/**
+ * Main colors:
+ * The colors used in the project.
+ *
+ *   @example
+ *   div.sg-tyles
+ *     div.sg-tyles__item(style='background-color: #BADA55') Main color
+ *     div.sg-tyles__item(style='background-color: #666') Secondary color
+ */
 
-$color--white 			: #fff;
-$color--black			: #111;
-$color--text			: $inuit-base-text-color;
+$color--brand:        #BADA55;
 
-$color--grey 			: #666;
-$color--grey-dark 		: #333;
-$color--grey-light 		: #eee;
+$color--white:        #fff;
+$color--black:        #111;
+$color--text:         $inuit-base-text-color;
 
-$font--main				: Arial, sans-serif;
-$font--title			: Arial, sans-serif;
+$color--grey:         #666;
+$color--grey-dark:    #333;
+$color--grey-light:   #eee;
+
+// Alert colours
+$color--alert-yellow: #f7931e;
+$color--alert-red:    #d12328;
+$color--alert-green:  #00964d;
+
+// Forms
+$color--disabled-gray:       #cecece;
+
+$font--main:          Helvetica, Arial, sans-serif;
+$font--title:         Helvetica, Arial, sans-serif;

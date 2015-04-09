@@ -1,0 +1,84 @@
+@import url("http://www.google.com/fonts#UsePlace:use/Collection:Source+Sans+Pro:400,600");
+
+$white:         #fff;
+$black:         #111;
+$brand-color:   #BADA55;
+$font:          "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$font-weight-1: 600;
+$font-weight-2: 400;
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+#puppy-style-guide {
+  height: 400px;
+  background-color: $brand-color;
+  color: $white;
+  font-size: 200%;
+  margin: 0;
+  text-align: center;
+  overflow: hidden;
+  padding-top: 250px;
+  position: relative;
+  font-family: $font;
+}
+
+.sg {
+
+  &-canvas {
+    @include clearfix();
+    overflow: visible;
+  }
+
+  &-block {
+    max-width: 1121px;
+    margin: 0 auto;
+
+    &--padded {
+      @include clearfix();
+      padding: 10px;
+    }
+
+    &--inversed {
+      background-color: $black;
+    }
+  }
+
+  &-tyles {
+
+    &__item {
+      padding-top: 50px;
+      display: inline-block;
+      width: 150px;
+      height: 150px;
+      color: $white;
+      text-align: center;
+      vertical-align: middle;
+      border-radius: 4px;
+    }
+  }
+
+  &-font {
+    font-family: $font;
+
+    &--bigger{
+      font-size: 2em;
+    }
+
+    &--weight-1 {
+      font-weight: $font-weight-1;
+    }
+
+    &--weight-2 {
+      font-weight: $font-weight-2;
+    }
+  }
+}

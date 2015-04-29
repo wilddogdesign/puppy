@@ -411,8 +411,8 @@ module.exports = function(grunt) {
     'clean:dist',
     'concurrent:prod',
     'wiredep',
-    'minify',
     'autoprefixer:prod',
+    'minify',
     'clean:unminified',
   ]);
 

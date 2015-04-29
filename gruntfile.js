@@ -271,6 +271,12 @@ module.exports = function(grunt) {
         src: 'js/main.js',
         dest: 'dist/assets/',
       },
+      index: {
+        expand: true,
+        cwd: 'src/index',
+        src: '**/*',
+        dest: 'dist',
+      },
       images: {
         expand: true,
         cwd: 'src',
@@ -339,6 +345,7 @@ module.exports = function(grunt) {
         'sass:prod',
         'liquid:prod',
         'copy:scripts',
+        'copy:index',
         'imagemin:prod',
         'copy:fonts'
       ]
@@ -362,6 +369,10 @@ module.exports = function(grunt) {
       fonts: {
         files: ['src/fonts/**'],
         tasks: ['copy:fonts']
+      },
+      index: {
+        files: ['src/index/**'],
+        tasks: ['newer:copy:index']
       },
       styles: {
         files: ['src/css/**'],

@@ -244,7 +244,13 @@ module.exports = function(grunt) {
           // Scripts are not minified, nothing to clean
           return [];
         }
-      }() )
+      }() ),
+      unrevved: [
+        'dist/assets/css/main.min.css',
+        'dist/assets/css/vendor.min.css',
+        'dist/assets/js/main.min.js',
+        'dist/assets/js/vendor.min.js'
+      ]
     },
 
     imagemin: {
@@ -297,6 +303,19 @@ module.exports = function(grunt) {
       html: 'dist/index.html',
       options: {
         dest: 'dist'
+      }
+    },
+
+    filerev: {
+      options: {
+        algorithm: 'md5',
+        length: 8
+      },
+      prod: {
+        expand: true,
+        cwd: 'dist/assets',
+        src: ['js/*.js','css/*.css'],
+        dest: 'dist/assets'
       }
     },
 
@@ -397,6 +416,7 @@ module.exports = function(grunt) {
     'concat:generated',
     'cssmin:generated',
     'uglify:generated',
+    'filerev',
     'usemin',
   ]);
 
@@ -425,6 +445,7 @@ module.exports = function(grunt) {
     'autoprefixer:prod',
     'minify',
     'clean:unminified',
+    'clean:unrevved',
   ]);
 
 

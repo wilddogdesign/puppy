@@ -81,6 +81,9 @@ module.exports = function(grunt) {
     liquid: {
       options: {
         includes: 'src/liquid',
+        pages: grunt.file.readJSON('data/pages.json'),
+        dateNow: '<%= grunt.template.date( Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT" ) %>',
+        yearNow: '<%= grunt.template.date( Date.now(), "yyyy" ) %>',
         //example data
         list: [
           { item: "Item" },
@@ -278,6 +281,7 @@ module.exports = function(grunt) {
         dest: 'dist/assets/',
       },
       index: {
+        dot: true,
         expand: true,
         cwd: 'src/index',
         src: '**/*',
@@ -442,10 +446,11 @@ module.exports = function(grunt) {
     'clean:dist',
     'concurrent:prod',
     'wiredep',
+    'styleguide',
     'autoprefixer:prod',
     'minify',
     'clean:unminified',
-    'clean:unrevved',
+    'clean:unrevved'
   ]);
 
 

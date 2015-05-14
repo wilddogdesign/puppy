@@ -1,0 +1,15 @@
+{
+  "config" : {
+    "title": "Puppy starting project"
+  },
+  "all" : [
+    {
+      "title": "Home page",
+      "page":  "index",
+      "breadcrumbs": [
+        ["Home", "/"]
+      ],
+      "description": "Main template"
+    }
+  ]
+}

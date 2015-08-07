@@ -15,7 +15,8 @@ module.exports = function(grunt) {
 
   var config = {
     // Minify the scripts and css for production
-    minifyScripts: true
+    minifyScripts: true,
+    inlineCss: true
   };
 
   // CONFIG
@@ -331,6 +332,19 @@ module.exports = function(grunt) {
       css:  ['dist/assets/css/**/*.css']
     },
 
+    critical: {
+      index: {
+        options:  {
+          base: './',
+          css: [],
+          width: 1099,
+          height: 600
+        },
+        src: 'dist/index.html',
+        dest: 'dist/index.html'
+      }
+    },
+
     // Styleguide
     styledown: {
       build: {
@@ -415,15 +429,60 @@ module.exports = function(grunt) {
 
 
   // TASKS
-  grunt.registerTask('minify', [
-    'useminPrepare',
-    'concat:generated',
-    'cssmin:generated',
-    'uglify:generated',
-    'filerev',
-    'usemin',
-  ]);
 
+  grunt.registerTask('minify', function() {
+    if (config.minifyScripts) {
+      grunt.task.run('useminPrepare');
+      grunt.task.run('concat:generated');
+      grunt.task.run('cssmin:generated');
+      grunt.task.run('uglify:generated');
+      grunt.task.run('filerev');
+      grunt.task.run('usemin');
+      grunt.task.run('cleanUnminified');
+      grunt.task.run('clean:unrevved');
+    } else {
+      grunt.task.run('useminPrepare');
+      grunt.task.run('concat:generated');
+      grunt.task.run('cssmin:generated');
+      grunt.task.run('uglify:generated');
+      grunt.task.run('usemin');
+      grunt.log.ok('Minification is switched off. Skipping');
+    }
+  });
+
+  // Custom task to inline CSS
+  // We need this to run after filerev to get revved files summary
+  // If minification is switched off, unminified styles are inlined
+  grunt.registerTask('inlineCss', function() {
+    var cssToInline = config.minifyScripts ? [
+      grunt.filerev.summary['dist/assets/css/main.min.css']
+    ] : [
+      'dist/assets/css/main.css'
+    ];
+
+    if (config.inlineCss) {
+      // grunt.verbose.write( JSON.stringify(grunt.filerev.summary, null, 2) );
+      grunt.config('critical.index.options.css', cssToInline);
+      grunt.task.run('critical');
+    } else {
+      grunt.log.ok('CSS inline is switched off. Skipping');
+    }
+  });
+
+  // Custom unminified files cleaning
+  // We need to get the revved files' names
+  // and run the clean:unminified task
+  grunt.registerTask('cleanUnminified', function() {
+    var unminifiedAndRevved = [
+      'dist/assets/css/main.css',
+      'dist/assets/js/main.js',
+      grunt.filerev.summary['dist/assets/css/main.css'],
+      grunt.filerev.summary['dist/assets/js/main.js']
+    ];
+
+    grunt.config('clean.unminified', unminifiedAndRevved);
+    grunt.task.run('clean:unminified');
+  });
 
   grunt.registerTask('server', [
     'connect:livereload',
@@ -449,8 +508,7 @@ module.exports = function(grunt) {
     'styleguide',
     'autoprefixer:prod',
     'minify',
-    'clean:unminified',
-    'clean:unrevved'
+    'inlineCss'
   ]);
 
 

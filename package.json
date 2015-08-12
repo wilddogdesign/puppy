@@ -30,6 +30,7 @@
     "grunt-open": "^0.2.3",
     "grunt-sass": "^0.18.1",
     "grunt-styledown": "0.0.3",
+    "grunt-svgstore": "^0.5.0",
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",
     "jit-grunt": "^0.9.1",

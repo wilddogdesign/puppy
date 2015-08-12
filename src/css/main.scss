@@ -84,6 +84,7 @@ ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 
 // Components: Discrete, complete chunks of UI (e.g. .carousel {}). This is the one layer that inuitcss doesn’t get involved with.
 	@import "partials/components/components.general";
+	@import "partials/components/components.nav";
 
 
 // Trumps: High-specificity, very explicit selectors. Overrides and helper classes (e.g. .hidden {}).

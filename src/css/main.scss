@@ -80,11 +80,14 @@ ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 
 	@import "partials/objects/objects.layout-flex";
 	@import "partials/objects/objects.fonts";
+	@import "partials/objects/objects.icons";
 	@import "partials/objects/objects.buttons";
 
 // Components: Discrete, complete chunks of UI (e.g. .carousel {}). This is the one layer that inuitcss doesn’t get involved with.
 	@import "partials/components/components.general";
 	@import "partials/components/components.nav";
+	@import "partials/components/components.hero";
+	@import "partials/components/components.tiles";
 
 
 // Trumps: High-specificity, very explicit selectors. Overrides and helper classes (e.g. .hidden {}).
@@ -109,5 +112,6 @@ ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 	@import "bower_components/inuit-print/trumps.print";
 
 	@import "partials/trumps/trumps.helpers";
+	@import "partials/trumps/trumps.animations";
 	@import "partials/trumps/trumps.z-index";
 	@import "partials/trumps/trumps.shame";

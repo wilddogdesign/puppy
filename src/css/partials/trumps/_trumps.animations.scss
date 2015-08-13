@@ -1,0 +1,23 @@
+@keyframes pulsate {
+  20% {
+    transform: scale(.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(.9);
+  }
+}
+
+@keyframes bump {
+  0% {
+    transform: scaleX(0);
+  }
+  60% {
+    transform: scaleX(1.6);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}

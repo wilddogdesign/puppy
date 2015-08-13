@@ -1,6 +1,6 @@
 <header role="banner" id="top" class="header">
 	<div class="container">
-		<div class="header__content layout mv">
+		<div class="header__content layout pt">
       <div class="layout__item 1/3">
         <a href="/" class="header__brand">
           <img src="assets/img/logo-full.svg" alt="Wild Dog Design logo" class="palm--hidden">
@@ -8,11 +8,11 @@
         </a>
       </div>
       <div class="header__utils layout__item 2/3 pv">
-        <div class="layout__item 1/3 float--right">
-          <a href="mailto:ruff@wilddogdesign.co.uk"><i class="icon icon--email" aria-hidden="true"></i><span class="text">email: </span>ruff@wilddogdesign.co.uk</a>
+        <div class="layout__item 2/5 float--right">
+          <a href="mailto:ruff@wilddogdesign.co.uk" class="block with-icon"><i class="icon icon--email" aria-hidden="true"><svg><use xlink:href="#icon-email" /></svg></i><span class="text color--black">email: </span>ruff@wilddogdesign.co.uk</a>
         </div>
-        <div class="layout__item 1/3 float--right">
-          <a href="tel:+441273278766"><i class="icon icon--phone" aria-hidden="true"></i><span class="text">call: </span>+44&nbsp;(0)1273&nbsp;278&nbsp;766</a>
+        <div class="layout__item 2/5 float--right">
+          <a href="tel:+441273278766" class="block with-icon"><i class="icon icon--phone" aria-hidden="true"><svg><use xlink:href="#icon-phone" /></svg></i><span class="text color--black">call: </span>+44&nbsp;(0)1273&nbsp;278&nbsp;766</a>
         </div>
       </div>
     </div>
@@ -23,11 +23,11 @@
     <div class="header-navs__body">
       <div class="container">
         <nav class="primary-nav">
-          <ul class="primary-nav__items list-bare">
-            <li class="primary-nav__item{% if page == 'portfolio' %} primary-nav__item--active{% endif %}"><a href="portfolio.html" class="primary-nav__link">work</a></li>
-            <li class="primary-nav__item{% if page == 'sector' %} primary-nav__item--active{% endif %}"><a href="sector.html" class="primary-nav__link">sector</a></li>
-            <li class="primary-nav__item{% if page == 'why-us' %} primary-nav__item--active{% endif %}"><a href="why-us.html" class="primary-nav__link">why us</a></li>
-            <li class="primary-nav__item{% if page == 'contact' %} primary-nav__item--active{% endif %}"><a href="contact.html" class="primary-nav__link">contact</a></li>
+          <ul class="primary-nav__items list-bare pb">
+            <li class="primary-nav__item{% if page == 'portfolio' %} primary-nav__item--active{% endif %}"><a href="portfolio.html" class="primary-nav__link"><span>work</span></a></li>
+            <li class="primary-nav__item{% if page == 'sector' %} primary-nav__item--active{% endif %}"><a href="sector.html" class="primary-nav__link"><span>sector</span></a></li>
+            <li class="primary-nav__item{% if page == 'why-us' %} primary-nav__item--active{% endif %}"><a href="why-us.html" class="primary-nav__link"><span>why us</span></a></li>
+            <li class="primary-nav__item{% if page == 'contact' %} primary-nav__item--active{% endif %}"><a href="contact.html" class="primary-nav__link"><span>contact</span></a></li>
           </ul>
         </nav>
       </div>

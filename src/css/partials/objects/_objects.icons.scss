@@ -1,0 +1,67 @@
+.icon {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0,-50%);
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color .3s ease-in;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $color--grey-dark;
+    transition: all .3s ease-in;
+  }
+
+}
+
+
+.with-icon {
+  padding-left: 40px;
+
+  &:hover,
+  &:focus {
+    .icon {
+      background-color: $color--brand;
+      transition: background-color .3s ease-in;
+      overflow: hidden;
+      svg {
+        // animation: pulsate 1s ease-in-out infinite;
+        transform: scale(1.4) translate(12%,18%);
+        fill: $color--white;
+        transition: all .3s ease-in;
+      }
+    }
+  }
+}
+
+/**
+ * Accessibility-friendly icons:
+ * Show an icon and hide text if icon fonts are enabled,
+ * show text and hide the icon otherwise. Always read text.
+ *
+ * - `.icon-fallback-text` > `.icon` + `.text`
+ */
+.icon-fallback-text {
+
+  .icon {
+    display: none;
+  }
+
+  .fontface.generatedcontent & .icon {
+    display: inline-block;
+  }
+
+  .fontface.generatedcontent & .text {
+    /* a generic way to visually hide content while remaining accessible to screen readers (h5bp.com) */
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    position: absolute;
+    height: 1px;
+    width: 1px;
+  }
+}

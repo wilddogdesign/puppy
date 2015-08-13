@@ -200,12 +200,13 @@ module.exports = function(grunt) {
         prefix : 'icon-', // This will prefix each ID
         svg: { // will add and overide the the default xmlns="http://www.w3.org/2000/svg" attribute to the resulting SVG
           viewBox : '0 0 100 100',
-          xmlns: 'http://www.w3.org/2000/svg'
+          xmlns: 'http://www.w3.org/2000/svg',
+          style: 'display: none'
         }
       },
       default: {
         files: {
-
+          'src/liquid/includes/icons.liquid': ['src/svg/*.svg'],
         }
       },
     },
@@ -437,6 +438,10 @@ module.exports = function(grunt) {
       images: {
         files: ['src/img/**'],
         tasks: ['newer:copy:images']
+      },
+      svg: {
+        files: ['src/svg/**'],
+        tasks: ['svgstore']
       }
     },
 
@@ -510,6 +515,7 @@ module.exports = function(grunt) {
     'sass:dev',
     'autoprefixer:dev',
     'concat',
+    'svgstore',
     'liquid:dev',
     'wiredep',
     'copy'
@@ -518,6 +524,7 @@ module.exports = function(grunt) {
   grunt.registerTask('prod', [
     'jshint',
     'clean:dist',
+    'svgstore',
     'concurrent:prod',
     'wiredep',
     'styleguide',

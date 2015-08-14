@@ -165,9 +165,11 @@ module.exports = function(grunt) {
       }
     },
 
-    autoprefixer: {
+    postcss: {
       options: {
-        browsers: ['> 1%', 'last 2 versions', 'ie 9']
+        processors: [
+          require('autoprefixer-core')({browsers: ['> 1%', 'last 2 versions', 'ie 9']})
+        ]
       },
       dev: {
         options: {
@@ -513,7 +515,7 @@ module.exports = function(grunt) {
     'jshint',
     'clean:dist',
     'sass:dev',
-    'autoprefixer:dev',
+    'postcss:dev',
     'concat',
     'svgstore',
     'liquid:dev',
@@ -528,7 +530,7 @@ module.exports = function(grunt) {
     'concurrent:prod',
     'wiredep',
     'styleguide',
-    'autoprefixer:prod',
+    'postcss:prod',
     'minify',
     'inlineCss'
   ]);
@@ -538,7 +540,7 @@ module.exports = function(grunt) {
   grunt.registerTask('styleguide', [
     'styledown',
     'sass:styleguide',
-    'autoprefixer:styleguide',
+    'postcss:styleguide',
     'copy:styleguide'
   ]);
 

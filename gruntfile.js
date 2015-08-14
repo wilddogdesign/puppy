@@ -431,7 +431,7 @@ module.exports = function(grunt) {
       },
       styles: {
         files: ['src/css/**'],
-        tasks: ['sass:dev', 'autoprefixer:dev']
+        tasks: ['sass:dev', 'postcss:dev']
       },
       liquid: {
         files: ['src/liquid/**'],

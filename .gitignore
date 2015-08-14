@@ -8,3 +8,4 @@ builds
 pre-build
 bower_components
 test/bower_components
+src/liquid/includes/_icons.liquid

@@ -206,7 +206,7 @@ module.exports = function(grunt) {
       },
       default: {
         files: {
-          'src/liquid/includes/icons.liquid': ['src/svg/*.svg'],
+          'src/liquid/includes/_icons.liquid': ['src/svg/*.svg'],
         }
       },
     },

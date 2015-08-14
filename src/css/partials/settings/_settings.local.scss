@@ -8,9 +8,7 @@
  *     div.sg-tyles__item(style='background-color: #666') Secondary color
  */
 
-@import url("//fonts.googleapis.com/css?family=Roboto:300,400");
-
-$color--brand:        #cd1719;
+$color--brand:        #BADA55;
 
 $color--white:        #fff;
 $color--black:        #111;
@@ -28,5 +26,5 @@ $color--alert-green:  #00964d;
 // Forms
 $color--disabled-gray:       #cecece;
 
-$font--main:          "Roboto", Helvetica, Arial, sans-serif;
-$font--title:         "Roboto", Helvetica, Arial, sans-serif;
+$font--main:          Helvetica, Arial, sans-serif;
+$font--title:         Helvetica, Arial, sans-serif;

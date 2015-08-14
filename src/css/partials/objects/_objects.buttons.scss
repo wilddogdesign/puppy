@@ -1,15 +1,12 @@
 // General
 .btn {
-	background: transparent;
-	color: $color--grey-dark;
-	padding: 6px 12px;
+	background: $color--grey-dark;
+	padding: 8px 10px;
 	border: 1px solid $color--grey-dark;
-	transition: all .3s ease-in-out;
+	transition: all .2s ease-in-out;
 }
 .btn:hover {
 	background: $color--black;
-	color: $color--white;
-	transition: all .3s ease-in-out;
 }
 .btn--grey {
 	background: $color--grey;
@@ -19,41 +16,41 @@
 	border-color: $color--grey-dark;
 }
 .btn--brand {
-	color: $color--brand;
+	background: $color--brand;
 	border-color: $color--brand;
 }
 .btn--brand:hover {
-	color: $color--white;
-	background-color: $color--brand;
+	border-color: $color--grey-dark;
 }
 .btn--light {
-	color: $color--white;
-	border-color: $color--white;
+	background: $color--white;
+	color: $color--grey-dark;
 }
-// .btn--light:hover {
-// 	color: $color--grey-dark;
-// }
+.btn--light:hover {
+	background: $color--grey-light;
+	color: $color--grey-dark;
+}
 
 // Transparent
-// .btn--transparent {
-// 	background: transparent;
-// 	color: $color--grey-dark;
-// }
-// .btn--transparent:focus {
-// 	color: $color--grey-dark;
-// }
-// .btn--transparent:hover {
-// 	background: $color--grey-dark;
-// 	color: $color--white;
-// }
-// .btn--transparent.btn--light {
-// 	border: 1px solid $color--white;
-// 	color: $color--white;
-// }
-// .btn--transparent.btn--light:hover {
-// 	background: $color--white;
-// 	color: $color--grey-dark;
-// }
+.btn--transparent {
+	background: transparent;
+	color: $color--grey-dark;
+}
+.btn--transparent:focus {
+	color: $color--grey-dark;
+}
+.btn--transparent:hover {
+	background: $color--grey-dark;
+	color: $color--white;
+}
+.btn--transparent.btn--light {
+	border: 1px solid $color--white;
+	color: $color--white;
+}
+.btn--transparent.btn--light:hover {
+	background: $color--white;
+	color: $color--grey-dark;
+}
 
 // Misc
 .btn--full {

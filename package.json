@@ -23,6 +23,7 @@
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-critical": "^0.1.5",
+    "grunt-eol": "^0.2.0",
     "grunt-filerev": "^2.2.0",
     "grunt-ftp-deploy": "^0.1.10",
     "grunt-liquid": "0.2.0",

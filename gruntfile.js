@@ -347,7 +347,8 @@ module.exports = function(grunt) {
         dirs: ['dist']
       },
       html: ['dist/**/*.html'],
-      css:  ['dist/assets/css/**/*.css']
+      css:  ['dist/assets/css/**/*.css'],
+      js:   ['dist/assets/js/**/*.js']
     },
 
     critical: {
@@ -360,6 +361,20 @@ module.exports = function(grunt) {
         },
         src: 'dist/index.html',
         dest: 'dist/index.html'
+      }
+    },
+
+    eol: {
+      to_crlf_replace: {
+        options: {
+          eol: 'lf',
+          replace: true
+        },
+        files: {
+          src: [
+            'dist/*.html'
+          ]
+        }
       }
     },
 
@@ -519,6 +534,7 @@ module.exports = function(grunt) {
     'concat',
     'svgstore',
     'liquid:dev',
+    'eol',
     'wiredep',
     'copy'
   ]);
@@ -528,6 +544,7 @@ module.exports = function(grunt) {
     'clean:dist',
     'svgstore',
     'concurrent:prod',
+    'eol',
     'wiredep',
     'styleguide',
     'postcss:prod',

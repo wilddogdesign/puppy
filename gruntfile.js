@@ -356,8 +356,11 @@ module.exports = function(grunt) {
         options:  {
           base: './',
           css: [],
+          ignore: ['@font-face'],
+          pathPrefix: '/',
+          minify: true,
           width: 1099,
-          height: 600
+          height: 300
         },
         src: 'dist/index.html',
         dest: 'dist/index.html'
@@ -365,7 +368,7 @@ module.exports = function(grunt) {
     },
 
     eol: {
-      to_crlf_replace: {
+      to_lf_replace: {
         options: {
           eol: 'lf',
           replace: true

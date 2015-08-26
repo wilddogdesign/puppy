@@ -381,6 +381,17 @@ module.exports = function(grunt) {
       }
     },
 
+    favicons: {
+      options: {
+        tileBlackWhite: false,
+        html: 'src/liquid/includes/_favicons.liquid'
+      },
+      icons: {
+        src: 'src/misc/favicon.png',
+        dest: 'dist/'
+      }
+    },
+
     // Styleguide
     styledown: {
       build: {
@@ -546,6 +557,7 @@ module.exports = function(grunt) {
     'jshint',
     'clean:dist',
     'svgstore',
+    'favicons',
     'concurrent:prod',
     'eol',
     'wiredep',

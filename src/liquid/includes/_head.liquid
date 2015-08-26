@@ -25,13 +25,11 @@
     <link rel="stylesheet" href="assets/css/main.css">
     {% if minify %}<!-- endbuild -->{% endif %}
 
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-
     <!-- build:js assets/js/libs/modernizr.min.js -->
     <script src="../bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+
+    {% include "./includes/_favicons.liquid" %}
 
   </head>
   <body class="{{page}}">

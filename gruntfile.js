@@ -547,6 +547,7 @@ module.exports = function(grunt) {
     'postcss:dev',
     'concat',
     'svgstore',
+    'favicons',
     'liquid:dev',
     'eol',
     'wiredep',

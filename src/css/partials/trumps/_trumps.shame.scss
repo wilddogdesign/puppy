@@ -1,8 +1,14 @@
 //Fixing initial grid so there's no need to remove white space between layout__item.
 //This ideally should be removed once FED stage is over
 .layout {
-	overflow: hidden;
+  // overflow: hidden;
+  letter-spacing: -0.31em; /* webkit */
+  *letter-spacing: normal; /* reset IE < 8 */
+  word-spacing: -0.43em; /* IE < 8 && gecko */
 }
 .layout__item {
-	float: left;
+  // float: left;
+  zoom: 1; *display: inline; /* IE < 8: fake inline-block */
+  letter-spacing: normal;
+  word-spacing: normal;
 }

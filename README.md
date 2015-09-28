@@ -52,6 +52,21 @@ grunt styleguide
 ```
 The generated styleguide will be available at `dist/styleguide`
 
+Deploying (optional)
+--------------------
+The project employs Flightplan.js to perform versioned deployments. To build and deploy to a development derver,
+first install Flightplan by running
+```
+npm install -g flightplan
+```
+Then, amend flightplan.js file with correct remote server information (your public key has to be added to the remote
+user's shell for you to authorize the transfer), and then run
+```
+fly deploy:<target>
+```
+Keep in mind, that the script is not using sudo, so the deployer user has to have full permissions to the project and
+versions folders.
+
 Brought to you by
 -----------------
 

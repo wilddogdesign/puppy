@@ -46,6 +46,7 @@ module.exports = function(grunt) {
             return [
               mountFolder( connect, 'dist' ),
               connect().use('/bower_components', connect.static('./bower_components')),
+              connect().use('/src', connect.static('./src')),
               connect().use('/partials', connect.static('./src/css/partials')),
               mountFolder( connect, 'src' )
             ];

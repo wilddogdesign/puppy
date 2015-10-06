@@ -13,7 +13,12 @@
     <meta name="description" content="">
     <meta name="author" content="Wild Dog Design">
 
-  	<title>Wooff Wooff</title>
+{% comment %}Will be picked up from ./data/pages.json{% endcomment %}
+{% for p in pages.all %}
+  {% if page == p.page %}
+    <title>{{p.title}} | {{pages.config.title}}</title>
+  {% endif %}
+{% endfor %}
 
     <!-- Set up preconnect -->
     <link href='//fonts.gstatic.com' rel='preconnect' crossorigin>

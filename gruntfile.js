@@ -407,16 +407,28 @@ module.exports = function(grunt) {
           ]
         },
         options: {
-          css: [
-            '../assets/css/vendor.min.css',
-            '../assets/css/main.min.css',
-            'css/styleguide.css'
-            ],
-          js: [
-            '../assets/js/libs/modernizr.min.js',
-            '../assets/js/vendor.min.js',
-            '../assets/js/main.min.js'
-          ],
+          css: function() {
+            return config.minifyScripts ? [
+              '../assets/css/vendor.min.css',
+              '../assets/css/main.min.css',
+              'css/styleguide.css'
+            ] : [
+              '../assets/css/vendor.min.css',
+              '../assets/css/main.css',
+              'css/styleguide.css'
+            ];
+          }(),
+          js: function() {
+            return config.minifyScripts ? [
+              '../assets/js/libs/modernizr.min.js',
+              '../assets/js/vendor.min.js',
+              '../assets/js/main.min.js'
+            ] : [
+              '../assets/js/libs/modernizr.min.js',
+              '../assets/js/vendor.min.js',
+              '../assets/js/main.js'
+            ];
+          }(),
           title: 'Puppy Style Guide'
         }
       },

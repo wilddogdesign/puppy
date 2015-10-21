@@ -34,7 +34,7 @@ ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 
 // Settings: Global variables, site-wide settings, config switches, etc.
 	$inuit-base-font-size:   16px;
-	$inuit-base-line-height: 18px;
+	// $inuit-base-line-height: 18px;
 	@import "bower_components/inuit-defaults/settings.defaults";
 	@import "bower_components/inuit-responsive-settings/settings.responsive";
 	@import "partials/settings/settings.local";

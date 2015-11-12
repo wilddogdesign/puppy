@@ -1,13 +1,11 @@
-var mountFolder = function (connect, dir) {
-    return connect.static(require('path').resolve(dir));
-};
-
 module.exports = function(grunt) {
 
   // REQUIRE
 
   // measure the time
   require('time-grunt')(grunt);
+  // require serve-static
+  var serveStatic = require('serve-static');
   // load the tasks
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin'
@@ -44,11 +42,11 @@ module.exports = function(grunt) {
         options: {
           middleware: function(connect) {
             return [
-              mountFolder( connect, 'dist' ),
-              connect().use('/bower_components', connect.static('./bower_components')),
-              connect().use('/src', connect.static('./src')),
-              connect().use('/partials', connect.static('./src/css/partials')),
-              mountFolder( connect, 'src' )
+              serveStatic('.tmp'),
+              connect().use('/bower_components', serveStatic('./bower_components')),
+              connect().use('/src', serveStatic('./src')),
+              connect().use('/partials', serveStatic('./src/css/partials')),
+              serveStatic('dist')
             ];
           }
         }

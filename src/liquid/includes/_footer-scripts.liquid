@@ -2,14 +2,11 @@
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
-<!-- build:js assets/js/vendor.min.js -->
+<!-- build:js assets/js/main{% if minify %}.min{% endif %}.js -->
 <!-- bower:js -->
 <!-- endbower -->
-<!-- endbuild -->
-
-{% if minify %}<!-- build:js assets/js/main.min.js -->{% endif %}
 <script src="assets/js/main.js"></script>
-{% if minify %}<!-- endbuild -->{% endif %}
+<!-- endbuild -->
 
 </body>
 </html>

@@ -13,8 +13,9 @@ module.exports = function(grunt) {
 
   var config = {
     // Minify the scripts and css for production
-    minifyScripts: true,
-    inlineCss: true
+    minifyScripts: grunt.option('no-minification') ? false : true,
+    // Inline critical css
+    inlineCss: grunt.option('no-critical-css') ? false : true
   };
 
   // CONFIG
@@ -42,7 +43,6 @@ module.exports = function(grunt) {
         options: {
           middleware: function(connect) {
             return [
-              serveStatic('.tmp'),
               connect().use('/bower_components', serveStatic('./bower_components')),
               connect().use('/src', serveStatic('./src')),
               connect().use('/partials', serveStatic('./src/css/partials')),
@@ -51,31 +51,6 @@ module.exports = function(grunt) {
           }
         }
       },
-    },
-
-    /*
-    FTP deploy
-    Create new file in project directory called .ftppass where you store user credentials.
-    `key` is refered to from authKey option
-    Example:
-    {
-      "key": {
-        "username": "username1",
-        "password": "password1"
-      }
-    }
-    */
-    'ftp-deploy': {
-      build: {
-        auth: {
-          host: 'server.com',
-          port: 21,
-          authKey: 'key'
-        },
-        src: 'dist/',
-        dest: '/path/to/destination/folder',
-        exclusions: ['dist/**/.DS_Store', 'dist/**/Thumbs.db', 'dist/.tmp']
-      }
     },
 
     liquid: {
@@ -116,7 +91,8 @@ module.exports = function(grunt) {
           }
         ],
         options: {
-          minify: config.minifyScripts
+          minify: config.minifyScripts,
+          critical: config.inlineCss
         }
       },
     },
@@ -150,6 +126,19 @@ module.exports = function(grunt) {
           ext: '.css'
         }]
       },
+      critical: {
+        options: {
+          outputStyle: 'compressed',
+          sourceMap: false
+        },
+        files: [{
+          expand: true,
+          cwd: 'src/css',
+          src: 'critical.scss',
+          dest: 'dist/assets/css',
+          ext: '.css'
+        }]
+      },
       styleguide: {
         options: {
           outputStyle: 'compressed'
@@ -167,7 +156,7 @@ module.exports = function(grunt) {
     postcss: {
       options: {
         processors: [
-          require('autoprefixer')({browsers: ['> 1%', 'last 2 versions', 'ie 9']})
+          require('autoprefixer')({browsers: ['> 1%', 'last 2 versions', 'ie 10']})
         ]
       },
       dev: {
@@ -185,6 +174,12 @@ module.exports = function(grunt) {
         src:  'assets/css/main.css',
         dest: 'dist',
       },
+      critical: {
+        expand: true,
+        cwd:  'dist',
+        src:  'assets/css/critical.css',
+        dest: 'dist'
+      },
       styleguide: {
         options: {
           map: false
@@ -193,6 +188,33 @@ module.exports = function(grunt) {
         cwd:  'dist/styleguide/css',
         src:  '*.css',
         dest: 'dist/styleguide/css'
+      }
+    },
+
+    replace: {
+      dist: {
+        options: {
+          patterns: [
+            {
+              match: 'critical',
+              replacement: 'bar'
+            }
+          ]
+        },
+        files: [
+          {
+            expand: true,
+            flatten: true,
+            src: ['dist/*.html'],
+            dest: 'dist/'
+          }
+        ]
+      }
+    },
+
+    inline: {
+      dist: {
+        src: 'dist/**/*.html'
       }
     },
 
@@ -255,6 +277,7 @@ module.exports = function(grunt) {
 
     clean: {
       dist: [ 'dist/' ],
+      tmp:  [ '.tmp/ '],
       unminified: ( function () {
         if ( config.minifyScripts ) {
           return [
@@ -268,9 +291,12 @@ module.exports = function(grunt) {
       }() ),
       unrevved: [
         'dist/assets/css/main.min.css',
-        'dist/assets/css/vendor.min.css',
-        'dist/assets/js/main.min.js',
-        'dist/assets/js/vendor.min.js'
+        'dist/assets/js/main.min.js'
+      ],
+      intermediate: [
+        'dist/assets/css/plaque.*',
+        'dist/assets/css/critical.*',
+        'dist/assets/css/styles.*',
       ]
     },
 
@@ -318,6 +344,18 @@ module.exports = function(grunt) {
           src: ['**/*'],
           dest: 'dist/styleguide/img'
         }]
+      },
+      unminifiedStyles: {
+        expand: true,
+        cwd: '.tmp/concat/assets/css',
+        src: '**/*',
+        dest: 'dist/assets/css',
+      },
+      unminifiedScripts: {
+        expand: true,
+        cwd: '.tmp/concat/assets/js',
+        src: '**/*',
+        dest: 'dist/assets/js',
       }
     },
 
@@ -343,27 +381,16 @@ module.exports = function(grunt) {
 
     usemin: {
       options: {
-        dirs: ['dist']
+        dirs: ['dist'],
+        blockReplacements: {
+          js: function (block) {
+              return '<script src="' + block.dest + '" async></script>';
+          }
+        }
       },
       html: ['dist/**/*.html'],
       css:  ['dist/assets/css/**/*.css'],
       js:   ['dist/assets/js/**/*.js']
-    },
-
-    critical: {
-      index: {
-        options:  {
-          base: './',
-          css: [],
-          ignore: ['@font-face'],
-          pathPrefix: '/',
-          minify: true,
-          width: 1099,
-          height: 300
-        },
-        src: 'dist/index.html',
-        dest: 'dist/index.html'
-      }
     },
 
     eol: {
@@ -407,11 +434,9 @@ module.exports = function(grunt) {
         options: {
           css: function() {
             return config.minifyScripts ? [
-              '../assets/css/vendor.min.css',
               '../assets/css/main.min.css',
               'css/styleguide.css'
             ] : [
-              '../assets/css/vendor.min.css',
               '../assets/css/main.css',
               'css/styleguide.css'
             ];
@@ -419,11 +444,9 @@ module.exports = function(grunt) {
           js: function() {
             return config.minifyScripts ? [
               '../assets/js/libs/modernizr.min.js',
-              '../assets/js/vendor.min.js',
               '../assets/js/main.min.js'
             ] : [
               '../assets/js/libs/modernizr.min.js',
-              '../assets/js/vendor.min.js',
               '../assets/js/main.js'
             ];
           }(),
@@ -471,7 +494,7 @@ module.exports = function(grunt) {
       },
       styles: {
         files: ['src/css/**'],
-        tasks: ['sass:dev', 'postcss:dev']
+        tasks: ['sass:dev', 'postcss:dev', 'sass:critical', 'postcss:critical']
       },
       liquid: {
         files: ['src/liquid/**'],
@@ -501,31 +524,42 @@ module.exports = function(grunt) {
       grunt.task.run('filerev');
       grunt.task.run('usemin');
       grunt.task.run('cleanUnminified');
-      grunt.task.run('clean:unrevved');
     } else {
       grunt.task.run('useminPrepare');
       grunt.task.run('concat:generated');
-      grunt.task.run('cssmin:generated');
-      grunt.task.run('uglify:generated');
       grunt.task.run('usemin');
+      grunt.task.run('copy:unminifiedStyles');
+      grunt.task.run('copy:unminifiedScripts');
+      grunt.task.run('clean:unminified');
       grunt.log.ok('Minification is switched off. Skipping');
     }
+    grunt.task.run('clean:unrevved');
+    grunt.task.run('clean:intermediate');
   });
 
   // Custom task to inline CSS
-  // We need this to run after filerev to get revved files summary
-  // If minification is switched off, unminified styles are inlined
   grunt.registerTask('inlineCss', function() {
-    var cssToInline = config.minifyScripts ? [
-      grunt.filerev.summary['dist/assets/css/main.min.css']
-    ] : [
-      'dist/assets/css/main.css'
-    ];
+    var mainScript, cssToLoad;
+
+    if ( config.minifyScripts ) {
+      mainScript   = grunt.filerev.summary['dist/assets/css/main.min.css'];
+      cssToLoad =
+        [{
+          match:   "critical",
+          replace: "loadCSS('" + mainScript.replace('dist', '') + "', document.getElementById('criticalCss') );"
+        }];
+    } else {
+      cssToLoad =
+        [{
+          match:   "critical",
+          replace: "loadCss('/assets/css/main.js', document.getElementById('criticalCss') );"
+        }];
+    }
 
     if (config.inlineCss) {
       // grunt.verbose.write( JSON.stringify(grunt.filerev.summary, null, 2) );
-      grunt.config('critical.index.options.css', cssToInline);
-      grunt.task.run('critical');
+      grunt.config('replace.dist.options.patterns', cssToLoad);
+      grunt.task.run('replace');
     } else {
       grunt.log.ok('CSS inline is switched off. Skipping');
     }
@@ -553,10 +587,12 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev', [
     'jshint',
+    'clean:tmp',
     'clean:dist',
     'sass:dev',
     'postcss:dev',
-    'concat',
+    'sass:critical',
+    'postcss:critical',
     'svgstore',
     'favicons',
     'liquid:dev',
@@ -567,6 +603,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('prod', [
     'jshint',
+    'clean:tmp',
     'clean:dist',
     'svgstore',
     'favicons',
@@ -575,6 +612,8 @@ module.exports = function(grunt) {
     'wiredep',
     'styleguide',
     'postcss:prod',
+    'sass:critical',
+    'postcss:critical',
     'minify',
     'inlineCss'
   ]);

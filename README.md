@@ -1,16 +1,20 @@
-Wilddog Design Starting Web-Scaffold
-====================================
+:dog: Wilddog Design Starting Web-Scaffold :+1:
+===============================================
 
 Installing
 ----------
 The software used in this project includes Node.js, Grunt and Bower.
-We recommend the use of Homebrew to install all the dependencies (including Ruby, if needed).
-For the sake of convenience when using Ruby, RVM might also be useful.
+We recommend the use of Homebrew to install all the dependencies.
 ```
 cd path/to/project
 npm install
 bower install
 ```
+
+Process
+-------
+- The building process employs script and styles minification, as well as critical CSS inclusion. To switch off these procedures pass `--no-minification` and `--no-critical-css` to the script when building.
+- Critical CSS generation depends on [Jacket](https://github.com/at-import/jacket) plugin.
 
 Developing
 ----------
@@ -19,7 +23,7 @@ To run the development server, use:
 cd path/to/project
 grunt dev && grunt server
 ```
-This will create a development build in `dist` folder, run the server on 127.0.0.1:8888 and
+This will create a development build in `dist` folder, run the server on `127.0.0.1:8888` and
 open a new browser window with the livereload script included.
 
 Building
@@ -27,7 +31,7 @@ Building
 To build the live templates, use:
 ```
 cd path/to/project
-grunt prod
+grunt prod \[--no-minification\] \[--no-critical-css\]
 ```
 The output will be located in `dist` folder
 

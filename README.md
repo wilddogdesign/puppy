@@ -31,7 +31,7 @@ Building
 To build the live templates, use:
 ```
 cd path/to/project
-grunt prod \[--no-minification\] \[--no-critical-css\]
+grunt prod [--no-minification] [--no-critical-css]
 ```
 The output will be located in `dist` folder
 

@@ -1,30 +1,18 @@
-(function( $, window, document, undefined ) {
+// var $  = require('../bower_components/jquery/dist/jquery.js');
+// var fc = require('fastclick');
 
-  'use strict';
+function initialize() {
+  console.log('DOM initialized');
+}
 
-  // var html = $('html');
-  // var body = $('body');
-  // var winWidth = $(window).width();
-  // var winHeight = $(window).height();
+//attach to the global scope
+window.finalScripts = {
+  init : initialize
+};
 
+document.addEventListener('DOMContentLoaded', function() {
 
-  function initialize() {
-    console.log('DOM initialized');
-  }
+  // fc.attach(document.body);
+  finalScripts.init();
 
-  //attach to the global scope
-  window.finalScripts = {
-    init : initialize
-  };
-
-  //after the DOM is ready call our init function
-  $(function(){
-
-    //FastClick init
-    FastClick.attach(document.body);
-
-    finalScripts.init();
-
-  });
-
-})( jQuery, window, document );
+});

@@ -191,6 +191,19 @@ module.exports = function(grunt) {
       }
     },
 
+    browserify: {
+      dist: {
+        options: {
+          transform: [
+            ['babelify']
+          ]
+        },
+        files: {
+          './dist/assets/js/main.js': './src/js/main.js'
+        }
+      }
+    },
+
     replace: {
       dist: {
         options: {
@@ -259,14 +272,8 @@ module.exports = function(grunt) {
       }
     },
 
-    jshint: {
-      options: {
-        reporter: require('jshint-stylish')
-      },
-      all: [
-        'Gruntfile.js',
-        'src/js/main.js'
-      ]
+    eslint: {
+      target: ['src/js/main.js']
     },
 
     concat: {
@@ -318,12 +325,12 @@ module.exports = function(grunt) {
         src: 'font/**',
         dest: 'dist/assets/',
       },
-      scripts: {
-        expand: true,
-        cwd: 'src',
-        src: 'js/main.js',
-        dest: 'dist/assets/',
-      },
+      // scripts: {
+      //   expand: true,
+      //   cwd: 'src',
+      //   src: 'js/main.js',
+      //   dest: 'dist/assets/',
+      // },
       index: {
         dot: true,
         expand: true,
@@ -389,8 +396,8 @@ module.exports = function(grunt) {
         }
       },
       html: ['dist/**/*.html'],
-      css:  ['dist/assets/css/**/*.css'],
-      js:   ['dist/assets/js/**/*.js']
+      css:  ['dist/assets/css/*.css'],
+      js:   ['dist/assets/js/*.js']
     },
 
     eol: {
@@ -462,7 +469,8 @@ module.exports = function(grunt) {
       prod: [
         'sass:prod',
         'liquid:prod',
-        'copy:scripts',
+        // 'copy:scripts',
+        'browserify',
         'copy:index',
         'imagemin:prod',
         'copy:fonts'
@@ -478,11 +486,8 @@ module.exports = function(grunt) {
         tasks: ['wiredep']
       },
       scripts: {
-        files: ['src/js/**'],
-        tasks: ['jshint', 'copy:scripts'],
-        options: {
-          spawn: false,
-        },
+        files: ['src/js/main.js'],
+        tasks: ['eslint', 'browserify']
       },
       fonts: {
         files: ['src/fonts/**'],
@@ -529,8 +534,8 @@ module.exports = function(grunt) {
       grunt.task.run('concat:generated');
       grunt.task.run('usemin');
       grunt.task.run('copy:unminifiedStyles');
-      grunt.task.run('copy:unminifiedScripts');
-      grunt.task.run('clean:unminified');
+      // grunt.task.run('copy:unminifiedScripts');
+      // grunt.task.run('clean:unminified');
       grunt.log.ok('Minification is switched off. Skipping');
     }
     grunt.task.run('clean:unrevved');
@@ -586,7 +591,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('dev', [
-    'jshint',
+    'eslint',
     'clean:tmp',
     'clean:dist',
     'sass:dev',
@@ -598,11 +603,14 @@ module.exports = function(grunt) {
     'liquid:dev',
     'eol',
     'wiredep',
-    'copy'
+    'browserify',
+    'copy:index',
+    'copy:fonts',
+    'copy:images',
   ]);
 
   grunt.registerTask('prod', [
-    'jshint',
+    'eslint',
     'clean:tmp',
     'clean:dist',
     'svgstore',

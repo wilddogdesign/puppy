@@ -29,9 +29,6 @@
     "inuit-media": "~0.4.2",
     "inuit-headings-trumps": "~0.1.2",
     "inuit-tables": "~0.2.1",
-    "jquery": "~2.2.0",
-    "modernizr": "~3.3.1",
-    "fastclick": "~1.0.6",
     "jacket": "~1.1.1"
   },
   "devDependencies": {}

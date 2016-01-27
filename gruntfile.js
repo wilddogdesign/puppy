@@ -50,7 +50,7 @@ module.exports = function(grunt) {
             ];
           }
         }
-      },
+      }
     },
 
     liquid: {
@@ -153,6 +153,105 @@ module.exports = function(grunt) {
       }
     },
 
+    modernizr: {
+      dev: {
+        options: [
+          "setClasses",
+          "testAllProps"
+        ],
+        dest: 'dist/assets/js/libs/modernizr-custom.js',
+        extra: {
+          'shiv' :       false,
+          'printshiv' :  false,
+          'load' :       true,
+          'mq' :         false,
+          'cssclasses' : true
+        },
+        extensibility: {
+          'addtest':      true,
+          'prefixed':     false,
+          'teststyles':   false,
+          'testprops':    false,
+          'testallprops': false,
+          'hasevents':    false,
+          'prefixes':     false,
+          'domprefixes':  false
+        },
+        crawl: false,
+        excludeTests: ['hidden'],
+        tests: ( function() {
+          var tests = grunt.file.readJSON('./node_modules/modernizr/lib/config-all.json')['feature-detects'];
+          var actualTests = [];
+          tests.forEach(function(str) {
+            var temp     = str,
+                newTests = [];
+            if (str.indexOf('-') > -1) {
+              temp = temp.replace('-','');
+            }
+            if (str.indexOf('/') > -1) {
+              var subs = temp.split('/');
+              newTests.push(subs[0] + subs[1]);
+              newTests.push(subs[1] + subs[0]);
+              newTests.push(subs[1]);
+            } else {
+              newTests.push(temp)
+            }
+            actualTests.push(newTests);
+          });
+          // return tests.map(function(str) {
+          //   var temp = str;
+          //   if (~~str.indexOf('-')) {
+          //     temp = temp.replace('-','');
+          //   }
+          //   if (~~str.indexOf('/')) {
+          //     var subs = temp.split('/');
+          //     temp = subs[0] + subs[1] + ', '
+          //            subs[1] + subs[0] + ', '
+          //            subs[1]
+          //   }
+          //   return str.replace('-','');
+          // });
+          grunt.log.ok(actualTests);
+          return actualTests;
+        }() )
+      },
+      prod: {
+        cache: true,
+        options: [
+          "setClasses"
+        ],
+        dest: 'dist/assets/js/libs/modernizr-custom.js',
+        // devFile: 'dist/assets/js/libs/modernizr.min.js',
+        // outputFile: 'dist/assets/js/libs/modernizr.js',
+        extra: {
+          'shiv' :       false,
+          'printshiv' :  false,
+          'load' :       true,
+          'mq' :         false,
+          'cssclasses' : true
+        },
+        extensibility: {
+          'addtest':      true,
+          'prefixed':     false,
+          'teststyles':   false,
+          'testprops':    false,
+          'testallprops': false,
+          'hasevents':    false,
+          'prefixes':     false,
+          'domprefixes':  false
+        },
+        files: {
+          src: [
+            'dist/assets/js/{,*/}*.js',
+            'dist/assets/css/{,*/}*.css'
+          ]
+        },
+        uglify: true,
+        excludeTests: ['hidden'],
+        tests: ['pointerevents']
+      }
+    },
+
     postcss: {
       options: {
         processors: [
@@ -194,13 +293,15 @@ module.exports = function(grunt) {
     browserify: {
       dist: {
         options: {
-          transform: [
-            ['babelify']
-          ]
+          transform: ['babelify']
         },
-        files: {
-          './dist/assets/js/main.js': './src/js/main.js'
-        }
+        files: [{
+          expand: true,
+          flatten: true,
+          cwd:  'src/js',
+          src:  '*.js',
+          dest: 'dist/assets/js'
+        }]
       }
     },
 
@@ -252,9 +353,9 @@ module.exports = function(grunt) {
 
       main: {
 
-        exclude: [
-          'bower_components/modernizr/modernizr.js'
-        ],
+        // exclude: [
+        //   'bower_components/modernizr/modernizr.js'
+        // ],
 
         // Point to the files that should be updated when
         // you run `grunt wiredep`
@@ -594,19 +695,20 @@ module.exports = function(grunt) {
     'eslint',
     'clean:tmp',
     'clean:dist',
+    'modernizr:dev',
     'sass:dev',
     'postcss:dev',
     'sass:critical',
     'postcss:critical',
+    'browserify',
     'svgstore',
     'favicons',
     'liquid:dev',
     'eol',
     'wiredep',
-    'browserify',
     'copy:index',
     'copy:fonts',
-    'copy:images',
+    'copy:images'
   ]);
 
   grunt.registerTask('prod', [
@@ -622,7 +724,9 @@ module.exports = function(grunt) {
     'postcss:prod',
     'sass:critical',
     'postcss:critical',
+    'inline',
     'minify',
+    'modernizr:prod',
     'inlineCss'
   ]);
 

@@ -1,5 +1,6 @@
-// var $  = require('../bower_components/jquery/dist/jquery.js');
-// var fc = require('fastclick');
+var fc = require('fastclick');
+// var $  = require('jquery');
+// var owlCarousel = require('../../node_modules/owl-carousel-2/owl.carousel.js');
 
 function initialize() {
   console.log('DOM initialized');
@@ -10,9 +11,9 @@ window.finalScripts = {
   init : initialize
 };
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
 
-  // fc.attach(document.body);
+  fc(document.body);
   finalScripts.init();
 
 });

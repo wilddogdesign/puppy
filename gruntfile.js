@@ -156,8 +156,7 @@ module.exports = function(grunt) {
     modernizr: {
       dev: {
         options: [
-          "setClasses",
-          "testAllProps"
+          "setClasses"
         ],
         dest: 'dist/assets/js/libs/modernizr-custom.js',
         extra: {
@@ -181,38 +180,13 @@ module.exports = function(grunt) {
         excludeTests: ['hidden'],
         tests: ( function() {
           var tests = grunt.file.readJSON('./node_modules/modernizr/lib/config-all.json')['feature-detects'];
-          var actualTests = [];
-          tests.forEach(function(str) {
-            var temp     = str,
-                newTests = [];
-            if (str.indexOf('-') > -1) {
-              temp = temp.replace('-','');
-            }
-            if (str.indexOf('/') > -1) {
-              var subs = temp.split('/');
-              newTests.push(subs[0] + subs[1]);
-              newTests.push(subs[1] + subs[0]);
-              newTests.push(subs[1]);
-            } else {
-              newTests.push(temp)
-            }
-            actualTests.push(newTests);
-          });
-          // return tests.map(function(str) {
-          //   var temp = str;
-          //   if (~~str.indexOf('-')) {
-          //     temp = temp.replace('-','');
-          //   }
-          //   if (~~str.indexOf('/')) {
-          //     var subs = temp.split('/');
-          //     temp = subs[0] + subs[1] + ', '
-          //            subs[1] + subs[0] + ', '
-          //            subs[1]
-          //   }
-          //   return str.replace('-','');
-          // });
-          grunt.log.ok(actualTests);
-          return actualTests;
+          // Return first-level tests
+          return tests.map(function(str) {
+            return str.replace('-','');
+          }).concat([
+            // Additional tests
+            'inlinesvg'
+          ]);
         }() )
       },
       prod: {
@@ -221,8 +195,6 @@ module.exports = function(grunt) {
           "setClasses"
         ],
         dest: 'dist/assets/js/libs/modernizr-custom.js',
-        // devFile: 'dist/assets/js/libs/modernizr.min.js',
-        // outputFile: 'dist/assets/js/libs/modernizr.js',
         extra: {
           'shiv' :       false,
           'printshiv' :  false,
@@ -248,7 +220,11 @@ module.exports = function(grunt) {
         },
         uglify: true,
         excludeTests: ['hidden'],
-        tests: ['pointerevents']
+        tests: [
+          'pointerevents',
+          'touchevents',
+          'inlinesvg'
+        ]
       }
     },
 

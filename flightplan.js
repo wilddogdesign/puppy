@@ -2,6 +2,11 @@ var plan       = require('flightplan');
 var project    = 'puppy';
 var user       = 'Someone';
 
+// Minify CSS and scripts
+var minify     = true;
+// Inline critical CSS
+var inlineCss  = true;
+
 // configuration
 plan.target('development', {
   host: 'wilddogdevelopment.com',
@@ -16,7 +21,7 @@ var versionDir = project + '-' + new Date().getTime();
 // run commands on localhost
 plan.local('deploy', function(local) {
   local.log('Run build');
-  local.exec('grunt prod');
+  local.exec('grunt prod' + (minify ? '' : ' --no-minification') + (inlineCss ? '' : ' --no-critical-css'));
   user = local.exec('git config user.name');
 
   local.log('Copy files to remote hosts');
@@ -40,7 +45,7 @@ plan.remote('deploy', function(remote) {
     remote.exec('rm -rf `ls -1dt ' + remote.runtime.projectRoot + '/versions/* | tail -n +' + (remote.runtime.maxDeploys+1) + '`');
   }
 
-  remote.exec('curl -X POST --data-urlencode \'payload={"channel": "#deployments", "username": "deploybot", "text": "' + user.stdout + ' has just deployed ' + project + ' project to <http://' + project + '.' + remote.runtime.host + '|it`s preview server>", "icon_emoji": ":shipit:"}\' https://hooks.slack.com/services/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');
+  remote.exec('curl -X POST --data-urlencode \'payload={"channel": "#deployments", "username": "deploybot", "text": "' + user.stdout + ' has just deployed *' + project + '* project to <http://' + project + '.' + remote.runtime.host + '|it`s preview server>", "icon_emoji": ":shipit:"}\' https://hooks.slack.com/services/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');
 });
 
 plan.remote('rollback', function(remote) {

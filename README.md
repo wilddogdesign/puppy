@@ -3,7 +3,7 @@
 
 Installing
 ----------
-The software used in this project includes Node.js, Grunt and Bower.
+The software used in this project includes Node.js, Grunt and Bower.  
 We recommend the use of Homebrew to install all the dependencies.
 ```
 cd path/to/project
@@ -48,7 +48,7 @@ bower update && bower prune
 Styleguides
 -----------
 The living style guide is employed in the project. Refer to [Styledown](https://github.com/styledown/styledown)
-documentation for more information.
+documentation for more information.  
 To generate the styleguide, use:
 ```
 cd path/to/project
@@ -68,8 +68,15 @@ user's shell for you to authorize the transfer), and then run
 ```
 fly deploy:<target>
 ```
-Keep in mind, that the script is not using sudo, so the deployer user has to have full permissions to the project and
-versions folders.
+Keep in mind, that the script is not using sudo, so the deployer user has to have full permissions to the project and versions folders.  
+In order to switch off minification or/and critical css inlining while deploying, flightplan.js needs to be updated
+accordongly by setting the variables' values to `false`:
+```
+// Minify CSS and scripts
+var minify     = false;
+// Inline critical CSS
+var inlineCss  = false;
+```
 
 Brought to you by
 -----------------

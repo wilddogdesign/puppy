@@ -1,5 +1,5 @@
 var fc = require('fastclick');
-// var $  = require('jquery');
+// var $  = global.jQuery  = require('jquery');
 // var owlCarousel = require('../../node_modules/owl-carousel-2/owl.carousel.js');
 
 function initialize() {

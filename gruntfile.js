@@ -634,7 +634,7 @@ module.exports = function(grunt) {
       cssToLoad =
         [{
           match:   "critical",
-          replace: "loadCss('/assets/css/main.js', document.getElementById('criticalCss') );"
+          replace: "loadCSS('/assets/css/main.css', document.getElementById('criticalCss') );"
         }];
     }
 

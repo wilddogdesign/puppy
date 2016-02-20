@@ -1,3 +1,4 @@
+var domready = require('domready');
 var fc = require('fastclick');
 // var $  = global.jQuery  = require('jquery');
 // var owlCarousel = require('../../node_modules/owl-carousel-2/owl.carousel.js');
@@ -11,9 +12,7 @@ window.finalScripts = {
   init : initialize
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-
+domready( () => {
   fc(document.body);
   finalScripts.init();
-
 });

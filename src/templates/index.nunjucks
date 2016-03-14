@@ -1,6 +1,5 @@
 {% assign page = "index" %}
-{% include "./includes/_head" %}
-{% include "./includes/_header" %}
+
 
 <div role="main" class="main" id="main">
 	<div class="container">

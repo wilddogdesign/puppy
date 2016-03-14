@@ -2,7 +2,7 @@
 
 var gulp = require('gulp');
 var data = require('gulp-data');
-var liquid = require('gulp-liquid');
+var nunjucks = require('gulp-nunjucks-render');
 var sass = require('gulp-sass');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
@@ -15,7 +15,7 @@ var css = {
 }
 
 var html = {
-  input: './src/liquid/**/*.liquid',
+  input: './src/templates/*.nunjucks',
   output: './src/.tmp'
 }
 
@@ -37,11 +37,11 @@ gulp.task('styles', () => {
     .pipe(gulp.dest(css.output));
 });
 
-gulp.task('liquid', () => {
+gulp.task('templates', () => {
   return gulp
     .src(html.input)
     .pipe(data( file => require('./data/pages.json') ))
-    .pipe(liquid())
+    .pipe(nunjucks())
     .pipe(gulp.dest(html.output));
 });
 

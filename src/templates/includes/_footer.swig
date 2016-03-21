@@ -3,5 +3,3 @@
 		<p>Hello world. I am footer.</p>
 	</div>
 </footer>
-
-{% include "./includes/_footer-scripts" %}

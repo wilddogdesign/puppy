@@ -8,34 +8,48 @@
     "url": "https://github.com/wilddogdesign/puppy.git"
   },
   "scripts": {
-    "install": "npm install && jspm install && bower install",
+    "setup": "npm install && jspm install && bower install",
     "build": "gulp prod",
     "start": "gulp dev && gulp serve",
     "deploy": "fly deploy:development"
   },
   "eslintConfig": {
+    "extends": "airbnb",
     "env": {
       "browser": true,
       "es6": true
+    },
+    "ecmaFeatures": {
+      "modules": true
     }
   },
   "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^6.3.3",
+    "browser-sync": "^2.11.1",
     "cssnano": "^3.5.2",
-    "gulp": "^3.9.1",
+    "del": "^2.2.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-react": "^4.2.3",
+    "gulp": "gulpjs/gulp#4.0",
     "gulp-data": "^1.2.1",
+    "gulp-eslint": "^2.0.0",
     "gulp-imagemin": "^2.4.0",
     "gulp-jspm": "^0.5.7",
-    "gulp-liquid": "^0.1.0",
-    "gulp-nunjucks-render": "^2.0.0",
     "gulp-postcss": "^6.1.0",
     "gulp-sass": "^2.2.0",
+    "gulp-shell": "^0.5.2",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-swig": "^0.8.0",
+    "gulp-watch": "^4.3.5",
     "jspm": "^0.16.30"
   },
   "jspm": {
-    "dependencies": {},
+    "dependencies": {
+      "domready": "npm:domready@^1.0.8",
+      "fastclick": "npm:fastclick@^1.0.6",
+      "jquery": "npm:jquery@^2.2.2"
+    },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",

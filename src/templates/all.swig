@@ -239,11 +239,11 @@
         </h1>
       </header>
       <article>
-        <h2>{{ pages.config.title }} <span>Static/Front-end website development</span></h2>
+        <h2>{{ config.title }} <span>Static/Front-end website development</span></h2>
 
         <h3>Page templates</h3>
         <ol class="link-list">
-        {% for p in pages.all %}
+        {% for p in pages %}
           <li>
             <a href="{{ p.page }}.html">{{ p.title }}</a>
             {% if p.description %}<span>- {{ p.description }}</span>{% endif %}
@@ -254,16 +254,16 @@
         <h3>Styleguide</h3>
         <ol class="link-list">
           <li>
-            <a href="styleguide/">{{ pages.config.title }} Styleguide</a>
+            <a href="styleguide/">{{ config.title }} Styleguide</a>
             <span>- Your living styleguide</span>
           </li>
         </ol>
 
       </article>
       <footer>
-        <p class="last-modified">Last modified: {{ dateNow }}</p>
+        <p class="last-modified">Last modified: {{ now | date('Y-m-d H:m:s') }}</p>
         <p>Wild Dog Design, <br>44-46 Old Steine, Brighton, <br>East Sussex. BN1 1NH. <br>United Kingdom</p>
-        <p>&copy; Wild Dog Design {{ yearNow }}</p>
+        <p>&copy; Wild Dog Design {{ now | date('Y') }}</p>
       </footer>
     </div>
 

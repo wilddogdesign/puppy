@@ -17,6 +17,9 @@ System.config({
     "babel": "npm:babel-core@5.8.35",
     "babel-runtime": "npm:babel-runtime@5.8.35",
     "core-js": "npm:core-js@1.2.6",
+    "domready": "npm:domready@1.0.8",
+    "fastclick": "npm:fastclick@1.0.6",
+    "jquery": "npm:jquery@2.2.2",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },

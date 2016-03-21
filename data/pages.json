@@ -2,7 +2,7 @@
   "config" : {
     "title": "Puppy starting project"
   },
-  "all" : [
+  "pages" : [
     {
       "title": "Home page",
       "page":  "index",

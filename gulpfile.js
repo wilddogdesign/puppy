@@ -19,18 +19,15 @@ const options = {
   dist: 'dist'
 }
 
+/* GENERAL */
+
 gulp.task('clean', () => {
   return del([
     options.dist
   ]);
 });
 
-gulp.task('lint', () => {
-  return gulp.src([`${options.src}/js/**/*.js`,'!node_modules/**'])
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
+/* STYLES */
 
 gulp.task('styles', () => {
   let output = `${options.dist}/assets/css`;
@@ -51,6 +48,15 @@ gulp.task('styles', () => {
     .pipe(gulp.dest(output));
 });
 
+/* SCRIPTS */
+
+gulp.task('lint', () => {
+  return gulp.src([`${options.src}/js/**/*.js`,'!node_modules/**'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
 gulp.task('scripts', gulp.series(
   'lint',
   () => {
@@ -61,6 +67,8 @@ gulp.task('scripts', gulp.series(
   })
 );
 
+/* TEMPLATES*/
+
 gulp.task('templates', () => {
   let output = `${options.dist}`;
   return gulp
@@ -69,6 +77,9 @@ gulp.task('templates', () => {
     .pipe(swig({
       data: {
         now: new Date()
+      },
+      defaults: {
+        cache: false
       }
     }))
     .pipe(gulp.dest(output));
@@ -83,13 +94,21 @@ gulp.task('build', gulp.series(
   )
 ));
 
-gulp.task('certificates', shell.task([
+/* DEVELOPMENT */
+
+gulp.task('certificates',
+  shell.task([
     `openssl req -x509 -newkey rsa:2048 -keyout localhost.key -out localhost.crt -days 30 -nodes -subj '/CN=localhost'`
   ])
 );
 
-gulp.task('browser-sync', () => {
-  return browserSync({
+gulp.task('browser-sync', cb => {
+  browserSync({
+    port: 8888,
+    https: {
+      key:  "localhost.key",
+      cert: "localhost.crt"
+    },
     server: {
       baseDir: options.dist,
       routes: {
@@ -102,39 +121,38 @@ gulp.task('browser-sync', () => {
       port: 8889
     },
     files: [
-      `${options.dist}/assets/css/*.css`,
-      `${options.dist}/assets/js/**/*.js`,
-      `${options.dist}/*.html`
-    ],
-    port: 8888,
-    https: {
-      key:  "localhost.key",
-      cert: "localhost.crt"
-    },
-    tunnel: true,
-    timestamps: false
-  });
+      `${options.dist}/**/*`
+    ]
+  }, cb);
 });
 
-gulp.task('watch', () => {
+gulp.task('watch:styles', () => {
+  watch([
+    `${options.src}/css/**/*.scss`,
+    `${options.src}/css/**/*.css`
+  ],gulp.series('styles'));
+});
+
+gulp.task('watch:code', () => {
   watch(`${options.src}/templates/**/*.swig`,gulp.series('templates'));
-  watch(`${options.src}/css/**/*.s?css`,gulp.series('styles'));
-  watch(`${options.src}/js/**/*.jsx?`,gulp.series('scripts'));
-
-  // gulp.watch(`${options.dist}/**/*`, function (file) {
-  //   if (file.type === "changed") {
-  //     return browserSync.reload({stream: true});
-  //   }
-  // });
+  watch(`${options.src}/js/**/*.js`,gulp.series('scripts'));
 });
+
+gulp.task('watch', gulp.parallel(
+  'watch:code',
+  'watch:styles'
+));
+
+/* PRODUCTION */
+
+
+/* DEFAULT */
 
 gulp.task('default',
   gulp.series(
     'build',
     'certificates',
-    gulp.parallel(
-      'browser-sync',
-      'watch'
-    )
+    'browser-sync',
+    'watch'
   )
 );

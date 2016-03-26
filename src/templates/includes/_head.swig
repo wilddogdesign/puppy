@@ -45,7 +45,7 @@
     </noscript>
   {% endif %}
 
-  <script src="assets/js/libs/modernizr-custom.js"></script>
+  <script src="assets/js/vendor/modernizr-custom.js"></script>
 
 
 </head>

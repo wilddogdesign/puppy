@@ -6,6 +6,7 @@ const watch = require('gulp-watch');
 const eslint = require('gulp-eslint');
 const data = require('gulp-data');
 const swig = require('gulp-swig');
+const modernizr = require('gulp-modernizr');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -51,6 +52,21 @@ gulp.task('styles', () => {
     .pipe(gulp.dest(output));
 });
 
+gulp.task('modernizr', () => {
+  return gulp
+    .src(`${options.src}/js/**/*.js`)
+    .pipe(modernizr('modernizr-custom.js',{
+      'tests' : [
+        'inlinesvg',
+        'touchevents',
+        'srcset',
+        'svg',
+        'webworkers'
+      ],
+    }))
+    .pipe(gulp.dest(`${options.dest}/assets/js/vendor`))
+});
+
 gulp.task('scripts', gulp.series(
   'lint',
   () => {
@@ -79,7 +95,8 @@ gulp.task('build', gulp.series(
   gulp.parallel(
     'styles',
     'scripts',
-    'templates'
+    'templates',
+    'modernizr'
   )
 ));
 

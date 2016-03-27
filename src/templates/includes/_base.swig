@@ -3,7 +3,7 @@
 <!--[if IE 9]>
   <html class="no-js lt-ie10 is-ie9" lang="en">
 <![endif]-->
-<!--[if gt IE 8]><!-->
+<!--[if gt IE 9]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
 

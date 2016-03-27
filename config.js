@@ -20,6 +20,7 @@ System.config({
     "domready": "npm:domready@1.0.8",
     "fastclick": "npm:fastclick@1.0.6",
     "jquery": "npm:jquery@2.2.2",
+    "svg4everybody": "npm:svg4everybody@2.0.3",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },

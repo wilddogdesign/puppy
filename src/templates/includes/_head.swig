@@ -15,10 +15,11 @@
   <!-- Set up preconnect -->
   <link href='//fonts.gstatic.com' rel='preconnect' crossorigin>
 
-  {% if critical %}
+  {% if critical and not isDevelopment %}
 
     <!-- Inline critical styles -->
-    <link href="assets/css/critical.css?__inline=true" rel="stylesheet" />
+    <!-- inject:critical -->
+    <!-- endinject -->
 
     <script id="criticalCss">
     /*!
@@ -30,7 +31,8 @@
       "use strict";
       var loadCSS=function(e,n,t){var o,l=w.document,r=l.createElement("link");if(n)o=n;else{var a=(l.body||l.getElementsByTagName("head")[0]).childNodes;o=a[a.length-1]}var d=l.styleSheets;r.rel="stylesheet",r.href=e,r.media="only x",o.parentNode.insertBefore(r,n?o:o.nextSibling);var i=function(e){for(var n=r.href,t=d.length;t--;)if(d[t].href===n)return e();setTimeout(function(){i(e)})};return r.onloadcssdefined=i,i(function(){r.media=t||"all"}),r};"undefined"!=typeof module?module.exports=loadCSS:w.loadCSS=loadCSS;
 
-      @@critical
+      /* inject:css */
+      /* endinject */
 
     }( typeof global !== "undefined" ? global : this ));
     </script>
@@ -39,9 +41,11 @@
       <!-- When JavaScript is disabled, load the rest of the styles in a tag -->
   {% endif %}
 
+  <!-- inject:css -->
   <link rel="stylesheet" href="assets/css/main.css" />
+  <!-- endinject -->
 
-  {% if critical %}
+  {% if critical and not isDevelopment %}
     </noscript>
   {% endif %}
 

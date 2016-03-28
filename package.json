@@ -12,6 +12,7 @@
     "build": "gulp build:production",
     "start": "gulp",
     "deploy": "fly deploy:development",
+    "styleguide": "gulp styleguide",
     "uptodate": "npm update && npm prune && jspm install && bower install && bower prune"
   },
   "eslintConfig": {
@@ -48,6 +49,7 @@
     "gulp-sass": "^2.2.0",
     "gulp-shell": "^0.5.2",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-styledown": "0.0.2",
     "gulp-svgmin": "^1.2.2",
     "gulp-svgstore": "^6.0.0",
     "gulp-swig": "^0.8.0",

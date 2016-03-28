@@ -36,8 +36,7 @@ The output will be located in `dist` folder
 
 Updating
 --------
-Before building a new version of the project, don't forget to update the grunt and bower
-dependencies.
+Before building a new version of the project, don't forget to update the dependencies.
 ```
 cd path/to/project
 npm run uptodate
@@ -50,7 +49,7 @@ documentation for more information.
 To generate the styleguide, use:
 ```
 cd path/to/project
-grunt styleguide
+npm run styleguide
 ```
 The generated styleguide will be available at `dist/styleguide`
 

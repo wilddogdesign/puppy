@@ -23,6 +23,7 @@ const svgstore = require('gulp-svgstore');
 const prettify = require('gulp-jsbeautifier');
 const rev = require('gulp-rev');
 const uglify = require('gulp-uglify');
+const styledown = require('gulp-styledown');
 const browserSync = require('browser-sync');
 
 var isDevelopment = process.argv.indexOf("build:production") > -1 ? false : true;
@@ -375,6 +376,79 @@ gulp.task('build:production', gulp.series(
   'inject:critical',
   'inject:assets'
 ));
+
+/* STYLEGUIDE */
+
+gulp.task('styleguide:html', () => {
+  return gulp
+    .src([
+      // `${options.src}/styleguide/config.md`,
+      `${options.src}/css/partials/settings/_settings.local.scss`,
+      `${options.src}/css/partials/base/*.scss`,
+      `${options.src}/css/partials/objects/*.scss`,
+      `${options.src}/css/partials/components/*.scss`,
+      `${options.src}/css/partials/trumps/*.scss`,
+      `${options.src}/css/plugins/*.scss`
+    ])
+    .pipe(styledown({
+      config: `${options.src}/styleguide/config.md`,
+      filename: 'index.html'
+    }))
+    .pipe(gulp.dest(`${options.dist}/styleguide`));
+});
+
+gulp.task('styles:styleguide', () => {
+  let output = `${options.dist}/styleguide/assets/css`;
+  let sassOptions = {
+    errLogToConsole: true,
+    outputStyle: 'expanded'
+  };
+  let processors = [
+    autoprefixer({browsers: ['last 2 versions', '> 5%']}),
+    cssnano
+  ];
+  return gulp
+    .src(`${options.src}/styleguide/styleguide.scss`)
+    .pipe(sass(sass(sassOptions).on('error', sass.logError)))
+    .pipe(postcss(processors))
+    .pipe(gulp.dest(output));
+});
+
+gulp.task('inject:styleguide', () => {
+  let target = gulp.src(`${options.dist}/styleguide/index.html`);
+  let css = gulp.src(
+    [
+      `${options.dist}/styleguide/assets/css/styleguide.css`,
+      `${options.dist}/assets/css/**/*.css`
+    ],
+    {read: false}
+  );
+  let js = gulp.src(
+    [
+      `${options.dist}/assets/js/**/*.js`,
+      `!${options.dist}/assets/js/vendor/modernizr-custom.js`
+    ],
+    {read: false}
+  );
+
+  return target
+    .pipe(inject(css, {relative:true}))
+    .pipe(inject(js, {
+      relative: true,
+      transform: (filepath, file, i, length) => {
+        return `<script src="${filepath}" async></script>`;
+      }
+    }))
+    .pipe(gulp.dest(`${options.dist}/styleguide`));
+});
+
+gulp.task('styleguide',
+  gulp.series(
+    'styleguide:html',
+    'styles:styleguide',
+    'inject:styleguide'
+  )
+);
 
 /* DEFAULT */
 

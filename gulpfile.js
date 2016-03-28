@@ -28,7 +28,7 @@ const browserSync = require('browser-sync');
 var isDevelopment = process.argv.indexOf("build:production") > -1 ? false : true;
 
 const args = {
-  critical: process.argv.indexOf("--no-critical") > -1 ? false : true,
+  critical: process.argv.indexOf("--no-critical-css") > -1 ? false : true,
   minify:   process.argv.indexOf("--no-minification") > -1 ? false : true
 };
 

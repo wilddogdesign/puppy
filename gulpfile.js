@@ -1,31 +1,31 @@
 'use strict'
 
-const gulp = require('gulp');
-const del = require('del');
-const gulpif = require('gulp-if');
-const watch = require('gulp-watch');
-const inject = require('gulp-inject');
-const eslint = require('gulp-eslint');
-const data = require('gulp-data');
-const swig = require('gulp-swig');
-const modernizr = require('gulp-modernizr');
-const sass = require('gulp-sass');
-const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const sourcemaps = require('gulp-sourcemaps');
-const shell = require('gulp-shell');
-const imagemin = require('gulp-imagemin');
+const browserSync = require('browser-sync');
 const cache = require('gulp-cache');
+const cssnano = require('cssnano');
+const data = require('gulp-data');
+const del = require('del');
+const eslint = require('gulp-eslint');
+const favicons = require('gulp-favicons');
+const gulp = require('gulp');
+const gulpif = require('gulp-if');
+const imagemin = require('gulp-imagemin');
+const inject = require('gulp-inject');
+const modernizr = require('gulp-modernizr');
 const path = require('path');
-const svgmin = require('gulp-svgmin');
-const svgstore = require('gulp-svgstore');
+const postcss = require('gulp-postcss');
 const prettify = require('gulp-jsbeautifier');
 const rev = require('gulp-rev');
-const uglify = require('gulp-uglify');
+const sass = require('gulp-sass');
+const shell = require('gulp-shell');
+const sourcemaps = require('gulp-sourcemaps');
 const styledown = require('gulp-styledown');
-const favicons = require('gulp-favicons');
-const browserSync = require('browser-sync');
+const svgmin = require('gulp-svgmin');
+const svgstore = require('gulp-svgstore');
+const swig = require('gulp-swig');
+const uglify = require('gulp-uglify');
+const watch = require('gulp-watch');
 
 const project = require('./data/pages.json');
 
@@ -303,6 +303,8 @@ gulp.task('watch:code', () => {
 
 gulp.task('watch:assets', () => {
   watch(`${options.src}/fonts/**/*`,gulp.series('fonts'));
+  watch(`${options.src}/icons/*.svg`,gulp.series('svgstore'));
+  watch(`${options.src}/index/**/*`,gulp.series('copy:index'));
   watch(`${options.src}/images/**/*.+(png|jpg|jpeg|gif|svg)`,gulp.series('images'));
 });
 

@@ -8,12 +8,13 @@
     "url": "https://github.com/wilddogdesign/puppy.git"
   },
   "scripts": {
-    "setup": "npm install && jspm install && bower install",
     "build": "gulp build:production",
-    "start": "gulp",
     "deploy": "fly deploy:development",
+    "empty-cache": "gulp cache:clear",
+    "setup": "npm install && jspm install && bower install",
+    "start": "gulp",
     "styleguide": "gulp styleguide",
-    "uptodate": "npm update && npm prune && jspm install && bower install && bower prune"
+    "update-deps": "npm update && npm prune && jspm install && bower install && bower prune"
   },
   "eslintConfig": {
     "extends": "airbnb",

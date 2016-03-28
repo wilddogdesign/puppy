@@ -36,10 +36,10 @@ The output will be located in `dist` folder
 
 Updating
 --------
-Before building a new version of the project, don't forget to update the dependencies.
+Before building a new version of the project, don't forget to update the dependencies if any were added.
 ```
 cd path/to/project
-npm run uptodate
+npm run update-deps
 ```
 
 Styleguides
@@ -66,6 +66,14 @@ user's shell for you to authorize the transfer *and* your personal key should be
 npm run deploy [-- [--no-minification] [--no-critical-css]]
 ```
 Keep in mind, that the script is not using sudo, so the deployer user has to have full permissions to the project and versions folders.
+
+Additional tasks
+----------------
+To empty the cache (used mostly for image optimization routine):
+```
+cd path/to/project
+npm run empty-cache
+```
 
 Brought to you by
 -----------------

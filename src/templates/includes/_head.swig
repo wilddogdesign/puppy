@@ -51,5 +51,7 @@
 
   <script src="assets/js/vendor/modernizr-custom.js"></script>
 
+  <!-- inject:favicons -->
+  <!-- endinject -->
 
 </head>

@@ -24,7 +24,10 @@ const prettify = require('gulp-jsbeautifier');
 const rev = require('gulp-rev');
 const uglify = require('gulp-uglify');
 const styledown = require('gulp-styledown');
+const favicons = require('gulp-favicons');
 const browserSync = require('browser-sync');
+
+const project = require('./data/pages.json');
 
 var isDevelopment = process.argv.indexOf("build:production") > -1 ? false : true;
 
@@ -53,6 +56,52 @@ gulp.task('clean', () => {
 gulp.task('copy:index', () => {
   return gulp
     .src(`${options.src}/index/**/*`)
+    .pipe(gulp.dest(options.dist))
+});
+
+gulp.task('favicons', () => {
+  return gulp
+    .src(`${options.src}/misc/favicon.png`)
+    .pipe(favicons({
+      appName: project.config.title,
+      appDescription: project.config.description,
+      developerName: 'Wild Dog Design',
+      developerURL: 'http://www.wilddogdesign.co.uk',
+      background: '#fff',
+      path: 'favicons/',
+      display: 'standalone',
+      orientation: 'portrait',
+      logging: false,
+      online: false,
+      html: 'favicons.html',
+      pipeHTML: true,
+      replace: true,
+      icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          coast: true,
+          favicons: true,
+          firefox: false,
+          opengraph: false,
+          twitter: false,
+          windows: true,
+          yandex: false
+      }
+    }))
+    .pipe(gulp.dest(`${options.dist}/favicons`));
+});
+
+gulp.task('favicons:inject', () => {
+  return gulp
+    .src(`${options.dist}/**/*.html`)
+    .pipe(inject(gulp.src([`${options.dist}/favicons/favicons.html`]), {
+      starttag: '<!-- inject:favicons -->',
+      transform: (filePath, file) => {
+        // return file contents as string
+        return file.contents.toString('utf8');
+      }
+    }))
     .pipe(gulp.dest(options.dist))
 });
 
@@ -362,6 +411,7 @@ gulp.task('build:production', gulp.series(
   'clean',
   gulp.parallel(
     'copy:index',
+    'favicons',
     'fonts',
     'images',
     'modernizr',
@@ -374,7 +424,8 @@ gulp.task('build:production', gulp.series(
   'rev',
   'clean:unrevved',
   'inject:critical',
-  'inject:assets'
+  'inject:assets',
+  'favicons:inject'
 ));
 
 /* STYLEGUIDE */

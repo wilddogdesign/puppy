@@ -38,6 +38,7 @@
     "gulp-cache": "^0.4.3",
     "gulp-data": "^1.2.1",
     "gulp-eslint": "^2.0.0",
+    "gulp-favicons": "^2.2.6",
     "gulp-if": "^2.0.0",
     "gulp-imagemin": "^2.4.0",
     "gulp-inject": "^4.0.0",

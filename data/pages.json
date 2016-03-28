@@ -1,6 +1,7 @@
 {
   "config" : {
-    "title": "Puppy starting project"
+    "title": "Puppy boilerplate",
+    "description": "Puppy starting project. Woof!"
   },
   "pages" : [
     {

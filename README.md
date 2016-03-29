@@ -4,8 +4,9 @@
 Installing
 ----------
 The software used in this project includes Node.js, Gulp, Jspm and Bower.
-We recommend the use of Homebrew to install all the dependencies.
+We recommend the use of Homebrew to install Node.js.
 ```
+npm install gulp jspm bower -g
 cd path/to/project
 npm run setup
 ```
@@ -61,7 +62,7 @@ first install Flightplan by running
 npm install -g flightplan
 ```
 Then, amend flightplan.js file with correct remote server information (your public key has to be added to the remote
-user's shell for you to authorize the transfer *and* your personal key should be added to ssh-agent locally), and then run
+user's shell for you to authorize the transfer *and* your personal key should be [added to ssh-agent](https://help.github.com/articles/working-with-ssh-key-passphrases/#os-x-keychain) locally), and then run
 ```
 npm run deploy [-- [--no-minification] [--no-critical-css]]
 ```

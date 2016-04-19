@@ -33,27 +33,12 @@
  */
 
 // setting up defaults
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-select,
-textarea,
-.field {
+#{$all-text-inputs},
+select {
   display: block;
   border-radius: 0;
-  height: 40px;
-  line-height: 40px;
+  height: em(40);
+  line-height: em(40);
   padding: 0 10px;
   color: $color--text;
   vertical-align: middle;
@@ -65,7 +50,7 @@ textarea,
   @include placeholder {
     color: $color--grey;
   }
-  @include transition(background-color 0.24s ease-in-out);
+  transition: background-color 0.24s ease-in-out;
 
   // a focused input (or hovered on)
   &:focus,
@@ -114,7 +99,7 @@ input[type="password"] {
 }
 
 input[type="submit"] {
-  height: 40px;
+  height: em(40);
   border-radius: 0;
   border: 0;
   width: 100%;

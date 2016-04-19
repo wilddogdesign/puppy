@@ -14,6 +14,8 @@
 // Plugins: Third-party plugins
   // Bourbon
   @import "bower_components/bourbon/app/assets/stylesheets/bourbon";
+  $em-base: $inuit-base-font-size;
+
   @import "bower_components/jacket/stylesheets/jacket";
 
 // Generic: Low-specificity, far-reaching rulesets (e.g. resets).
@@ -23,12 +25,12 @@
 }
 
 // Base: Unclassed HTML elements (e.g. a {}, blockquote {}, address {}).
-  $inuit-heading-size-1:  30px;
-  $inuit-heading-size-2:  22px;
-  $inuit-heading-size-3:  18px;
-  $inuit-heading-size-4:  16px;
-  $inuit-heading-size-5:  15px;
-  $inuit-heading-size-6:  12px;
+  $inuit-heading-size-1:  $inuit-base-font-size * 2;
+  $inuit-heading-size-2:  $inuit-base-font-size * 1.5;
+  $inuit-heading-size-3:  $inuit-base-font-size * 1.125;
+  $inuit-heading-size-4:  $inuit-base-font-size;
+  $inuit-heading-size-5:  $inuit-base-font-size * 0.875;
+  $inuit-heading-size-6:  $inuit-base-font-size * 0.75;
 
 @include jacket(non-critical) {
   @import "bower_components/inuit-page/base.page";

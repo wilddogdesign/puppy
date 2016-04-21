@@ -172,7 +172,7 @@ gulp.task('styles', () => {
   let processors = [
     autoprefixer({browsers: ['last 2 versions', '> 5%']})
   ];
-  if (args.minify) { processors.push(cssnano) }
+  if (args.minify && !isDevelopment) { processors.push(cssnano) }
   return gulp
     .src(`${options.src}/css/main.scss`)
     .pipe(gulpif(isDevelopment,sourcemaps.init()))

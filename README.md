@@ -3,12 +3,12 @@
 
 Installing
 ----------
-The software used in this project includes Node.js, Grunt and Bower.  
-We recommend the use of Homebrew to install all the dependencies.
+The software used in this project includes Node.js, Gulp, Jspm and Bower.
+We recommend the use of Homebrew to install Node.js.
 ```
+npm install gulp jspm bower -g
 cd path/to/project
-npm install
-bower install
+npm run setup
 ```
 
 Process
@@ -21,38 +21,36 @@ Developing
 To run the development server, use:
 ```
 cd path/to/project
-grunt dev && grunt server
+npm run start
 ```
 This will create a development build in `dist` folder, run the server on `127.0.0.1:8888` and
-open a new browser window with the livereload script included.
+open a new browser window with the BrowserSync script included.
 
 Building
 --------
 To build the live templates, use:
 ```
 cd path/to/project
-grunt prod [--no-minification] [--no-critical-css]
+npm run build [-- [--no-minification] [--no-critical-css]]
 ```
 The output will be located in `dist` folder
 
 Updating
 --------
-Before building a new version of the project, don't forget to update the grunt and bower
-dependencies.
+Before building a new version of the project, don't forget to update the dependencies if any were added.
 ```
 cd path/to/project
-npm update && npm prune
-bower update && bower prune
+npm run update-deps
 ```
 
 Styleguides
 -----------
 The living style guide is employed in the project. Refer to [Styledown](https://github.com/styledown/styledown)
-documentation for more information.  
+documentation for more information.
 To generate the styleguide, use:
 ```
 cd path/to/project
-grunt styleguide
+npm run styleguide
 ```
 The generated styleguide will be available at `dist/styleguide`
 
@@ -64,18 +62,18 @@ first install Flightplan by running
 npm install -g flightplan
 ```
 Then, amend flightplan.js file with correct remote server information (your public key has to be added to the remote
-user's shell for you to authorize the transfer), and then run
+user's shell for you to authorize the transfer *and* your personal key should be [added to ssh-agent](https://help.github.com/articles/working-with-ssh-key-passphrases/#os-x-keychain) locally), and then run
 ```
-fly deploy:<target>
+npm run deploy [-- [--no-minification] [--no-critical-css]]
 ```
-Keep in mind, that the script is not using sudo, so the deployer user has to have full permissions to the project and versions folders.  
-In order to switch off minification or/and critical css inlining while deploying, flightplan.js needs to be updated
-accordongly by setting the variables' values to `false`:
+Keep in mind, that the script is not using sudo, so the deployer user has to have full permissions to the project and versions folders.
+
+Additional tasks
+----------------
+To empty the cache (used mostly for image optimization routine):
 ```
-// Minify CSS and scripts
-var minify     = false;
-// Inline critical CSS
-var inlineCss  = false;
+cd path/to/project
+npm run empty-cache
 ```
 
 Brought to you by

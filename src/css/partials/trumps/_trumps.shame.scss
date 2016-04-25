@@ -1,8 +1,8 @@
 //Fixing initial grid so there's no need to remove white space between layout__item.
 //This ideally should be removed once FED stage is over
-.layout {
+.o-layout {
   overflow: hidden;
 }
-.layout__item {
+.o-layout__item {
   float: left;
 }

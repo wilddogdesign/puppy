@@ -14,29 +14,27 @@
 // Plugins: Third-party plugins
   // Bourbon
   @import "bower_components/bourbon/app/assets/stylesheets/bourbon";
+  $em-base: $inuit-base-font-size;
+
   @import "bower_components/jacket/stylesheets/jacket";
 
 // Generic: Low-specificity, far-reaching rulesets (e.g. resets).
-@include jacket(non-critical) {
   @import "bower_components/inuit-normalize/generic.normalize";
   @import "bower_components/inuit-box-sizing/generic.box-sizing";
-}
 
 // Base: Unclassed HTML elements (e.g. a {}, blockquote {}, address {}).
-  $inuit-heading-size-1:  30px;
-  $inuit-heading-size-2:  22px;
-  $inuit-heading-size-3:  18px;
-  $inuit-heading-size-4:  16px;
-  $inuit-heading-size-5:  15px;
-  $inuit-heading-size-6:  12px;
+  $inuit-heading-size-1:  $inuit-base-font-size * 2;
+  $inuit-heading-size-2:  $inuit-base-font-size * 1.5;
+  $inuit-heading-size-3:  $inuit-base-font-size * 1.125;
+  $inuit-heading-size-4:  $inuit-base-font-size;
+  $inuit-heading-size-5:  $inuit-base-font-size * 0.875;
+  $inuit-heading-size-6:  $inuit-base-font-size * 0.75;
 
-@include jacket(non-critical) {
   @import "bower_components/inuit-page/base.page";
   @import "bower_components/inuit-images/base.images";
   @import "bower_components/inuit-headings/base.headings";
 
   @import "partials/base/base.forms";
-}
 
 // Objects: Objects, abstractions, and design patterns (e.g. .media {}).
   $inuit-enable-layout--tiny:  true;
@@ -45,7 +43,6 @@
   $inuit-enable-layout--huge:  true;
   $inuit-enable-layout--flush: true;
 
-@include jacket(non-critical) {
   @import "bower_components/inuit-layout/objects.layout";
   @import "bower_components/inuit-buttons/objects.buttons";
   @import "bower_components/inuit-pack/objects.pack";
@@ -57,16 +54,13 @@
   @import "partials/objects/objects.layout-flex";
   @import "partials/objects/objects.fonts";
   @import "partials/objects/objects.buttons";
-}
+  @import "partials/objects/objects.containers";
 
 // Components: Discrete, complete chunks of UI (e.g. .carousel {}). This is the one layer that inuitcss doesn’t get involved with.
 
   // Include components.genereal to critical css by default
   @import "partials/components/components.general";
 
-@include jacket(non-critical) {
-  // The rest of components go here as non-critical
-}
 
 // Trumps: High-specificity, very explicit selectors. Overrides and helper classes (e.g. .hidden {}).
   $inuit-enable-margins:         true;
@@ -82,7 +76,6 @@
   $inuit-enable-paddings--huge:  true;
   $inuit-enable-paddings--none:  true;
 
-@include jacket(non-critical) {
   @import "bower_components/inuit-widths/trumps.widths";
   @import "bower_components/inuit-widths-responsive/trumps.widths-responsive";
   @import "bower_components/inuit-spacing/trumps.spacing";
@@ -94,4 +87,3 @@
   @import "partials/trumps/trumps.helpers";
   @import "partials/trumps/trumps.z-index";
   @import "partials/trumps/trumps.shame";
-}

@@ -2,9 +2,10 @@
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
-<!-- build:js assets/js/main{% if minify %}.min{% endif %}.js -->
-<script src="assets/js/main.js"></script>
-<!-- endbuild -->
-
-</body>
-</html>
+  <!-- inject:js -->
+  <script src="/jspm_packages/system.js"></script>
+  <script src="/config.js"></script>
+  <script>
+    System.import('/assets/js/main.js');
+  </script>
+  <!-- endinject -->

@@ -1,13 +1,9 @@
 .DS_Store
-node_modules
-dist
 .tmp
-.sass-cache
-.ftppass
-builds
-pre-build
+dist
+node_modules
 bower_components
 jspm_packages
+.sass-cache
 test/bower_components
-src/liquid/includes/_icons.liquid
-src/liquid/includes/_favicons.liquid
+localhost.*

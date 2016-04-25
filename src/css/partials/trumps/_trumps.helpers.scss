@@ -1,4 +1,4 @@
-.block {
+.u-block {
     display: block !important;
 }
 
@@ -6,50 +6,50 @@
  * Add/remove floats:
  * Helper float classes.
  *
- * - `.float--right` - float right
- * - `.float--left` - float left
- * - `.float--none` - remove float
+ * - `.u-float--right` - float right
+ * - `.u-float--left` - float left
+ * - `.u-float--none` - remove float
  */
-.float--right   { float:right!important; }
-.float--left    { float:left !important; }
-.float--none    { float:none !important; }
+.u-float--right   { float:right!important; }
+.u-float--left    { float:left !important; }
+.u-float--none    { float:none !important; }
 
 
 /**
  * Text alignment:
  * Helper text alignment classes.
  *
- * - `.text--left` - align text left
- * - `.text--center` - center align text
- * - `.text--right` - align text right
+ * - `.u-text--left` - align text left
+ * - `.u-text--center` - center align text
+ * - `.u-text--right` - align text right
  */
-.text--left     { text-align:left  !important; }
-.text--center   { text-align:center!important; }
-.text--right    { text-align:right !important; }
+.u-text--left     { text-align:left  !important; }
+.u-text--center   { text-align:center!important; }
+.u-text--right    { text-align:right !important; }
 
 
 /**
  * Font weights:
  * Helper font weight classes.
  *
- * - `.weight--light` - font weight of 200
- * - `.weight--normal` - font weight of 400
- * - `.weight--semibold` - font weight of 600
- * - `.weight--bold` - font weight of 800
+ * - `.u-weight--light` - font weight of 200
+ * - `.u-weight--normal` - font weight of 400
+ * - `.u-weight--semibold` - font weight of 600
+ * - `.u-weight--bold` - font weight of 800
  */
-.weight--light      { font-weight:200!important; }
-.weight--normal     { font-weight:400!important; }
-.weight--semibold   { font-weight:600!important; }
-.weight--bold       { font-weight:800!important; }
+.u-weight--light      { font-weight:200!important; }
+.u-weight--normal     { font-weight:400!important; }
+.u-weight--semibold   { font-weight:600!important; }
+.u-weight--bold       { font-weight:800!important; }
 
 /**
  * Information cursor:
  * Helper to add information cursor to element.
  *
- * - `.informative` - add a help cursor to any element that gives the user extra information on
+ * - `.u-informative` - add a help cursor to any element that gives the user extra information on
  * `:hover`.
  */
-.informative{
+.u-informative{
     cursor:help!important;
 }
 
@@ -57,9 +57,9 @@
  * Muted element:
  * Mute an object by reducing its opacity.
  *
- * - `.muted` - mute an object.
+ * - `.u-muted` - mute an object.
  */
-.muted{
+.u-muted{
     opacity:0.5!important;
     filter:alpha(opacity = 50)!important;
 }
@@ -68,9 +68,9 @@
  * Capital case:
  * Apply capital case to an element (usually a `strong`).
  *
- * - `.caps` - apply caps
+ * - `.u-caps` - apply caps
  */
-.caps{
+.u-caps{
     text-transform:uppercase!important;
 }
 
@@ -78,9 +78,9 @@
  * Smaller text:
  * Make text size smaller.
  *
- * - `.small` - make text size smaller
+ * - `.u-small` - make text size smaller
  */
-.small {
+.u-small {
     font-size: .9em !important;
 }
 
@@ -88,22 +88,22 @@
  * Foreground colors:
  * Apply specific color.
  *
- * - `.color--brand` - brand colour
- * - `.color--text` - main text colour
- * - `.color--white` - white colour
- * - `.color--black` - black colour
+ * - `.u-color--brand` - brand colour
+ * - `.u-color--text` - main text colour
+ * - `.u-color--white` - white colour
+ * - `.u-color--black` - black colour
  */
-.color--brand,
-.color--brand:hover {
+.u-color--brand,
+.u-color--brand:hover {
     color: $color--brand !important;
 }
-.color--text {
+.u-color--text {
     color: $inuit-base-text-color !important;
 }
-.color--white {
+.u-color--white {
     color: $color--white !important;
 }
-.color--black {
+.u-color--black {
     color: $color--black !important;
 }
 
@@ -111,33 +111,33 @@
  * Background colors:
  * Apply specific color to background.
  *
- * - `.bg--brand` - brand colour
- * - `.bg--text` - main text colour
- * - `.bg--white` - white colour
- * - `.bg--black` - black colour
- * - `.bg--grey` - grey colour
- * - `.bg--grey-dark` - dark grey colour
- * - `.bg--grey-light` - light grey colour
+ * - `.u-bg--brand` - brand colour
+ * - `.u-bg--text` - main text colour
+ * - `.u-bg--white` - white colour
+ * - `.u-bg--black` - black colour
+ * - `.u-bg--grey` - grey colour
+ * - `.u-bg--grey-dark` - dark grey colour
+ * - `.u-bg--grey-light` - light grey colour
  */
-.bg--brand {
+.u-bg--brand {
     background-color: $color--brand !important;
 }
-.bg--text {
+.u-bg--text {
     background-color: $inuit-base-text-color !important;
 }
-.bg--white {
+.u-bg--white {
     background-color: $color--white !important;
 }
-.bg--black {
+.u-bg--black {
     background-color: $color--black !important;
 }
-.bg--grey {
+.u-bg--grey {
     background-color: $color--grey !important;
 }
-.bg--grey-dark {
+.u-bg--grey-dark {
     background-color: $color--grey-dark !important;
 }
-.bg--grey-light {
+.u-bg--grey-light {
     background-color: $color--grey-light !important;
 }
 
@@ -148,7 +148,7 @@
  *
  * - `.circled` - circle in.
  */
-.circled {
+.u-circled {
     border-radius: 50%;
 }
 
@@ -159,7 +159,7 @@
  *
  * - `.text--hidden` - hide text
  */
-.text--hidden {
+.u-text--hidden {
     overflow: hidden;
     text-indent: -9999px;
     white-space: nowrap;
@@ -184,14 +184,14 @@
     position: absolute!important;
     width:1px!important;
 }
-.accessibility,
-.hidden {
+.u-accessibility,
+.u-hidden {
     @include accessibility;
 }
 @each $state in palm, lap, lap-and-up, portable, desk {
     @include media-query(#{$state}){
-        .#{$state}--accessibility,
-        .#{$state}--hidden{
+        .u-accessibility\@#{$state},
+        .u-hidden\@#{$state}{
             @include accessibility;
         }
     }

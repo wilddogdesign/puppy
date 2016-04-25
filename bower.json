@@ -1,6 +1,6 @@
 {
   "name": "Puppy",
-  "version": "3.0.0",
+  "version": "2.0.0",
   "authors": [
     "Wild Dog Design"
   ],
@@ -16,19 +16,19 @@
   "dependencies": {
     "bourbon": "~4.2.0",
     "inuit-starter-kit": "~0.2.9",
-    "inuit-layout": "meeshkah/objects.layout#~0.3.2",
-    "inuit-widths-responsive": "meeshkah/trumps.widths-responsive#~0.2.2",
-    "inuit-spacing-responsive": "meeshkah/trumps.spacing-responsive#~0.0.5",
+    "inuit-layout": "meeshkah/objects.layout#~0.4.0",
+    "inuit-widths-responsive": "meeshkah/trumps.widths-responsive#~0.3.0",
+    "inuit-spacing-responsive": "meeshkah/trumps.spacing-responsive#~0.1.1",
     "inuit-clearfix": "~0.2.1",
     "inuit-print": "*",
     "inuit-images": "~0.3.3",
-    "inuit-list-bare": "meeshkah/objects.list-bare#~0.3.0",
-    "inuit-list-inline": "meeshkah/objects.list-inline#~0.3.2",
-    "inuit-buttons": "meeshkah/objects.buttons#~0.4.1",
-    "inuit-pack": "meeshkah/objects.pack#~0.1.1",
-    "inuit-media": "meeshkah/objects.layout#~0.4.2",
-    "inuit-headings-trumps": "meeshkah/trumps.headings#~0.1.2",
-    "inuit-tables": "meeshkah/objects.tables#~0.2.1",
+    "inuit-list-bare": "meeshkah/objects.list-bare#~0.4.0",
+    "inuit-list-inline": "meeshkah/objects.list-inline#~0.4.0",
+    "inuit-buttons": "meeshkah/objects.buttons#~0.5.0",
+    "inuit-pack": "meeshkah/objects.pack#~0.2.0",
+    "inuit-media": "meeshkah/objects.media#~0.5.0",
+    "inuit-headings-trumps": "meeshkah/trumps.headings#~0.2.0",
+    "inuit-tables": "meeshkah/objects.tables#~0.3.0",
     "jacket": "~1.1.1"
   },
   "devDependencies": {}

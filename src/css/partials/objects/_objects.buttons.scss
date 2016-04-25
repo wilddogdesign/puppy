@@ -1,58 +1,58 @@
 // General
-.btn {
+.o-btn {
 	background: $color--grey-dark;
 	padding: 8px 10px;
 	border: 1px solid $color--grey-dark;
 	transition: all .2s ease-in-out;
 }
-.btn:hover {
+.o-btn:hover {
 	background: $color--black;
 }
-.btn--grey {
+.o-btn--grey {
 	background: $color--grey;
 	border-color: $color--grey;
 }
-.btn--grey:hover {
+.o-btn--grey:hover {
 	border-color: $color--grey-dark;
 }
-.btn--brand {
+.o-btn--brand {
 	background: $color--brand;
 	border-color: $color--brand;
 }
-.btn--brand:hover {
+.o-btn--brand:hover {
 	border-color: $color--grey-dark;
 }
-.btn--light {
+.o-btn--light {
 	background: $color--white;
 	color: $color--grey-dark;
 }
-.btn--light:hover {
+.o-btn--light:hover {
 	background: $color--grey-light;
 	color: $color--grey-dark;
 }
 
 // Transparent
-.btn--transparent {
+.o-btn--transparent {
 	background: transparent;
 	color: $color--grey-dark;
 }
-.btn--transparent:focus {
+.o-btn--transparent:focus {
 	color: $color--grey-dark;
 }
-.btn--transparent:hover {
+.o-btn--transparent:hover {
 	background: $color--grey-dark;
 	color: $color--white;
 }
-.btn--transparent.btn--light {
+.o-btn--transparent.o-btn--light {
 	border: 1px solid $color--white;
 	color: $color--white;
 }
-.btn--transparent.btn--light:hover {
+.o-btn--transparent.o-btn--light:hover {
 	background: $color--white;
 	color: $color--grey-dark;
 }
 
 // Misc
-.btn--full {
+.o-btn--full {
 	width: 100%;
 }

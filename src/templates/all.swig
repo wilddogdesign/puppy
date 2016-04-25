@@ -240,7 +240,7 @@
         <ol class="link-list">
         {% for p in pages %}
           <li>
-            <a href="{{ p.page }}.html">{{ p.title }}</a>
+            <a href="{{ p.page }}.html" target="_blank">{{ p.title }}</a>
             {% if p.description %}<span>- {{ p.description }}</span>{% endif %}
           </li>
         {% endfor %}

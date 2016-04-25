@@ -1,0 +1,12 @@
+.o-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.o-container--small {
+  max-width: 1140px;
+}
+.o-container--tiny {
+  max-width: 820px;
+}

@@ -1,7 +1,7 @@
 'use strict'
 
 const plan       = require('flightplan');
-const project    = 'puppy-gulp';
+const project    = 'puppy';
 
 var user         = 'Someone';
 

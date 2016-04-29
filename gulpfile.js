@@ -341,7 +341,7 @@ gulp.task('inject:critical', () => {
       starttag: '<!-- inject:critical -->',
       transform: (filePath, file) => {
         // return file contents as string
-        return `<style type="text/css">${file.contents.toString('utf8')}</style>`;
+        return `<style type="text/css">${file.contents.toString('utf8').replace(/\.\.\/images/g,'assets/images')}</style>`;
       }
     }))
     .pipe(inject(gulp.src([`${options.dist}/assets/css/*.css`], {read:false}), {

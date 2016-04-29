@@ -1,0 +1,11 @@
+{
+  "extends": "airbnb",
+  "settings": {
+    "import/resolver": {
+      "jspm": {
+        "moduleDirectory": "jspm_packages"
+      },
+      "node": true
+    }
+  }
+}

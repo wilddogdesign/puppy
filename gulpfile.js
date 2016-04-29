@@ -280,6 +280,7 @@ gulp.task('browser-sync', cb => {
         "/bower_components": "bower_components"
       }
     },
+    browser: "google chrome canary",
     ui: {
       port: 8889
     },

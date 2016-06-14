@@ -7,11 +7,11 @@
 <html class="no-js" lang="en">
 <!--<![endif]-->
 
-  {% include "_head.swig" %}
+  {% include "includes/_head.nunjucks" %}
 
   <body class="{% block bodyClass %}{{ page }}{% endblock %}">
 
-    {% include "_header.swig" %}
+    {% include "includes/_header.nunjucks" %}
 
     <div id="main" role="main">
       {% block main %}
@@ -21,9 +21,9 @@
       {% endblock %}
     </div>
 
-    {% include "_footer.swig" %}
+    {% include "includes/_footer.nunjucks" %}
 
-    {% include "_scripts.swig" %}
+    {% include "includes/_scripts.nunjucks" %}
 
   </body>
 </html>

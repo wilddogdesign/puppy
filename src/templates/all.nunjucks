@@ -256,9 +256,9 @@
 
       </article>
       <footer>
-        <p class="last-modified">Last modified: {{ now | date('Y-m-d H:m:s') }}</p>
+        <p class="last-modified">Last modified: {{ now | date('llll Z') }}</p>
         <p>Wild Dog Design, <br>44-46 Old Steine, Brighton, <br>East Sussex. BN1 1NH. <br>United Kingdom</p>
-        <p>&copy; Wild Dog Design {{ now | date('Y') }}</p>
+        <p>&copy; Wild Dog Design {{ now | date('YYYY') }}</p>
       </footer>
     </div>
 

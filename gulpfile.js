@@ -13,6 +13,9 @@ const gulpif = require('gulp-if');
 const imagemin = require('gulp-imagemin');
 const inject = require('gulp-inject');
 const modernizr = require('gulp-modernizr');
+const moment = require('moment');
+const nunjucks = require('gulp-nunjucks-render');
+const nunjucksDateFilter = require('nunjucks-date-filter');
 const path = require('path');
 const postcss = require('gulp-postcss');
 const prettify = require('gulp-jsbeautifier');
@@ -23,7 +26,6 @@ const sourcemaps = require('gulp-sourcemaps');
 const styledown = require('gulp-styledown');
 const svgmin = require('gulp-svgmin');
 const svgstore = require('gulp-svgstore');
-const swig = require('gulp-swig');
 const uglify = require('gulp-uglify');
 const watch = require('gulp-watch');
 
@@ -223,18 +225,24 @@ gulp.task('scripts:production', gulp.series(
 
 gulp.task('templates', () => {
   let output = `${options.dist}`;
+
+  const manageEnvironment = environment => {
+    environment.addFilter('date', nunjucksDateFilter);
+  }
+
+  const now = moment().utc();
+
   return gulp
-    .src(`${options.src}/templates/*.swig`)
+    .src(`${options.src}/templates/*.nunjucks`)
     .pipe(data( file => require('./data/pages.json') ))
-    .pipe(swig({
+    .pipe(nunjucks({
       data: {
-        now: new Date(),
+        now: now.valueOf(),
         critical: args.critical,
         isDevelopment: isDevelopment
       },
-      defaults: {
-        cache: false
-      }
+      manageEnv: manageEnvironment,
+      path: ['src/templates/'],
     }))
     .pipe(prettify({
       indent_level: 2,
@@ -298,7 +306,7 @@ gulp.task('watch:styles', () => {
 });
 
 gulp.task('watch:code', () => {
-  watch(`${options.src}/templates/**/*.swig`,gulp.series('templates'));
+  watch(`${options.src}/templates/**/*.nunjucks`,gulp.series('templates'));
   watch(`${options.src}/js/**/*.js`,gulp.series('scripts'));
 });
 

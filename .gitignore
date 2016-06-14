@@ -7,3 +7,4 @@ jspm_packages
 .sass-cache
 test/bower_components
 localhost.*
+npm-debug.log

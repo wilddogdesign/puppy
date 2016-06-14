@@ -233,7 +233,7 @@ gulp.task('templates', () => {
   const now = moment().utc();
 
   return gulp
-    .src(`${options.src}/templates/*.nunjucks`)
+    .src(`${options.src}/templates/*.njk`)
     .pipe(data( file => require('./data/pages.json') ))
     .pipe(nunjucks({
       data: {
@@ -306,7 +306,7 @@ gulp.task('watch:styles', () => {
 });
 
 gulp.task('watch:code', () => {
-  watch(`${options.src}/templates/**/*.nunjucks`,gulp.series('templates'));
+  watch(`${options.src}/templates/**/*.njk`,gulp.series('templates'));
   watch(`${options.src}/js/**/*.js`,gulp.series('scripts'));
 });
 

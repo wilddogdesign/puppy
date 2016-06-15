@@ -11,6 +11,7 @@
     "build": "gulp build:production",
     "deploy": "fly deploy:development",
     "empty-cache": "gulp cache:clear",
+    "serve": "gulp serve",
     "setup": "npm install && jspm install && bower install",
     "start": "gulp",
     "styleguide": "gulp styleguide",

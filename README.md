@@ -35,6 +35,13 @@ npm run build [-- [--no-minification] [--no-critical-css]]
 ```
 The output will be located in `dist` folder
 
+Serving
+-------
+To serve the built assets locally, use:
+```
+npm run serve
+```
+
 Updating
 --------
 Before building a new version of the project, don't forget to update the dependencies if any were added.

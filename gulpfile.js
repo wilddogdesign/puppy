@@ -512,13 +512,19 @@ gulp.task('styleguide',
   )
 );
 
+gulp.task('serve',
+  gulp.series(
+    // 'certificates',
+    'browser-sync',
+    'watch'
+  )
+);
+
 /* DEFAULT */
 
 gulp.task('default',
   gulp.series(
     'build:dev',
-    // 'certificates',
-    'browser-sync',
-    'watch'
+    'serve'
   )
 );

@@ -11,6 +11,7 @@ const favicons = require('gulp-favicons');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const imagemin = require('gulp-imagemin');
+const inlineSvg = require('postcss-inline-svg');
 const inject = require('gulp-inject');
 const modernizr = require('gulp-modernizr');
 const moment = require('moment');
@@ -25,6 +26,7 @@ const shell = require('gulp-shell');
 const sourcemaps = require('gulp-sourcemaps');
 const styledown = require('gulp-styledown');
 const svgmin = require('gulp-svgmin');
+const svgo = require('postcss-svgo');
 const svgstore = require('gulp-svgstore');
 const uglify = require('gulp-uglify');
 const watch = require('gulp-watch');
@@ -172,7 +174,9 @@ gulp.task('styles', () => {
     outputStyle: 'expanded'
   };
   let processors = [
-    autoprefixer({browsers: ['last 2 versions', '> 5%']})
+    autoprefixer({browsers: ['last 2 versions', '> 5%']}),
+    inlineSvg(),
+    svgo(),
   ];
   if (args.minify && !isDevelopment) { processors.push(cssnano) }
   return gulp

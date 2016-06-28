@@ -336,7 +336,7 @@ gulp.task('styles:critical', () => {
     outputStyle: 'expanded'
   };
   let processors = [
-    autoprefixer({browsers: ['last 2 versions', '> 5%']}),
+    autoprefixer({browsers: ['last 2 versions', '> 5%', 'safari 8']}),
     cssnano
   ];
   return gulp

@@ -13,6 +13,7 @@ const gulpif = require('gulp-if');
 const imagemin = require('gulp-imagemin');
 const inlineSvg = require('postcss-inline-svg');
 const inject = require('gulp-inject');
+const injectString = require('gulp-inject-string');
 const modernizr = require('gulp-modernizr');
 const moment = require('moment');
 const nunjucks = require('gulp-nunjucks-render');
@@ -43,7 +44,8 @@ const args = {
 const options = {
   src:  'src',
   dist: 'dist',
-  tmp:  '.tmp'
+  tmp:  '.tmp',
+  pinColor: '#CE171B',
 };
 
 /* GENERAL */
@@ -64,7 +66,7 @@ gulp.task('copy:index', () => {
 });
 
 gulp.task('favicons', () => {
-  return gulp
+  gulp
     .src(`${options.src}/misc/favicon.png`)
     .pipe(favicons({
       appName: project.config.title,
@@ -94,6 +96,9 @@ gulp.task('favicons', () => {
       }
     }))
     .pipe(gulp.dest(`${options.dist}/favicons`));
+
+  return gulp.src(`${options.src}/misc/safari.svg`)
+    .pipe(gulp.dest(`${options.dist}/favicons`));
 });
 
 gulp.task('favicons:inject', () => {
@@ -106,6 +111,7 @@ gulp.task('favicons:inject', () => {
         return file.contents.toString('utf8');
       }
     }))
+    .pipe(injectString.after('<!-- inject:favicons -->', `\n<link rel="mask-icon" href="/favicons/safari.svg" color="${options.pinColor}">`))
     .pipe(gulp.dest(options.dist))
 });
 

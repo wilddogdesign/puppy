@@ -66,7 +66,7 @@ gulp.task('copy:index', () => {
 });
 
 gulp.task('favicons', () => {
-  gulp
+  return gulp
     .src(`${options.src}/misc/favicon.png`)
     .pipe(favicons({
       appName: project.config.title,
@@ -96,9 +96,11 @@ gulp.task('favicons', () => {
       }
     }))
     .pipe(gulp.dest(`${options.dist}/favicons`));
+});
 
-  return gulp.src(`${options.src}/misc/safari.svg`)
-    .pipe(gulp.dest(`${options.dist}/favicons`));
+gulp.task('safari', () => {
+    return gulp.src(`${options.src}/misc/safari.svg`)
+      .pipe(gulp.dest(`${options.dist}/favicons`));
 });
 
 gulp.task('favicons:inject', () => {
@@ -433,6 +435,7 @@ gulp.task('build:production', gulp.series(
   gulp.parallel(
     'copy:index',
     'favicons',
+    'safari',
     'fonts',
     'images',
     'modernizr',

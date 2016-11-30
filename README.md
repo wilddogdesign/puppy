@@ -6,7 +6,7 @@ Installing
 The software used in this project includes Node.js, Gulp, Jspm and Bower.
 We recommend the use of Homebrew to install Node.js.
 ```
-npm install gulp jspm bower -g
+npm install gulp jspm bower yarn -g
 cd path/to/project
 npm run setup
 ```

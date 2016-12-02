@@ -15,7 +15,7 @@
     "setup": "yarn install && jspm install && bower install",
     "start": "gulp",
     "styleguide": "gulp styleguide",
-    "update-deps": "yarn update && npm prune && jspm install && bower install && bower prune"
+    "update-deps": "yarn upgrade && jspm install && bower install && bower prune"
   },
   "eslintConfig": {
     "extends": "airbnb",

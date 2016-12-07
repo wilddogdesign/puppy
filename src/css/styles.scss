@@ -16,8 +16,6 @@
   @import "bower_components/bourbon/app/assets/stylesheets/bourbon";
   $em-base: $inuit-base-font-size;
 
-  @import "bower_components/jacket/stylesheets/jacket";
-
 // Generic: Low-specificity, far-reaching rulesets (e.g. resets).
   @import "bower_components/inuit-normalize/generic.normalize";
   @import "bower_components/inuit-box-sizing/generic.box-sizing";
@@ -51,15 +49,17 @@
   @import "bower_components/inuit-list-inline/objects.list-inline";
   @import "bower_components/inuit-tables/objects.tables";
 
-  @import "partials/objects/objects.layout-flex";
-  @import "partials/objects/objects.fonts";
   @import "partials/objects/objects.buttons";
   @import "partials/objects/objects.containers";
+  @import "partials/objects/objects.fonts";
+  @import "partials/objects/objects.icons";
+  @import "partials/objects/objects.layout-flex";
 
 // Components: Discrete, complete chunks of UI (e.g. .carousel {}). This is the one layer that inuitcss doesn’t get involved with.
 
   // Include components.genereal to critical css by default
   @import "partials/components/components.general";
+  @import "partials/components/components.header";
 
 
 // Trumps: High-specificity, very explicit selectors. Overrides and helper classes (e.g. .hidden {}).

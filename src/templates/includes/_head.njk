@@ -1,9 +1,9 @@
 <head>
  	<meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
- 	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+ 	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
   <meta name="description" content="">
-  <meta name="author" content="Wild Dog Design">
+  <meta name="author" content="">
 
   {# Will be picked up from ./data/pages.json #}
   {% for p in pages %}
@@ -12,7 +12,7 @@
     {% endif %}
   {% endfor %}
 
-  <!-- Set up preconnect -->
+  <!-- Set up preconnect for fonts -->
   <link href='//fonts.gstatic.com' rel='preconnect' crossorigin>
 
   {% if critical and not isDevelopment %}
@@ -21,20 +21,11 @@
     <!-- inject:critical -->
     <!-- endinject -->
 
+    <!-- inject:preconnect_css -->
+    <!-- endinject -->
+
     <script id="criticalCss">
-    /*!
-    loadCSS: load a CSS file asynchronously.
-    [c]2015 @scottjehl, Filament Group, Inc.
-    Licensed MIT
-    */
-    (function(w,undefined){
-      "use strict";
-      var loadCSS=function(e,n,t){var o,l=w.document,r=l.createElement("link");if(n)o=n;else{var a=(l.body||l.getElementsByTagName("head")[0]).childNodes;o=a[a.length-1]}var d=l.styleSheets;r.rel="stylesheet",r.href=e,r.media="only x",o.parentNode.insertBefore(r,n?o:o.nextSibling);var i=function(e){for(var n=r.href,t=d.length;t--;)if(d[t].href===n)return e();setTimeout(function(){i(e)})};return r.onloadcssdefined=i,i(function(){r.media=t||"all"}),r};"undefined"!=typeof module?module.exports=loadCSS:w.loadCSS=loadCSS;
-
-      /* inject:css */
-      /* endinject */
-
-    }( typeof global !== "undefined" ? global : this ));
+      !function(a){"use strict";var b=function(b,c,d){function j(a){return e.body?a():void setTimeout(function(){j(a)})}function l(){f.addEventListener&&f.removeEventListener("load",l),f.media=d||"all"}var g,e=a.document,f=e.createElement("link");if(c)g=c;else{var h=(e.body||e.getElementsByTagName("head")[0]).childNodes;g=h[h.length-1]}var i=e.styleSheets;f.rel="stylesheet",f.href=b,f.media="only x",j(function(){g.parentNode.insertBefore(f,c?g:g.nextSibling)});var k=function(a){for(var b=f.href,c=i.length;c--;)if(i[c].href===b)return a();setTimeout(function(){k(a)})};return f.addEventListener&&f.addEventListener("load",l),f.onloadcssdefined=k,k(l),f};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this),function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(a){}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){a.clearInterval(c)})}}}(this);
     </script>
 
     <noscript>
@@ -48,8 +39,6 @@
   {% if critical and not isDevelopment %}
     </noscript>
   {% endif %}
-
-  <script src="assets/js/vendor/modernizr-custom.js"></script>
 
   <!-- inject:favicons -->
   <!-- endinject -->

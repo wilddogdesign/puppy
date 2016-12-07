@@ -45,7 +45,7 @@ const options = {
   src:  'src',
   dist: 'dist',
   tmp:  '.tmp',
-  pinColor: '#CE171B',
+  safariPinColor: '#CE171B',
 };
 
 /* GENERAL */
@@ -98,7 +98,7 @@ gulp.task('favicons', () => {
     .pipe(gulp.dest(`${options.dist}/favicons`));
 });
 
-gulp.task('safari', () => {
+gulp.task('favicons:safari', () => {
     return gulp.src(`${options.src}/misc/safari.svg`)
       .pipe(gulp.dest(`${options.dist}/favicons`));
 });
@@ -113,7 +113,7 @@ gulp.task('favicons:inject', () => {
         return file.contents.toString('utf8');
       }
     }))
-    .pipe(injectString.after('<!-- inject:favicons -->', `\n<link rel="mask-icon" href="/favicons/safari.svg" color="${options.pinColor}">`))
+    .pipe(injectString.after('<!-- inject:favicons -->', `\n<link rel="mask-icon" href="/favicons/safari.svg" color="${options.safariPinColor}">`))
     .pipe(gulp.dest(options.dist))
 });
 
@@ -365,17 +365,13 @@ gulp.task('inject:critical', () => {
       }
     }))
     .pipe(inject(gulp.src([`${options.dist}/assets/css/*.css`], {read:false}), {
-      starttag: '/* inject:css */',
-      endtag: '/* endinject */',
+      starttag: '<!-- inject:preconnect_css -->',
       relative: true,
-      transform: (filePath, file) => {
-        // return file contents as string
-        // return file.contents.toString('utf8')
-        return `loadCSS('${filePath.toString('utf8')}', document.getElementById('criticalCss') );`;
-      }
+      transform: (filePath, file) => `<link rel="preload" href="${filePath.toString('utf8')}" as="style" onload="this.rel='stylesheet'">`,
     }))
     .pipe(gulp.dest(options.dist));
 });
+
 
 gulp.task('inject:assets', () => {
   let target = gulp.src(`${options.dist}/**/*.html`);
@@ -435,7 +431,6 @@ gulp.task('build:production', gulp.series(
   gulp.parallel(
     'copy:index',
     'favicons',
-    'safari',
     'fonts',
     'images',
     'modernizr',
@@ -449,7 +444,8 @@ gulp.task('build:production', gulp.series(
   'clean:unrevved',
   'inject:critical',
   'inject:assets',
-  'favicons:inject'
+  'favicons:inject',
+  'favicons:safari'
 ));
 
 /* STYLEGUIDE */

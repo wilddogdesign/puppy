@@ -18,9 +18,6 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.35",
     "core-js": "npm:core-js@1.2.6",
     "domready": "npm:domready@1.0.8",
-    "fastclick": "npm:fastclick@1.0.6",
-    "jquery": "npm:jquery@2.2.2",
-    "slick-carousel": "npm:slick-carousel@1.5.9",
     "svg4everybody": "npm:svg4everybody@2.0.3",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
@@ -54,9 +51,6 @@ System.config({
     },
     "npm:process@0.11.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"
-    },
-    "npm:slick-carousel@1.5.9": {
-      "jquery": "npm:jquery@2.2.2"
     },
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",

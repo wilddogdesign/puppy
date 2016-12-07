@@ -28,8 +28,7 @@
     "inuit-pack": "meeshkah/objects.pack#~0.2.0",
     "inuit-media": "meeshkah/objects.media#~0.5.0",
     "inuit-headings-trumps": "meeshkah/trumps.headings#~0.2.0",
-    "inuit-tables": "meeshkah/objects.tables#~0.3.0",
-    "jacket": "~1.1.1"
+    "inuit-tables": "meeshkah/objects.tables#~0.3.0"
   },
   "devDependencies": {}
 }

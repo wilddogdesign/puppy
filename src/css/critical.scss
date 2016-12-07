@@ -1,8 +1,5 @@
 // Critical styles to be inlined into <head>
 
-$jacket: critical;
-
-// @import 'styles';
 // Settings: Global variables, site-wide settings, config switches, etc.
   $inuit-base-font-size:   16px;
   // $inuit-base-line-height: 18px;
@@ -20,8 +17,6 @@ $jacket: critical;
   // Bourbon
   @import "bower_components/bourbon/app/assets/stylesheets/bourbon";
   $em-base: $inuit-base-font-size;
-
-  @import "bower_components/jacket/stylesheets/jacket";
 
   @import "bower_components/inuit-page/base.page";
   @import "bower_components/inuit-images/base.images";

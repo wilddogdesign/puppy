@@ -4,11 +4,11 @@
  *
  *   @example
  *   div.sg-tyles
- *     div.sg-tyles__item(style='background-color: #BADA55') Main color
+ *     div.sg-tyles__item(style='background-color: #CE171B') Main color
  *     div.sg-tyles__item(style='background-color: #666') Secondary color
  */
 
-$color--brand:        #BADA55;
+$color--brand:        #CE171B;
 
 $color--white:        #fff;
 $color--black:        #111;
@@ -27,4 +27,4 @@ $color--alert-green:  #00964d;
 $color--disabled-gray:       #cecece;
 
 $font--main:          Helvetica, Arial, sans-serif;
-$font--title:         Helvetica, Arial, sans-serif;
+$font--title:         Georgia, serif;

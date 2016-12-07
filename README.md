@@ -14,7 +14,6 @@ npm run setup
 Process
 -------
 - The building process employs script and styles minification, as well as critical CSS inclusion. To switch off these procedures pass `--no-minification` and `--no-critical-css` to the script when building.
-- Critical CSS generation depends on [Jacket](https://github.com/at-import/jacket) plugin.
 
 Developing
 ----------
@@ -63,7 +62,7 @@ The generated styleguide will be available at `dist/styleguide`
 
 Deploying (optional)
 --------------------
-The project employs Flightplan.js to perform versioned deployments. To build and deploy to a development derver,
+The project employs Flightplan.js to perform versioned deployments. To build and deploy to a development saerver,
 first install Flightplan by running
 ```
 npm install -g flightplan

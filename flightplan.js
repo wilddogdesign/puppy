@@ -5,6 +5,11 @@ const project    = 'puppy';
 
 var user         = 'Someone';
 
+const remoteRoot = '/path/to/root/';
+const remoteHost = 'remote.host.com';
+
+const slackNotifyHook = 'https://hooks.slack.com/services/XXXXXXX/YYYYYYYYY/ZZZZZZZZZZZZZZZZZZZZZZZZZ';
+
 const args = {
   critical: process.argv.indexOf("--no-critical-css") > -1 ? false : true,
   minify:   process.argv.indexOf("--no-minification") > -1 ? false : true
@@ -12,8 +17,8 @@ const args = {
 
 // configuration
 plan.target('development', {
-  host: 'wilddogdevelopment.com',
-  projectRoot: `/Users/webdog/www/${project}`,
+  host: remoteHost,
+  projectRoot: `${remoteRoot}${project}`,
   username: 'deployer',
   agent: process.env.SSH_AUTH_SOCK,
   maxDeploys: 5
@@ -48,7 +53,7 @@ plan.remote('deploy', remote => {
     remote.exec('rm -rf `ls -1dt ' + remote.runtime.projectRoot + '/versions/* | tail -n +' + (remote.runtime.maxDeploys+1) + '`');
   }
 
-  remote.exec(`curl -X POST --data-urlencode 'payload={"channel": "#deployments", "username": "deploybot", "text": "${user.stdout} has just deployed *${project}* project to <http://${project}.${remote.runtime.host}|its preview server>", "icon_emoji": ":shipit:"}' https://hooks.slack.com/services/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`);
+  remote.exec(`curl -X POST --data-urlencode 'payload={"channel": "#deployments", "username": "deploybot", "text": "${user.stdout} has just deployed *${project}* project to <http://${project}.${remote.runtime.host}|its preview server>", "icon_emoji": ":shipit:"}' ${slackNotifyHook}`);
 });
 
 plan.remote('rollback', remote => {
@@ -68,7 +73,6 @@ plan.remote('rollback', remote => {
     remote.log(`Rolling back from ${lastVersion} to ${previousVersion}`);
 
     remote.exec(`ln -fsn ${previousVersion} current`);
-    // remote.exec('chown -R ' + remote.runtime.ownerUser + ':' + remote.runtime.ownerUser + ' current');
 
     remote.exec(`rm -rf ${lastVersion}`);
   });

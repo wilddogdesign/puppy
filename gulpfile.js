@@ -3,6 +3,7 @@
 const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync');
 const cache = require('gulp-cache');
+const criticalSplit = require('postcss-critical-split');
 const cssnano = require('cssnano');
 const data = require('gulp-data');
 const del = require('del');
@@ -13,7 +14,6 @@ const gulpif = require('gulp-if');
 const imagemin = require('gulp-imagemin');
 const inlineSvg = require('postcss-inline-svg');
 const inject = require('gulp-inject');
-const injectString = require('gulp-inject-string');
 const modernizr = require('gulp-modernizr');
 const moment = require('moment');
 const nunjucks = require('gulp-nunjucks-render');
@@ -21,6 +21,7 @@ const nunjucksDateFilter = require('nunjucks-date-filter');
 const path = require('path');
 const postcss = require('gulp-postcss');
 const prettify = require('gulp-jsbeautifier');
+const rename = require('gulp-rename');
 const rev = require('gulp-rev');
 const sass = require('gulp-sass');
 const shell = require('gulp-shell');
@@ -44,8 +45,7 @@ const args = {
 const options = {
   src:  'src',
   dist: 'dist',
-  tmp:  '.tmp',
-  safariPinColor: '#CE171B',
+  tmp:  '.tmp'
 };
 
 /* GENERAL */
@@ -98,11 +98,6 @@ gulp.task('favicons', () => {
     .pipe(gulp.dest(`${options.dist}/favicons`));
 });
 
-gulp.task('favicons:safari', () => {
-    return gulp.src(`${options.src}/misc/safari.svg`)
-      .pipe(gulp.dest(`${options.dist}/favicons`));
-});
-
 gulp.task('favicons:inject', () => {
   return gulp
     .src(`${options.dist}/**/*.html`)
@@ -113,7 +108,6 @@ gulp.task('favicons:inject', () => {
         return file.contents.toString('utf8');
       }
     }))
-    .pipe(injectString.after('<!-- inject:favicons -->', `\n<link rel="mask-icon" href="/favicons/safari.svg" color="${options.safariPinColor}">`))
     .pipe(gulp.dest(options.dist))
 });
 
@@ -144,11 +138,14 @@ gulp.task('modernizr', () => {
         'hidden'
       ],
       'tests' : [
+        // 'flexboxlegacy',
+        // 'flexbox',
+        'history',
         'inlinesvg',
         'touchevents',
         'srcset',
         'svg',
-        'webworkers'
+        // 'webworkers'
       ],
     }))
     .pipe(uglify())
@@ -176,17 +173,17 @@ gulp.task('svgstore', () => {
 /* STYLES */
 
 gulp.task('styles', () => {
-  let output = `${options.dist}/assets/css`;
+  let output = isDevelopment ? `${options.dist}/assets/css` : `${options.tmp}/assets/css`;
   let sassOptions = {
     errLogToConsole: true,
     outputStyle: 'expanded'
   };
   let processors = [
-    autoprefixer({browsers: ['last 2 versions', '> 5%']}),
+    autoprefixer({browsers: ['last 2 versions', '> 5%', 'safari 8']}),
     inlineSvg(),
     svgo(),
   ];
-  if (args.minify && !isDevelopment) { processors.push(cssnano) }
+  // if (args.minify && !isDevelopment) { processors.push(cssnano) }
   return gulp
     .src(`${options.src}/css/main.scss`)
     .pipe(gulpif(isDevelopment,sourcemaps.init()))
@@ -297,10 +294,12 @@ gulp.task('browser-sync', cb => {
       routes: {
         "/jspm_packages": "jspm_packages",
         "/config.js": "config.js",
-        "/bower_components": "bower_components"
+        "/bower_components": "bower_components",
+        // Custom routes for Our work history push
+        "/our-work/assets": "dist/assets",
+        "/our-work/brand": "dist/our-work-brand.html"
       }
     },
-    browser: "google chrome canary",
     ui: {
       port: 8889
     },
@@ -337,19 +336,41 @@ gulp.task('watch', gulp.parallel(
 
 /* PRODUCTION */
 
+// Generate critical css
 gulp.task('styles:critical', () => {
-  let output = `${options.tmp}/assets/css`;
+  let output = `${options.dist}/assets/css`;
   let sassOptions = {
     errLogToConsole: true,
     outputStyle: 'expanded'
   };
   let processors = [
-    autoprefixer({browsers: ['last 2 versions', '> 5%', 'safari 8']}),
-    cssnano
+    criticalSplit({
+      'output':'critical',
+    }),
+    cssnano,
   ];
   return gulp
-    .src(`${options.src}/css/critical.scss`)
-    .pipe(sass(sass(sassOptions).on('error', sass.logError)))
+    .src(`${options.tmp}/assets/css/main.css`)
+    .pipe(postcss(processors))
+    .pipe(rename('critical.css'))
+    .pipe(gulp.dest(output));
+});
+
+// Generate non-critical css
+gulp.task('styles:rest', () => {
+  let output = `${options.dist}/assets/css`;
+  let sassOptions = {
+    errLogToConsole: true,
+    outputStyle: 'expanded'
+  };
+  let processors = [
+    criticalSplit({
+      'output':'rest',
+    }),
+  ];
+  if (args.minify && !isDevelopment) { processors.push(cssnano) }
+  return gulp
+    .src(`${options.tmp}/assets/css/main.css`)
     .pipe(postcss(processors))
     .pipe(gulp.dest(output));
 });
@@ -357,27 +378,28 @@ gulp.task('styles:critical', () => {
 gulp.task('inject:critical', () => {
   return gulp
     .src(`${options.dist}/**/*.html`)
-    .pipe(inject(gulp.src([`${options.tmp}/assets/css/critical.css`]), {
+    .pipe(inject(gulp.src([`${options.dist}/assets/css/critical.css`]), {
       starttag: '<!-- inject:critical -->',
       transform: (filePath, file) => {
         // return file contents as string
         return `<style type="text/css">${file.contents.toString('utf8').replace(/\.\.\/images/g,'assets/images')}</style>`;
       }
     }))
-    .pipe(inject(gulp.src([`${options.dist}/assets/css/*.css`], {read:false}), {
+    .pipe(inject(gulp.src([`${options.dist}/assets/css/main-*.css`], {read:false}), {
       starttag: '<!-- inject:preconnect_css -->',
       relative: true,
-      transform: (filePath, file) => `<link rel="preload" href="${filePath.toString('utf8')}" as="style" onload="this.rel='stylesheet'">`,
+      transform: (filePath, file) => {
+        return `<link rel="preload" href="${filePath.toString('utf8')}" as="style" onload="this.rel='stylesheet'">`;
+      }
     }))
     .pipe(gulp.dest(options.dist));
 });
-
 
 gulp.task('inject:assets', () => {
   let target = gulp.src(`${options.dist}/**/*.html`);
   let css = gulp.src(
     [
-      `${options.dist}/assets/css/**/*.css`
+      `${options.dist}/assets/css/main-*.css`
     ],
     {read: false}
   );
@@ -436,16 +458,16 @@ gulp.task('build:production', gulp.series(
     'modernizr',
     'scripts:production',
     'styles',
-    'styles:critical',
     'svgstore',
     'templates'
   ),
+  'styles:critical',
+  'styles:rest',
   'rev',
   'clean:unrevved',
   'inject:critical',
   'inject:assets',
-  'favicons:inject',
-  'favicons:safari'
+  'favicons:inject'
 ));
 
 /* STYLEGUIDE */

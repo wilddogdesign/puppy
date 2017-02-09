@@ -347,7 +347,9 @@ gulp.task('styles:critical', () => {
     criticalSplit({
       'output':'critical',
     }),
-    cssnano,
+    cssnano({
+      autoprefixer: false,
+    }),
   ];
   return gulp
     .src(`${options.tmp}/assets/css/main.css`)
@@ -368,7 +370,7 @@ gulp.task('styles:rest', () => {
       'output':'rest',
     }),
   ];
-  if (args.minify && !isDevelopment) { processors.push(cssnano) }
+  if (args.minify && !isDevelopment) { processors.push(cssnano({autoprefixer:false})) }
   return gulp
     .src(`${options.tmp}/assets/css/main.css`)
     .pipe(postcss(processors))

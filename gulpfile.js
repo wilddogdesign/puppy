@@ -14,6 +14,7 @@ const gulpif = require('gulp-if');
 const imagemin = require('gulp-imagemin');
 const inlineSvg = require('postcss-inline-svg');
 const inject = require('gulp-inject');
+const jpegrecompress = require('imagemin-jpeg-recompress');
 const modernizr = require('gulp-modernizr');
 const moment = require('moment');
 const nunjucks = require('gulp-nunjucks-render');
@@ -120,7 +121,16 @@ gulp.task('fonts', () => {
 gulp.task('images', () => {
   return gulp
     .src(`${options.src}/images/**/*.+(png|jpg|jpeg|gif|svg)`)
-    .pipe(cache(imagemin()))
+    .pipe(
+      cache(
+        imagemin([
+          imagemin.gifsicle(),
+          jpegrecompress(),
+          imagemin.optipng(),
+          imagemin.svgo(),
+        ])
+      )
+    )
     .pipe(gulp.dest(`${options.dist}/assets/images`))
 });
 

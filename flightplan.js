@@ -21,10 +21,11 @@ plan.target('development', {
   projectRoot: `${remoteRoot}${project}`,
   username: 'deployer',
   agent: process.env.SSH_AUTH_SOCK,
-  maxDeploys: 5
+  maxDeploys: 5,
+  port: 22
 });
 
-const versionDir = `${project}-${new Date().getTime()}`;
+const versionDir = `${new Date().getTime()}`;
 
 // run commands on localhost
 plan.local('deploy', local => {
@@ -42,15 +43,15 @@ plan.local('deploy', local => {
 plan.remote('deploy', remote => {
   remote.hostname();
 
-  remote.log('Move version folder to project versions folder');
-  remote.exec(`mv /tmp/${versionDir}/dist ${remote.runtime.projectRoot}/versions/${versionDir}`, {user: remote.runtime.username});
+  remote.log('Move version folder to project releases folder');
+  remote.exec(`mv /tmp/${versionDir}/dist ${remote.runtime.projectRoot}/releases/${versionDir}`, {user: remote.runtime.username});
   remote.rm(`-rf /tmp/${versionDir}`);
   remote.log('Point to current version');
-  remote.exec(`rm -f ${remote.runtime.projectRoot}/current && ln -snf ${remote.runtime.projectRoot}/versions/${versionDir} ${remote.runtime.projectRoot}/current`);
+  remote.exec(`rm -f ${remote.runtime.projectRoot}/current && ln -snf ${remote.runtime.projectRoot}/releases/${versionDir} ${remote.runtime.projectRoot}/current`);
 
   if (remote.runtime.maxDeploys > 0) {
     remote.log('Cleaning up old deploys...');
-    remote.exec('rm -rf `ls -1dt ' + remote.runtime.projectRoot + '/versions/* | tail -n +' + (remote.runtime.maxDeploys+1) + '`');
+    remote.exec('rm -rf `ls -1dt ' + remote.runtime.projectRoot + '/releases/* | tail -n +' + (remote.runtime.maxDeploys+1) + '`');
   }
 
   remote.exec(`curl -X POST --data-urlencode 'payload={"channel": "#deployments", "username": "deploybot", "text": "${user.stdout} has just deployed *${project}* project to <http://${project}.${remote.runtime.host}|its preview server>", "icon_emoji": ":shipit:"}' ${slackNotifyHook}`);
@@ -60,15 +61,15 @@ plan.remote('rollback', remote => {
   remote.hostname();
 
   remote.with(`cd ${remote.runtime.projectRoot}`, () => {
-    let command = remote.exec('ls -1dt versions/* | head -n 2');
-    let versions = command.stdout.trim().split('\n');
+    let command = remote.exec('ls -1dt releases/* | head -n 2');
+    let releases = command.stdout.trim().split('\n');
 
-    if (versions.length < 2) {
+    if (releases.length < 2) {
       return remote.log('No version to rollback to');
     }
 
-    let lastVersion = versions[0];
-    let previousVersion = versions[1];
+    let lastVersion = releases[0];
+    let previousVersion = releases[1];
 
     remote.log(`Rolling back from ${lastVersion} to ${previousVersion}`);
 

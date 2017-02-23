@@ -70,6 +70,7 @@
     "gulp-svgstore": "^6.0.0",
     "gulp-uglify": "^2.0.0",
     "gulp-watch": "^4.3.5",
+    "imagemin-jpeg-recompress": "^5.1.0",
     "jspm": "^0.16.30",
     "moment": "^2.13.0",
     "nunjucks-date-filter": "^0.1.1",

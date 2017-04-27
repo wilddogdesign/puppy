@@ -359,6 +359,7 @@ gulp.task('styles:critical', () => {
     }),
     cssnano({
       autoprefixer: false,
+      reduceIdents: false,
     }),
   ];
   return gulp
@@ -380,7 +381,7 @@ gulp.task('styles:rest', () => {
       'output':'rest',
     }),
   ];
-  if (args.minify && !isDevelopment) { processors.push(cssnano({autoprefixer:false})) }
+  if (args.minify && !isDevelopment) { processors.push(cssnano({autoprefixer:false, reduceIdents: false})) }
   return gulp
     .src(`${options.tmp}/assets/css/main.css`)
     .pipe(postcss(processors))

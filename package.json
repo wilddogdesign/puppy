@@ -37,15 +37,15 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "autoprefixer": "^6.3.3",
+    "autoprefixer": "^7.1.0",
     "browser-sync": "^2.12.5",
     "cssnano": "^3.5.2",
     "del": "^2.2.0",
-    "eslint-config-airbnb": "^14.0.0",
+    "eslint-config-airbnb": "^15.0.1",
     "eslint-import-resolver-jspm": "^2.1.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
-    "eslint-plugin-react": "^6.9.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-react": "^7.0.1",
     "flightplan": "^0.6.13",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-cache": "^0.4.3",
@@ -59,11 +59,11 @@
     "gulp-jspm": "^0.5.7",
     "gulp-modernizr": "^1.0.0-alpha",
     "gulp-nunjucks-render": "^2.0.0",
-    "gulp-postcss": "^6.1.0",
+    "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-rev": "^7.0.0",
     "gulp-sass": "^3.1.0",
-    "gulp-shell": "^0.5.2",
+    "gulp-shell": "^0.6.3",
     "gulp-sourcemaps": "^2.4.0",
     "gulp-styledown": "0.0.2",
     "gulp-svgmin": "^1.2.2",
@@ -76,12 +76,12 @@
     "nunjucks-date-filter": "^0.1.1",
     "path": "^0.12.7",
     "postcss-critical-split": "^2.4.1",
-    "postcss-inline-svg": "^2.0.1"
+    "postcss-inline-svg": "^3.0.0"
   },
   "jspm": {
     "dependencies": {
       "domready": "npm:domready@^1.0.8",
-      "svg4everybody": "npm:svg4everybody@^2.0.3"
+      "svg4everybody": "npm:svg4everybody@^2.1.8"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",

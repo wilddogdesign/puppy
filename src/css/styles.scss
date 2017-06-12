@@ -1,89 +1,55 @@
-// Settings: Global variables, site-wide settings, config switches, etc.
-  $inuit-base-font-size:   16px;
-  // $inuit-base-line-height: 18px;
-  @import "bower_components/inuit-defaults/settings.defaults";
-  @import "bower_components/inuit-responsive-settings/settings.responsive";
-  @import "partials/settings/settings.local";
+// SETTINGS
+$inuit-base-font-size:   16px;
+@import "settings/settings.config";
+@import "node_modules/inuitcss/settings/settings.core";
+@import "settings/settings.global";
+@import "settings/settings.colors";
+@import "settings/settings.fonts";
 
-// Tools: Site-wide mixins and functions.
-  @import "bower_components/inuit-functions/tools.functions";
-  @import "bower_components/inuit-mixins/tools.mixins";
-  @import "bower_components/inuit-tools-widths/tools.widths";
-  @import "bower_components/inuit-responsive-tools/tools.responsive";
+// TOOLS
+@import "bourbon";
+@import "node_modules/inuitcss/tools/tools.font-size";
+@import "node_modules/inuitcss/tools/tools.clearfix";
+@import "node_modules/inuitcss/tools/tools.font-size";
+@import "node_modules/inuitcss/tools/tools.rem";
+@import "node_modules/sass-mq/mq";
+@import "tools/tools.poly-fluid-sizing";
 
-// Plugins: Third-party plugins
-  // Bourbon
-  @import "bower_components/bourbon/app/assets/stylesheets/bourbon";
-  $em-base: $inuit-base-font-size;
+// GENERIC
+@import "node_modules/inuitcss/generic/generic.box-sizing";
+@import "node_modules/inuitcss/generic/generic.normalize";
+@import "node_modules/inuitcss/generic/generic.shared";
 
-// Generic: Low-specificity, far-reaching rulesets (e.g. resets).
-  @import "bower_components/inuit-normalize/generic.normalize";
-  @import "bower_components/inuit-box-sizing/generic.box-sizing";
+// ELEMENTS
+@import "node_modules/inuitcss/elements/elements.page";
+@import "node_modules/inuitcss/elements/elements.headings";
+@import "elements/elements.headings";
+@import "elements/elements.links";
+@import "elements/elements.lists";
+@import "elements/elements.page";
 
-// Base: Unclassed HTML elements (e.g. a {}, blockquote {}, address {}).
-  $inuit-heading-size-1:  $inuit-base-font-size * 2;
-  $inuit-heading-size-2:  $inuit-base-font-size * 1.5;
-  $inuit-heading-size-3:  $inuit-base-font-size * 1.125;
-  $inuit-heading-size-4:  $inuit-base-font-size;
-  $inuit-heading-size-5:  $inuit-base-font-size * 0.875;
-  $inuit-heading-size-6:  $inuit-base-font-size * 0.75;
+// OBJECTS
+@import "node_modules/inuitcss/objects/objects.layout";
+@import "node_modules/inuitcss/objects/objects.media";
+@import "node_modules/inuitcss/objects/objects.flag";
+@import "node_modules/inuitcss/objects/objects.list-bare";
+@import "node_modules/inuitcss/objects/objects.list-inline";
+@import "node_modules/inuitcss/objects/objects.box";
+@import "node_modules/inuitcss/objects/objects.block";
+@import "node_modules/inuitcss/objects/objects.tables";
 
-  @import "bower_components/inuit-page/base.page";
-  @import "bower_components/inuit-images/base.images";
-  @import "bower_components/inuit-headings/base.headings";
+@import "objects/objects.buttons";
+@import "objects/objects.containers";
+@import "objects/objects.fonts";
+@import "objects/objects.icons";
 
-  @import "partials/base/base.forms";
+// COMPONENTS
+@import "components/components.general";
+@import "components/components.header";
 
-// Objects: Objects, abstractions, and design patterns (e.g. .media {}).
-  $inuit-enable-layout--tiny:  true;
-  $inuit-enable-layout--small: true;
-  $inuit-enable-layout--large: true;
-  $inuit-enable-layout--huge:  true;
-  $inuit-enable-layout--flush: true;
-
-  @import "bower_components/inuit-layout/objects.layout";
-  @import "bower_components/inuit-buttons/objects.buttons";
-  @import "bower_components/inuit-pack/objects.pack";
-  @import "bower_components/inuit-media/objects.media";
-  @import "bower_components/inuit-list-bare/objects.list-bare";
-  @import "bower_components/inuit-list-inline/objects.list-inline";
-  @import "bower_components/inuit-tables/objects.tables";
-
-  @import "partials/objects/objects.buttons";
-  @import "partials/objects/objects.containers";
-  @import "partials/objects/objects.fonts";
-  @import "partials/objects/objects.icons";
-  @import "partials/objects/objects.layout-flex";
-
-// Components: Discrete, complete chunks of UI (e.g. .carousel {}). This is the one layer that inuitcss doesn’t get involved with.
-
-  // Include components.genereal to critical css by default
-  @import "partials/components/components.general";
-  @import "partials/components/components.header";
-
-
-// Trumps: High-specificity, very explicit selectors. Overrides and helper classes (e.g. .hidden {}).
-  $inuit-enable-margins:         true;
-  $inuit-enable-margins--tiny:   true;
-  $inuit-enable-margins--small:  true;
-  $inuit-enable-margins--large:  true;
-  $inuit-enable-margins--huge:   true;
-  $inuit-enable-margins--none:   true;
-  $inuit-enable-paddings:        true;
-  $inuit-enable-paddings--tiny:  true;
-  $inuit-enable-paddings--small: true;
-  $inuit-enable-paddings--large: true;
-  $inuit-enable-paddings--huge:  true;
-  $inuit-enable-paddings--none:  true;
-
-  @import "bower_components/inuit-widths/trumps.widths";
-  @import "bower_components/inuit-widths-responsive/trumps.widths-responsive";
-  @import "bower_components/inuit-spacing/trumps.spacing";
-  @import "bower_components/inuit-spacing-responsive/trumps.spacing-responsive";
-  @import "bower_components/inuit-headings-trumps/trumps.headings";
-  @import "bower_components/inuit-clearfix/trumps.clearfix";
-  @import "bower_components/inuit-print/trumps.print";
-
-  @import "partials/trumps/trumps.helpers";
-  @import "partials/trumps/trumps.z-index";
-  @import "partials/trumps/trumps.shame";
+// UTILITIES
+@import "node_modules/inuitcss/utilities/utilities.widths";
+@import "node_modules/inuitcss/utilities/utilities.headings";
+@import "node_modules/inuitcss/utilities/utilities.spacing";
+@import "utilities/utilities.helpers";
+@import "utilities/utilities.z-index";

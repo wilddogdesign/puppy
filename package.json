@@ -12,10 +12,10 @@
     "deploy": "fly deploy:development",
     "empty-cache": "gulp cache:clear",
     "serve": "gulp serve",
-    "setup": "yarn install && jspm install && bower install",
+    "setup": "yarn install && jspm install",
     "start": "gulp",
     "styleguide": "gulp styleguide",
-    "update-deps": "yarn upgrade && jspm install && bower install && bower prune"
+    "update-deps": "yarn upgrade && jspm install"
   },
   "eslintConfig": {
     "extends": "airbnb",
@@ -35,7 +35,10 @@
       }
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "inuitcss": "^6.0.0-beta.4",
+    "node-bourbon": "^4.2.8"
+  },
   "devDependencies": {
     "autoprefixer": "^7.1.0",
     "browser-sync": "^2.12.5",

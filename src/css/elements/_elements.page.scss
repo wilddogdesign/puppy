@@ -1,0 +1,10 @@
+* {
+  position: relative;
+}
+html,
+body {
+  // height: 100%;
+  min-width: rem(320);
+  margin: 0;
+  font-family: $font--main;
+}

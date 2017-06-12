@@ -1,6 +1,7 @@
 'use strict'
 
 const autoprefixer = require('autoprefixer');
+const bourbon = require('node-bourbon');
 const browserSync = require('browser-sync');
 const cache = require('gulp-cache');
 const criticalSplit = require('postcss-critical-split');
@@ -185,6 +186,7 @@ gulp.task('svgstore', () => {
 gulp.task('styles', () => {
   let output = isDevelopment ? `${options.dist}/assets/css` : `${options.tmp}/assets/css`;
   let sassOptions = {
+    includePaths: bourbon.includePaths,
     errLogToConsole: true,
     outputStyle: 'expanded'
   };
@@ -350,6 +352,7 @@ gulp.task('watch', gulp.parallel(
 gulp.task('styles:critical', () => {
   let output = `${options.dist}/assets/css`;
   let sassOptions = {
+    includePaths: bourbon.includePaths,
     errLogToConsole: true,
     outputStyle: 'expanded'
   };
@@ -373,6 +376,7 @@ gulp.task('styles:critical', () => {
 gulp.task('styles:rest', () => {
   let output = `${options.dist}/assets/css`;
   let sassOptions = {
+    includePaths: bourbon.includePaths,
     errLogToConsole: true,
     outputStyle: 'expanded'
   };

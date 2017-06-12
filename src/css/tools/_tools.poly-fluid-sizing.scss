@@ -7,18 +7,18 @@
 @function linear-interpolation($map) {
   $keys: map-keys($map);
   @if (length($keys) != 2) {
-    @error "linear-interpolation() $map must be exactly 2 values";
+    @error 'linear-interpolation() $map must be exactly 2 values';
   }
   // The slope
-  $m: (map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1)))/(nth($keys, 2) - nth($keys,1));
+  $m: (map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1))) / (nth($keys, 2) - nth($keys, 1));
 
   // The y-intercept
   $b: map-get($map, nth($keys, 1)) - $m * nth($keys, 1);
 
   // Determine if the sign should be positive or negative
-  $sign: "+";
+  $sign: '+';
   @if ($b < 0) {
-    $sign: "-";
+    $sign: '-';
     $b: abs($b);
   }
 
@@ -31,13 +31,13 @@
 /// @returns A SASS list
 /// @author Jake Wilson <jake.e.wilson@gmail.com>
 @function list-remove($list, $index) {
-  $newList: ();
+  $new-list: ();
   @for $i from 1 through length($list) {
     @if $i != $index {
-      $newList: append($newList, nth($list,$i), 'space');
+      $new-list: append($new-list, nth($list, $i), 'space');
     }
   }
-  @return $newList;
+  @return $new-list;
 }
 
 /// Sort a SASS list
@@ -46,18 +46,18 @@
 /// @requires function list-remove
 /// @author Jake Wilson <jake.e.wilson@gmail.com>
 @function list-sort($list) {
-  $sortedlist: ();
+  $sorted-list: ();
   @while length($list) > 0 {
-    $value: nth($list,1);
+    $value: nth($list, 1);
     @each $item in $list {
       @if $item < $value {
         $value: $item;
       }
     }
-    $sortedlist: append($sortedlist, $value, 'space');
+    $sorted-list: append($sorted-list, $value, 'space');
     $list: list-remove($list, index($list, $value));
   }
-  @return $sortedlist;
+  @return $sorted-list;
 }
 
 /// Sort map by keys
@@ -67,11 +67,11 @@
 /// @author Jake Wilson <jake.e.wilson@gmail.com>
 @function map-sort($map) {
   $keys: list-sort(map-keys($map));
-  $sortedMap: ();
+  $sorted-map: ();
   @each $key in $keys {
-    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));
+    $sorted-map: map-merge($sorted-map, ($key: map-get($map, $key)));
   }
-  @return $sortedMap;
+  @return $sorted-map;
 }
 
 
@@ -89,7 +89,7 @@
 
   // Error if the number of breakpoints is < 2
   @if ($length < 2) {
-    @error "poly-fluid-sizing() $map requires at least 2 values"
+    @error 'poly-fluid-sizing() $map requires at least 2 values';
   }
 
   // Sort the map by viewport width (key)
@@ -97,16 +97,16 @@
   $keys: map-keys($map);
 
   // Minimum size
-  #{$property}: map-get($map, nth($keys,1));
+  #{$property}: map-get($map, nth($keys, 1));
 
   // Interpolated size through breakpoints
   @for $i from 1 through ($length - 1) {
-    @media (min-width:nth($keys,$i)) {
-      $value1: map-get($map, nth($keys,$i));
-      $value2: map-get($map, nth($keys,($i + 1)));
+    @media (min-width: nth($keys, $i)) {
+      $value1: map-get($map, nth($keys, $i));
+      $value2: map-get($map, nth($keys, ($i + 1)));
       // If values are not equal, perform linear interpolation
       @if ($value1 != $value2) {
-        #{$property}: linear-interpolation((nth($keys,$i): $value1, nth($keys,($i+1)): $value2));
+        #{$property}: linear-interpolation((nth($keys, $i): $value1, nth($keys, ($i+1)): $value2));
       } @else {
         #{$property}: $value1;
       }
@@ -114,7 +114,7 @@
   }
 
   // Maxmimum size
-  @media (min-width:nth($keys,$length)) {
-    #{$property}: map-get($map, nth($keys,$length));
+  @media (min-width: nth($keys, $length)) {
+    #{$property}: map-get($map, nth($keys, $length));
   }
 }

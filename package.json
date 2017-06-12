@@ -1,6 +1,6 @@
 {
   "name": "Puppy",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Woof!",
   "license": "MIT",
   "repository": {
@@ -36,8 +36,9 @@
     }
   },
   "dependencies": {
-    "inuitcss": "^6.0.0-beta.4",
-    "node-bourbon": "^4.2.8"
+    "bourbon": "^4.3.4",
+    "gulp-sass-lint": "^1.3.2",
+    "inuitcss": "^6.0.0-beta.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.0",

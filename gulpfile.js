@@ -1,7 +1,6 @@
 'use strict'
 
 const autoprefixer = require('autoprefixer');
-const bourbon = require('node-bourbon');
 const browserSync = require('browser-sync');
 const cache = require('gulp-cache');
 const criticalSplit = require('postcss-critical-split');
@@ -26,6 +25,7 @@ const prettify = require('gulp-jsbeautifier');
 const rename = require('gulp-rename');
 const rev = require('gulp-rev');
 const sass = require('gulp-sass');
+const sassLint = require('gulp-sass-lint');
 const shell = require('gulp-shell');
 const sourcemaps = require('gulp-sourcemaps');
 const styledown = require('gulp-styledown');
@@ -183,31 +183,42 @@ gulp.task('svgstore', () => {
 
 /* STYLES */
 
-gulp.task('styles', () => {
-  let output = isDevelopment ? `${options.dist}/assets/css` : `${options.tmp}/assets/css`;
-  let sassOptions = {
-    includePaths: bourbon.includePaths,
-    errLogToConsole: true,
-    outputStyle: 'expanded'
-  };
-  let processors = [
-    autoprefixer({browsers: ['last 2 versions', '> 5%', 'safari 8']}),
-    inlineSvg(),
-    svgo(),
-  ];
-  // if (args.minify && !isDevelopment) { processors.push(cssnano) }
-  return gulp
-    .src(`${options.src}/css/main.scss`)
-    .pipe(gulpif(isDevelopment,sourcemaps.init()))
-      .pipe(sass(sass(sassOptions).on('error', sass.logError)))
-      .pipe(postcss(processors))
-    .pipe(gulpif(isDevelopment,sourcemaps.write()))
-    .pipe(gulp.dest(output));
+gulp.task('styles:lint', () => {
+  return gulp.src(`${options.src}/css/**/*.scss`)
+    .pipe(sassLint({
+      configFile: '.sass-lint.yml',
+    }))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
 });
+
+gulp.task('styles', gulp.series(
+  'styles:lint',
+  () => {
+    let output = isDevelopment ? `${options.dist}/assets/css` : `${options.tmp}/assets/css`;
+    let sassOptions = {
+      errLogToConsole: true,
+      outputStyle: 'expanded'
+    };
+    let processors = [
+      autoprefixer({browsers: ['last 2 versions', '> 5%', 'safari 8']}),
+      inlineSvg(),
+      svgo(),
+    ];
+    // if (args.minify && !isDevelopment) { processors.push(cssnano) }
+    return gulp
+      .src(`${options.src}/css/main.scss`)
+      .pipe(gulpif(isDevelopment,sourcemaps.init()))
+        .pipe(sass(sass(sassOptions).on('error', sass.logError)))
+        .pipe(postcss(processors))
+      .pipe(gulpif(isDevelopment,sourcemaps.write()))
+      .pipe(gulp.dest(output));
+  })
+);
 
 /* SCRIPTS */
 
-gulp.task('lint', () => {
+gulp.task('scripts:lint', () => {
   return gulp
     .src([
       `${options.src}/js/**/*.js`,
@@ -219,7 +230,7 @@ gulp.task('lint', () => {
 });
 
 gulp.task('scripts', gulp.series(
-  'lint',
+  'scripts:lint',
   () => {
     let output = `${options.dist}/assets/js`;
     return gulp
@@ -230,7 +241,7 @@ gulp.task('scripts', gulp.series(
 );
 
 gulp.task('scripts:production', gulp.series(
-  'lint',
+  'scripts:lint',
   () => {
     let output = `${options.dist}/assets/js`;
     return gulp
@@ -305,11 +316,8 @@ gulp.task('browser-sync', cb => {
       baseDir: options.dist,
       routes: {
         "/jspm_packages": "jspm_packages",
+        "/node_modules": "node_modules",
         "/config.js": "config.js",
-        "/bower_components": "bower_components",
-        // Custom routes for Our work history push
-        "/our-work/assets": "dist/assets",
-        "/our-work/brand": "dist/our-work-brand.html"
       }
     },
     ui: {
@@ -352,7 +360,6 @@ gulp.task('watch', gulp.parallel(
 gulp.task('styles:critical', () => {
   let output = `${options.dist}/assets/css`;
   let sassOptions = {
-    includePaths: bourbon.includePaths,
     errLogToConsole: true,
     outputStyle: 'expanded'
   };
@@ -376,7 +383,6 @@ gulp.task('styles:critical', () => {
 gulp.task('styles:rest', () => {
   let output = `${options.dist}/assets/css`;
   let sassOptions = {
-    includePaths: bourbon.includePaths,
     errLogToConsole: true,
     outputStyle: 'expanded'
   };

@@ -1,12 +1,12 @@
 .c-header {
+  padding: inuit-rem(16px) inuit-rem(26px);
   border-bottom: 1px solid $color--brand;
-  padding: inuit-rem(16) inuit-rem(26);
 }
 
   .c-header__brand {
     display: inline-block;
-    width: inuit-rem(80);
-    height: inuit-rem(56);
+    width: inuit-rem(80px);
+    height: inuit-rem(56px);
     background: svg-load('../images/logo.svg', stroke=$color--brand) no-repeat;
     text-indent: 100%;
     white-space: nowrap;

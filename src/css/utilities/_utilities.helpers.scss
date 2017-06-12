@@ -1,3 +1,5 @@
+// sass-lint:disable no-important
+
 /**
  * Add/remove floats:
  * Helper float classes.
@@ -6,9 +8,9 @@
  * - `.u-float--left` - float left
  * - `.u-float--none` - remove float
  */
-.u-float--right   { float:right!important; }
-.u-float--left    { float:left !important; }
-.u-float--none    { float:none !important; }
+.u-float--right   { float: right !important; }
+.u-float--left    { float: left  !important; }
+.u-float--none    { float: none  !important; }
 
 
 /**
@@ -19,9 +21,9 @@
  * - `.u-text--center` - center align text
  * - `.u-text--right` - align text right
  */
-.u-text--left     { text-align:left  !important; }
-.u-text--center   { text-align:center!important; }
-.u-text--right    { text-align:right !important; }
+.u-text--left     { text-align: left   !important; }
+.u-text--center   { text-align: center !important; }
+.u-text--right    { text-align: right  !important; }
 
 
 /**
@@ -33,10 +35,10 @@
  * - `.u-weight--semibold` - font weight of 600
  * - `.u-weight--bold` - font weight of 800
  */
-.u-weight--light      { font-weight:200!important; }
-.u-weight--normal     { font-weight:400!important; }
-.u-weight--semibold   { font-weight:600!important; }
-.u-weight--bold       { font-weight:800!important; }
+.u-weight--light      { font-weight: 200 !important; }
+.u-weight--normal     { font-weight: 400 !important; }
+.u-weight--semibold   { font-weight: 600 !important; }
+.u-weight--bold       { font-weight: 800 !important; }
 
 /**
  * Information cursor:
@@ -45,8 +47,8 @@
  * - `.u-informative` - add a help cursor to any element that gives the user extra information on
  * `:hover`.
  */
-.u-informative{
-    cursor:help!important;
+.u-informative {
+    cursor: help !important;
 }
 
 /**
@@ -55,9 +57,8 @@
  *
  * - `.u-muted` - mute an object.
  */
-.u-muted{
-    opacity:0.5!important;
-    filter:alpha(opacity = 50)!important;
+.u-muted {
+    opacity: .5 !important;
 }
 
 /**
@@ -66,8 +67,8 @@
  *
  * - `.u-caps` - apply caps
  */
-.u-caps{
-    text-transform:uppercase!important;
+.u-caps {
+    text-transform: uppercase !important;
 }
 
 /**
@@ -89,16 +90,22 @@
  * - `.u-color--white` - white colour
  * - `.u-color--black` - black colour
  */
-.u-color--brand,
-.u-color--brand:hover {
+.u-color--brand {
     color: $color--brand !important;
+
+    &:hover {
+        color: $color--brand !important;
+    }
 }
+
 .u-color--text {
-    color: $inuit-base-text-color !important;
+    color: $color--text !important;
 }
+
 .u-color--white {
     color: $color--white !important;
 }
+
 .u-color--black {
     color: $color--black !important;
 }
@@ -118,21 +125,27 @@
 .u-bg--brand {
     background-color: $color--brand !important;
 }
+
 .u-bg--text {
-    background-color: $inuit-base-text-color !important;
+    background-color: $color--text !important;
 }
+
 .u-bg--white {
     background-color: $color--white !important;
 }
+
 .u-bg--black {
     background-color: $color--black !important;
 }
+
 .u-bg--grey {
     background-color: $color--grey !important;
 }
+
 .u-bg--grey-dark {
     background-color: $color--grey-dark !important;
 }
+
 .u-bg--grey-light {
     background-color: $color--grey-light !important;
 }
@@ -156,7 +169,7 @@
  * - `.text--hidden` - hide text
  */
 .u-text--hidden {
-    overflow: hidden;
     text-indent: -9999px;
     white-space: nowrap;
+    overflow: hidden;
 }

@@ -16,9 +16,11 @@ $inuit-global-font-size: 16px;
 @import 'tools/tools.poly-fluid-sizing';
 
 // GENERIC
+/* critical:start */
 @import 'node_modules/inuitcss/generic/generic.box-sizing';
 @import 'node_modules/inuitcss/generic/generic.normalize';
 @import 'node_modules/inuitcss/generic/generic.shared';
+/* critical:end */
 
 // ELEMENTS
 @import 'node_modules/inuitcss/elements/elements.page';

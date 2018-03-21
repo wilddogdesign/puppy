@@ -4086,11 +4086,11 @@ interpret@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.4.tgz#820cdd588b868ffb191a809506d6c9c8f212b1b0"
 
-inuitcss@6.0.0-beta.5:
-  version "6.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/inuitcss/-/inuitcss-6.0.0-beta.5.tgz#f0d128ae00f85f14005ebbc109e99ed7ddfce29f"
+inuitcss@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/inuitcss/-/inuitcss-6.0.0.tgz#164a2557736a29a9874f99c6165174d996ea6a53"
   dependencies:
-    sass-mq "^3.2.9"
+    sass-mq "^3.3.2"
 
 invariant@^2.2.2:
   version "2.2.2"
@@ -7300,7 +7300,7 @@ sass-lint@^1.12.0:
     path-is-absolute "^1.0.0"
     util "^0.10.3"
 
-sass-mq@^3.2.9:
+sass-mq@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/sass-mq/-/sass-mq-3.3.2.tgz#3472e04c31a432bcd55b3b604edc72ae9a4def1a"
 

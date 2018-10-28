@@ -1,5 +1,8 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const path = require('path');
+
 module.exports = {
   module: {
     rules: [
@@ -43,6 +46,18 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
+    }),
+    new WebpackPwaManifest({
+      name: 'Wile Webpack Whippet',
+      short_name: 'WWWhippet',
+      description: 'Some description about the Whippet',
+      background_color: '#F44336',
+      icons: [
+        {
+          src: path.resolve('src/misc/whippet.png'),
+          sizes: [96, 128, 192, 256, 384, 512, 1024],
+        },
+      ],
     }),
   ],
 };

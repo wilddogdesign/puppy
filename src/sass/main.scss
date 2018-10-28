@@ -1,14 +1,58 @@
-$color--red: #f00f00;
-.main {
-  background-image: svg-load('../images/logo.svg');
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
+// SETTINGS
+$inuit-global-font-size: 16px;
+@import 'settings/settings.config';
+@import 'node_modules/inuitcss/settings/settings.core';
+@import 'settings/settings.global';
+@import 'settings/settings.colours';
+@import 'settings/settings.fonts';
 
+// TOOLS
+@import 'node_modules/inuitcss/tools/tools.clearfix';
+@import 'node_modules/inuitcss/tools/tools.font-size';
+@import 'node_modules/inuitcss/tools/tools.hidden';
+@import 'node_modules/sass-mq/mq';
+@import 'tools/tools.poly-fluid-sizing';
+@import 'tools/tools.rem';
 
-h1 {
-  color: $color--red;
-}
+// GENERIC
+/* critical:start */
+@import 'node_modules/inuitcss/generic/generic.box-sizing';
+@import 'node_modules/inuitcss/generic/generic.normalize';
+@import 'node_modules/inuitcss/generic/generic.shared';
+/* critical:end */
+
+// ELEMENTS
+@import 'node_modules/inuitcss/elements/elements.page';
+@import 'node_modules/inuitcss/elements/elements.headings';
+@import 'elements/elements.headings';
+@import 'elements/elements.links';
+@import 'elements/elements.lists';
+@import 'elements/elements.page';
+
+// OBJECTS
+@import 'node_modules/inuitcss/objects/objects.block';
+@import 'node_modules/inuitcss/objects/objects.box';
+@import 'node_modules/inuitcss/objects/objects.flag';
+@import 'node_modules/inuitcss/objects/objects.layout';
+@import 'node_modules/inuitcss/objects/objects.list-bare';
+@import 'node_modules/inuitcss/objects/objects.list-inline';
+@import 'node_modules/inuitcss/objects/objects.media';
+@import 'node_modules/inuitcss/objects/objects.table';
+@import 'node_modules/inuitcss/objects/objects.wrapper';
+
+// Add your custom objects here
+
+// COMPONENTS
+
+// Add your custom components here
+
+// UTILITIES
+@import 'node_modules/inuitcss/utilities/utilities.clearfix';
+@import 'node_modules/inuitcss/utilities/utilities.headings';
+@import 'node_modules/inuitcss/utilities/utilities.hide';
+@import 'node_modules/inuitcss/utilities/utilities.print';
+@import 'node_modules/inuitcss/utilities/utilities.spacings';
+@import 'node_modules/inuitcss/utilities/utilities.responsive-spacings';
+@import 'node_modules/inuitcss/utilities/utilities.widths';
+@import 'utilities/utilities.helpers';
+@import 'utilities/utilities.z-index';

@@ -14,6 +14,7 @@ Run `npm run build` to create final files
 - Sass w/ autoprefixer, cssnano, inline-svg
 - Babel ES6 transpilation
 - Dev server
+- inuit / sassmq
 
 ### TODO
 
@@ -28,6 +29,7 @@ Run `npm run build` to create final files
 - Versioning final CSS / JS (https://webpack.js.org/guides/caching/)
 - ESlint (editor only)
 - Sasslint? (editor only)
+- ~~inuit / sassmq~~
 - Nunjucks templates (https://www.npmjs.com/package/nunjucks-to-html-loader)
 - Sourcemaps?
 - SVG minification (replace all image minifcation with https://github.com/tcoopman/image-webpack-loader)

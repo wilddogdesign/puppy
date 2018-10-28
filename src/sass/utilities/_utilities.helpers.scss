@@ -1,0 +1,175 @@
+// sass-lint:disable no-important
+
+/**
+ * Add/remove floats:
+ * Helper float classes.
+ *
+ * - `.u-float--right` - float right
+ * - `.u-float--left` - float left
+ * - `.u-float--none` - remove float
+ */
+.u-float--right   { float: right !important; }
+.u-float--left    { float: left  !important; }
+.u-float--none    { float: none  !important; }
+
+
+/**
+ * Text alignment:
+ * Helper text alignment classes.
+ *
+ * - `.u-text--left` - align text left
+ * - `.u-text--center` - center align text
+ * - `.u-text--right` - align text right
+ */
+.u-text--left     { text-align: left   !important; }
+.u-text--center   { text-align: center !important; }
+.u-text--right    { text-align: right  !important; }
+
+
+/**
+ * Font weights:
+ * Helper font weight classes.
+ *
+ * - `.u-weight--light` - font weight of 200
+ * - `.u-weight--normal` - font weight of 400
+ * - `.u-weight--semibold` - font weight of 600
+ * - `.u-weight--bold` - font weight of 800
+ */
+.u-weight--light      { font-weight: 200 !important; }
+.u-weight--normal     { font-weight: 400 !important; }
+.u-weight--semibold   { font-weight: 600 !important; }
+.u-weight--bold       { font-weight: 800 !important; }
+
+/**
+ * Information cursor:
+ * Helper to add information cursor to element.
+ *
+ * - `.u-informative` - add a help cursor to any element that gives the user extra information on
+ * `:hover`.
+ */
+.u-informative {
+    cursor: help !important;
+}
+
+/**
+ * Muted element:
+ * Mute an object by reducing its opacity.
+ *
+ * - `.u-muted` - mute an object.
+ */
+.u-muted {
+    opacity: .5 !important;
+}
+
+/**
+ * Capital case:
+ * Apply capital case to an element (usually a `strong`).
+ *
+ * - `.u-caps` - apply caps
+ */
+.u-caps {
+    text-transform: uppercase !important;
+}
+
+/**
+ * Smaller text:
+ * Make text size smaller.
+ *
+ * - `.u-small` - make text size smaller
+ */
+.u-small {
+    font-size: .9em !important;
+}
+
+/**
+ * Foreground colors:
+ * Apply specific color.
+ *
+ * - `.u-color--brand` - brand colour
+ * - `.u-color--text` - main text colour
+ * - `.u-color--white` - white colour
+ * - `.u-color--black` - black colour
+ */
+.u-color--brand {
+    color: $color--brand !important;
+
+    &:hover {
+        color: $color--brand !important;
+    }
+}
+
+.u-color--text {
+    color: $color--text !important;
+}
+
+.u-color--white {
+    color: $color--white !important;
+}
+
+.u-color--black {
+    color: $color--black !important;
+}
+
+/**
+ * Background colors:
+ * Apply specific color to background.
+ *
+ * - `.u-bg--brand` - brand colour
+ * - `.u-bg--text` - main text colour
+ * - `.u-bg--white` - white colour
+ * - `.u-bg--black` - black colour
+ * - `.u-bg--grey` - grey colour
+ * - `.u-bg--grey-dark` - dark grey colour
+ * - `.u-bg--grey-light` - light grey colour
+ */
+.u-bg--brand {
+    background-color: $color--brand !important;
+}
+
+.u-bg--text {
+    background-color: $color--text !important;
+}
+
+.u-bg--white {
+    background-color: $color--white !important;
+}
+
+.u-bg--black {
+    background-color: $color--black !important;
+}
+
+.u-bg--grey {
+    background-color: $color--grey !important;
+}
+
+.u-bg--grey-dark {
+    background-color: $color--grey-dark !important;
+}
+
+.u-bg--grey-light {
+    background-color: $color--grey-light !important;
+}
+
+
+/**
+ * Circle:
+ * Create circle
+ *
+ * - `.circled` - circle in.
+ */
+.u-circled {
+    border-radius: 50%;
+}
+
+
+/**
+ * Hide text:
+ * Hide text inside element
+ *
+ * - `.text--hidden` - hide text
+ */
+.u-text--hidden {
+    text-indent: -9999px;
+    white-space: nowrap;
+    overflow: hidden;
+}

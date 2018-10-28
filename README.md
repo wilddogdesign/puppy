@@ -21,18 +21,18 @@ Run `npm run build` to create final files
 - ~~Sass w/ autoprefixer, cssnano, inline-svg~~
 - ~~Babel ES6 transpilation~~
 - ~~Dev server~~
-- Critical CSS
-- Async scripts
-- Custom modernizr build
+- Critical CSS (https://github.com/GoogleChromeLabs/critters)
+- Async scripts (https://www.npmjs.com/package/script-ext-html-webpack-plugin)
+- Custom modernizr build (https://www.npmjs.com/package/modernizr-webpack-plugin)
 - Landing page (use moment to pop in date)
-- Versioning final CSS / JS
+- Versioning final CSS / JS (https://webpack.js.org/guides/caching/)
 - ESlint (editor only)
 - Sasslint? (editor only)
-- Nunjucks templates
+- Nunjucks templates (https://www.npmjs.com/package/nunjucks-to-html-loader)
 - Sourcemaps?
-- SVG minification
-- PostCSS SVGo
-- Manifest.json w/ favicons
+- SVG minification (replace all image minifcation with https://github.com/tcoopman/image-webpack-loader)
+- PostCSS SVGo (https://github.com/ben-eb/postcss-svgo)
+- Manifest.json w/ favicons (https://www.npmjs.com/package/webpack-pwa-manifest)
 - Deployment with Flightplan
 
 ### TODO much later

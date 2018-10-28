@@ -1,0 +1,14 @@
+$color--red: #f00f00;
+.main {
+  background-image: svg-load('../images/logo.svg');
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+h1 {
+  color: $color--red;
+}

@@ -1,7 +1,11 @@
+const path = require('path');
+
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const Critters = require('critters-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const path = require('path');
 
 module.exports = {
   module: {
@@ -43,10 +47,14 @@ module.exports = {
       template: 'src/index.html',
       filename: './index.html',
     }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async',
+    }),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: '[name]-[contenthash].css',
       chunkFilename: '[id].css',
     }),
+    new CleanWebpackPlugin(['dist']),
     new WebpackPwaManifest({
       name: 'Wile Webpack Whippet',
       short_name: 'WWWhippet',
@@ -59,5 +67,10 @@ module.exports = {
         },
       ],
     }),
+    new Critters(),
   ],
+  output: {
+    filename: '[name]-[contenthash].js',
+    path: path.resolve(__dirname, 'dist'),
+  },
 };

@@ -24,6 +24,8 @@ Run `npm run build` to create final files
 
 ### TODO
 
+- hmr (https://webpack.js.org/guides/hot-module-replacement/)
+- dev and prod modes (https://webpack.js.org/guides/production/)
 - actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout)
 - Landing page (use moment to pop in date) - try to use template files instead of data json
 - Nunjucks templates (https://www.npmjs.com/package/nunjucks-to-html-loader)

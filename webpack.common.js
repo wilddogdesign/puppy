@@ -1,14 +1,15 @@
 const path = require('path');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const Critters = require('critters-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SassLintPlugin = require('sass-lint-webpack')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const webpack = require('webpack');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 module.exports = {
+  entry: './src/index.js',
   module: {
     rules: [
       {
@@ -60,6 +61,7 @@ module.exports = {
       template: 'src/index.html',
       filename: './index.html',
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
     }),
@@ -82,11 +84,10 @@ module.exports = {
           sizes: [96, 128, 192, 256, 384, 512, 1024],
         },
       ],
-    }),
-    new Critters(),
+    })
   ],
   output: {
-    filename: '[name]-[contenthash].js',
+    filename: '[name]-[hash].js',
     path: path.resolve(__dirname, 'dist'),
   },
 };

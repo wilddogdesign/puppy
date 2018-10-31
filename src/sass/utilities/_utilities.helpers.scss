@@ -122,7 +122,7 @@
  * - `.u-bg--grey-dark` - dark grey colour
  * - `.u-bg--grey-light` - light grey colour
  */
-.u-bg--brand {
+.u-bg--primary {
     background-color: $color--primary !important;
 }
 
@@ -137,19 +137,6 @@
 .u-bg--black {
     background-color: $color--black !important;
 }
-
-.u-bg--grey {
-    background-color: $color--grey !important;
-}
-
-.u-bg--grey-dark {
-    background-color: $color--grey-dark !important;
-}
-
-.u-bg--grey-light {
-    background-color: $color--grey-light !important;
-}
-
 
 /**
  * Circle:

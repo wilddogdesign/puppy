@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const Critters = require('critters-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SassLintPlugin = require('sass-lint-webpack')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
@@ -34,6 +35,18 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
       {
+        // do this first
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: [
+          /node_modules/,
+          /.index.js/
+        ],
+        use: {
+          loader: 'eslint-loader',
+        },
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -49,6 +62,9 @@ module.exports = {
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
+    }),
+    new SassLintPlugin({
+      files: './src/sass/*.scss'
     }),
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash].css',

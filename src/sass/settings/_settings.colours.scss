@@ -8,21 +8,12 @@
  *     div.sg-tyles__item(style='background-color: #666') Secondary color
  */
 
-$color--brand:        #f44336;
+$color--primary:        #f44336;
 
 $color--white:        #fff;
 $color--black:        #111;
 
 $color--text:         $color--black;
-
-$color--grey:         #666;
-$color--grey-dark:    #333;
-$color--grey-light:   #eee;
-
-// Alert colours
-$color--alert-yellow: #f7931e;
-$color--alert-red:    #d12328;
-$color--alert-green:  #00964d;
 
 // Forms
 $color--disabled-gray: #cecece;

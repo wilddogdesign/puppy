@@ -85,16 +85,16 @@
  * Foreground colors:
  * Apply specific color.
  *
- * - `.u-color--brand` - brand colour
+ * - `.u-color--primary` - brand colour
  * - `.u-color--text` - main text colour
  * - `.u-color--white` - white colour
  * - `.u-color--black` - black colour
  */
-.u-color--brand {
-    color: $color--brand !important;
+.u-color--primary {
+    color: $color--primary !important;
 
     &:hover {
-        color: $color--brand !important;
+        color: $color--primary !important;
     }
 }
 
@@ -123,7 +123,7 @@
  * - `.u-bg--grey-light` - light grey colour
  */
 .u-bg--brand {
-    background-color: $color--brand !important;
+    background-color: $color--primary !important;
 }
 
 .u-bg--text {

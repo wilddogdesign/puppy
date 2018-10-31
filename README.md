@@ -21,11 +21,11 @@ Run `npm run build` to create final files
 - Versioning final CSS / JS (https://webpack.js.org/guides/caching/)
 - ESlint - airbnb maybe disable this in class methods and () around single argument
 - Sasslint? - turn off god damn property ordering
+- hmr (https://webpack.js.org/guides/hot-module-replacement/)
+- dev and prod modes (https://webpack.js.org/guides/production/)
 
 ### TODO
 
-- hmr (https://webpack.js.org/guides/hot-module-replacement/)
-- dev and prod modes (https://webpack.js.org/guides/production/)
 - actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout)
 - Landing page (use moment to pop in date) - try to use template files instead of data json
 - Nunjucks templates (https://www.npmjs.com/package/nunjucks-to-html-loader)
@@ -33,7 +33,7 @@ Run `npm run build` to create final files
 - SVG minification (replace all image minifcation with https://github.com/tcoopman/image-webpack-loader)
 - PostCSS SVGo (https://github.com/ben-eb/postcss-svgo)
 - Deployment with Flightplan
-- Basic service worker
+- Basic service worker (https://webpack.js.org/guides/progressive-web-application/)
 
 ### TODO much later
 

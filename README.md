@@ -30,7 +30,6 @@ Run `npm run build` to create final files
 
 - actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout)
 - Landing page (use moment to pop in date) - try to use template files instead of data json
-- SVG minification (replace all image minifcation with https://github.com/tcoopman/image-webpack-loader)
 - PostCSS SVGo (https://github.com/ben-eb/postcss-svgo)
 - Deployment with Flightplan
 - Basic service worker (https://webpack.js.org/guides/progressive-web-application/)
@@ -40,4 +39,5 @@ Run `npm run build` to create final files
 - Styleguide
 
 ### Thrown aside
+- ~~SVG minification (img-loader already runs through svgo)~~
 - ~~Custom modernizr build (https://www.npmjs.com/package/modernizr-webpack-plugin)~~

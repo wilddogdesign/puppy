@@ -8,6 +8,26 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const webpack = require('webpack');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
+// this person is a hero
+// https://dev.to/rodeghiero_/multiple-html-files-with-htmlwebpackplugin-19bf
+// initial html webpack plugin config
+const HtmlWebPackPluginConfig = new HtmlWebPackPlugin({
+  filename: 'index.html',
+  inject: 'body',
+  template: 'nunjucks-html-loader!./src/templates/index.njk',
+});
+
+// other pages
+const otherNunjucksFiles = ['hello'];
+
+// a new plugin for each page
+const multipleFiles = otherNunjucksFiles.map(entryName => {
+  return new HtmlWebPackPlugin({
+    filename: `${entryName}.html`,
+    template: `nunjucks-html-loader!./src/templates/${entryName}.njk`,
+  });
+});
+
 module.exports = {
   entry: './src/index.js',
   module: {
@@ -62,16 +82,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      filename: 'index.html',
-      inject: 'body',
-      template: 'nunjucks-html-loader!./src/templates/index.njk',
-    }),
-    new HtmlWebPackPlugin({
-      filename: 'hello.html',
-      inject: 'body',
-      template: 'nunjucks-html-loader!./src/templates/hello.njk',
-    }),
+    HtmlWebPackPluginConfig,
     new webpack.HotModuleReplacementPlugin(),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
@@ -96,7 +107,7 @@ module.exports = {
         },
       ],
     })
-  ],
+  ].concat(multipleFiles),
   output: {
     filename: '[name]-[hash].js',
     path: path.resolve(__dirname, 'dist'),

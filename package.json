@@ -37,6 +37,7 @@
     "nunjucks-html-loader": "^1.1.0",
     "postcss-inline-svg": "^3.1.1",
     "postcss-loader": "^3.0.0",
+    "postcss-svgo": "^4.0.1",
     "sass-lint": "^1.12.1",
     "sass-lint-webpack": "^1.0.0",
     "sass-loader": "^7.1.0",

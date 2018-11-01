@@ -1,3 +1,6 @@
+const projectTitle = 'Wile Webpack Whippet';
+
+const dateFormat = require('dateformat');
 const path = require('path');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -18,16 +21,27 @@ const HtmlWebPackPluginConfig = new HtmlWebPackPlugin({
   template: 'nunjucks-html-loader!./src/templates/index.njk',
 });
 
-// other pages
-const otherNunjucksFiles = ['hello'];
+// other pages. Abstract to another file?
+const otherNunjucksFiles = [
+  {
+    file: 'hello',
+    name: 'Hello Template',
+  },
+  {
+    file: 'all',
+    name: 'All ',
+  },
+];
 
 // a new plugin for each page
-const multipleFiles = otherNunjucksFiles.map((entryName) => {
+const multipleFiles = otherNunjucksFiles.map((entry) => {
   return new HtmlWebPackPlugin({
-    filename: `${entryName}.html`,
-    template: `nunjucks-html-loader!./src/templates/${entryName}.njk`,
+    filename: `${entry.file}.html`,
+    template: `nunjucks-html-loader!./src/templates/${entry.file}.njk`,
   });
 });
+
+const now = new Date();
 
 module.exports = {
   entry: {
@@ -44,6 +58,12 @@ module.exports = {
             loader: 'nunjucks-html-loader',
             options: {
               searchPaths: ['./src/templates'],
+              context: {
+                nowYear: dateFormat(now, 'yyyy'),
+                now: dateFormat(now, 'dd-mm-yyyy @ HH:MM'),
+                pages: [{ file: 'index', name: 'Index' }].concat(otherNunjucksFiles),
+                projectTitle,
+              },
             },
           },
         ],

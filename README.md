@@ -25,12 +25,12 @@ Run `npm run build` to create final files
 - dev and prod modes (https://webpack.js.org/guides/production/)
 - Sourcemaps on please
 - Nunjucks templates (https://github.com/at0g/nunjucks-loader/issues/35#issuecomment-335304596)
+- PostCSS SVGo (https://github.com/ben-eb/postcss-svgo)
 
 ### TODO
 
 - actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout)
 - Landing page (use moment to pop in date) - try to use template files instead of data json
-- PostCSS SVGo (https://github.com/ben-eb/postcss-svgo)
 - Deployment with Flightplan
 - Basic service worker (https://webpack.js.org/guides/progressive-web-application/)
 

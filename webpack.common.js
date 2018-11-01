@@ -1,9 +1,10 @@
 const path = require('path');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SassLintPlugin = require('sass-lint-webpack')
+const SassLintPlugin = require('sass-lint-webpack');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const webpack = require('webpack');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
@@ -21,7 +22,7 @@ const HtmlWebPackPluginConfig = new HtmlWebPackPlugin({
 const otherNunjucksFiles = ['hello'];
 
 // a new plugin for each page
-const multipleFiles = otherNunjucksFiles.map(entryName => {
+const multipleFiles = otherNunjucksFiles.map((entryName) => {
   return new HtmlWebPackPlugin({
     filename: `${entryName}.html`,
     template: `nunjucks-html-loader!./src/templates/${entryName}.njk`,
@@ -29,17 +30,23 @@ const multipleFiles = otherNunjucksFiles.map(entryName => {
 });
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    'assets/js/main.js': './src/js/main.js',
+    'assets/css/main.css': './src/sass/main.scss',
+  },
   module: {
     rules: [
       {
         test: /\.html$|njk|nunjucks/,
-        use: ['html-loader',{
-          loader: 'nunjucks-html-loader',
-          options: {
-            searchPaths: ['./src/templates'],
-          }
-        }]
+        use: [
+          'html-loader',
+          {
+            loader: 'nunjucks-html-loader',
+            options: {
+              searchPaths: ['./src/templates'],
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)/i,
@@ -47,7 +54,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              name: './images/[name].[ext]',
+              name: './assets/images/[name].[ext]',
               limit: 10000,
             },
           },
@@ -64,10 +71,7 @@ module.exports = {
         // do this first
         enforce: 'pre',
         test: /\.js$/,
-        exclude: [
-          /node_modules/,
-          /.index.js/
-        ],
+        exclude: [/node_modules/, /.index.js/],
         use: {
           loader: 'eslint-loader',
         },
@@ -88,11 +92,11 @@ module.exports = {
       defaultAttribute: 'async',
     }),
     new SassLintPlugin({
-      files: './src/sass/*.scss'
+      files: './src/sass/*.scss',
     }),
+    new FixStyleOnlyEntriesPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash].css',
-      chunkFilename: '[id].css',
     }),
     new CleanWebpackPlugin(['dist']),
     new WebpackPwaManifest({
@@ -104,9 +108,10 @@ module.exports = {
         {
           src: path.resolve('src/misc/whippet.png'),
           sizes: [96, 128, 192, 256, 384, 512, 1024],
+          destination: '/assets/favicons',
         },
       ],
-    })
+    }),
   ].concat(multipleFiles),
   output: {
     filename: '[name]-[hash].js',

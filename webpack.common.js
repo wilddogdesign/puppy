@@ -13,16 +13,21 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.html$/,
-        use: [{ loader: 'html-loader', options: { minimize: true } }],
+        test: /\.html$|njk|nunjucks/,
+        use: ['html-loader',{
+          loader: 'nunjucks-html-loader',
+          options: {
+            searchPaths: ['./src/templates'],
+          }
+        }]
       },
       {
-        test: /\.(png|jpe?g|gif)/i,
+        test: /\.(png|jpe?g|gif|svg)/i,
         use: [
           {
             loader: 'url-loader',
             options: {
-              name: './img/[name].[ext]',
+              name: './src/images/[name].[ext]',
               limit: 15000,
             },
           },
@@ -58,8 +63,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: 'src/index.html',
-      filename: './index.html',
+      filename: 'index.html',
+      inject: 'body',
+      template: 'nunjucks-html-loader!./src/templates/index.njk',
+    }),
+    new HtmlWebPackPlugin({
+      filename: 'hello.html',
+      inject: 'body',
+      template: 'nunjucks-html-loader!./src/templates/hello.njk',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new ScriptExtHtmlWebpackPlugin({

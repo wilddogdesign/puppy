@@ -29,7 +29,7 @@ Run `npm run build` to create final files
 
 - actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout)
 - Landing page (use moment to pop in date) - try to use template files instead of data json
-- Nunjucks templates (https://www.npmjs.com/package/nunjucks-to-html-loader)
+- Nunjucks templates (https://github.com/at0g/nunjucks-loader/issues/35#issuecomment-335304596)
 - SVG minification (replace all image minifcation with https://github.com/tcoopman/image-webpack-loader)
 - PostCSS SVGo (https://github.com/ben-eb/postcss-svgo)
 - Deployment with Flightplan

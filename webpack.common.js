@@ -62,6 +62,27 @@ const multipleFiles = otherNunjucksFiles.map((entry) => {
   });
 });
 
+// Generate a manifest using the provided images
+const WebpackPwaManifestConfig = [new WebpackPwaManifest({
+  name: 'Wile Webpack Whippet',
+  short_name: 'WWWhippet',
+  orientation: 'portrait',
+  display: 'standalone',
+  start_url: '.',
+  inject: true,
+  description: 'Some description about the Whippet',
+  background_color: '#F44336',
+  ios: {
+    'apple-mobile-web-app-status-bar-style': 'black'
+  },
+  icons: [
+    {
+      src: path.resolve('src/misc/whippet.png'),
+      sizes: [96, 128, 192, 256, 384, 512, 1024],
+      destination: '/assets/favicons',
+    },
+  ],
+})];
 
 module.exports = {
   // Entry files are the files webpack will run against so we set our main js and sass
@@ -157,7 +178,7 @@ module.exports = {
     // Copy the service worker to dist root. We can't run it through webpack as it adds
     // code related to window etc.
     new CopyWebpackPlugin([
-      {from: './src/js/service-worker.js'}
+      { from: './src/js/service-worker.js' }
     ]),
     // Generate the SVG sprite
     new SVGSpritemapPlugin({
@@ -167,23 +188,10 @@ module.exports = {
       svgo: true,
     }),
     // Clean the dist folder before doing things
-    new CleanWebpackPlugin(['dist']),
-    // Generate a manifest using the provided images
-    new WebpackPwaManifest({
-      name: 'Wile Webpack Whippet',
-      short_name: 'WWWhippet',
-      description: 'Some description about the Whippet',
-      background_color: '#F44336',
-      icons: [
-        {
-          src: path.resolve('src/misc/whippet.png'),
-          sizes: [96, 128, 192, 256, 384, 512, 1024],
-          destination: '/assets/favicons',
-        },
-      ],
-    }),
+    new CleanWebpackPlugin(['dist'])
   // Add on the extra HTMLWebPackPlugins for the other pages
-  ].concat(multipleFiles),
+  // WebpackPwa has to be after all html webpack plugins
+  ].concat(multipleFiles).concat(WebpackPwaManifestConfig),
   // We want our files from the entry point to have names like this and go into dist
   output: {
     filename: '[name]-[hash].js',

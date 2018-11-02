@@ -10,7 +10,7 @@ Run `npm run build` to create final files
 
 ### Done
 
-- Image optimisation w/ inline smaller < 15kb images
+- Image optimisation w/ inline smaller < 10kb images
 - Sass w/ autoprefixer, cssnano, inline-svg
 - Babel ES6 transpilation
 - Dev server
@@ -27,11 +27,11 @@ Run `npm run build` to create final files
 - Nunjucks templates (https://github.com/at0g/nunjucks-loader/issues/35#issuecomment-335304596)
 - PostCSS SVGo (https://github.com/ben-eb/postcss-svgo)
 - Landing page (use moment to pop in date) - try to use template files instead of data json
+- Deployment with Flightplan
 
 ### TODO
 
 - actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout)
-- Deployment with Flightplan
 - Basic service worker (https://webpack.js.org/guides/progressive-web-application/)
 - DOCUMENT IT TRISTAN
 

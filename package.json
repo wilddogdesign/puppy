@@ -10,7 +10,8 @@
   "scripts": {
     "start": "webpack-dev-server --open --mode development --config webpack.dev.js",
     "build": "webpack --mode production --config webpack.prod.js",
-    "serve": "http-server dist"
+    "serve": "http-server dist",
+    "deploy": "fly deploy:development"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,7 @@
     "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
     "file-loader": "^2.0.0",
+    "flightplan": "^0.6.19",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",

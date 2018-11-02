@@ -91,7 +91,7 @@ module.exports = {
         // do this first
         enforce: 'pre',
         test: /\.js$/,
-        exclude: [/node_modules/, /.index.js/],
+        exclude: [/node_modules/, /.index.js/, /flightplan.js/],
         use: {
           loader: 'eslint-loader',
         },

@@ -8,6 +8,21 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   // Setup the dev server
   devServer: {
-    port: 8888
+    port: 8888,
+    stats: {
+      hash: false,
+      version: false,
+      timings: false,
+      assets: false,
+      chunks: false,
+      modules: false,
+      reasons: false,
+      children: false,
+      source: false,
+      errors: true,
+      errorDetails: true,
+      warnings: true,
+      publicPath: false
+    }
   },
 });

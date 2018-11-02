@@ -28,6 +28,8 @@ const SassLintPlugin = require('sass-lint-webpack');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 // Allows us to make an SVG sprite for including SVGs on page
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+// Tidy the generated HTML
+const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 // Generates a progessive web app manifest file
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
@@ -53,8 +55,8 @@ const multipleFiles = otherNunjucksFiles.map((entry) => {
   });
 });
 
-// Generate a manifest using the provided images
-const WebpackPwaManifestConfig = [new WebpackPwaManifest({
+// Generate a manifest using the provided images and tidy the html AFTER Html
+const afterHTMLWebpackPlugin = [new WebpackPwaManifest({
   name: 'Wile Webpack Whippet',
   short_name: 'WWWhippet',
   orientation: 'portrait',
@@ -73,7 +75,7 @@ const WebpackPwaManifestConfig = [new WebpackPwaManifest({
       destination: '/assets/favicons',
     },
   ],
-})];
+}), new HtmlBeautifyPlugin()];
 
 module.exports = {
   // Entry files are the files webpack will run against so we set our main js and sass
@@ -182,7 +184,7 @@ module.exports = {
     new CleanWebpackPlugin(['dist'])
   // Add on the extra HTMLWebPackPlugins for the other pages
   // WebpackPwa has to be after all html webpack plugins
-  ].concat(multipleFiles).concat(WebpackPwaManifestConfig),
+  ].concat(multipleFiles).concat(afterHTMLWebpackPlugin),
   // We want our files from the entry point to have names like this and go into dist
   output: {
     filename: '[name]-[hash].js',

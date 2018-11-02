@@ -11,7 +11,6 @@ $inuit-global-font-size: 16px;
 @import 'node_modules/inuitcss/tools/tools.font-size';
 @import 'node_modules/inuitcss/tools/tools.hidden';
 @import 'node_modules/sass-mq/mq';
-@import 'tools/tools.poly-fluid-sizing';
 @import 'tools/tools.rem';
 
 // GENERIC
@@ -22,35 +21,25 @@ $inuit-global-font-size: 16px;
 /* critical:end */
 
 // ELEMENTS
-@import 'node_modules/inuitcss/elements/elements.page';
 @import 'node_modules/inuitcss/elements/elements.headings';
 @import 'elements/elements.headings';
 @import 'elements/elements.page';
 
 // OBJECTS
-@import 'node_modules/inuitcss/objects/objects.block';
-@import 'node_modules/inuitcss/objects/objects.box';
-@import 'node_modules/inuitcss/objects/objects.flag';
-@import 'node_modules/inuitcss/objects/objects.layout';
-@import 'node_modules/inuitcss/objects/objects.list-bare';
-@import 'node_modules/inuitcss/objects/objects.list-inline';
-@import 'node_modules/inuitcss/objects/objects.media';
-@import 'node_modules/inuitcss/objects/objects.table';
-@import 'node_modules/inuitcss/objects/objects.wrapper';
-
 // Add your custom objects here
+@import 'objects/objects.layout';
+@import 'objects/objects.wrapper';
 
 // COMPONENTS
-
 // Add your custom components here
+@import 'components/components.header';
 
 // UTILITIES
-@import 'node_modules/inuitcss/utilities/utilities.clearfix';
 @import 'node_modules/inuitcss/utilities/utilities.headings';
 @import 'node_modules/inuitcss/utilities/utilities.hide';
 @import 'node_modules/inuitcss/utilities/utilities.print';
-@import 'node_modules/inuitcss/utilities/utilities.spacings';
-@import 'node_modules/inuitcss/utilities/utilities.responsive-spacings';
+// @import 'node_modules/inuitcss/utilities/utilities.spacings';
+// @import 'node_modules/inuitcss/utilities/utilities.responsive-spacings';
 @import 'node_modules/inuitcss/utilities/utilities.widths';
 @import 'utilities/utilities.helpers';
 @import 'utilities/utilities.z-index';

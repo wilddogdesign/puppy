@@ -1,0 +1,14 @@
+.c-header {
+  padding: rem(16px) rem(26px);
+  border-bottom: 1px solid $color--primary;
+}
+
+  .c-header__brand {
+    display: inline-block;
+    width: rem(80px);
+    height: rem(56px);
+    background: svg-load('../images/logo.svg', stroke=$color--primary) no-repeat;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }

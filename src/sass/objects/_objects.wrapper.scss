@@ -1,0 +1,12 @@
+.o-wrapper {
+  max-width: $inuit-wrapper-width;
+  margin-right: auto;
+  margin-left:  auto;
+  padding-right: $inuit-global-spacing-unit * 2;
+  padding-left: $inuit-global-spacing-unit * 2;
+
+  @include mq($until: tablet) {
+    padding-right: $inuit-global-spacing-unit;
+    padding-left: $inuit-global-spacing-unit;
+  }
+}

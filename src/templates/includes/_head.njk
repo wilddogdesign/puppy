@@ -5,12 +5,11 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  {# Will be picked up from ./data/pages.json #}
-  {# for p in pages %}
-    {% if page == p.page %}
-      <title>{{p.title}} | {{config.title}}</title>
+  {% for p in pages %}
+    {% if page == p.file %}
+      <title>{{p.name}} | {{projectTitle}}</title>
     {% endif %}
-  {% endfor #}
+  {% endfor %}
 
   {# get favicons in here #}
 

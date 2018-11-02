@@ -2,7 +2,6 @@
   "name": "webpackwhippet",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "browserslist": [
     "last 2 versions"
   ],
@@ -10,7 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --mode development --config webpack.dev.js",
     "build": "webpack --mode production --config webpack.prod.js",
-    "serve": "http-server dist -p 8888 -o",
+    "serve": "http-server dist/ -p 8888 -o",
     "deploy": "fly deploy:development"
   },
   "keywords": [],

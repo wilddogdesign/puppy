@@ -29,11 +29,11 @@ Run `npm run build` to create final files
 - Landing page (use moment to pop in date) - try to use template files instead of data json
 - Deployment with Flightplan
 - Basic service worker (https://webpack.js.org/guides/progressive-web-application/)
+- DOCUMENT IT TRISTAN
 
 ### TODO
 
 - actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout)
-- DOCUMENT IT TRISTAN
 
 ### TODO much later
 

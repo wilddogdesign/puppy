@@ -40,17 +40,8 @@ const HtmlWebPackPluginConfig = new HtmlWebPackPlugin({
   template: 'nunjucks-html-loader!./src/templates/index.njk',
 });
 
-// Our other pages. Abstract to another file?
-const otherNunjucksFiles = [
-  {
-    file: 'offline',
-    name: 'Offline',
-  },
-  {
-    file: 'all',
-    name: 'All ',
-  },
-];
+// Our other pages.
+const otherNunjucksFiles = require('./pages.js');
 
 // Generate a new HTMLWebPackPlugin for each template because you have to.
 // We append to plugins down the bottom.

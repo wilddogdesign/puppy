@@ -32,13 +32,13 @@ Run `npm run build` to create final files
 - DOCUMENT IT TRISTAN
 - SVG sprites
 - Manifest not injecting
+- Get title of pages into a seperate file from webpack.common so there's a go to place to add more.
 
 ### TODO
 
 - actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout). And do a general starter layout using that
 - Favicons
 - Get titles into _head.njk
-- Get title of pages into a seperate file from webpack.common so there's a go to place to add more.
 
 ### TODO much later
 

@@ -28,11 +28,11 @@ Run `npm run build` to create final files
 - PostCSS SVGo (https://github.com/ben-eb/postcss-svgo)
 - Landing page (use moment to pop in date) - try to use template files instead of data json
 - Deployment with Flightplan
+- Basic service worker (https://webpack.js.org/guides/progressive-web-application/)
 
 ### TODO
 
 - actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout)
-- Basic service worker (https://webpack.js.org/guides/progressive-web-application/)
 - DOCUMENT IT TRISTAN
 
 ### TODO much later

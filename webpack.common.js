@@ -3,6 +3,7 @@ const projectTitle = 'Wile Webpack Whippet';
 const dateFormat = require('dateformat');
 const path = require('path');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
@@ -24,8 +25,8 @@ const HtmlWebPackPluginConfig = new HtmlWebPackPlugin({
 // other pages. Abstract to another file?
 const otherNunjucksFiles = [
   {
-    file: 'hello',
-    name: 'Hello Template',
+    file: 'offline',
+    name: 'Offline',
   },
   {
     file: 'all',
@@ -38,6 +39,7 @@ const multipleFiles = otherNunjucksFiles.map((entry) => {
   return new HtmlWebPackPlugin({
     filename: `${entry.file}.html`,
     template: `nunjucks-html-loader!./src/templates/${entry.file}.njk`,
+    inject: entry.file !== 'all',
   });
 });
 
@@ -45,8 +47,8 @@ const now = new Date();
 
 module.exports = {
   entry: {
-    'assets/js/main.js': './src/js/main.js',
-    'assets/css/main.css': './src/sass/main.scss',
+    'assets/js/main': './src/js/main.js',
+    'assets/css/main': './src/sass/main.scss',
   },
   module: {
     rules: [
@@ -118,6 +120,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash].css',
     }),
+    new CopyWebpackPlugin([
+      {from: './src/js/service-worker.js'}
+    ]),
     new CleanWebpackPlugin(['dist']),
     new WebpackPwaManifest({
       name: 'Wile Webpack Whippet',

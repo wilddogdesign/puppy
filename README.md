@@ -30,10 +30,13 @@ Run `npm run build` to create final files
 - Deployment with Flightplan
 - Basic service worker (https://webpack.js.org/guides/progressive-web-application/)
 - DOCUMENT IT TRISTAN
+- SVG sprites
 
 ### TODO
 
-- actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout)
+- actually, remove inuit and keep good bits like helpers, keep sassmq and the inuit bits to do with it (widths, layout). And do a general starter layout using that
+- Favicons
+- Get title into pages into a seperate file from webpack.common so there's a go to place to add more.
 
 ### TODO much later
 

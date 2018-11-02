@@ -26,7 +26,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SassLintPlugin = require('sass-lint-webpack');
 // Adds async tags to our scripts
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-// Generates a webpack manifest file
+// Allows us to make an SVG sprite for including SVGs on page
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+// Generates a progessive web app manifest file
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 // this person is a hero
@@ -157,6 +159,13 @@ module.exports = {
     new CopyWebpackPlugin([
       {from: './src/js/service-worker.js'}
     ]),
+    // Generate the SVG sprite
+    new SVGSpritemapPlugin({
+      src: './src/icons/*.svg',
+      filename: 'assets/icons/icons.svg',
+      styles: false,
+      svgo: true,
+    }),
     // Clean the dist folder before doing things
     new CleanWebpackPlugin(['dist']),
     // Generate a manifest using the provided images

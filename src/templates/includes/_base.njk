@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<!--[if IE 9]>
+  <html class="no-js lt-ie10 is-ie9" lang="en">
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+{% include 'includes/_head.njk' %}
+
+<body class="{% block bodyClass %}{% endblock %}">
+  {# static is the path to the assets, one below the templates #}
+  {% set static = '..' %}
+
+  {% include 'includes/_header.njk' %}
+
+  <div id="main" role="main">
+    {% block main %}
+      <p>If you're seeing me you set your main content block wrong.</p>
+    {% endblock %}
+  </div>
+
+  {% include 'includes/_footer.njk' %}
+
+  {% include 'includes/_scripts.njk' %}
+</body>
+</html>

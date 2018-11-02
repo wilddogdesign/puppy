@@ -1,0 +1,17 @@
+<head>
+ 	<meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  {# Will be picked up from ./data/pages.json #}
+  {# for p in pages %}
+    {% if page == p.page %}
+      <title>{{p.title}} | {{config.title}}</title>
+    {% endif %}
+  {% endfor #}
+
+  {# get favicons in here #}
+
+</head>

@@ -21,7 +21,6 @@ Run `npm run build` to create final files
 - Versioning final CSS / JS (https://webpack.js.org/guides/caching/)
 - ESlint - airbnb maybe disable this in class methods and () around single argument
 - Sasslint? - turn off god damn property ordering
-- hmr (https://webpack.js.org/guides/hot-module-replacement/)
 - dev and prod modes (https://webpack.js.org/guides/production/)
 - Sourcemaps on please
 - Nunjucks templates (https://github.com/at0g/nunjucks-loader/issues/35#issuecomment-335304596)
@@ -48,4 +47,5 @@ Run `npm run build` to create final files
 ### Thrown aside
 
 - ~~SVG minification (img-loader already runs through svgo)~~
+- ~~hmr (https://webpack.js.org/guides/hot-module-replacement/)~~
 - ~~Custom modernizr build (https://www.npmjs.com/package/modernizr-webpack-plugin)~~

@@ -131,6 +131,19 @@ module.exports = {
         // post css config in /src/sass/postcss.config.js
       },
       {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              include: [path.resolve(__dirname, 'src/assets/fonts')],
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
+      },
+      {
         // Pre runs before other matching files
         enforce: 'pre',
         test: /\.js$/,

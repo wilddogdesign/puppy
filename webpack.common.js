@@ -32,6 +32,8 @@ const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 // Generates a progessive web app manifest file
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+// Runs images through imagemin when copying
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 // this person is a hero
 // https://dev.to/rodeghiero_/multiple-html-files-with-htmlwebpackplugin-19bf
@@ -119,10 +121,8 @@ module.exports = {
               limit: 10000,
             },
           },
-          {
-            loader: 'img-loader',
-          },
         ],
+        exclude: [path.resolve(__dirname, './src/fonts')],
       },
       // Run sass through sass-loader, then postcss, then css loader before finally extracting.
       {
@@ -142,6 +142,7 @@ module.exports = {
             },
           },
         ],
+        include: [path.resolve(__dirname, './src/fonts')],
       },
       {
         // Pre runs before other matching files
@@ -184,8 +185,13 @@ module.exports = {
     // Copy the service worker to dist root. We can't run it through webpack as it adds
     // code related to window etc.
     new CopyWebpackPlugin([
-      { from: './src/js/service-worker.js' }
+      { from: './src/js/service-worker.js' },
+      { from: './src/images', to: './assets/images' }
     ]),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      exclude: [path.resolve(__dirname, './src/fonts')],
+    }),
     // Generate the SVG sprite
     new SVGSpritemapPlugin({
       src: './src/icons/*.svg',

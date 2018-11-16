@@ -82,7 +82,7 @@ module.exports = {
   // along with their output locations
   entry: {
     'assets/js/main': './src/js/main.js',
-    'assets/css/main': './src/sass/main.scss',
+    'assets/css/main': './src/sass/styles.scss',
   },
   // modules are how we want certain files to be interacted with / things to run them through
   module: {
@@ -138,7 +138,7 @@ module.exports = {
             options: {
               include: [path.resolve(__dirname, 'src/assets/fonts')],
               name: '[name].[ext]',
-              outputPath: 'fonts/',
+              outputPath: 'assets/fonts/',
             },
           },
         ],

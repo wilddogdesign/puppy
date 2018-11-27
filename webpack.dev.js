@@ -13,6 +13,7 @@ module.exports = merge(common, {
   // Setup the dev server
   devServer: {
     contentBase: path.join(__dirname, '/src'),
+    host: require('os').hostname().toLowerCase(),
     stats: {
       hash: false,
       version: false,

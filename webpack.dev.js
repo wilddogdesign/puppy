@@ -12,7 +12,6 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   // Setup the dev server
   devServer: {
-    port: 8888,
     contentBase: path.join(__dirname, '/src'),
     stats: {
       hash: false,

@@ -189,8 +189,7 @@ module.exports = {
       { from: './src/images', to: './assets/images' }
     ]),
     new ImageminPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      exclude: [path.resolve(__dirname, './src/fonts')],
+      test: 'images/**',
     }),
     // Generate the SVG sprite
     new SVGSpritemapPlugin({

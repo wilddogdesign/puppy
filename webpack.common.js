@@ -127,7 +127,7 @@ module.exports = {
       // Run sass through sass-loader, then postcss, then css loader before finally extracting.
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader?url=false', 'postcss-loader', 'sass-loader'],
         // post css config in /src/sass/postcss.config.js
       },
       {

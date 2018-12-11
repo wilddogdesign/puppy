@@ -1,6 +1,7 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
+const os = require('os');
 
 // Merge lets us merge to configs 🤷‍♂️
 module.exports = merge(common, {
@@ -12,8 +13,8 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   // Setup the dev server
   devServer: {
-    port: 8888,
     contentBase: path.join(__dirname, '/src'),
+    host: os.hostname().toLowerCase(),
     stats: {
       hash: false,
       version: false,

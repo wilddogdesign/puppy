@@ -131,20 +131,6 @@ module.exports = {
         // post css config in /src/sass/postcss.config.js
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              include: [path.resolve(__dirname, 'src/assets/fonts')],
-              name: '[name].[ext]',
-              outputPath: 'assets/fonts/',
-            },
-          },
-        ],
-        include: [path.resolve(__dirname, './src/fonts')],
-      },
-      {
         // Pre runs before other matching files
         enforce: 'pre',
         test: /\.js$/,
@@ -186,7 +172,8 @@ module.exports = {
     // code related to window etc.
     new CopyWebpackPlugin([
       { from: './src/js/service-worker.js' },
-      { from: './src/images', to: './assets/images' }
+      { from: './src/images', to: './assets/images' },
+      { from: './src/fonts', to: './assets/fonts' }
     ]),
     new ImageminPlugin({
       test: 'images/**',

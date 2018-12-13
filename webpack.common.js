@@ -10,8 +10,6 @@ const webpack = require('webpack');
 // Date formatting plugin for the all template
 const dateFormat = require('dateformat');
 
-// Import plugins for use later on
-
 // Cleans folders (read deletes 😉)
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 // Copies file from one place to another without touching them
@@ -170,6 +168,7 @@ module.exports = {
     }),
     // Copy the service worker to dist root. We can't run it through webpack as it adds
     // code related to window etc.
+    // Also copy images and fonts this way.
     new CopyWebpackPlugin([
       { from: './src/js/service-worker.js' },
       { from: './src/images', to: './assets/images' },

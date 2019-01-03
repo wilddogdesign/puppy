@@ -28,8 +28,8 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 // Tidy the generated HTML
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
-// Generates a progessive web app manifest file
-const WebpackPwaManifest = require('webpack-pwa-manifest');
+// Generates a progessive web app manifest file and favicons
+const WebappWebpackPlugin = require('webapp-webpack-plugin')
 // Runs images through imagemin when copying
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
@@ -56,25 +56,19 @@ const multipleFiles = otherNunjucksFiles.map((entry) => {
 });
 
 // Generate a manifest using the provided images and tidy the html AFTER Html
-const afterHTMLWebpackPlugin = [new WebpackPwaManifest({
-  name: 'Wile Webpack Whippet',
-  short_name: 'WWWhippet',
-  orientation: 'portrait',
-  display: 'standalone',
-  start_url: '.',
-  inject: true,
-  description: 'Some description about the Whippet',
-  background_color: '#F44336',
-  ios: {
-    'apple-mobile-web-app-status-bar-style': 'black'
+const afterHTMLWebpackPlugin = [new WebappWebpackPlugin({
+  favicons: {
+    name: 'Wile Webpack Whippet',
+    short_name: 'WWWhippet',
+    orientation: 'portrait',
+    display: 'standalone',
+    start_url: '.',
+    description: 'Some description about the Whippet',
+    background_color: '#F44336',
   },
-  icons: [
-    {
-      src: path.resolve('src/misc/whippet.png'),
-      sizes: [96, 128, 192, 256, 384, 512, 1024],
-      destination: '/assets/favicons',
-    },
-  ],
+  prefix: 'assets/favicons',
+  logo: path.resolve('src/misc/whippet.png'),
+  cache: true
 }), new HtmlBeautifyPlugin()];
 
 module.exports = {
@@ -187,7 +181,7 @@ module.exports = {
     // Clean the dist folder before doing things
     new CleanWebpackPlugin(['dist'])
   // Add on the extra HTMLWebPackPlugins for the other pages
-  // WebpackPwa has to be after all html webpack plugins
+  // WebappWebpackPlugin has to be after all html webpack plugins
   ].concat(multipleFiles).concat(afterHTMLWebpackPlugin),
   // We want our files from the entry point to have names like this and go into dist
   output: {

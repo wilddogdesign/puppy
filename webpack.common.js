@@ -32,6 +32,8 @@ const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin')
 // Runs images through imagemin when copying
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
+// Load main stylesheet asynchronously
+const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
 
 // this person is a hero
 // https://dev.to/rodeghiero_/multiple-html-files-with-htmlwebpackplugin-19bf
@@ -56,20 +58,24 @@ const multipleFiles = otherNunjucksFiles.map((entry) => {
 });
 
 // Generate a manifest using the provided images and tidy the html AFTER Html
-const afterHTMLWebpackPlugin = [new WebappWebpackPlugin({
-  favicons: {
-    name: 'Wile Webpack Whippet',
-    short_name: 'WWWhippet',
-    orientation: 'portrait',
-    display: 'standalone',
-    start_url: '.',
-    description: 'Some description about the Whippet',
-    background_color: '#F44336',
-  },
-  prefix: 'assets/favicons',
-  logo: path.resolve('src/misc/whippet.png'),
-  cache: true
-}), new HtmlBeautifyPlugin()];
+const afterHTMLWebpackPlugin = [
+  new WebappWebpackPlugin({
+    favicons: {
+      name: 'Wile Webpack Whippet',
+      short_name: 'WWWhippet',
+      orientation: 'portrait',
+      display: 'standalone',
+      start_url: '.',
+      description: 'Some description about the Whippet',
+      background_color: '#F44336',
+    },
+    prefix: 'assets/favicons',
+    logo: path.resolve('src/misc/whippet.png'),
+    cache: true
+  }),
+  new HtmlBeautifyPlugin(),
+  new AsyncStylesheetWebpackPlugin()
+];
 
 module.exports = {
   // Entry files are the files webpack will run against so we set our main js and sass
@@ -119,7 +125,7 @@ module.exports = {
       // Run sass through sass-loader, then postcss, then css loader before finally extracting.
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader?url=false', 'postcss-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader?url=false&sourceMap=true', 'sass-loader?sourceMap'],
         // post css config in /src/sass/postcss.config.js
       },
       {

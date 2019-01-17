@@ -30,8 +30,6 @@ const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin')
 // Runs images through imagemin when copying
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
-// Load main stylesheet asynchronously
-const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
 
 // this person is a hero
 // https://dev.to/rodeghiero_/multiple-html-files-with-htmlwebpackplugin-19bf
@@ -72,7 +70,6 @@ const afterHTMLWebpackPlugin = [
     cache: true
   }),
   new HtmlBeautifyPlugin(),
-  new AsyncStylesheetWebpackPlugin()
 ];
 
 module.exports = {

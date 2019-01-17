@@ -18,8 +18,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 // HTMLWebPackPlugin injects files etc into our HTML
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-// Extracts our CSS into a file because webpack doesn't do that by default
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // Allows us to lint our sass
 const SassLintPlugin = require('sass-lint-webpack');
 // Adds async tags to our scripts
@@ -122,12 +120,6 @@ module.exports = {
         ],
         exclude: [path.resolve(__dirname, './src/fonts')],
       },
-      // Run sass through sass-loader, then postcss, then css loader before finally extracting.
-      {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader?url=false&sourceMap=true', 'sass-loader?sourceMap'],
-        // post css config in /src/sass/postcss.config.js
-      },
       {
         // Pre runs before other matching files
         enforce: 'pre',
@@ -162,10 +154,6 @@ module.exports = {
     }),
     // Run the plugin to stop a js file being generated for the CSS
     new FixStyleOnlyEntriesPlugin(),
-    // Extracts the CSS into a file with the provided name
-    new MiniCssExtractPlugin({
-      filename: '[name]-[contenthash].css',
-    }),
     // Copy the service worker to dist root. We can't run it through webpack as it adds
     // code related to window etc.
     // Also copy images and fonts this way.

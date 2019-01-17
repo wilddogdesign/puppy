@@ -7,12 +7,9 @@ const WebappWebpackPlugin = require('webapp-webpack-plugin')
 const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin-wilddog").default;
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PostCssPipelineWebpackPlugin = require('postcss-pipeline-webpack-plugin');
 const criticalSplit = require('postcss-critical-split');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const postcssInlineSvg = require('postcss-inline-svg');
-const postcssSvgo = require('postcss-svgo');
 
 const afterHTMLWebpackPlugin = [
   new WebappWebpackPlugin({
@@ -46,7 +43,20 @@ const afterHTMLWebpackPlugin = [
 
 module.exports = merge(common, {
   mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader?url=false', 'sass-loader'],
+        // post css config in /src/sass/postcss.config.js
+      },
+    ]
+  },
   plugins: [
+    // Extracts the CSS into a file with the provided name
+    new MiniCssExtractPlugin({
+      filename: '[name]-[contenthash].css',
+    }),
     new PostCssPipelineWebpackPlugin({
       suffix: 'critical',
       pipeline: [
@@ -58,10 +68,10 @@ module.exports = merge(common, {
     new PostCssPipelineWebpackPlugin({
       suffix: '',
       pipeline: [
-        autoprefixer(),
-        cssnano(),
-        postcssInlineSvg(),
-        postcssSvgo()
+        require('autoprefixer')(),
+        require('cssnano')(),
+        require('postcss-inline-svg')({ path: './src/sass/' }),
+        require('postcss-svgo')(),
       ]
     })
   ].concat(afterHTMLWebpackPlugin)

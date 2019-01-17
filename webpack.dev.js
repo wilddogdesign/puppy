@@ -3,9 +3,30 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const os = require('os');
 
+// Extracts our CSS into a file because webpack doesn't do that by default
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+
+
 // Merge lets us merge two configs 🤷‍♂️
 module.exports = merge(common, {
   mode: 'development',
+  module: {
+    rules: [
+      // Run sass through sass-loader, then postcss, then css loader before finally extracting.
+      {
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader?url=false&sourceMap=true', 'postcss-loader', 'sass-loader?sourceMap'],
+        // post css config in /src/sass/postcss.config.js
+      },
+    ]
+  },
+  plugins: [
+    // Extracts the CSS into a file with the provided name
+    new MiniCssExtractPlugin({
+      filename: '[name]-[contenthash].css',
+    }),
+  ],
   // Don't watch node_modules
   watchOptions: {
     ignored: /node_modules/

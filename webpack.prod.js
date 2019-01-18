@@ -70,7 +70,7 @@ module.exports = merge(common, {
       pipeline: [
         require('autoprefixer')(),
         require('cssnano')(),
-        require('postcss-inline-svg')({ path: './src/sass/' }),
+        require('postcss-inline-svg')({ path: './src/css/' }),
         require('postcss-svgo')(),
       ]
     })

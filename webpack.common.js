@@ -27,7 +27,7 @@ const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 // Tidy the generated HTML
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 // Generates a progessive web app manifest file and favicons
-const WebappWebpackPlugin = require('webapp-webpack-plugin')
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
 // Runs images through imagemin when copying
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
@@ -67,7 +67,7 @@ const afterHTMLWebpackPlugin = [
     },
     prefix: 'assets/favicons',
     logo: path.resolve('src/misc/whippet.png'),
-    cache: true
+    cache: true,
   }),
   new HtmlBeautifyPlugin(),
 ];
@@ -77,7 +77,7 @@ module.exports = {
   // along with their output locations
   entry: {
     'assets/js/main': './src/js/main.js',
-    'assets/css/main': './src/sass/styles.scss',
+    'assets/css/main': './src/css/styles.scss',
   },
   // modules are how we want certain files to be interacted with / things to run them through
   module: {
@@ -147,7 +147,7 @@ module.exports = {
     }),
     // Runs sass lint against our sass files
     new SassLintPlugin({
-      files: './src/sass/**/*.scss',
+      files: './src/css/**/*.scss',
     }),
     // Run the plugin to stop a js file being generated for the CSS
     new FixStyleOnlyEntriesPlugin(),
@@ -157,7 +157,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './src/js/service-worker.js' },
       { from: './src/images', to: './assets/images' },
-      { from: './src/fonts', to: './assets/fonts' }
+      { from: './src/fonts', to: './assets/fonts' },
     ]),
     new ImageminPlugin({
       test: 'images/**',
@@ -170,10 +170,12 @@ module.exports = {
       svgo: true,
     }),
     // Clean the dist folder before doing things
-    new CleanWebpackPlugin(['dist'])
-  // Add on the extra HTMLWebPackPlugins for the other pages
-  // WebappWebpackPlugin has to be after all html webpack plugins
-  ].concat(multipleFiles).concat(afterHTMLWebpackPlugin),
+    new CleanWebpackPlugin(['dist']),
+    // Add on the extra HTMLWebPackPlugins for the other pages
+    // WebappWebpackPlugin has to be after all html webpack plugins
+  ]
+    .concat(multipleFiles)
+    .concat(afterHTMLWebpackPlugin),
   // We want our files from the entry point to have names like this and go into dist
   output: {
     filename: '[name]-[hash].js',

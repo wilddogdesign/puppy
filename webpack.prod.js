@@ -27,7 +27,9 @@ const afterHTMLWebpackPlugin = [
     cache: true
   }),
   new HtmlBeautifyPlugin(),
-  new AsyncStylesheetWebpackPlugin(),
+  new AsyncStylesheetWebpackPlugin({
+    preloadPolyfill: true,
+  }),
   new HTMLInlineCSSWebpackPlugin({
     filter(fileName) {
       return fileName.includes('critical.css');

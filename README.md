@@ -64,6 +64,17 @@ To add a new nunjucks page and have it appear in the all listings page
 - SVG sprites
 - Manifest JSON
 
+## Prettier
+In vs code add to your settings
+```
+"[javascript]": {
+  "editor.formatOnSave": false
+},
+// tell the ESLint plugin to run on save
+"eslint.autoFixOnSave": true,
+```
+Other editors may vary
+
 Brought to you by
 -----------------
 

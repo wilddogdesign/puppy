@@ -45,7 +45,7 @@ const otherNunjucksFiles = require('./pages.js');
 
 // Generate a new HTMLWebPackPlugin for each template because you have to.
 // We append to plugins down the bottom.
-const multipleFiles = otherNunjucksFiles.map((entry) => {
+const multipleFiles = otherNunjucksFiles.map(entry => {
   return new HtmlWebPackPlugin({
     filename: `${entry.file}.html`,
     template: `nunjucks-html-loader!./src/templates/${entry.file}.njk`,
@@ -76,7 +76,7 @@ module.exports = {
   // Entry files are the files webpack will run against so we set our main js and sass
   // along with their output locations
   entry: {
-    'assets/js/main': './src/js/main.js',
+    'assets/js/main': ['babel-polyfill', './src/js/main.js'],
     'assets/css/main': './src/css/styles.scss',
   },
   // modules are how we want certain files to be interacted with / things to run them through

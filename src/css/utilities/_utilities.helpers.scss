@@ -160,3 +160,46 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+/**
+ * Background positions:
+ * Position a background differently
+ * So Agata can do this without having to remember to ask us every time
+ *
+ * - `.u-background--top-left` - Top left etc
+ */
+.u-background {
+  background-position: center center;
+
+  &--top-left {
+    background-position: top left;
+  }
+
+  &--top-center {
+    background-position: top center;
+  }
+
+  &--top-right {
+    background-position: top right;
+  }
+
+  &--left {
+    background-position: center left;
+  }
+
+  &--right {
+    background-position: center right;
+  }
+
+  &--bottom-left {
+    background-position: bottom left;
+  }
+
+  &--bottom {
+    background-position: bottom center;
+  }
+
+  &--bottom-right {
+    background-position: bottom left;
+  }
+}

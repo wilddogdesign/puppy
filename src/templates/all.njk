@@ -152,6 +152,10 @@
               display: block;
               font-size: 11px;
             }
+            article .link-list li small{
+              font-weight: 300;
+              display: block;
+            }
           article .link-list .no-link{
             opacity: 0.5;
           }
@@ -215,6 +219,7 @@
           {% if p.file != 'all' %}
             <li>
               <a href="{{ p.file }}.html" target="_blank">{{ p.name }}</a>
+              <small>{{ p.desc }}</small>
             </li>
           {% endif %}
         {% endfor %}

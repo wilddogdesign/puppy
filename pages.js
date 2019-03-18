@@ -3,6 +3,7 @@ module.exports = [
   {
     file: 'offline',
     name: 'Offline',
+    desc: 'Page a user will see with no active internet connection.',
   },
   {
     file: 'all',

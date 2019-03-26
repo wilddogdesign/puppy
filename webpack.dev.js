@@ -1,12 +1,9 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-const os = require('os');
 
 // Extracts our CSS into a file because webpack doesn't do that by default
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-
 
 // Merge lets us merge two configs 🤷‍♂️
 module.exports = merge(common, {
@@ -37,8 +34,7 @@ module.exports = merge(common, {
   devServer: {
     // Serve assets from src
     contentBase: path.join(__dirname, '/src'),
-    // use machine name as URL for easy sharing around office.
-    host: os.hostname().toLowerCase(),
+    port: 8888,
     // Not a fan of a lot of this output
     stats: {
       hash: false,

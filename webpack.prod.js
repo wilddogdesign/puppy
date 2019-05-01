@@ -14,12 +14,12 @@ const criticalSplit = require('postcss-critical-split');
 const afterHTMLWebpackPlugin = [
   new WebappWebpackPlugin({
     favicons: {
-      name: 'Colfe\'s Leisure',
-      short_name: 'Colfes',
+      name: 'Puppy',
+      short_name: 'puppy',
       orientation: 'portrait',
       display: 'standalone',
       start_url: '.',
-      description: '',
+      description: 'Some description about puppy',
       background_color: '#F44336',
     },
     prefix: 'assets/favicons',

@@ -1,10 +1,11 @@
-# Wile Webpack Whippet
+:dog: Wilddog Design Starting Web-Scaffold :+1:
+===============================================
 
 ## Installing
 
 The software used in this project includes Node.js and Webpack. We recommend the use of nvm to install and maintain your versions of Node.js.
 
-cd to the webpack-whippet directory and run `npm install` to get the whole shebang installed.
+cd to the puppy directory and run `npm install` to get the whole shebang installed.
 
 ## Development
 

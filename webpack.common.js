@@ -1,7 +1,7 @@
 // Everything in webpack.common is shared between dev and prod
 
 // Variables for use in the all template.
-const projectTitle = 'Wile Webpack Whippet';
+const projectTitle = 'Puppy';
 const now = new Date();
 
 // Path and webpack are required
@@ -57,12 +57,12 @@ const multipleFiles = otherNunjucksFiles.map(entry => {
 const afterHTMLWebpackPlugin = [
   new WebappWebpackPlugin({
     favicons: {
-      name: 'Wile Webpack Whippet',
-      short_name: 'WWWhippet',
+      name: 'Puppy',
+      short_name: 'puppy',
       orientation: 'portrait',
       display: 'standalone',
       start_url: '.',
-      description: 'Some description about the Whippet',
+      description: 'Some description about puppy',
       background_color: '#F44336',
     },
     prefix: 'assets/favicons',

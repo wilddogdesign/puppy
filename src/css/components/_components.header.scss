@@ -7,6 +7,7 @@
     display: inline-block;
     width: rem(80px);
     height: rem(56px);
+    // an example of inlining an svg, make sure it has no stroke or fill colour set otherwise override wont work
     background: svg-load('../images/logo.svg', stroke=$color--primary) no-repeat;
     text-indent: 100%;
     white-space: nowrap;

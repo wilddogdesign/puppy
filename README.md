@@ -35,8 +35,8 @@ To add a new nunjucks page and have it appear in the all listings page
 - add the filename and page title to pages.js
 ```
   {
-    file: 'all',
-    name: 'All ',
+    file: 'my-new-page',
+    name: 'My new page',
   }
 ```
 - Add the nunjucks file to src/templates
@@ -75,6 +75,12 @@ In vs code add to your settings
 ```
 Other editors may vary
 
+
+### TODO
+
+- Styleguide
+- Add filters to nunjucks
+
 Brought to you by
 -----------------
 
@@ -109,9 +115,3 @@ ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 ```
-
-### TODO
-
-- Favicon .ico files
-- Styleguide
-- Add filters to nunjucks

@@ -23,7 +23,7 @@ const afterHTMLWebpackPlugin = [
       background_color: '#F44336',
     },
     prefix: 'assets/favicons',
-    logo: path.resolve('src/misc/whippet.png'),
+    logo: path.resolve('src/misc/favicon.png'),
     cache: true
   }),
   new HtmlBeautifyPlugin(),

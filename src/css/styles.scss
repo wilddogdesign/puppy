@@ -14,6 +14,7 @@ $inuit-global-font-size: 16px;
 @import 'tools/tools.rem';
 
 // GENERIC
+// This is how you add code to critical. You can also do it within a file if you only want specific bits
 /* critical:start */
 @import 'node_modules/inuitcss/generic/generic.box-sizing';
 @import 'node_modules/inuitcss/generic/generic.normalize';
@@ -32,6 +33,7 @@ $inuit-global-font-size: 16px;
 
 // COMPONENTS
 // Add your custom components here
+@import 'components/components.footer';
 @import 'components/components.header';
 
 // UTILITIES

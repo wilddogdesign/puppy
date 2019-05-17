@@ -13,7 +13,12 @@ module.exports = merge(common, {
       // Run sass through sass-loader, then postcss, then css loader before finally extracting.
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader?url=false&sourceMap=true', 'postcss-loader', 'sass-loader?sourceMap'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader?url=false&sourceMap=true',
+          'postcss-loader',
+          'sass-loader?sourceMap',
+        ],
         // post css config in /src/sass/postcss.config.js
       },
     ]
@@ -26,7 +31,7 @@ module.exports = merge(common, {
   ],
   // Don't watch node_modules
   watchOptions: {
-    ignored: /node_modules/
+    ignored: /node_modules/,
   },
   // Add inline source maps
   devtool: 'inline-source-map',
@@ -49,7 +54,7 @@ module.exports = merge(common, {
       errors: true,
       errorDetails: true,
       warnings: true,
-      publicPath: false
-    }
+      publicPath: false,
+    },
   },
 });

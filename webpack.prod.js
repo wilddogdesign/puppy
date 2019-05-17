@@ -6,6 +6,7 @@ const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin')
 const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin-wilddog").default;
+const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PostCssPipelineWebpackPlugin = require('postcss-pipeline-webpack-plugin');
@@ -24,7 +25,7 @@ const afterHTMLWebpackPlugin = [
     },
     prefix: 'assets/favicons',
     logo: path.resolve('src/misc/favicon.png'),
-    cache: true
+    cache: true,
   }),
   new HtmlBeautifyPlugin(),
   new AsyncStylesheetWebpackPlugin({
@@ -38,7 +39,7 @@ const afterHTMLWebpackPlugin = [
       target: '<!-- inline_css_plugin -->',
       position: 'before',
       removeTarget: true,
-      leaveCssFile: true
+      leaveCssFile: true,
     }
   }),
 ];
@@ -63,8 +64,17 @@ module.exports = merge(common, {
       suffix: 'critical',
       pipeline: [
         criticalSplit({
-          output: criticalSplit.output_types.CRITICAL_CSS
+          output: criticalSplit.output_types.CRITICAL_CSS,
         })
+      ]
+    }),
+    new PostCssPipelineWebpackPlugin({
+      suffix: '',
+      predicate: name => /^((?!critical).)*$/.test(name),
+      pipeline: [
+        criticalSplit({
+          output: criticalSplit.output_types.REST_CSS,
+        }),
       ]
     }),
     new PostCssPipelineWebpackPlugin({
@@ -75,6 +85,28 @@ module.exports = merge(common, {
         require('postcss-inline-svg')({ path: './src/css/' }),
         require('postcss-svgo')(),
       ]
-    })
-  ].concat(afterHTMLWebpackPlugin)
+    }),
+    new ReplaceInFileWebpackPlugin([
+      {
+        dir: 'dist/assets/css',
+        test: /^(.*critical.*)/g,
+        rules: [
+          {
+            search: /\.\.\//gm,
+            replace: '/assets/',
+          },
+        ],
+      },
+      {
+        dir: 'dist/',
+        test: /\.html$/,
+        rules: [
+          {
+            search: /\.\.\//gm,
+            replace: '/assets/',
+          },
+        ],
+      }
+    ]),
+  ].concat(afterHTMLWebpackPlugin),
 });

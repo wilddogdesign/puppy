@@ -52,6 +52,7 @@
     "postcss-pipeline-webpack-plugin": "^4.1.0",
     "postcss-svgo": "^4.0.1",
     "prettier": "^1.16.4",
+    "replace-in-file-webpack-plugin": "^1.0.6",
     "sass-lint": "^1.12.1",
     "sass-lint-webpack": "^1.0.0",
     "sass-loader": "^7.1.0",

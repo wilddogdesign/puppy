@@ -87,16 +87,16 @@ module.exports = merge(common, {
       ]
     }),
     new ReplaceInFileWebpackPlugin([
-      {
-        dir: 'dist/assets/css',
-        test: /^(.*critical.*)/g,
-        rules: [
-          {
-            search: /\.\.\//gm,
-            replace: '/assets/',
-          },
-        ],
-      },
+      // {
+      //   dir: 'dist/assets/css',
+      //   test: /^(.*critical.*)/g,
+      //   rules: [
+      //     {
+      //       search: /\.\.\//gm,
+      //       replace: '/assets/',
+      //     },
+      //   ],
+      // },
       {
         dir: 'dist/',
         test: /\.html$/,

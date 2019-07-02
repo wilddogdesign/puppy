@@ -1,6 +1,5 @@
 const merge = require('webpack-merge');
 const path = require('path');
-const minimatch = require('minimatch');
 
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin');

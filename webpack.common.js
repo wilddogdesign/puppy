@@ -28,8 +28,6 @@ const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 // Generates a progessive web app manifest file and favicons
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
-// Runs images through imagemin when copying
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 // this person is a hero
 // https://dev.to/rodeghiero_/multiple-html-files-with-htmlwebpackplugin-19bf
@@ -159,9 +157,6 @@ module.exports = {
       { from: './src/images', to: './assets/images' },
       { from: './src/fonts', to: './assets/fonts' },
     ]),
-    new ImageminPlugin({
-      test: 'images/**',
-    }),
     // Generate the SVG sprite
     new SVGSpritemapPlugin({
       src: './src/icons/*.svg',

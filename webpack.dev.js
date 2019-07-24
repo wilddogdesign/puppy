@@ -50,6 +50,7 @@ module.exports = merge(common, {
     // Serve assets from src
     contentBase: path.join(__dirname, '/src'),
     port: 8888,
+    clientLogLevel: 'error',
     // watch nunjucks and reload page now we have HMR on
     before(app, server) {
       chokidar.watch(['./src/templates/**/*.njk']).on('all', function() {

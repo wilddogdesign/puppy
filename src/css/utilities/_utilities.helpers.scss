@@ -203,3 +203,46 @@
     background-position: bottom right;
   }
 }
+
+/**
+ * Object positions:
+ * Position an object differently if set to object-fit: cover
+ * So Agata can do this without having to remember to ask us every time
+ *
+ * - `.u-object-position--top-left` - Top left etc
+ */
+.u-object-position {
+  object-position: center center;
+
+  &--top-left {
+    object-position: top left;
+  }
+
+  &--top-center {
+    object-position: top center;
+  }
+
+  &--top-right {
+    object-position: top right;
+  }
+
+  &--left {
+    object-position: center left;
+  }
+
+  &--right {
+    object-position: center right;
+  }
+
+  &--bottom-left {
+    object-position: bottom left;
+  }
+
+  &--bottom {
+    object-position: bottom center;
+  }
+
+  &--bottom-right {
+    object-position: bottom right;
+  }
+}

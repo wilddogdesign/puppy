@@ -1,0 +1,28 @@
+<svg 
+  id="a1210953-57bc-43ab-a1e2-5d19200f04d4" 
+  data-name="cross" 
+  xmlns="http://www.w3.org/2000/svg" 
+  viewBox="0 0 36.98 36.98"
+>
+  <title>cross</title>
+
+  <g id="f798dac3-2294-4c68-a2ab-10347c6298ce" data-name="Group 607">
+    <path 
+      id="f1b2b11a-762a-4de3-b969-57dadf55989f" 
+      data-name="Path 2055" 
+      d="M.35.35,36.63,36.63" 
+      transform="translate(0 0)" 
+      fill="none" 
+      stroke="#000000"
+    />
+    
+    <path 
+      id="ad8be08a-b46b-498b-bf78-add6b011c05d" 
+      data-name="Path 2056" 
+      d="M.35,36.63,36.63.35" 
+      transform="translate(0 0)" 
+      fill="none" 
+      stroke="#000000"
+    />
+  </g>
+</svg>

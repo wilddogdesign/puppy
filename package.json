@@ -68,6 +68,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "a11y-dialog": "^5.2.0",
     "babel-polyfill": "^6.26.0",
     "domready": "^1.0.8",
     "inuitcss": "^6.0.0"

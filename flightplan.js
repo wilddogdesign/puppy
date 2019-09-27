@@ -5,8 +5,8 @@ const project    = 'puppy';
 
 var user         = 'Someone';
 
-const remoteRoot = '/path/to/root/';
-const remoteHost = 'remote.host.com';
+onst remoteRoot = '/var/www/';
+const remoteHost = 'wilddogdevelopment.com';
 
 const slackNotifyHook = 'https://hooks.slack.com/services/XXXXXXX/YYYYYYYYY/ZZZZZZZZZZZZZZZZZZZZZZZZZ';
 

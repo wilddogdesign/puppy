@@ -1,0 +1,8 @@
+@mixin line($length: 14px, $color: $color--white) {
+  display: block;
+  width: rem($length);
+  height: rem(1px);
+  background-color: $color;
+  text-indent: rem(-9999px);
+  white-space: nowrap;
+}

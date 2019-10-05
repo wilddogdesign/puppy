@@ -11,6 +11,9 @@ $inuit-global-font-size: 16px;
 @import 'node_modules/inuitcss/tools/tools.font-size';
 @import 'node_modules/inuitcss/tools/tools.hidden';
 @import 'node_modules/sass-mq/mq';
+@import 'tools/tools.hiding';
+@import 'tools/tools.line';
+@import 'tools/tools.proportionate-height';
 @import 'tools/tools.rem';
 
 // GENERIC

@@ -10,10 +10,13 @@
 
 $color--primary:        #f44336;
 
-$color--white:        #fff;
-$color--black:        #111;
+$color--white:          #fff;
+$color--black:          #111;
 
-$color--text:         $color--black;
+$color--text:           $color--black;
+
+// Variants
+$color--primary--dark:  darken($color--primary, 5%);
 
 // Forms
 $color--disabled-gray: #cecece;

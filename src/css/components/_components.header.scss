@@ -1,15 +1,145 @@
 .c-header {
-  padding: rem(16px) rem(26px);
+  position: relative;
+  padding: rem(16px) 0;
   border-bottom: 1px solid $color--primary;
+
+  .o-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
   .c-header__brand {
     display: inline-block;
+    flex-shrink: 0;
     width: rem(80px);
     height: rem(56px);
     // an example of inlining an svg, make sure it has no stroke or fill colour set otherwise override wont work
-    background: svg-load('../images/logo.svg', stroke=$color--primary) no-repeat;
+    background-image: svg-load('../images/logo.svg', stroke=$color--primary);
+    background-repeat: no-repeat;
+    background-size: rem(80px) rem(56px);
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
   }
+
+  .c-header__nav {
+    display: flex;
+
+    @include mq($until: tablet) {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: rem(320px);
+      transform: translateX(100vw);
+      // Might be worth delaying this with a timeout or something
+      transition: transform $global-transition ease-in-out;
+      background-color: $color--primary;
+      overflow-y: scroll;
+
+
+      .is-visible--mobile-menu & {
+        transform: translateX(0);
+      }
+    }
+  }
+
+    .c-header__nav__item {
+      text-align: center;
+      text-decoration: none;
+
+      @include mq($until: tablet) {
+        width: 100%;
+        padding: rem(10px);
+        color: $color--white;
+
+        &:hover,
+        &:focus,
+        &--active {
+          background-color: $color--primary--dark;
+        }
+      }
+
+      @include mq($from: tablet) {
+        position: relative;
+        padding: rem(10px);
+        color: $color--primary;
+
+        &:not(:first-child) {
+          margin-left: rem(10px);
+        }
+
+        &::after {
+          position: absolute;
+          bottom: rem(2px);
+          left: 0;
+          width: 0;
+          height: rem(2px);
+          transition: width $global-transition ease-in-out;
+          background-color: $color--primary;
+          content: '';
+        }
+
+        &:hover,
+        &:focus,
+        &--active {
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+  .c-header__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(32px);
+    height: rem(32px);
+    border: 0;
+    border-radius: 0;
+    text-indent: rem(-9999px);
+    cursor: pointer;
+    appearance: none;
+  }
+
+    .c-header__toggle__lines {
+      @include line(14px, $color--primary);
+      position: relative;
+      transition: transform .15s ease-in;
+
+      .is-visible--mobile-menu & {
+        transform: rotate(45deg) translateY(-50%);
+      }
+
+      &::before,
+      &::after {
+        @include line(14px, $color--primary);
+        position: absolute;
+        right: 0;
+        left: 0;
+        content: '';
+      }
+
+      &::before {
+        top: rem(-5px);
+        transition: transform .15s ease-in;
+
+        .is-visible--mobile-menu & {
+          transform: rotate(-90deg) translateX(-5px);
+        }
+      }
+
+      &::after {
+        bottom: rem(-5px);
+        transition: opacity .15s ease-in;
+
+        .is-visible--mobile-menu & {
+          opacity: 0;
+        }
+      }
+    }

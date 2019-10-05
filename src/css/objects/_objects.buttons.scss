@@ -1,0 +1,28 @@
+.o-btn {
+  display: inline-block;
+  padding: .75em 1.5em;
+  transition: background .15s ease-in;
+  border: 0;
+  border-radius: 0;
+  background-color: $color--primary;
+  color: $color--white;
+  font-family: $font--main;
+  font-size: rem(16px);
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+
+  @include mq($from: desktop) {
+    font-size: rem(18px);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $color--primary--light;
+  }
+
+  &[disabled] {
+    background-color: $color--grey;
+    cursor: not-allowed;
+  }
+}

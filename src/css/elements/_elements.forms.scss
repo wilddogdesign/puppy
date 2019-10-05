@@ -1,0 +1,191 @@
+//sass-lint:disable force-attribute-nesting force-pseudo-nesting
+[type='email'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='text'],
+[type='url'],
+[type='color'],
+[type='date'],
+[type='datetime'],
+[type='datetime-local'],
+[type='month'],
+[type='time'],
+[type='week'],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  height: rem(40px);
+  margin-bottom: rem(10px);
+  padding: 0 rem(10px);
+  transition: background-color $global-transition ease-in-out;
+  border: rem(1px) solid $color--primary;
+  border-radius: 0;
+  color: $color--text;
+  line-height: rem(40px);
+  cursor: pointer;
+  appearance: none;
+
+  &::placeholder {
+    color: $color--grey;
+  }
+
+  &:focus,
+  &:active {
+    background-color: $color--grey--light;
+    color: $color--black;
+  }
+
+  &:focus {
+    outline-color: $color--primary;
+  }
+
+  &.error,
+  &.is-invalid {
+    border-color: $color--alert--red;
+    outline-color: $color--alert--red;
+    background-color: $color--white;
+    color: $color--alert--red;
+  }
+
+  &.success,
+  &.is-valid {
+    border-color: $color--alert--green;
+    outline-color: $color--alert--green;
+    background-color: $color--white;
+    color: $color--alert--green;
+  }
+
+  &[disabled],
+  &.is-disabled {
+    border-color: $color--disabled;
+    cursor: not-allowed;
+    opacity: .6;
+
+  }
+}
+
+[type='password'] {
+  letter-spacing: .3em;
+}
+
+[type='submit'],
+button {
+  // Styles should be in o-btn really.
+  // Use this to kill off nasty iOS / other browser styles
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  appearance: none;
+}
+
+textarea {
+  max-width: 100%;
+  height: auto;
+  min-height: rem(120px);
+  padding: rem(10px);
+  line-height: 1.5em;
+}
+
+// selects
+select {
+  padding-right: rem(32px);
+  background-color: $color--white;
+  background-image: svg-load('../images/chevron.svg');
+  background-repeat: no-repeat;
+  background-position: top 50% right rem(10px);
+  background-size: rem(16px) auto;
+  appearance: none;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+// Label
+// Remember you can change these if you want not to block
+label {
+  display: block;
+  position: relative;
+  margin-bottom: .5em;
+}
+
+// Custom checkboxes
+// These are my least favourite form things
+[type='checkbox'],
+[type='radio'] {
+  @include inuit-hidden-visually;
+}
+
+[type='checkbox'][disabled] + span,
+[type='radio'][disabled] + span {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+[type='checkbox'] + span,
+[type='radio'] + span {
+  display: inline-block;
+  margin-right: rem(8px);
+  padding-left: rem(36px);
+  font-size: rem(18px);
+  line-height: 1.8;
+  vertical-align: middle;
+}
+
+[type='checkbox'][disabled] + span::before,
+[type='radio'][disabled] + span::before {
+  border: 0 none;
+  background-color: $color--grey--light;
+}
+
+[type='checkbox'] + span::before,
+[type='radio'] + span::before {
+  display: inline-block;
+  position: absolute;
+  top: .1em;
+  left: 0;
+  width: rem(32px);
+  height: rem(32px);
+  transition: background-size .25s ease-in-out;
+  border: rem(1px) solid $color--black;
+  background-image: svg-load('../images/tick.svg' fill=$color--primary);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 0% auto;
+  line-height: rem(32px);
+  content: '';
+  will-change: background-size;
+}
+
+// /* we want the radio buttons to be circular */
+[type='radio'] + span::before {
+  border-radius: 50%;
+}
+
+[type='checkbox']:focus + span::before,
+[type='radio']:focus + span::before {
+  background-color: $color--primary--thin;
+}
+
+[type='checkbox']:checked + span::before,
+[type='radio']:checked + span::before {
+  transition: background-size .25s ease-in-out;
+  border-color: $color--primary;
+  background-size: 80% auto;
+  will-change: background-size;
+}
+
+[type='radio']:checked + span::before {
+  background-position: center 55%;
+  background-size: 65% auto;
+}
+
+[type='checkbox'][disabled]:checked + span::before,
+[type='radio'][disabled]:checked + span::before {
+  opacity: .5;
+}

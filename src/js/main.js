@@ -1,4 +1,5 @@
 import domready from 'domready';
+import setupScrollTo from './modules/scroll-to';
 
 function hi() {
   console.log('Hi there!');
@@ -12,6 +13,7 @@ function hi() {
 
 function initialise() {
   hi();
+  setupScrollTo();
 }
 
 const finalScripts = {

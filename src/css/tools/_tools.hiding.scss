@@ -5,7 +5,7 @@
       display: none !important;
     }
 
-    .u-accessibility-from\@#{$state} {
+    .u-a11y-from\@#{$state} {
       @include inuit-hidden-visually;
     }
   }
@@ -15,7 +15,7 @@
       display: none !important;
     }
 
-    .u-accessibility-until\@#{$state} {
+    .u-a11y-until\@#{$state} {
       @include inuit-hidden-visually;
     }
   }

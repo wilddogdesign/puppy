@@ -12,9 +12,12 @@
     </nav>
 
     {# I've seen JS is in another branch so will leave off for now but do styles #}
-    <button class="c-header__toggle u-hidden-from@tablet">
+    <button
+      class="c-header__toggle u-hidden-from@tablet  js-class-trigger"
+      data-target="body"
+      data-class-to-trigger="is-visible--mobile-menu">
       <span class="c-header__toggle__lines"></span>
-      <span class="u-accessibility">Menu</span>
+      <span class="u-a11y">Menu</span>
     </button>
 	</div>
 </header>

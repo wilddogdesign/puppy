@@ -1,11 +1,20 @@
-:dog: Wilddog Design Starting Web-Scaffold :+1:
-===============================================
+# :dog: Wilddog Design Starting Web-Scaffold :+1:
+
+## Prerequisites
+
+### NVM
+
+https://github.com/nvm-sh/nvm
+
+To Install NVM run the following
+
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash`
 
 ## Installing
 
-The software used in this project includes Node.js and Webpack. We recommend the use of nvm to install and maintain your versions of Node.js.
+First ensure you have the correct version of Node installed using `nvm install`.
 
-cd to the puppy directory and run `npm install` to get the whole shebang installed.
+Then Run `npm install` to get the whole shebang installed.
 
 ## Development
 
@@ -34,16 +43,19 @@ Keep in mind, that the script is not using sudo, so the deployer user has to hav
 To add a new nunjucks page and have it appear in the all listings page
 
 - add the filename and page title to pages.js
+
 ```
   {
     file: 'my-new-page',
     name: 'My new page',
   }
 ```
+
 - Add the nunjucks file to src/templates
 - Restart the dev server
 
 ## The specifics - what does it feature?
+
 - Image optimisation with inlining of images smaller than 10kb
 - Sass compilation w/ autoprefixer, cssnano, inline-svg
 - Inuit / Sassmq
@@ -66,7 +78,9 @@ To add a new nunjucks page and have it appear in the all listings page
 - Manifest JSON
 
 ## Prettier
+
 In vs code add to your settings
+
 ```
 "[javascript]": {
   "editor.formatOnSave": false
@@ -74,16 +88,15 @@ In vs code add to your settings
 // tell the ESLint plugin to run on save
 "eslint.autoFixOnSave": true,
 ```
-Other editors may vary
 
+Other editors may vary
 
 ### TODO
 
 - Styleguide
 - Add filters to nunjucks
 
-Brought to you by
------------------
+## Brought to you by
 
 ```
 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ

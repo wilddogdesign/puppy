@@ -10,10 +10,14 @@
 
 $color--primary:        #f44336;
 
-$color--white:        #fff;
-$color--black:        #111;
+$color--white:          #fff;
+$color--black:          #111;
 
-$color--text:         $color--black;
+$color--text:           $color--black;
+
+// Transparencies
+$color--white--thick:   rgba($color--white, .8);
+$color--black--thin:    rgba($color--black, .2);
 
 // Forms
-$color--disabled-gray: #cecece;
+$color--disabled-gray:  #cecece;

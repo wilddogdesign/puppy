@@ -12,4 +12,14 @@
   {% endfor %}
 
   <!-- inline_css_plugin -->
+
+  <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+
+  {% set recaptcha_key = '6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a' %}
+
+  {% if recaptcha_key %}
+  <script>
+    window.recaptchaKey = '{{ recaptcha_key }}'
+  </script>
+  {% endif %}
 </head>

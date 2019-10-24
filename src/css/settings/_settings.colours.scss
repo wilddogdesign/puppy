@@ -1,13 +1,3 @@
-/**
- * Main colors:
- * The colors used in the project.
- *
- *   @example
- *   div.sg-tyles
- *     div.sg-tyles__item(style='background-color: #CE171B') Main color
- *     div.sg-tyles__item(style='background-color: #666') Secondary color
- */
-
 $color--primary:        #f44336;
 
 $color--white:          #fff;
@@ -15,9 +5,19 @@ $color--black:          #111;
 
 $color--text:           $color--black;
 
+$color--grey:           #a3a3a3;
+
+// Variants
+$color--primary--light: lighten($color--primary, 10%);
+$color--grey--light:    #fafafa;
+$color--grey--dark:     #6e6e6e;
+
 // Transparencies
+$color--primary--thin:  rgba($color--primary, .2);
 $color--white--thick:   rgba($color--white, .8);
 $color--black--thin:    rgba($color--black, .2);
 
 // Forms
-$color--disabled-gray:  #cecece;
+$color--disabled:       #cecece;
+$color--alert--red:     #ff2929;
+$color--alert--green:   #00b500;

@@ -27,11 +27,14 @@ $inuit-global-font-size: 16px;
 // ELEMENTS
 @import 'node_modules/inuitcss/elements/elements.headings';
 @import 'elements/elements.headings';
+@import 'elements/elements.forms';
+@import 'elements/elements.images';
+@import 'elements/elements.links';
 @import 'elements/elements.page';
 
 // OBJECTS
 // Add your custom objects here
-@import 'objects/objects.layout';
+@import 'objects/objects.buttons';
 @import 'objects/objects.wrapper';
 
 // COMPONENTS

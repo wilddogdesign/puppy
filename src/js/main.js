@@ -1,19 +1,26 @@
 import domready from 'domready';
 import setupScrollTo from './modules/scroll-to';
 
-function hi() {
-  console.log('Hi there!');
+import { setupTriggers } from './modules/triggers';
+import { setupDialogs } from './modules/dialogs';
+import { setupRecaptcha } from './modules/recaptcha';
 
-  const arr = [1, 2, 3];
+function onShowDialog(dialog) {
+  console.log('dialog shown', dialog);
+}
 
-  arr.forEach(item => {
-    console.log(item);
-  });
+function onHideDialog(dialog) {
+  console.log('dialog hidden', dialog);
 }
 
 function initialise() {
-  hi();
   setupScrollTo();
+  setupTriggers();
+  setupDialogs({
+    onShowCallback: onShowDialog,
+    onHideCallback: onHideDialog,
+  });
+  setupRecaptcha();
 }
 
 const finalScripts = {

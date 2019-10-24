@@ -1,4 +1,4 @@
-{% set page = "index" %}
+{% set page = "examples" %}
 {% extends 'includes/_base.njk' %}
 
 {% block main %}
@@ -73,11 +73,11 @@
 
       <div>
         <label>Name</label>
-        <input name="form" value="one">
+        <input type="text" name="form" value="one">
       </div>
 
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="o-btn">Submit</button>
       </div>
     </form>
 
@@ -96,11 +96,11 @@
 
       <div>
         <label>Name</label>
-        <input name="form" value="two">
+        <input type="text" name="form" value="two">
       </div>
 
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="o-btn">Submit</button>
       </div>
 
       <div
@@ -136,6 +136,82 @@
     <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
 
     <p id="thing-to-scroll-to"><strong>Scroll to me</strong></p>
+  </section>
+
+  <br />
+  <hr />
+
+  <section>
+    <h3>Basic styles</h3>
+    <h4>Page</h4>
+    <p>HTML and body have the color $color--text variable applied to it by default</p>
+
+    <h4>Links</h4>
+    <p>Links are <a href="#">coloured the primary colour</a> and have <a href="#">no text decoration</a> by default.</p>
+
+    <h4>Buttons</h4>
+    <p>Buttons are now in here by default with some appropriate font sizing / spacing etc. By default there is o-btn with a hover/focus style and a disabled style.</p>
+
+    <a href="#" class="o-btn">Check out this thing</a>
+
+    <h4>Forms</h4>
+    <p>Lots of default styling has been added for most input types and for selects, submits, buttons and checkboxes / radios. See snippets.md for the markup for a radio / checkbox. Elements are again 100% width as they'd usually be in a container. They are only defined as [type="text"] not input[type="text"] because they become hard to override with classes with the latter specificity.</p>
+
+    <style>
+      .cant-flex-on-fieldset {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .u-form-input {
+        flex-basis: 49%;
+      }
+
+      .u-wide {
+        width: 100%;
+      }
+    </style>
+
+    <form>
+      <fieldset>
+        <div class="cant-flex-on-fieldset">
+          <div class="u-form-input">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Lando Calrissian" />
+          </div>
+
+          <div class="u-form-input">
+            <label for="profession">Profession</label>
+            <select name="profession" id="profession">
+              <option>Please select...</option>
+              <option>Cloud City Administrator</option>
+              <option>Rebel Alliance General</option>
+              <option>Professional Gambler</option>
+            </select>
+          </div>
+
+          <div class="u-wide">
+            <label for="reason">Reason for joining Rebel Alliance</label>
+            <textarea name="reason" id="reason" placeholder="e.g. A deal was altered and I had to pray it wasn't altered further."></textarea>
+          </div>
+
+          <div>
+            <label for="check">
+              <input type="checkbox" id="check">
+              <span>Check here to consent to becoming a known enemy of the Galactic Empire.</span>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <input type="submit" class="o-btn" value="Submit" />
+    </form>
+
+    <h4>Images</h4>
+    <p>Block and 100% width by default as usually they'll be in a container or have their own class with a max-width.</p>
+    <img src="/assets/images/logo.svg" />
   </section>
 
   <br/>

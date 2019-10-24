@@ -2,13 +2,13 @@ $color--primary:        #f44336;
 
 $color--white:          #fff;
 $color--black:          #111;
+$color--grey:           #a3a3a3;
 
 $color--text:           $color--black;
 
-$color--grey:           #a3a3a3;
-
 // Variants
 $color--primary--light: lighten($color--primary, 10%);
+$color--primary--dark:  darken($color--primary, 5%);
 $color--grey--light:    #fafafa;
 $color--grey--dark:     #6e6e6e;
 

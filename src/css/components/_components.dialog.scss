@@ -10,7 +10,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba($color--white, 0.8);
+    background-color: $color--white--thick;
   }
 
   .c-dialog__container {
@@ -25,7 +25,7 @@
     right: 0;
     width: 90%;
     background-color: $color--white;
-    box-shadow: 0 3px 6px rgba($color--black, 0.2);
+    box-shadow: 0 3px 6px $color--black--thin;
     padding: rem(50px) rem(32px);
 
     @include mq($from: tablet) {

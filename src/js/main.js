@@ -1,4 +1,5 @@
 import domready from 'domready';
+import setupScrollTo from './modules/scroll-to';
 
 import { setupTriggers } from './modules/triggers';
 import { setupDialogs } from './modules/dialogs';
@@ -13,6 +14,7 @@ function onHideDialog(dialog) {
 }
 
 function initialise() {
+  setupScrollTo();
   setupTriggers();
   setupDialogs({
     onShowCallback: onShowDialog,

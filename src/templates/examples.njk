@@ -1,0 +1,219 @@
+{% set page = "examples" %}
+{% extends 'includes/_base.njk' %}
+
+{% block main %}
+<div class="o-wrapper">
+  <h1>Examples</h1>
+  <h2>Common Functionality & Components</h2>
+
+  <section id="triggers">
+    <h3>Triggers</h3>
+
+    <style>
+      .trigger-example {
+        display: none;
+        padding: 1rem;
+      }
+
+      .trigger-example.is-visible {
+        display: block;
+      }
+    </style>
+
+    <button
+      class="js-class-trigger"
+      data-target="#trigger-example"
+      data-class-to-trigger="is-visible"
+    >
+      Show/Hide
+    </button>
+
+    <nav id="trigger-example" class="trigger-example" aria-hidden="true">
+      <a href="#">Link 1</a>
+      <a href="#">Link 1</a>
+      <a href="#">Link 1</a>
+    </nav>
+  </section>
+
+  <br/>
+
+  <hr/>
+
+  <section id="dialogs">
+    <h3>Dialogs</h3>
+
+    <button type="button" class="o-btn" data-a11y-dialog-show="a11y-example-dialog">Show Dialog</button>
+
+    <div id="a11y-example-dialog" class="c-dialog js-dialog" role="dialog" aria-hidden="true">
+      <div class="c-dialog__overlay" tabindex="-1" data-a11y-dialog-hide></div>
+
+      <div class="c-dialog__container" role="dialog" aria-labelledby="dialog-title">
+        <button data-a11y-dialog-hide class="c-dialog__close">Close</button>
+
+        <div class="c-dialog__content">
+          <h4>Example Dialog</h4>
+
+          <p>This is an example dialog component</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br/>
+
+  <hr/>
+
+  <section id="recaptcha">
+    <h3>Recaptcha</h3>
+
+    <form class="js-recaptcha">
+      <h4>Form 1</h4>
+
+      <p>Setup using `.js-recaptcha` css class on form, requires the recaptcha site key to be assigned to `window.recaptchaKey` in head</p>
+
+      <div>
+        <label>Name</label>
+        <input type="text" name="form" value="one">
+      </div>
+
+      <div>
+        <button type="submit" class="o-btn">Submit</button>
+      </div>
+    </form>
+
+    {% set recaptcha_key = '6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a' %}
+
+    <form>
+      <h4>Form 2</h4>
+
+      <p>
+        Setup using `.g-recaptcha` css class on a div element in form.
+        <a href="https://developers.google.com/recaptcha/docs/invisible#programmatic_execute">
+          https://developers.google.com/recaptcha/docs/invisible#programmatic_execute
+        </a>
+      </p>
+
+
+      <div>
+        <label>Name</label>
+        <input type="text" name="form" value="two">
+      </div>
+
+      <div>
+        <button type="submit" class="o-btn">Submit</button>
+      </div>
+
+      <div
+          class="g-recaptcha"
+          data-sitekey="{{ recaptcha_key }}"
+          data-size="invisible"
+      ></div>
+    </form>
+  </section>
+
+  <br />
+  <hr />
+
+  <section id="scroll-to">
+    <h3>Scroll to</h3>
+
+    <p><a href="#thing-to-scroll-to" class="js-scroll-to" data-offset="100" data-align="top" data-ease="out-circ" data-duration="1000">Click me to scroll</a></p>
+
+    <p>Cras mattis consectetur purus sit amet fermentum. Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec id elit non mi porta gravida at eget metus.</p>
+
+    <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+
+    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+
+    <p>Cras mattis consectetur purus sit amet fermentum. Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec id elit non mi porta gravida at eget metus.</p>
+
+    <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+
+    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+
+    <p id="thing-to-scroll-to"><strong>Scroll to me</strong></p>
+  </section>
+
+  <br />
+  <hr />
+
+  <section>
+    <h3>Basic styles</h3>
+    <h4>Page</h4>
+    <p>HTML and body have the color $color--text variable applied to it by default</p>
+
+    <h4>Links</h4>
+    <p>Links are <a href="#">coloured the primary colour</a> and have <a href="#">no text decoration</a> by default.</p>
+
+    <h4>Buttons</h4>
+    <p>Buttons are now in here by default with some appropriate font sizing / spacing etc. By default there is o-btn with a hover/focus style and a disabled style.</p>
+
+    <a href="#" class="o-btn">Check out this thing</a>
+
+    <h4>Forms</h4>
+    <p>Lots of default styling has been added for most input types and for selects, submits, buttons and checkboxes / radios. See snippets.md for the markup for a radio / checkbox. Elements are again 100% width as they'd usually be in a container. They are only defined as [type="text"] not input[type="text"] because they become hard to override with classes with the latter specificity.</p>
+
+    <style>
+      .cant-flex-on-fieldset {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .u-form-input {
+        flex-basis: 49%;
+      }
+
+      .u-wide {
+        width: 100%;
+      }
+    </style>
+
+    <form>
+      <fieldset>
+        <div class="cant-flex-on-fieldset">
+          <div class="u-form-input">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Lando Calrissian" />
+          </div>
+
+          <div class="u-form-input">
+            <label for="profession">Profession</label>
+            <select name="profession" id="profession">
+              <option>Please select...</option>
+              <option>Cloud City Administrator</option>
+              <option>Rebel Alliance General</option>
+              <option>Professional Gambler</option>
+            </select>
+          </div>
+
+          <div class="u-wide">
+            <label for="reason">Reason for joining Rebel Alliance</label>
+            <textarea name="reason" id="reason" placeholder="e.g. A deal was altered and I had to pray it wasn't altered further."></textarea>
+          </div>
+
+          <div>
+            <label for="check">
+              <input type="checkbox" id="check">
+              <span>Check here to consent to becoming a known enemy of the Galactic Empire.</span>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <input type="submit" class="o-btn" value="Submit" />
+    </form>
+
+    <h4>Images</h4>
+    <p>Block and 100% width by default as usually they'll be in a container or have their own class with a max-width.</p>
+    <img src="/assets/images/logo.svg" />
+  </section>
+
+  <br/>
+</div>
+{% endblock %}

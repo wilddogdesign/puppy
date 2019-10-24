@@ -13,6 +13,7 @@ $inuit-global-font-size: 16px;
 @import 'node_modules/sass-mq/mq';
 @import 'tools/tools.hiding';
 @import 'tools/tools.line';
+@import 'tools/tools.proportionate-height';
 @import 'tools/tools.rem';
 
 // GENERIC
@@ -26,17 +27,21 @@ $inuit-global-font-size: 16px;
 // ELEMENTS
 @import 'node_modules/inuitcss/elements/elements.headings';
 @import 'elements/elements.headings';
+@import 'elements/elements.forms';
+@import 'elements/elements.images';
+@import 'elements/elements.links';
 @import 'elements/elements.page';
 
 // OBJECTS
 // Add your custom objects here
-@import 'objects/objects.layout';
+@import 'objects/objects.buttons';
 @import 'objects/objects.wrapper';
 
 // COMPONENTS
 // Add your custom components here
 @import 'components/components.footer';
 @import 'components/components.header';
+@import 'components/components.dialog';
 
 // UTILITIES
 @import 'node_modules/inuitcss/utilities/utilities.headings';

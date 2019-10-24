@@ -1,0 +1,143 @@
+{% set page = "index" %}
+{% extends 'includes/_base.njk' %}
+
+{% block main %}
+<div class="o-wrapper">
+  <h1>Examples</h1>
+  <h2>Common Functionality & Components</h2>
+
+  <section id="triggers">
+    <h3>Triggers</h3>
+
+    <style>
+      .trigger-example {
+        display: none;
+        padding: 1rem;
+      }
+
+      .trigger-example.is-visible {
+        display: block;
+      }
+    </style>
+
+    <button
+      class="js-class-trigger"
+      data-target="#trigger-example"
+      data-class-to-trigger="is-visible"
+    >
+      Show/Hide
+    </button>
+
+    <nav id="trigger-example" class="trigger-example" aria-hidden="true">
+      <a href="#">Link 1</a>
+      <a href="#">Link 1</a>
+      <a href="#">Link 1</a>
+    </nav>
+  </section>
+
+  <br/>
+
+  <hr/>
+
+  <section id="dialogs">
+    <h3>Dialogs</h3>
+
+    <button type="button" class="o-btn" data-a11y-dialog-show="a11y-example-dialog">Show Dialog</button>
+
+    <div id="a11y-example-dialog" class="c-dialog js-dialog" role="dialog" aria-hidden="true">
+      <div class="c-dialog__overlay" tabindex="-1" data-a11y-dialog-hide></div>
+
+      <div class="c-dialog__container" role="dialog" aria-labelledby="dialog-title">
+        <button data-a11y-dialog-hide class="c-dialog__close">Close</button>
+
+        <div class="c-dialog__content">
+          <h4>Example Dialog</h4>
+
+          <p>This is an example dialog component</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br/>
+
+  <hr/>
+
+  <section id="recaptcha">
+    <h3>Recaptcha</h3>
+
+    <form class="js-recaptcha">
+      <h4>Form 1</h4>
+
+      <p>Setup using `.js-recaptcha` css class on form, requires the recaptcha site key to be assigned to `window.recaptchaKey` in head</p>
+
+      <div>
+        <label>Name</label>
+        <input name="form" value="one">
+      </div>
+
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    {% set recaptcha_key = '6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a' %}
+
+    <form>
+      <h4>Form 2</h4>
+
+      <p>
+        Setup using `.g-recaptcha` css class on a div element in form.
+        <a href="https://developers.google.com/recaptcha/docs/invisible#programmatic_execute">
+          https://developers.google.com/recaptcha/docs/invisible#programmatic_execute
+        </a>
+      </p>
+
+
+      <div>
+        <label>Name</label>
+        <input name="form" value="two">
+      </div>
+
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+
+      <div
+          class="g-recaptcha"
+          data-sitekey="{{ recaptcha_key }}"
+          data-size="invisible"
+      ></div>
+    </form>
+  </section>
+
+  <br />
+  <hr />
+
+  <section id="scroll-to">
+    <h3>Scroll to</h3>
+
+    <p><a href="#thing-to-scroll-to" class="js-scroll-to" data-offset="100" data-align="top" data-ease="out-circ" data-duration="1000">Click me to scroll</a></p>
+
+    <p>Cras mattis consectetur purus sit amet fermentum. Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec id elit non mi porta gravida at eget metus.</p>
+
+    <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+
+    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+
+    <p>Cras mattis consectetur purus sit amet fermentum. Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec id elit non mi porta gravida at eget metus.</p>
+
+    <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+
+    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+
+    <p id="thing-to-scroll-to"><strong>Scroll to me</strong></p>
+  </section>
+
+  <br/>
+</div>
+{% endblock %}

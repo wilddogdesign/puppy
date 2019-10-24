@@ -10,9 +10,6 @@
 {% include 'includes/_head.njk' %}
 
 <body class="{% block bodyClass %}{{ page }}{% endblock %}">
-  {# static is the path to the assets, one below the templates #}
-  {% set static = '..' %}
-
   {% include 'includes/_header.njk' %}
 
   <div id="main" role="main">

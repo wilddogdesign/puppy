@@ -1,0 +1,38 @@
+// sass-lint:disable no-important
+@each $state in mobile, mobile-big, tablet, desktop, wide, really-wide, huge {
+  @include mq($from: #{$state}) {
+    .u-hidden-from\@#{$state} {
+      display: none !important;
+    }
+
+    .u-a11y-from\@#{$state} {
+      @include inuit-hidden-visually;
+    }
+  }
+
+  @include mq($until: #{$state}) {
+    .u-hidden-until\@#{$state} {
+      display: none !important;
+    }
+
+    .u-a11y-until\@#{$state} {
+      @include inuit-hidden-visually;
+    }
+  }
+}
+
+.u-hidden\@no-js {
+  .no-js & {
+    display: none;
+  }
+}
+
+.u-hidden\@js {
+  .js & {
+    display: none;
+  }
+}
+
+.u-accessibility {
+  @include inuit-hidden-visually;
+}

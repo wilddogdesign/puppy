@@ -48,7 +48,7 @@
  * `:hover`.
  */
 .u-informative {
-    cursor: help !important;
+  cursor: help !important;
 }
 
 /**
@@ -58,7 +58,7 @@
  * - `.u-muted` - mute an object.
  */
 .u-muted {
-    opacity: .5 !important;
+  opacity: .5 !important;
 }
 
 /**
@@ -68,7 +68,7 @@
  * - `.u-caps` - apply caps
  */
 .u-caps {
-    text-transform: uppercase !important;
+  text-transform: uppercase !important;
 }
 
 /**
@@ -78,7 +78,7 @@
  * - `.u-small` - make text size smaller
  */
 .u-small {
-    font-size: .9em !important;
+  font-size: .9em !important;
 }
 
 /**
@@ -91,23 +91,23 @@
  * - `.u-color--black` - black colour
  */
 .u-color--primary {
-    color: $color--primary !important;
+  color: $color--primary !important;
 
-    &:hover {
-        color: $color--primary !important;
-    }
+  &:hover {
+    color: $color--primary !important;
+  }
 }
 
 .u-color--text {
-    color: $color--text !important;
+  color: $color--text !important;
 }
 
 .u-color--white {
-    color: $color--white !important;
+  color: $color--white !important;
 }
 
 .u-color--black {
-    color: $color--black !important;
+  color: $color--black !important;
 }
 
 /**
@@ -123,19 +123,19 @@
  * - `.u-bg--grey-light` - light grey colour
  */
 .u-bg--primary {
-    background-color: $color--primary !important;
+  background-color: $color--primary !important;
 }
 
 .u-bg--text {
-    background-color: $color--text !important;
+  background-color: $color--text !important;
 }
 
 .u-bg--white {
-    background-color: $color--white !important;
+  background-color: $color--white !important;
 }
 
 .u-bg--black {
-    background-color: $color--black !important;
+  background-color: $color--black !important;
 }
 
 /**
@@ -145,7 +145,7 @@
  * - `.circled` - circle in.
  */
 .u-circled {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 
@@ -156,9 +156,9 @@
  * - `.text--hidden` - hide text
  */
 .u-text--hidden {
-    text-indent: -9999px;
-    white-space: nowrap;
-    overflow: hidden;
+  text-indent: -9999px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /**

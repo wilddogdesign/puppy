@@ -1,5 +1,5 @@
 // sass-lint:disable no-important
-@each $state in mobile, mobile-big, tablet, desktop, wide, really-wide, huge {
+@each $state in mobile, landscape, tablet, tablet-wide, desktop, wide, really-wide, huge {
   @include mq($from: #{$state}) {
     .u-hidden-from\@#{$state} {
       display: none !important;
@@ -33,6 +33,6 @@
   }
 }
 
-.u-accessibility {
+.u-a11y {
   @include inuit-hidden-visually;
 }

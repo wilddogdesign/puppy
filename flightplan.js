@@ -7,9 +7,6 @@ let user = 'Someone';
 const remoteRoot = '/var/www/';
 const remoteHost = 'wilddogdevelopment.com';
 
-const slackNotifyHook =
-  'https://hooks.slack.com/services/XXXXXXX/YYYYYYYYY/ZZZZZZZZZZZZZZZZZZZZZZZZZ';
-
 const args = {
   critical: !(process.argv.indexOf('--no-critical-css') > -1),
   minify: !(process.argv.indexOf('--no-minification') > -1),
@@ -62,14 +59,6 @@ plan.remote('deploy', remote => {
         .maxDeploys + 1}\``
     );
   }
-
-  remote.exec(
-    `curl -X POST --data-urlencode 'payload={"channel": "#deployments", "username": "deploybot", "text": "${
-      user.stdout
-    } has just deployed *${project}* project to <http://${project}.${
-      remote.runtime.host
-    }|its preview server>", "icon_emoji": ":shipit:"}' ${slackNotifyHook}`
-  );
 });
 
 plan.remote('rollback', remote => {

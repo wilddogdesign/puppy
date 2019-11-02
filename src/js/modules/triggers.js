@@ -1,95 +1,146 @@
 /**
- * Setup triggers
+ * Setup A single Trigger
  *
  * @export
- * @param {*} [options={}] The setup options
+ * @param {HTMLElement} trigger
+ * @param {*} options
  */
-export function setupTriggers(options = {}) {
-  const { triggerTarget = '.js-class-trigger' } = options;
+export function setupTrigger(trigger, options) {
+  // TODO - Test the object deconstruction below in IE11 before removing
+  // const target = trigger.dataset.target;
+  // const classToTrigger = trigger.dataset.classToTrigger;
+  // const setFocus = trigger.dataset.setFocus;
+  // const focusDelay = parseInt(trigger.dataset.focusDelay, 10);
+  // const removeOthers = trigger.dataset.removeOtherInstances;
+  // const setActive = trigger.dataset.setActive;
 
-  const triggers = document.querySelectorAll(triggerTarget);
+  const {
+    target,
+    classToTrigger,
+    setFocus,
+    focusDelay,
+    removeOthers,
+    setActive,
+    media,
+    maxMedia,
+  } = { ...options, ...trigger.dataset };
 
-  Array.from(triggers).forEach(trigger => {
-    // TODO - Test the object deconstruction below in IE11 before removing
-    // const target = trigger.dataset.target;
-    // const classToTrigger = trigger.dataset.classToTrigger;
-    // const setFocus = trigger.dataset.setFocus;
-    // const focusDelay = parseInt(trigger.dataset.focusDelay, 10);
-    // const removeOthers = trigger.dataset.removeOtherInstances;
-    // const setActive = trigger.dataset.setActive;
+  let matchMedia = '';
 
-    const {
-      target = null,
-      classToTrigger = '',
-      setFocus = false,
-      focusDelay = 0,
-      removeOthers = false,
-      setActive = false,
-      media = false,
-    } = trigger.dataset;
+  if (media) {
+    matchMedia += `(min-width: ${media})`;
+  }
 
-    const mediaQuery = media ? window.matchMedia(`(min-width: ${media})`) : false;
+  if (maxMedia) {
+    if (matchMedia.length) {
+      matchMedia += ' and ';
+    }
 
-    function clickEventHandler(ev) {
-      if (mediaQuery.matches || mediaQuery === false) {
-        ev.preventDefault();
+    matchMedia += `(max-width: ${maxMedia})`;
+  }
 
-        const targetElement = document.querySelector(target);
+  const mediaQuery = matchMedia.length ? window.matchMedia(matchMedia) : false;
 
-        if (targetElement) {
-          const targetClasses = targetElement.classList;
+  function clickEventHandler(ev) {
+    if (mediaQuery.matches || mediaQuery === false) {
+      ev.preventDefault();
 
-          if (targetClasses.contains(classToTrigger)) {
-            targetClasses.remove(classToTrigger);
+      const targetElement = document.querySelector(target);
 
-            if (setActive) {
-              trigger.classList.remove(setActive);
-            }
+      if (targetElement) {
+        const targetClasses = targetElement.classList;
 
-            if (setFocus) {
-              const focusElement = document.querySelector(setFocus);
+        if (targetClasses.contains(classToTrigger)) {
+          targetClasses.remove(classToTrigger);
 
-              focusElement.blur();
-            }
-          } else {
-            if (removeOthers) {
-              const allOtherInstances = document.querySelectorAll(`.${classToTrigger}`);
+          if (setActive) {
+            trigger.classList.remove(setActive);
+          }
 
-              Array.from(allOtherInstances).forEach(other => {
-                other.classList.remove(classToTrigger);
-              });
-            }
+          if (setFocus) {
+            const focusElement = document.querySelector(setFocus);
 
-            if (setActive) {
-              const allOtherTriggers = document.querySelectorAll(
-                `[data-set-active='${setActive}']`
-              );
+            focusElement.blur();
+          }
+        } else {
+          if (removeOthers) {
+            const allOtherInstances = document.querySelectorAll(`.${classToTrigger}`);
 
-              Array.from(allOtherTriggers).forEach(otherTrigger => {
-                otherTrigger.classList.remove(setActive);
-              });
+            Array.from(allOtherInstances).forEach(other => {
+              other.classList.remove(classToTrigger);
+            });
+          }
 
-              trigger.classList.add(setActive);
-            }
+          if (setActive) {
+            const allOtherTriggers = document.querySelectorAll(`[data-set-active='${setActive}']`);
 
-            targetClasses.add(classToTrigger);
+            Array.from(allOtherTriggers).forEach(otherTrigger => {
+              otherTrigger.classList.remove(setActive);
+            });
 
-            if (setFocus) {
-              const focusElement = document.querySelector(setFocus);
+            trigger.classList.add(setActive);
+          }
 
-              if (focusDelay) {
-                setTimeout(() => focusElement.focus(), parseInt(focusDelay, 10));
-              } else {
-                focusElement.focus();
-              }
+          targetClasses.add(classToTrigger);
+
+          if (setFocus) {
+            const focusElement = document.querySelector(setFocus);
+
+            if (focusDelay) {
+              setTimeout(() => focusElement.focus(), parseInt(focusDelay, 10));
+            } else {
+              focusElement.focus();
             }
           }
         }
       }
     }
+  }
 
-    trigger.addEventListener('click', clickEventHandler);
-  });
+  trigger.addEventListener('click', clickEventHandler);
 }
 
-export default { setup: setupTriggers };
+/**
+ * Setup Triggers
+ *
+ * @export
+ * @param {*} [{
+ *   triggerTarget = '.js-class-trigger',
+ *   target = '',
+ *   classToTrigger = '',
+ *   setFocus = false,
+ *   focusDelay = 0,
+ *   removeOthers = false,
+ *   setActive = false,
+ *   media = false,
+ *   maxMedia = false,
+ * }={}]
+ */
+export function setupTriggers({
+  triggerTarget = '.js-class-trigger',
+  target = '.js-class-trigger-target',
+  classToTrigger = 'is-visible',
+  setFocus = false,
+  focusDelay = 0,
+  removeOthers = false,
+  setActive = false,
+  media = false,
+  maxMedia = false,
+} = {}) {
+  const options = {
+    target,
+    classToTrigger,
+    setFocus,
+    focusDelay,
+    removeOthers,
+    setActive,
+    media,
+    maxMedia,
+  };
+
+  const triggers = document.querySelectorAll(triggerTarget);
+
+  Array.from(triggers).forEach(trigger => setupTrigger(trigger, options));
+}
+
+export default { setup: setupTriggers, setupTrigger };

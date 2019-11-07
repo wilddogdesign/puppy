@@ -1,3 +1,9 @@
+// https://github.com/jonathantneal/closest - For IE11 support
+// Can be be removed if you don't want to support IE11
+import elementClosest from 'element-closest';
+
+elementClosest(window);
+
 const recaptchaKey = typeof window.recaptchaKey !== 'undefined' ? window.recaptchaKey : '';
 
 /**

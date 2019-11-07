@@ -41,7 +41,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
-    "imagemin-webpack-plugin": "^2.3.0",
+    "imagemin-webpack-plugin": "^2.4.2",
     "img-loader": "^3.0.1",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.9.4",
@@ -63,7 +63,7 @@
     "webapp-webpack-plugin": "^2.4.0",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
+    "webpack-dev-server": "^3.9.0",
     "webpack-fix-style-only-entries": "0.0.4",
     "webpack-merge": "^4.1.4"
   },
@@ -71,6 +71,7 @@
     "a11y-dialog": "^5.2.0",
     "babel-polyfill": "^6.26.0",
     "domready": "^1.0.8",
+    "element-closest": "^3.0.2",
     "inuitcss": "^6.0.0",
     "scroll-to-element": "^2.0.3"
   }

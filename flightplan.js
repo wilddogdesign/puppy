@@ -19,7 +19,7 @@ plan.target('development', {
   username: 'deployer',
   agent: process.env.SSH_AUTH_SOCK,
   maxDeploys: 5,
-  port: 22,
+  port: 2022,
 });
 
 const versionDir = `${new Date().getTime()}`;

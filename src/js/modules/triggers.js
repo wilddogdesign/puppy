@@ -6,14 +6,6 @@
  * @param {*} options
  */
 export function setupTrigger(trigger, options) {
-  // TODO - Test the object deconstruction below in IE11 before removing
-  // const target = trigger.dataset.target;
-  // const classToTrigger = trigger.dataset.classToTrigger;
-  // const setFocus = trigger.dataset.setFocus;
-  // const focusDelay = parseInt(trigger.dataset.focusDelay, 10);
-  // const removeOthers = trigger.dataset.removeOtherInstances;
-  // const setActive = trigger.dataset.setActive;
-
   const {
     target,
     classToTrigger,

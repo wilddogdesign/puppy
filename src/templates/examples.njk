@@ -377,6 +377,54 @@ pre[class*=language-] {
       ></div>
     </form>
     </script>
+
+    <h5>Using <code class="language-markup">g-recaptcha</code> css class on a div element in the form with custom callback method.</h5>
+
+    <form id="customForm">
+      <label>Name</label>
+
+      <input type="text" name="form" value="three">
+
+      <button type="submit" class="o-btn">Submit</button>
+
+      <div
+          class="g-recaptcha"
+          data-sitekey="6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a"
+          data-size="invisible"
+          data-callback="customCallback"
+      ></div>
+
+      <script>
+        window.customCallback = function() {
+          // custom code here
+          document.getElementById('customForm').submit();
+        }
+      </script>
+    </form>
+
+    <pre class="language-markup"><code><!--
+    <form id="customForm">
+      <label>Name</label>
+
+      <input type="text" name="form" value="three">
+
+      <button type="submit" class="o-btn">Submit</button>
+
+      <div
+          class="g-recaptcha"
+          data-sitekey="6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a"
+          data-size="invisible"
+          data-callback="customCallback"
+      ></div>
+
+      <script>
+        window.customCallback = function() {
+          // custom code here
+          document.getElementById('customForm').submit();
+        }
+      </script>
+    </form>
+    --></code></pre>
   </section>
 
   <section id="scroll-to">

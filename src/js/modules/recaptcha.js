@@ -58,9 +58,11 @@ export function getForms(target = '.js-recaptcha', lookForGRecaptcha = true) {
  * @export
  * @param {*} [options={}] The setup options
  */
-export function setupRecaptcha(options = {}) {
-  const { target = '.js-recaptcha', validate = true } = options;
-
+export function setupRecaptcha({
+  target = '.js-recaptcha',
+  validate = true,
+  lookForGRecaptcha = true,
+} = {}) {
   window.activeRecaptchaForm = null;
 
   window.recaptchaSubmit = () => {
@@ -69,13 +71,15 @@ export function setupRecaptcha(options = {}) {
     }
   };
 
-  const forms = getForms(target);
+  const forms = getForms(target, lookForGRecaptcha);
 
   Array.from(forms).forEach((form, index) => {
     const recaptcha = form.querySelector('.g-recaptcha');
 
     if (recaptcha) {
-      recaptcha.setAttribute('data-callback', 'recaptchaSubmit');
+      if (typeof recaptcha.dataset.callback === 'undefined') {
+        recaptcha.setAttribute('data-callback', 'recaptchaSubmit');
+      }
     } else {
       form.appendChild(createRecaptchaElement());
     }

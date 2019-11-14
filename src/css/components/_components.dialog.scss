@@ -16,17 +16,17 @@
   .c-dialog__container {
     position: fixed;
     top: 50%;
-    transform: translateY(-50%);
-    max-height: 90vh;
-    max-width: rem(900px);
-    margin: 0 auto;
-    overflow-y: auto;
-    left: 0;
     right: 0;
+    left: 0;
     width: 90%;
+    max-width: rem(900px);
+    max-height: 90vh;
+    margin: 0 auto;
+    padding: rem(50px) rem(32px);
+    overflow-y: auto;
+    transform: translateY(-50%);
     background-color: $color--white;
     box-shadow: 0 3px 6px $color--black--thin;
-    padding: rem(50px) rem(32px);
 
     @include mq($from: tablet) {
       padding: rem(60px);
@@ -34,23 +34,23 @@
   }
 
     .c-dialog__close {
+      display: block;
       position: absolute;
       top: rem(32px);
       right: rem(32px);
       width: rem(32px);
       height: rem(32px);
-      appearance: none;
-      text-indent: rem(-9999px);
-      background-color: transparent;
-      border-radius: 0;
+      margin-right: 0;
+      margin-left: auto;
       border: 0;
+      border-radius: 0;
+      background-color: transparent;
       background-image: url('../images/cross.svg');
       background-repeat: no-repeat;
       background-size: rem(32px) rem(32px);
-      display: block;
-      margin-right: 0;
-      margin-left: auto;
+      text-indent: rem(-9999px);
       cursor: pointer;
+      appearance: none;
 
       &:focus {
         outline: none;

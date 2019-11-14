@@ -1,14 +1,14 @@
 @mixin proportionate-height($height: 100%) {
   &::before {
+    content: '';
     display: block;
     padding-top: $height;
     float: left;
-    content: '';
   }
 
   &::after {
+      content: '';
       display: table;
       clear: both;
-      content: '';
   }
 }

@@ -61,8 +61,8 @@ textarea {
   &[disabled],
   &.is-disabled {
     border-color: $color--disabled;
-    cursor: not-allowed;
     opacity: .6;
+    cursor: not-allowed;
 
   }
 }
@@ -123,8 +123,8 @@ label {
 
 [type='checkbox'][disabled] + span,
 [type='radio'][disabled] + span {
-  cursor: not-allowed;
   opacity: .5;
+  cursor: not-allowed;
 }
 
 [type='checkbox'] + span,
@@ -145,6 +145,7 @@ label {
 
 [type='checkbox'] + span::before,
 [type='radio'] + span::before {
+  content: '';
   display: inline-block;
   position: absolute;
   top: .1em;
@@ -158,7 +159,6 @@ label {
   background-position: center;
   background-size: 0% auto;
   line-height: rem(32px);
-  content: '';
   will-change: background-size;
 }
 

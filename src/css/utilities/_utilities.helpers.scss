@@ -156,9 +156,9 @@
  * - `.text--hidden` - hide text
  */
 .u-text--hidden {
+  overflow: hidden;
   text-indent: -9999px;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 /**

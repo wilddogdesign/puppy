@@ -91,6 +91,20 @@ In vs code add to your settings
 
 Other editors may vary
 
+## SMACSS Sorting
+
+Install this sucker: [PostCSS Sorting](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-postcss-sorting)
+
+You'll notice sass-lint.yml now has a custom order in it, that's the most up to date smacss definition. Using `order: 'smacss'` was outdated it seems.
+
+You'll see a .postcss-sorting.json config file which tells the plugin what order to sort properties in.
+
+Anyway once you're Sass is wrote open the command palette and run `PostCSS Sorting: Run`.
+
+It will do all the magic for you.
+
+If you want to port to another project copy sass-lint.yml (or the order part) and the .postcss-sorting.json.
+
 ### TODO
 
 - Styleguide

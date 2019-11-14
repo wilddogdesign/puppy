@@ -15,13 +15,13 @@
     flex-shrink: 0;
     width: rem(80px);
     height: rem(56px);
+    overflow: hidden;
     // an example of inlining an svg, make sure it has no stroke or fill colour set otherwise override wont work
     background-image: svg-load('../images/logo.svg', stroke=$color--primary);
     background-repeat: no-repeat;
     background-size: rem(80px) rem(56px);
     text-indent: 100%;
     white-space: nowrap;
-    overflow: hidden;
   }
 
   .c-header__nav {
@@ -35,11 +35,11 @@
       align-items: center;
       width: 100%;
       max-width: rem(320px);
+      overflow-y: scroll;
       transform: translateX(100vw);
       // Might be worth delaying this with a timeout or something
       transition: transform $global-transition ease-in-out;
       background-color: $color--primary;
-      overflow-y: scroll;
 
 
       .is-visible--mobile-menu & {
@@ -74,6 +74,7 @@
         }
 
         &::after {
+          content: '';
           position: absolute;
           bottom: rem(2px);
           left: 0;
@@ -81,7 +82,6 @@
           height: rem(2px);
           transition: width $global-transition ease-in-out;
           background-color: $color--primary;
-          content: '';
         }
 
         &:hover,
@@ -119,10 +119,10 @@
       &::before,
       &::after {
         @include line(14px, $color--primary);
+        content: '';
         position: absolute;
         right: 0;
         left: 0;
-        content: '';
       }
 
       &::before {

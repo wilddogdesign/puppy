@@ -5,6 +5,11 @@ import { setupTriggers } from './modules/triggers';
 import { setupDialogs } from './modules/dialogs';
 import { setupRecaptcha } from './modules/recaptcha';
 
+function isJsAvailable() {
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+}
+
 function onShowDialog(dialog) {
   console.log('dialog shown', dialog);
 }
@@ -14,6 +19,7 @@ function onHideDialog(dialog) {
 }
 
 function initialise() {
+  isJsAvailable();
   setupScrollTo();
   setupTriggers();
   setupDialogs({

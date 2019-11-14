@@ -21,6 +21,13 @@ function initialise() {
     onHideCallback: onHideDialog,
   });
   setupRecaptcha();
+
+  document.addEventListener('setup-recaptcha', ev => {
+    setupRecaptcha({
+      target: ev.detail,
+      lookForGRecaptcha: false,
+    });
+  });
 }
 
 const finalScripts = {

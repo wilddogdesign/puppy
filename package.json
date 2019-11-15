@@ -55,7 +55,7 @@
     "replace-in-file-webpack-plugin": "^1.0.6",
     "sass-lint": "^1.12.1",
     "sass-lint-webpack": "^1.0.0",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "7.2.0",
     "script-ext-html-webpack-plugin": "^2.0.3",
     "style-loader": "^0.23.1",
     "svg-spritemap-webpack-plugin": "^2.7.1",

@@ -3,7 +3,6 @@ html,
 body {
   min-width: rem(320px);
   margin: 0;
-  overflow-x: hidden;
   color: $color--text;
   font-family: $font--main;
 }
@@ -11,4 +10,6 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }

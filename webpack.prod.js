@@ -99,6 +99,16 @@ module.exports = merge(common, {
           },
         ],
       },
+      {
+        dir: 'dist/',
+        test: /service-worker\.js$/,
+        rules: [
+          {
+            search: /#VERSION_NO#/,
+            replace: new Date().toISOString(),
+          },
+        ],
+      },
     ]),
     new ImageminPlugin({
       test: 'assets/images/**',

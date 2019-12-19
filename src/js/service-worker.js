@@ -1,3 +1,4 @@
+const version = '#VERSION_NO#';
 /* eslint-disable no-undef */
 /* eslint-disable prefer-arrow-callback */
 
@@ -5,7 +6,7 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox
 
 if (workbox) {
   // Skip waiting for service worker update
-  self.addEventListener('message', (event) => {
+  self.addEventListener('message', event => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
       console.log('skip waiting');
       skipWaiting();
@@ -20,7 +21,7 @@ if (workbox) {
     /\.js$/,
     new workbox.strategies.StaleWhileRevalidate({
       cacheName: 'js-cache',
-    }),
+    })
   );
 
   // CSS
@@ -28,7 +29,7 @@ if (workbox) {
     /\.css$/,
     new workbox.strategies.StaleWhileRevalidate({
       cacheName: 'css-cache',
-    }),
+    })
   );
 
   // Fonts
@@ -36,7 +37,7 @@ if (workbox) {
     /\.(?:ttf|woff|woff2)$/,
     new workbox.strategies.StaleWhileRevalidate({
       cacheName: 'font-cache',
-    }),
+    })
   );
 
   // Images
@@ -50,7 +51,7 @@ if (workbox) {
           maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
         }),
       ],
-    }),
+    })
   );
 
   // Google Analytics
@@ -61,7 +62,7 @@ if (workbox) {
     /^https:\/\/fonts\.googleapis\.com/,
     new workbox.strategies.StaleWhileRevalidate({
       cacheName: 'google-fonts-stylesheets-cache',
-    }),
+    })
   );
 
   // Cache the underlying font files with a cache-first strategy for 1 year.
@@ -78,6 +79,6 @@ if (workbox) {
           maxEntries: 30,
         }),
       ],
-    }),
+    })
   );
 }

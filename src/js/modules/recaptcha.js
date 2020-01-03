@@ -7,24 +7,6 @@ elementClosest(window);
 const recaptchaKey = typeof window.recaptchaKey !== 'undefined' ? window.recaptchaKey : '';
 
 /**
- * Create a Recaptcha div element.
- *
- * @export
- * @returns
- */
-export function createRecaptchaElement() {
-  const recaptcha = document.createElement('div');
-
-  recaptcha.classList.add('g-recaptcha');
-
-  recaptcha.setAttribute('data-sitekey', recaptchaKey);
-  recaptcha.setAttribute('data-size', 'invisible');
-  recaptcha.setAttribute('data-callback', 'recaptchaSubmit');
-
-  return recaptcha;
-}
-
-/**
  * Get the forms for recaptcha.
  *
  * @export
@@ -32,24 +14,35 @@ export function createRecaptchaElement() {
  * @param {boolean} [lookForGRecaptcha=true]
  * @returns
  */
-export function getForms(target = '.js-recaptcha', lookForGRecaptcha = true) {
-  const forms = Array.from(document.querySelectorAll(target));
+// export function getForms(target = '.js-recaptcha', lookForGRecaptcha = true) {
+//   const forms = Array.from(document.querySelectorAll(target));
 
-  // Also look for forms with recaptcha div el
-  // https://developers.google.com/recaptcha/docs/invisible#programmatic_execute
-  if (lookForGRecaptcha) {
-    const recaptchas = document.querySelectorAll('div.g-recaptcha');
+//   // Also look for forms with recaptcha div el
+//   // https://developers.google.com/recaptcha/docs/invisible#programmatic_execute
+//   if (lookForGRecaptcha) {
+//     const recaptchas = document.querySelectorAll('div.g-recaptcha');
 
-    Array.from(recaptchas).forEach(recaptcha => {
-      const form = recaptcha.closest('form');
+//     Array.from(recaptchas).forEach(recaptcha => {
+//       const form = recaptcha.closest('form');
 
-      if (!form.classList.contains(target.substr(1, target.length))) {
-        forms.push(form);
-      }
-    });
+//       if (!form.classList.contains(target.substr(1, target.length))) {
+//         forms.push(form);
+//       }
+//     });
+//   }
+
+//   return forms;
+// }
+
+/**
+ *Submit the active recaptcha form.
+ *
+ * @export
+ */
+export function recaptchaSubmit() {
+  if (window.activeRecaptchaForm) {
+    window.activeRecaptchaForm.submit();
   }
-
-  return forms;
 }
 
 /**
@@ -58,31 +51,21 @@ export function getForms(target = '.js-recaptcha', lookForGRecaptcha = true) {
  * @export
  * @param {*} [options={}] The setup options
  */
-export function setupRecaptcha({
-  target = '.js-recaptcha',
-  validate = true,
-  lookForGRecaptcha = true,
-} = {}) {
+export function setupRecaptcha({ target = '.js-recaptcha', validate = true } = {}) {
   window.activeRecaptchaForm = null;
 
-  window.recaptchaSubmit = () => {
-    if (window.activeRecaptchaForm) {
-      window.activeRecaptchaForm.submit();
-    }
-  };
+  const forms = Array.from(document.querySelectorAll(target));
 
-  const forms = getForms(target, lookForGRecaptcha);
+  Array.from(forms).forEach(form => {
+    const recaptcha = document.createElement('div');
+    form.appendChild(recaptcha);
 
-  Array.from(forms).forEach((form, index) => {
-    const recaptcha = form.querySelector('.g-recaptcha');
-
-    if (recaptcha) {
-      if (typeof recaptcha.dataset.callback === 'undefined') {
-        recaptcha.setAttribute('data-callback', 'recaptchaSubmit');
-      }
-    } else {
-      form.appendChild(createRecaptchaElement());
-    }
+    // The recaptcha render method returns an id that we can target further down.
+    const widgetID = window.grecaptcha.render(recaptcha, {
+      sitekey: recaptchaKey,
+      size: 'invisible',
+      callback: recaptchaSubmit,
+    });
 
     form.addEventListener('submit', ev => {
       ev.preventDefault();
@@ -91,8 +74,8 @@ export function setupRecaptcha({
       // https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/checkValidity
       if ((validate && form.checkValidity()) || !validate) {
         // Using the index we can have multiple forms with there own recaptcha.
-        window.grecaptcha.reset(index);
-        window.grecaptcha.execute(index);
+        window.grecaptcha.reset(widgetID);
+        window.grecaptcha.execute(widgetID);
 
         window.activeRecaptchaForm = form;
       }
@@ -100,4 +83,4 @@ export function setupRecaptcha({
   });
 }
 
-export default { createRecaptchaElement, getForms, setup: setupRecaptcha };
+export default { recaptchaSubmit, setup: setupRecaptcha };

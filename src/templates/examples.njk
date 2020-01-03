@@ -28,10 +28,10 @@ pre[class*=language-] {
 
     <h4>Page</h4>
 
-    <p>HTML and body have the color <code class="language-sass">$color--text</code> variable applied to it by default</p>
+    <p>HTML and body text use the <code class="language-sass">$color--text</code> variable by default.</p>
 
     <h4>Links</h4>
-    <p>Links are <a href="#">coloured the primary colour</a> and have <a href="#">no text decoration</a> by default.</p>
+    <p>Links use <a href="#">the primary colour</a> and have <a href="#">no text decoration</a> by default.</p>
 
     <h4>Buttons</h4>
     <p>
@@ -41,19 +41,19 @@ pre[class*=language-] {
     <a href="#" class="o-btn">Check out this thing</a>
 
     <script type="text/plain" class="language-markup">
-    <a href="#" class="o-btn">Check out this thing</a>
+      <a href="#" class="o-btn">Check out this thing</a>
     </script>
 
     <button class="o-btn" disabled>Disabled Button</button>
 
     <script type="text/plain" class="language-markup">
-    <button class="o-btn" disabled>Disabled Button</button>
+      <button class="o-btn" disabled>Disabled Button</button>
     </script>
 
     <h4>Forms</h4>
 
     <p>
-      Lots of default styling has been added for most input types and for selects, submits, buttons and checkboxes / radios. See snippets.md for the markup for a radio / checkbox. Elements are again 100% width as they'd usually be in a container. They are only defined as [type="text"] not input[type="text"] because they become hard to override with classes with the latter specificity.
+      Lots of default styling has been added for most input types and for selects, submits, buttons and checkboxes / radios. See snippets.md for the markup for a radio / checkbox. Elements are again 100% width as they'd usually be in a container. They are only defined as <code>[type="text"]</code> not <code>input[type="text"]</code> because they become hard to override with classes with the latter specificity.
     </p>
 
     <style>
@@ -226,13 +226,13 @@ pre[class*=language-] {
     <pre class="language-js">
       <code>
         ...
-        
+
         import { setupTriggers } from './modules/triggers';
-        
+
 
         function initialise() {
-          ... 
-          
+          ...
+
           setupTriggers();
         }
       </code>
@@ -305,13 +305,13 @@ pre[class*=language-] {
     <pre>
       <code class="language-js">
         ...
-        
+
         import { setupRecaptcha } from './modules/recaptcha';
-        
+
 
         function initialise() {
-          ... 
-          
+          ...
+
           setupRecaptcha();
         }
       </code>
@@ -329,7 +329,7 @@ pre[class*=language-] {
 
       <button type="submit" class="o-btn">Submit</button>
     </form>
-    
+
     <script type="text/plain" class="language-markup">
     <form class="js-recaptcha">
       <label>Name</label>

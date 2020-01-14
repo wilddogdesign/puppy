@@ -22,8 +22,10 @@
 
     <script>
       window.recaptchaKey = '{{ recaptcha_key }}'
+      window.recaptchaForms = [];
     </script>
 
+    {# If you find that this script is loading before your main js file, then move it below that script #}
     <script src='https://www.google.com/recaptcha/api.js?onload=recaptchaReadyCallback' async defer></script>
   {% endif %}
 </head>

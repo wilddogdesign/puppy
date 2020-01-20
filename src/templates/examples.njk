@@ -269,7 +269,7 @@ pre[class*=language-] {
     <h5>Setup</h5>
 
     <p>
-      Go to <a target="_blank" href="https://www.google.com/recaptcha/admin">google.com/recaptcha/admin</a> and create a new recaptcha key.
+      Go to <a target="_blank" href="https://www.google.com/recaptcha/admin">google.com/recaptcha/admin</a> and create a new <strong>V2 invisible</strong> recaptcha key.
     </p>
 
     <p>
@@ -283,18 +283,17 @@ pre[class*=language-] {
     </p>
 
     <p>
-      Once done, ensure that the google recaptcha script is included at the bottom of the <code class="language-markup">&lt;head></code> element in <code>src/templates/includes/_head.njk</code> and set the value of <code class="language-js">window.recaptchaKey</code> with the 'Site Key' from the recaptcha you just created.
+      Once done, copy the code below into the <code class="language-markup">&lt;head></code> element in <code>src/templates/includes/_head.njk</code>. Ensuring that the google recaptcha script includes the <code class="language-js">`?onload=recaptchaReadyCallback`</code> parameter. And the <code class="language-js">window.recaptchaKey</code> variable is set with the 'Site Key' from the recaptcha you just created.
     </p>
 
     <pre class="language-markup"><code><!--
     <head>
       ...
-
-      <script src='https://www.google.com/recaptcha/api.js' async defer/></script>
-
       <script>
         window.recaptchaKey = '6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a'
       </script>
+
+      <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaReadyCallback" async defer/></script>
     </head>
     --></code></pre>
 
@@ -308,12 +307,8 @@ pre[class*=language-] {
 
         import { setupRecaptcha } from './modules/recaptcha';
 
-
-        function initialise() {
-          ...
-
-          setupRecaptcha();
-        }
+        // Needs to be initiated ASAP, DO NOT PUT IN initalise function below
+        setupRecaptcha();
       </code>
     </pre>
 
@@ -340,91 +335,33 @@ pre[class*=language-] {
     </form>
     </script>
 
-    {# <h5>Using <code class="language-markup">g-recaptcha</code> css class on a div element in the form.</h5>
+    <h5>Using with dialogs</h5>
 
-    <p>
-      <a target="_blank" href="https://developers.google.com/recaptcha/docs/invisible#programmatic_execute">
-        developers.google.com/recaptcha/docs/invisible#programmatic_execute
-      </a>
-    </p>
+    <p>When loading a form dynamically into a dialog, we need to re-trigger the recaptcha setup to attach a recaptcha badge to any newly added forms requiring recaptcha.</p>
 
-    <form>
-      <label>Name</label>
+    <pre>
+      <code class="language-js">
+        ...
 
-      <input type="text" name="form" value="two">
+        import { attachRecaptcha } from './recaptcha';
 
-      <button type="submit" class="o-btn">Submit</button>
 
-      <div
-          class="g-recaptcha"
-          data-sitekey="6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a"
-          data-size="invisible"
-      ></div>
-    </form>
+        Array.from(dialogs).forEach(el => {
+          const dialog = new A11yDialog(el);
 
-    <script type="text/plain" class="language-markup">
-    <form>
-      <label>Name</label>
+          ...
 
-      <input type="text" name="form" value="one">
+          dialog.on('show', () => {
+            ...
 
-      <button type="submit" class="o-btn">Submit</button>
+            // call attachRecpatcha function incase the dialog contains a form requiring recaptcha.
+            attachRecaptcha();
+          });
+        });
+      </code>
+    </pre>
 
-      <div
-          class="g-recaptcha"
-          data-sitekey="6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a"
-          data-size="invisible"
-      ></div>
-    </form>
-    </script>
-
-    <h5>Using <code class="language-markup">g-recaptcha</code> css class on a div element in the form with custom callback method.</h5>
-
-    <form id="customForm">
-      <label>Name</label>
-
-      <input type="text" name="form" value="three">
-
-      <button type="submit" class="o-btn">Submit</button>
-
-      <div
-          class="g-recaptcha"
-          data-sitekey="6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a"
-          data-size="invisible"
-          data-callback="customCallback"
-      ></div>
-
-      <script>
-        window.customCallback = function() {
-          // custom code here
-          document.getElementById('customForm').submit();
-        }
-      </script>
-    </form>
-
-    <pre class="language-markup"><code><!--
-    <form id="customForm">
-      <label>Name</label>
-
-      <input type="text" name="form" value="three">
-
-      <button type="submit" class="o-btn">Submit</button>
-
-      <div
-          class="g-recaptcha"
-          data-sitekey="6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a"
-          data-size="invisible"
-          data-callback="customCallback"
-      ></div>
-
-      <script>
-        window.customCallback = function() {
-          // custom code here
-          document.getElementById('customForm').submit();
-        }
-      </script>
-    </form>
-    --></code></pre> #}
+    <p>The <code class="language-js">attachRecaptcha()</code> function should be called anytime a form is added to the current view. This function will keep track of the forms that recaptcha has been attached to, and will not re-attached if already done so, meaning that the <code>attachRecaptcha()</code> can be called as many times as needed without issue.</p>
   </section>
 
   <section id="scroll-to">

@@ -1,5 +1,6 @@
 // https://github.com/edenspiekermann/a11y-dialog
 import A11yDialog from 'a11y-dialog';
+import { attachRecaptcha } from './recaptcha';
 
 /**
  * Setup dialog components
@@ -32,6 +33,9 @@ export function setupDialogs({
       if (typeof onShowCallback === 'function') {
         onShowCallback(dialog);
       }
+
+      // call attachRecpatcha function incase the dialog contains a form requiring recaptcha.
+      attachRecaptcha();
     });
 
     dialog.on('hide', () => {

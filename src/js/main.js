@@ -5,17 +5,8 @@ import { setupTriggers } from './modules/triggers';
 import { setupDialogs } from './modules/dialogs';
 import { setupRecaptcha } from './modules/recaptcha';
 
-// Recaptcha needs to be initiated by the recaptcha script tag in <head> - DO NOT PUT IN initialise function
-// https://developers.google.com/recaptcha/docs/invisible#examples
-window.recaptchaReadyCallback = setupRecaptcha;
-
-// We need this for forms loaded by AJAX
-document.addEventListener('setup-recaptcha', ev => {
-  setupRecaptcha({
-    target: ev.detail,
-    lookForGRecaptcha: false,
-  });
-});
+// Needs to be initiated ASAP, DO NOT PUT IN initalise function below
+setupRecaptcha();
 
 function isJsAvailable() {
   document.documentElement.classList.remove('no-js');

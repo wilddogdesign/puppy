@@ -12,15 +12,15 @@ export function recaptchaSubmit() {
 }
 
 /**
- * Setup Recaptcha on forms.
+ * Attach Recaptcha to forms.
  *
  * @export
  * @param {*} [options={}] The setup options
  */
-export function setupRecaptcha({ target = '.js-recaptcha', validate = true } = {}) {
-  window.activeRecaptchaForm = null;
-
+export function attachRecaptcha({ target = '.js-recaptcha', validate = true } = {}) {
   const forms = Array.from(document.querySelectorAll(target));
+
+  // console.log('attach recaptcha');
 
   forms.forEach(form => {
     if (!window.recaptchaForms.includes(form.id)) {
@@ -32,6 +32,8 @@ export function setupRecaptcha({ target = '.js-recaptcha', validate = true } = {
       }
 
       window.recaptchaForms.push(form.id);
+
+      // console.log({ recaptchaForms: window.recaptchaForms });
 
       const recaptcha = document.createElement('div');
 
@@ -61,4 +63,23 @@ export function setupRecaptcha({ target = '.js-recaptcha', validate = true } = {
   });
 }
 
-export default { recaptchaSubmit, setup: setupRecaptcha };
+/**
+ * Initial setup of recpatcha
+ *
+ * @export
+ * @param {*} [options={}] The setup options
+ */
+export function setupRecaptcha() {
+  // Recaptcha needs to be initiated by the recaptcha script tag in <head> - DO NOT PUT IN initialise function
+  // https://developers.google.com/recaptcha/docs/invisible#examples
+  window.recaptchaReadyCallback = attachRecaptcha;
+  window.recaptchaForms = [];
+  window.activeRecaptchaForm = null;
+
+  // We need this for forms loaded by AJAX
+  document.addEventListener('attach-recaptcha', ev => {
+    attachRecaptcha({ target: ev.detail });
+  });
+}
+
+export default { recaptchaSubmit, attachRecaptcha, setupRecaptcha };

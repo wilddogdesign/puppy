@@ -14,13 +14,14 @@ export function recaptchaSubmit() {
 /**
  * Attach Recaptcha to forms.
  *
+ * This function is called when the google recaptcha script is ready,
+ * and can then be called manually when for example new forms have been added to the page via dialogs.
+ *
  * @export
  * @param {*} [options={}] The setup options
  */
 export function attachRecaptcha({ target = '.js-recaptcha', validate = true } = {}) {
   const forms = Array.from(document.querySelectorAll(target));
-
-  // console.log('attach recaptcha');
 
   forms.forEach(form => {
     if (!window.recaptchaForms.includes(form.id)) {
@@ -32,8 +33,6 @@ export function attachRecaptcha({ target = '.js-recaptcha', validate = true } = 
       }
 
       window.recaptchaForms.push(form.id);
-
-      // console.log({ recaptchaForms: window.recaptchaForms });
 
       const recaptcha = document.createElement('div');
 
@@ -75,11 +74,6 @@ export function setupRecaptcha() {
   window.recaptchaReadyCallback = attachRecaptcha;
   window.recaptchaForms = [];
   window.activeRecaptchaForm = null;
-
-  // We need this for forms loaded by AJAX
-  document.addEventListener('attach-recaptcha', ev => {
-    attachRecaptcha({ target: ev.detail });
-  });
 }
 
 export default { recaptchaSubmit, attachRecaptcha, setupRecaptcha };

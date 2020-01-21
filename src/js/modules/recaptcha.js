@@ -63,7 +63,7 @@ export function attachRecaptcha({ target = '.js-recaptcha', validate = true } = 
 }
 
 /**
- * Initial setup of recpatcha
+ * Initial setup of recaptcha
  *
  * @export
  * @param {*} [options={}] The setup options

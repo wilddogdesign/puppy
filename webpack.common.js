@@ -29,24 +29,35 @@ const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 // Generates a progessive web app manifest file and favicons
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 
+// Our other pages.
+const otherNunjucksFiles = require('./pages.js');
+
+// content is passed into every nunjucks file to be used like {{ kenobi }}
+const templateParameters = {
+  nowYear: dateFormat(now, 'yyyy'),
+  now: dateFormat(now, 'dd-mm-yyyy @ HH:MM'),
+  pages: [{ file: 'index', name: 'Index' }].concat(otherNunjucksFiles),
+  projectTitle,
+  isProduction: process.argv[process.argv.indexOf('--mode') + 1] === 'production',
+};
+
 // this person is a hero
 // https://dev.to/rodeghiero_/multiple-html-files-with-htmlwebpackplugin-19bf
-// The first HTMLWebPackPlugin for generating the index.html via nunjucks-html-loader
+// The first HTMLWebPackPlugin for generating the index.html
 const HtmlWebPackPluginConfig = new HtmlWebPackPlugin({
   filename: 'index.html',
   inject: 'body',
-  template: 'nunjucks-html-loader!./src/templates/index.njk',
+  template: './src/templates/index.njk',
+  templateParameters,
 });
-
-// Our other pages.
-const otherNunjucksFiles = require('./pages.js');
 
 // Generate a new HTMLWebPackPlugin for each template because you have to.
 // We append to plugins down the bottom.
 const multipleFiles = otherNunjucksFiles.map(entry => {
   return new HtmlWebPackPlugin({
     filename: `${entry.file}.html`,
-    template: `nunjucks-html-loader!./src/templates/${entry.file}.njk`,
+    template: `./src/templates/${entry.file}.njk`,
+    templateParameters,
     inject: entry.file !== 'all',
   });
 });
@@ -82,22 +93,13 @@ module.exports = {
     rules: [
       // run html and nunjucks through the nunjucks and html loader
       {
-        test: /\.html$|njk|nunjucks/,
+        test: /\.(html|njk|nunjucks)$/,
         use: [
-          'html-loader',
           {
-            loader: 'nunjucks-html-loader',
+            loader: 'simple-nunjucks-loader',
             options: {
               // where are the nunjucks files?
               searchPaths: ['./src/templates'],
-              // content is passed into every nunjucks file to be used like {{ kenobi }}
-              context: {
-                nowYear: dateFormat(now, 'yyyy'),
-                now: dateFormat(now, 'dd-mm-yyyy @ HH:MM'),
-                pages: [{ file: 'index', name: 'Index' }].concat(otherNunjucksFiles),
-                projectTitle,
-                isProduction: process.argv[process.argv.indexOf('--mode') + 1] === 'production',
-              },
             },
           },
         ],

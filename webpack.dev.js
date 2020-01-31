@@ -1,6 +1,5 @@
 const path = require('path');
 const merge = require('webpack-merge');
-const chokidar = require('chokidar');
 const common = require('./webpack.common.js');
 
 // Extracts our CSS into a file because webpack doesn't do that by default
@@ -51,12 +50,6 @@ module.exports = merge(common, {
     contentBase: path.join(__dirname, '/src'),
     port: 8888,
     clientLogLevel: 'error',
-    // watch nunjucks and reload page now we have HMR on
-    before(app, server) {
-      chokidar.watch(['./src/templates/**/*.njk']).on('all', function() {
-        server.sockWrite(server.sockets, 'content-changed');
-      });
-    },
     // Not a fan of a lot of this output
     stats: {
       hash: false,

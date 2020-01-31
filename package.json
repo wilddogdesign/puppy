@@ -72,6 +72,7 @@
     "babel-polyfill": "^6.26.0",
     "domready": "^1.0.8",
     "inuitcss": "^6.0.0",
+    "nunjucks": "^3.2.0",
     "scroll-to-element": "^2.0.3"
   }
 }

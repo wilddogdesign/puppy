@@ -99,7 +99,7 @@ You'll notice sass-lint.yml now has a custom order in it, that's the most up to 
 
 You'll see a .postcss-sorting.json config file which tells the plugin what order to sort properties in.
 
-Anyway once you're Sass is wrote open the command palette and run `PostCSS Sorting: Run`.
+Anyway once your Sass is written open the command palette and run `PostCSS Sorting: Run`.
 
 It will do all the magic for you.
 

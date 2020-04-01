@@ -9,6 +9,7 @@ rules:
       convention: 'hyphenatedbem'
   indentation: 0
   no-css-comments: 0
+  no-empty-rulesets: 0
   nesting-depth:
     - 1
     - max-depth: 3

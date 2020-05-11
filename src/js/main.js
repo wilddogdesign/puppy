@@ -4,6 +4,7 @@ import setupScrollTo from './modules/scroll-to';
 import { setupTriggers } from './modules/triggers';
 import { setupDialogs } from './modules/dialogs';
 import { setupRecaptcha } from './modules/recaptcha';
+import konami from './modules/konami';
 
 // Needs to be initiated ASAP, DO NOT PUT IN initalise function below
 setupRecaptcha();
@@ -29,6 +30,8 @@ function initialise() {
     onShowCallback: onShowDialog,
     onHideCallback: onHideDialog,
   });
+
+  konami();
 }
 
 const finalScripts = {

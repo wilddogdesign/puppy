@@ -2,7 +2,7 @@
 import scrollToElement from "scroll-to-element";
 
 export default function () {
-  Array.from(document.querySelectorAll(".js-scroll-to")).forEach(link => {
+  Array.from(document.querySelectorAll(".js-scroll-to")).forEach((link) => {
     // Setting defaults here (the same as the defaults on the plugin).
     // Seems easier to do this than to try and exclude include options based on their presence?
     // Please correct me if I'm wrong.
@@ -11,7 +11,7 @@ export default function () {
     const align = link.dataset.align ? link.dataset.align : "top";
     const ease = link.dataset.ease ? link.dataset.ease : "out-circ";
 
-    link.addEventListener("click", ev => {
+    link.addEventListener("click", (ev) => {
       ev.preventDefault();
 
       scrollToElement(`#${link.href.split("#")[1]}`, {

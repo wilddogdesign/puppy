@@ -72,7 +72,7 @@ module.exports = merge(common, {
     }),
     new PostCssPipelineWebpackPlugin({
       suffix: "",
-      predicate: name => /^((?!critical).)*$/.test(name),
+      predicate: (name) => /^((?!critical).)*$/.test(name),
       pipeline: [
         criticalSplit({
           output: criticalSplit.output_types.REST_CSS,

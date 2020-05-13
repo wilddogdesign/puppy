@@ -6,7 +6,7 @@ const now = new Date();
 
 // Path and webpack are required
 const path = require("path");
-const webpack = require("webpack");
+// const webpack = require("webpack");
 // Date formatting plugin for the all template
 const dateFormat = require("dateformat");
 
@@ -43,7 +43,7 @@ const otherNunjucksFiles = require("./pages.js");
 
 // Generate a new HTMLWebPackPlugin for each template because you have to.
 // We append to plugins down the bottom.
-const multipleFiles = otherNunjucksFiles.map(entry => {
+const multipleFiles = otherNunjucksFiles.map((entry) => {
   return new HtmlWebPackPlugin({
     filename: `${entry.file}.html`,
     template: `nunjucks-html-loader!./src/templates/${entry.file}.njk`,

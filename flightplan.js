@@ -2,15 +2,15 @@ const plan = require("flightplan");
 
 const project = "puppy";
 
-let user = "Someone";
+// let user = "Someone";
 
 const remoteRoot = "/var/www/";
 const remoteHost = "wilddogdevelopment.com";
 
-const args = {
-  critical: !(process.argv.indexOf("--no-critical-css") > -1),
-  minify: !(process.argv.indexOf("--no-minification") > -1),
-};
+// const args = {
+//   critical: !(process.argv.indexOf("--no-critical-css") > -1),
+//   minify: !(process.argv.indexOf("--no-minification") > -1),
+// };
 
 // configuration
 plan.target("development", {
@@ -25,10 +25,10 @@ plan.target("development", {
 const versionDir = `${new Date().getTime()}`;
 
 // run commands on localhost
-plan.local("deploy", local => {
+plan.local("deploy", (local) => {
   local.log("Run build");
   local.exec("npm run build");
-  user = local.exec("git config user.name");
+  // user = local.exec("git config user.name");
 
   local.log("Copy files to remote hosts");
   const filesToCopy = local.exec('find dist -name "*" -type f', { silent: true });
@@ -37,7 +37,7 @@ plan.local("deploy", local => {
 });
 
 // run commands on the target's remote hosts
-plan.remote("deploy", remote => {
+plan.remote("deploy", (remote) => {
   remote.hostname();
 
   remote.log("Move version folder to project releases folder");
@@ -60,7 +60,7 @@ plan.remote("deploy", remote => {
   }
 });
 
-plan.remote("rollback", remote => {
+plan.remote("rollback", (remote) => {
   remote.hostname();
 
   remote.with(`cd ${remote.runtime.projectRoot}`, () => {

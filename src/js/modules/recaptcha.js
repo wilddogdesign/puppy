@@ -23,7 +23,7 @@ export function recaptchaSubmit() {
 export function attachRecaptcha({ target = ".js-recaptcha", validate = true } = {}) {
   const forms = Array.from(document.querySelectorAll(target));
 
-  forms.forEach(form => {
+  forms.forEach((form) => {
     if (!window.recaptchaForms.includes(form.id)) {
       if (!form.id) {
         // eslint-disable-next-line no-param-reassign
@@ -43,7 +43,7 @@ export function attachRecaptcha({ target = ".js-recaptcha", validate = true } = 
         callback: recaptchaSubmit,
       });
 
-      form.addEventListener("submit", ev => {
+      form.addEventListener("submit", (ev) => {
         ev.preventDefault();
 
         // this could be modified to use a form validation library, but by default uses standard API

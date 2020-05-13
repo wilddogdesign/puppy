@@ -23,7 +23,7 @@ export function setupDialogs({
 } = {}) {
   const dialogs = document.querySelectorAll(target);
 
-  Array.from(dialogs).forEach(el => {
+  Array.from(dialogs).forEach((el) => {
     const dialog = new A11yDialog(el);
     const bodyClasses = document.body.classList;
 

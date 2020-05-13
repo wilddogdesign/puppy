@@ -1,14 +1,15 @@
-const version = "#VERSION_NO#";
 /* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 /* eslint-disable prefer-arrow-callback */
+const version = "#VERSION_NO#";
 
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 if (workbox) {
   // Skip waiting for service worker update
-  self.addEventListener("message", event => {
+  self.addEventListener("message", (event) => {
     if (event.data && event.data.type === "SKIP_WAITING") {
-      console.log("skip waiting");
+      // console.log("skip waiting");
       skipWaiting();
     }
   });

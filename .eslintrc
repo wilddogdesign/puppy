@@ -1,25 +1,24 @@
 {
   "extends": [
-    "./node_modules/eslint-config-airbnb-base/.eslintrc",
-    "prettier"
+    "plugin:prettier/recommended"
   ],
   "env": {
     "browser": true,
     "es6": true
   },
+  "plugins": [
+    "prettier"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "rules": {
-    "arrow-parens": 0,
-    "class-methods-use-this": 0,
     "prettier/prettier": [
       "error",
       {
-        "trailingComma": "es5",
-        "singleQuote": true,
-        "printWidth": 100
+        "singleQuote": false
       }
     ]
-  },
-  "plugins": [
-    "prettier"
-  ]
+  }
 }

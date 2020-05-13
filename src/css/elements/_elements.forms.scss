@@ -135,6 +135,7 @@ label {
   font-size: rem(18px);
   line-height: 1.8;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 [type='checkbox'][disabled] + span::before,

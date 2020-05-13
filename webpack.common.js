@@ -94,9 +94,13 @@ module.exports = {
               context: {
                 nowYear: dateFormat(now, "yyyy"),
                 now: dateFormat(now, "dd-mm-yyyy @ HH:MM"),
-                pages: [{ file: "index", name: "Index" }].concat(otherNunjucksFiles),
+                pages: [{ file: "index", name: "Index" }].concat(
+                  otherNunjucksFiles
+                ),
                 projectTitle,
-                isProduction: process.argv[process.argv.indexOf("--mode") + 1] === "production",
+                isProduction:
+                  process.argv[process.argv.indexOf("--mode") + 1] ===
+                  "production",
               },
             },
           },

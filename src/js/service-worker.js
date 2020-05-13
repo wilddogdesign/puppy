@@ -3,7 +3,9 @@
 /* eslint-disable prefer-arrow-callback */
 const version = "#VERSION_NO#";
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts(
+  "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
+);
 
 if (workbox) {
   // Skip waiting for service worker update
@@ -15,7 +17,10 @@ if (workbox) {
   });
 
   // no caching on wordpress routes
-  workbox.routing.registerRoute(new RegExp("/wp/"), new workbox.strategies.NetworkOnly());
+  workbox.routing.registerRoute(
+    new RegExp("/wp/"),
+    new workbox.strategies.NetworkOnly()
+  );
 
   // Javascript
   workbox.routing.registerRoute(

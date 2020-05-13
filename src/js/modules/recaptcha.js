@@ -1,4 +1,5 @@
-const recaptchaKey = typeof window.recaptchaKey !== "undefined" ? window.recaptchaKey : "";
+const recaptchaKey =
+  typeof window.recaptchaKey !== "undefined" ? window.recaptchaKey : "";
 
 /**
  * Submit the active recaptcha form, if it exists.
@@ -20,7 +21,10 @@ export function recaptchaSubmit() {
  * @export
  * @param {*} [options={}] The setup options
  */
-export function attachRecaptcha({ target = ".js-recaptcha", validate = true } = {}) {
+export function attachRecaptcha({
+  target = ".js-recaptcha",
+  validate = true,
+} = {}) {
   const forms = Array.from(document.querySelectorAll(target));
 
   forms.forEach((form) => {

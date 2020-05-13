@@ -56,7 +56,9 @@ export function setupTrigger(trigger, options) {
           }
         } else {
           if (removeOthers) {
-            const allOtherInstances = document.querySelectorAll(`.${classToTrigger}`);
+            const allOtherInstances = document.querySelectorAll(
+              `.${classToTrigger}`
+            );
 
             Array.from(allOtherInstances).forEach((other) => {
               other.classList.remove(classToTrigger);
@@ -64,7 +66,9 @@ export function setupTrigger(trigger, options) {
           }
 
           if (setActive) {
-            const allOtherTriggers = document.querySelectorAll(`[data-set-active='${setActive}']`);
+            const allOtherTriggers = document.querySelectorAll(
+              `[data-set-active='${setActive}']`
+            );
 
             Array.from(allOtherTriggers).forEach((otherTrigger) => {
               otherTrigger.classList.remove(setActive);

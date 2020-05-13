@@ -31,7 +31,9 @@ plan.local("deploy", (local) => {
   // user = local.exec("git config user.name");
 
   local.log("Copy files to remote hosts");
-  const filesToCopy = local.exec('find dist -name "*" -type f', { silent: true });
+  const filesToCopy = local.exec('find dist -name "*" -type f', {
+    silent: true,
+  });
   // rsync files to all the target's remote hosts
   local.transfer(filesToCopy, `/tmp/${versionDir}`);
 });
@@ -41,9 +43,12 @@ plan.remote("deploy", (remote) => {
   remote.hostname();
 
   remote.log("Move version folder to project releases folder");
-  remote.exec(`mv /tmp/${versionDir}/dist ${remote.runtime.projectRoot}/releases/${versionDir}`, {
-    user: remote.runtime.username,
-  });
+  remote.exec(
+    `mv /tmp/${versionDir}/dist ${remote.runtime.projectRoot}/releases/${versionDir}`,
+    {
+      user: remote.runtime.username,
+    }
+  );
   remote.rm(`-rf /tmp/${versionDir}`);
   remote.log("Point to current version");
   remote.exec(

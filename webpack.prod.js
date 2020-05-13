@@ -4,7 +4,8 @@ const path = require("path");
 const HtmlBeautifyPlugin = require("html-beautify-webpack-plugin");
 const WebappWebpackPlugin = require("webapp-webpack-plugin");
 const AsyncStylesheetWebpackPlugin = require("async-stylesheet-webpack-plugin");
-const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin-wilddog").default;
+const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin-wilddog")
+  .default;
 const ReplaceInFileWebpackPlugin = require("replace-in-file-webpack-plugin");
 // Runs images through imagemin when copying
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
@@ -52,7 +53,11 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader?url=false", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader?url=false",
+          "sass-loader",
+        ],
         // post css config in /src/sass/postcss.config.js
       },
     ],

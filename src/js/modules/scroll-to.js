@@ -6,7 +6,9 @@ export default function () {
     // Setting defaults here (the same as the defaults on the plugin).
     // Seems easier to do this than to try and exclude include options based on their presence?
     // Please correct me if I'm wrong.
-    const duration = link.dataset.duration ? parseInt(link.dataset.duration, 10) : 1000;
+    const duration = link.dataset.duration
+      ? parseInt(link.dataset.duration, 10)
+      : 1000;
     const offset = link.dataset.offset ? parseInt(link.dataset.offset, 10) : 0;
     const align = link.dataset.align ? link.dataset.align : "top";
     const ease = link.dataset.ease ? link.dataset.ease : "out-circ";

@@ -1,5 +1,5 @@
-const merge = require("webpack-merge");
 const path = require("path");
+const merge = require("webpack-merge");
 
 const HtmlBeautifyPlugin = require("html-beautify-webpack-plugin");
 const WebappWebpackPlugin = require("webapp-webpack-plugin");

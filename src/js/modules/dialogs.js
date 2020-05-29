@@ -1,6 +1,6 @@
 // https://github.com/edenspiekermann/a11y-dialog
-import A11yDialog from "a11y-dialog";
-import { attachRecaptcha } from "./recaptcha";
+import A11yDialog from 'a11y-dialog';
+import { attachRecaptcha } from './recaptcha';
 
 /**
  * Setup dialog components
@@ -16,8 +16,8 @@ import { attachRecaptcha } from "./recaptcha";
  * }
  */
 export function setupDialogs({
-  target = ".js-dialog",
-  bodyClass = "is-visible--dialog",
+  target = '.js-dialog',
+  bodyClass = 'is-visible--dialog',
   onShowCallback = null,
   onHideCallback = null,
 } = {}) {
@@ -27,10 +27,10 @@ export function setupDialogs({
     const dialog = new A11yDialog(el);
     const bodyClasses = document.body.classList;
 
-    dialog.on("show", () => {
+    dialog.on('show', () => {
       bodyClasses.add(bodyClass);
 
-      if (typeof onShowCallback === "function") {
+      if (typeof onShowCallback === 'function') {
         onShowCallback(dialog);
       }
 
@@ -38,10 +38,10 @@ export function setupDialogs({
       attachRecaptcha();
     });
 
-    dialog.on("hide", () => {
+    dialog.on('hide', () => {
       bodyClasses.remove(bodyClass);
 
-      if (typeof onHideCallback === "function") {
+      if (typeof onHideCallback === 'function') {
         onHideCallback(dialog);
       }
     });

@@ -1,16 +1,16 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-arrow-callback */
-const version = "#VERSION_NO#";
+const version = '#VERSION_NO#';
 
 importScripts(
-  "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
+  'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js'
 );
 
 if (workbox) {
   // Skip waiting for service worker update
-  self.addEventListener("message", (event) => {
-    if (event.data && event.data.type === "SKIP_WAITING") {
+  self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
       // console.log("skip waiting");
       skipWaiting();
     }
@@ -18,7 +18,7 @@ if (workbox) {
 
   // no caching on wordpress routes
   workbox.routing.registerRoute(
-    new RegExp("/wp/"),
+    new RegExp('/wp/'),
     new workbox.strategies.NetworkOnly()
   );
 
@@ -26,7 +26,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     /\.js$/,
     new workbox.strategies.StaleWhileRevalidate({
-      cacheName: "js-cache",
+      cacheName: 'js-cache',
     })
   );
 
@@ -34,7 +34,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     /\.css$/,
     new workbox.strategies.StaleWhileRevalidate({
-      cacheName: "css-cache",
+      cacheName: 'css-cache',
     })
   );
 
@@ -42,7 +42,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     /\.(?:ttf|woff|woff2)$/,
     new workbox.strategies.StaleWhileRevalidate({
-      cacheName: "font-cache",
+      cacheName: 'font-cache',
     })
   );
 
@@ -50,7 +50,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     /\.(?:png|gif|jpg|jpeg|webp|svg)$/,
     new workbox.strategies.CacheFirst({
-      cacheName: "image-cache",
+      cacheName: 'image-cache',
       plugins: [
         new workbox.expiration.Plugin({
           maxEntries: 200,
@@ -67,7 +67,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     /^https:\/\/fonts\.googleapis\.com/,
     new workbox.strategies.StaleWhileRevalidate({
-      cacheName: "google-fonts-stylesheets-cache",
+      cacheName: 'google-fonts-stylesheets-cache',
     })
   );
 
@@ -75,7 +75,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     /^https:\/\/fonts\.gstatic\.com/,
     new workbox.strategies.CacheFirst({
-      cacheName: "google-fonts-webfonts-cache",
+      cacheName: 'google-fonts-webfonts-cache',
       plugins: [
         new workbox.cacheableResponse.Plugin({
           statuses: [0, 200],

@@ -17,7 +17,7 @@ export function setupTrigger(trigger, options) {
     maxMedia,
   } = { ...options, ...trigger.dataset };
 
-  let matchMedia = "";
+  let matchMedia = '';
 
   if (media) {
     matchMedia += `(min-width: ${media})`;
@@ -25,7 +25,7 @@ export function setupTrigger(trigger, options) {
 
   if (maxMedia) {
     if (matchMedia.length) {
-      matchMedia += " and ";
+      matchMedia += ' and ';
     }
 
     matchMedia += `(max-width: ${maxMedia})`;
@@ -93,7 +93,7 @@ export function setupTrigger(trigger, options) {
     }
   }
 
-  trigger.addEventListener("click", clickEventHandler);
+  trigger.addEventListener('click', clickEventHandler);
 }
 
 /**
@@ -113,9 +113,9 @@ export function setupTrigger(trigger, options) {
  * }={}]
  */
 export function setupTriggers({
-  triggerTarget = ".js-class-trigger",
-  target = ".js-class-trigger-target",
-  classToTrigger = "is-visible",
+  triggerTarget = '.js-class-trigger',
+  target = '.js-class-trigger-target',
+  classToTrigger = 'is-visible',
   setFocus = false,
   focusDelay = 0,
   removeOthers = false,

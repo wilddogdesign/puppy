@@ -8,38 +8,40 @@ module.exports = {
   },
 
   parserOptions: {
-    parser: "babel-eslint",
-    sourceType: "module",
+    parser: 'babel-eslint',
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
   },
 
-  extends: ["standard", "eslint:recommended", "plugin:prettier/recommended"],
+  extends: ['standard', 'eslint:recommended', 'plugin:prettier/recommended'],
 
-  plugins: ["prettier"],
+  plugins: ['prettier'],
 
   // add your custom rules here
   rules: {
     // Enforce import order
-    "import/order": "error",
+    'import/order': 'error',
     // Imports should come first
-    "import/first": "error",
+    'import/first': 'error',
     // Enforce arrow function parenthesis
-    "arrow-parens": 1,
+    'arrow-parens': 1,
     // Warn about console statements
-    "no-console": "warn",
+    'no-console': 'warn',
     // warn about debug statements
-    "no-debugger": "warn",
+    'no-debugger': 'warn',
+    // enforce single quotes
+    quotes: [2, 'single', { avoidEscape: true }],
 
     // Prettier
 
-    // Enforce arrow function parenthesis
-    "prettier/prettier": [
-      "error",
+    // Enforce arrow function parenthesis & single quotes
+    'prettier/prettier': [
+      'error',
       {
-        arrowParens: "always",
-        singleQuote: false,
+        arrowParens: 'always',
+        singleQuote: true,
       },
     ],
   },

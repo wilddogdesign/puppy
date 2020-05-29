@@ -17,14 +17,16 @@ select,
 textarea {
   display: block;
   width: 100%;
-  height: rem(40px);
+  height: rem(50px);
   margin-bottom: rem(10px);
-  padding: 0 rem(10px);
+  padding: rem(10px) rem(12px);
   transition: background-color $global-transition ease-in-out;
   border: rem(1px) solid $color--primary;
   border-radius: 0;
   color: $color--text;
-  line-height: rem(40px);
+  font-family: $font--main;
+  font-size: rem(16px);
+  line-height: normal;
   cursor: pointer;
   appearance: none;
 
@@ -75,6 +77,7 @@ textarea {
 button {
   // Styles should be in o-btn really.
   // Use this to kill off nasty iOS / other browser styles
+  padding: 0;
   border: 0;
   border-radius: 0;
   cursor: pointer;
@@ -85,7 +88,7 @@ textarea {
   max-width: 100%;
   height: auto;
   min-height: rem(120px);
-  padding: rem(10px);
+  padding: rem(10px) rem(12px);
   line-height: 1.5em;
 }
 
@@ -115,7 +118,6 @@ label {
 }
 
 // Custom checkboxes
-// These are my least favourite form things
 [type='checkbox'],
 [type='radio'] {
   @include inuit-hidden-visually;
@@ -129,12 +131,10 @@ label {
 
 [type='checkbox'] + span,
 [type='radio'] + span {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-right: rem(8px);
-  padding-left: rem(36px);
-  font-size: rem(18px);
-  line-height: 1.8;
-  vertical-align: middle;
+  font-size: rem(16px);
   cursor: pointer;
 }
 
@@ -148,18 +148,15 @@ label {
 [type='radio'] + span::before {
   content: '';
   display: inline-block;
-  position: absolute;
-  top: .1em;
-  left: 0;
   width: rem(32px);
   height: rem(32px);
+  margin-right: rem(12px);
   transition: background-size .25s ease-in-out;
   border: rem(1px) solid $color--black;
   background-image: svg-load('../images/tick.svg' fill=$color--primary);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 0% auto;
-  line-height: rem(32px);
   will-change: background-size;
 }
 

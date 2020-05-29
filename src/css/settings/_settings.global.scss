@@ -6,7 +6,7 @@
 
 // Standardise some UI treatments.
 $global-radius: 3px !default;
-$global-transition: (1 / 3) + s !default;
+$global-transition: .2s !default; // Used for link text colour transitions
 
 $inuit-wrapper-width: 1200px !default;
 

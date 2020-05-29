@@ -8,14 +8,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css" />
 
 <style>
-section {
-  padding-bottom: 3rem;
-  margin-bottom: 3rem;
-  border-bottom: 2px solid #ccc;
-}
-pre[class*=language-] {
-  margin: 2rem 0;
-}
+  section {
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid #ccc;
+  }
+  pre[class*=language-] {
+    margin: 2rem 0;
+  }
 </style>
 
 <div class="o-wrapper">
@@ -31,7 +31,15 @@ pre[class*=language-] {
     <p>HTML and body text use the <code class="language-sass">$color--text</code> variable by default.</p>
 
     <h4>Links</h4>
+
+    <style>
+      .u-hover-link:hover {
+        color: #111;
+      }
+    </style>
     <p>Links use <a href="#">the primary colour</a> and have <a href="#">no text decoration</a> by default.</p>
+
+    <p>When a link changes colour on hover/focus, by default the change will ease-in over .2s (set as the global transition) - <a href="#" class="u-hover-link">like so</a>.</p>
 
     <h4>Buttons</h4>
     <p>
@@ -71,6 +79,15 @@ pre[class*=language-] {
       .u-wide {
         width: 100%;
       }
+
+      .u-radio {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+      }
+
+      .u-radio + .u-radio {
+        margin-left: 1rem;
+      }
     </style>
 
     <form>
@@ -96,11 +113,27 @@ pre[class*=language-] {
             <textarea name="reason" id="reason" placeholder="e.g. A deal was altered and I had to pray it wasn't altered further."></textarea>
           </div>
 
-          <div>
+          <div class="u-wide">
             <label for="check">
               <input type="checkbox" id="check">
               <span>Check here to consent to becoming a known enemy of the Galactic Empire.</span>
             </label>
+          </div>
+
+          <div class="u-wide">
+            <label>Would you like to select a radio button?</label>
+
+            <div class="u-form-input">
+              <label for="yes" class="u-radio">
+                <input type="radio" id="yes" name="radio" />
+                <span>Yes</span>
+              </label>
+
+              <label for="no" class="u-radio">
+                <input type="radio" id="no" name="radio" />
+                <span>No</span>
+              </label>
+            </div>
           </div>
         </div>
       </fieldset>
@@ -109,40 +142,56 @@ pre[class*=language-] {
     </form>
 
     <script type="text/plain" class="language-markup">
-    <form>
-      <fieldset>
-        <div class="cant-flex-on-fieldset">
-          <div class="u-form-input">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" placeholder="Lando Calrissian" />
-          </div>
+      <form>
+        <fieldset>
+          <div class="cant-flex-on-fieldset">
+            <div class="u-form-input">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" placeholder="Lando Calrissian" />
+            </div>
 
-          <div class="u-form-input">
-            <label for="profession">Profession</label>
-            <select name="profession" id="profession">
-              <option>Please select...</option>
-              <option>Cloud City Administrator</option>
-              <option>Rebel Alliance General</option>
-              <option>Professional Gambler</option>
-            </select>
-          </div>
+            <div class="u-form-input">
+              <label for="profession">Profession</label>
+              <select name="profession" id="profession">
+                <option>Please select...</option>
+                <option>Cloud City Administrator</option>
+                <option>Rebel Alliance General</option>
+                <option>Professional Gambler</option>
+              </select>
+            </div>
 
-          <div class="u-wide">
-            <label for="reason">Reason for joining Rebel Alliance</label>
-            <textarea name="reason" id="reason" placeholder="e.g. A deal was altered and I had to pray it wasn't altered further."></textarea>
-          </div>
+            <div class="u-wide">
+              <label for="reason">Reason for joining Rebel Alliance</label>
+              <textarea name="reason" id="reason" placeholder="e.g. A deal was altered and I had to pray it wasn't altered further."></textarea>
+            </div>
 
-          <div>
-            <label for="check">
-              <input type="checkbox" id="check">
-              <span>Check here to consent to becoming a known enemy of the Galactic Empire.</span>
-            </label>
-          </div>
-        </div>
-      </fieldset>
+            <div class="u-wide">
+              <label for="check">
+                <input type="checkbox" id="check" />
+                <span>Check here to consent to becoming a known enemy of the Galactic Empire.</span>
+              </label>
+            </div>
 
-      <input type="submit" class="o-btn" value="Submit" />
-    </form>
+            <div class="u-wide">
+              <label>Would you like to select a radio button?</label>
+
+              <div class="u-form-input">
+                <label for="yes" class="u-radio">
+                  <input type="radio" id="yes" name="radio" />
+                  <span>Yes</span>
+                </label>
+
+                <label for="no" class="u-radio">
+                  <input type="radio" id="no" name="radio" />
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <input type="submit" class="o-btn" value="Submit" />
+      </form>
     </script>
 
     <h4>Images</h4>
@@ -154,7 +203,7 @@ pre[class*=language-] {
     <img src="/assets/images/logo.svg" />
 
     <script type="text/plain" class="language-markup">
-    <img src="/assets/images/logo.svg" />
+      <img src="/assets/images/logo.svg" />
     </script>
   </section>
 

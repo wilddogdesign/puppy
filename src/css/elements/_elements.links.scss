@@ -1,4 +1,5 @@
 a {
+  transition: color $global-transition ease-in;
   color: $color--primary;
   text-decoration: none;
 }

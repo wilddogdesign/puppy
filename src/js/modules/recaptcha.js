@@ -1,5 +1,5 @@
 const recaptchaKey =
-  typeof window.recaptchaKey !== "undefined" ? window.recaptchaKey : "";
+  typeof window.recaptchaKey !== 'undefined' ? window.recaptchaKey : '';
 
 /**
  * Submit the active recaptcha form, if it exists.
@@ -22,7 +22,7 @@ export function recaptchaSubmit() {
  * @param {*} [options={}] The setup options
  */
 export function attachRecaptcha({
-  target = ".js-recaptcha",
+  target = '.js-recaptcha',
   validate = true,
 } = {}) {
   const forms = Array.from(document.querySelectorAll(target));
@@ -36,18 +36,18 @@ export function attachRecaptcha({
 
       window.recaptchaForms.push(form.id);
 
-      const recaptcha = document.createElement("div");
+      const recaptcha = document.createElement('div');
 
       form.appendChild(recaptcha);
 
       // The recaptcha render method returns an id that we can target further down.
       const widgetID = window.grecaptcha.render(recaptcha, {
         sitekey: recaptchaKey,
-        size: "invisible",
+        size: 'invisible',
         callback: recaptchaSubmit,
       });
 
-      form.addEventListener("submit", (ev) => {
+      form.addEventListener('submit', (ev) => {
         ev.preventDefault();
 
         // this could be modified to use a form validation library, but by default uses standard API

@@ -1,33 +1,33 @@
-const path = require("path");
-const merge = require("webpack-merge");
+const path = require('path');
+const merge = require('webpack-merge');
 
-const HtmlBeautifyPlugin = require("html-beautify-webpack-plugin");
-const WebappWebpackPlugin = require("webapp-webpack-plugin");
-const AsyncStylesheetWebpackPlugin = require("async-stylesheet-webpack-plugin");
-const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin-wilddog")
+const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
+const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
+const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin-wilddog')
   .default;
-const ReplaceInFileWebpackPlugin = require("replace-in-file-webpack-plugin");
+const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
 // Runs images through imagemin when copying
-const ImageminPlugin = require("imagemin-webpack-plugin").default;
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const PostCssPipelineWebpackPlugin = require("postcss-pipeline-webpack-plugin");
-const criticalSplit = require("postcss-critical-split");
-const common = require("./webpack.common.js");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PostCssPipelineWebpackPlugin = require('postcss-pipeline-webpack-plugin');
+const criticalSplit = require('postcss-critical-split');
+const common = require('./webpack.common.js');
 
 const afterHTMLWebpackPlugin = [
   new WebappWebpackPlugin({
     favicons: {
-      name: "Puppy",
-      short_name: "puppy",
-      orientation: "portrait",
-      display: "standalone",
-      start_url: ".",
-      description: "Some description about puppy",
-      background_color: "#F44336",
+      name: 'Puppy',
+      short_name: 'puppy',
+      orientation: 'portrait',
+      display: 'standalone',
+      start_url: '.',
+      description: 'Some description about puppy',
+      background_color: '#F44336',
     },
-    prefix: "assets/favicons",
-    logo: path.resolve("src/misc/favicon.png"),
+    prefix: 'assets/favicons',
+    logo: path.resolve('src/misc/favicon.png'),
     cache: true,
   }),
   new HtmlBeautifyPlugin(),
@@ -36,11 +36,11 @@ const afterHTMLWebpackPlugin = [
   }),
   new HTMLInlineCSSWebpackPlugin({
     filter(fileName) {
-      return fileName.includes("critical.css");
+      return fileName.includes('critical.css');
     },
     replace: {
-      target: "<!-- inline_css_plugin -->",
-      position: "before",
+      target: '<!-- inline_css_plugin -->',
+      position: 'before',
       removeTarget: true,
       leaveCssFile: true,
     },
@@ -48,15 +48,15 @@ const afterHTMLWebpackPlugin = [
 ];
 
 module.exports = merge(common, {
-  mode: "production",
+  mode: 'production',
   module: {
     rules: [
       {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader?url=false",
-          "sass-loader",
+          'css-loader?url=false',
+          'sass-loader',
         ],
         // post css config in /src/sass/postcss.config.js
       },
@@ -65,10 +65,10 @@ module.exports = merge(common, {
   plugins: [
     // Extracts the CSS into a file with the provided name
     new MiniCssExtractPlugin({
-      filename: "[name]-[contenthash].css",
+      filename: '[name]-[contenthash].css',
     }),
     new PostCssPipelineWebpackPlugin({
-      suffix: "critical",
+      suffix: 'critical',
       pipeline: [
         criticalSplit({
           output: criticalSplit.output_types.CRITICAL_CSS,
@@ -76,7 +76,7 @@ module.exports = merge(common, {
       ],
     }),
     new PostCssPipelineWebpackPlugin({
-      suffix: "",
+      suffix: '',
       predicate: (name) => /^((?!critical).)*$/.test(name),
       pipeline: [
         criticalSplit({
@@ -85,27 +85,27 @@ module.exports = merge(common, {
       ],
     }),
     new PostCssPipelineWebpackPlugin({
-      suffix: "",
+      suffix: '',
       pipeline: [
-        require("autoprefixer")(),
-        require("cssnano")(),
-        require("postcss-inline-svg")({ path: "./src/css/" }),
-        require("postcss-svgo")(),
+        require('autoprefixer')(),
+        require('cssnano')(),
+        require('postcss-inline-svg')({ path: './src/css/' }),
+        require('postcss-svgo')(),
       ],
     }),
     new ReplaceInFileWebpackPlugin([
       {
-        dir: "dist/",
+        dir: 'dist/',
         test: /\.html$/,
         rules: [
           {
             search: /\.\.\//gm,
-            replace: "/assets/",
+            replace: '/assets/',
           },
         ],
       },
       {
-        dir: "dist/",
+        dir: 'dist/',
         test: /service-worker\.js$/,
         rules: [
           {
@@ -116,7 +116,7 @@ module.exports = merge(common, {
       },
     ]),
     new ImageminPlugin({
-      test: "assets/images/**",
+      test: 'assets/images/**',
     }),
   ].concat(afterHTMLWebpackPlugin),
 });

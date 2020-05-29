@@ -3,19 +3,21 @@
     {# Please remember to replace home sweet home with the name of the site #}
 		<a href="/" class="c-header__brand">Home Sweet Home</a>
 
-    <nav class="c-header__nav">
-      <a href="#" class="c-header__nav__item">Something</a>
-      <a href="#" class="c-header__nav__item">A thing</a>
-      <a href="#" class="c-header__nav__item">Services</a>
-      <a href="#" class="c-header__nav__item">About</a>
-      <a href="#" class="c-header__nav__item">Contact</a>
-    </nav>
+    <div class="c-header__main">
+      <nav class="c-header__nav">
+        <a href="#" class="c-header__nav__item">Something</a>
+        <a href="#" class="c-header__nav__item">A thing</a>
+        <a href="#" class="c-header__nav__item">Services</a>
+        <a href="#" class="c-header__nav__item">About</a>
+        <a href="#" class="c-header__nav__item">Contact</a>
+      </nav>
+    </div>
 
-    {# I've seen JS is in another branch so will leave off for now but do styles #}
     <button
       class="c-header__toggle u-hidden-from@tablet  js-class-trigger"
       data-target="body"
-      data-class-to-trigger="is-visible--mobile-menu">
+      data-class-to-trigger="is-visible--mobile-menu"
+    >
       <span class="c-header__toggle__lines"></span>
       <span class="u-a11y">Menu</span>
     </button>

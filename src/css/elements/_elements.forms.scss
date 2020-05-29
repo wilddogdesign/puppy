@@ -37,7 +37,6 @@ textarea {
   &:focus,
   &:active {
     background-color: $color--grey--light;
-    color: $color--black;
   }
 
   &:focus {
@@ -80,6 +79,7 @@ button {
   padding: 0;
   border: 0;
   border-radius: 0;
+  background-color: transparent;
   cursor: pointer;
   appearance: none;
 }
@@ -148,6 +148,7 @@ label {
 [type='radio'] + span::before {
   content: '';
   display: inline-block;
+  flex-shrink: 0;
   width: rem(32px);
   height: rem(32px);
   margin-right: rem(12px);

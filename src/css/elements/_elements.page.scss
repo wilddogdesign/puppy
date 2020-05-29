@@ -13,4 +13,10 @@ body {
   overflow-y: scroll;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &.is-visible--mobile-menu {
+    @include mq($until: tablet) {
+      overflow-y: hidden;
+    }
+  }
 }

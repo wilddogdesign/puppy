@@ -5,19 +5,20 @@ import { setupTriggers } from './modules/triggers';
 import { setupDialogs } from './modules/dialogs';
 import { setupRecaptcha } from './modules/recaptcha';
 
-// Needs to be initiated ASAP, DO NOT PUT IN initalise function below
-setupRecaptcha();
-
 function isJsAvailable() {
   document.documentElement.classList.remove('no-js');
   document.documentElement.classList.add('js');
 }
 
+// Example - Remove if not using
 function onShowDialog(dialog) {
+  // eslint-disable-next-line no-console
   console.log('dialog shown', dialog);
 }
 
+// Example - Remove if not using
 function onHideDialog(dialog) {
+  // eslint-disable-next-line no-console
   console.log('dialog hidden', dialog);
 }
 
@@ -29,6 +30,7 @@ function initialise() {
     onShowCallback: onShowDialog,
     onHideCallback: onHideDialog,
   });
+  setupRecaptcha();
 }
 
 const finalScripts = {

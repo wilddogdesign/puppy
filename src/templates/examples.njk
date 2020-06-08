@@ -310,6 +310,10 @@
   <section id="recaptcha">
     <h2>Recaptcha</h2>
 
+    <p>
+      By default the recaptcha script included uses v2 invisible. <a href="#recaptcha-v2-alt">Click here for v2 tickbox</a>
+    </p>
+
     <a target="_blank" href="https://developers.google.com/recaptcha/docs/invisible">
       developers.google.com/recaptcha/docs/invisible
     </a>
@@ -317,7 +321,7 @@
     <h5>Setup</h5>
 
     <p>
-      Go to <a target="_blank" href="https://www.google.com/recaptcha/admin">google.com/recaptcha/admin</a> and create a new <strong>V2 invisible</strong> recaptcha key.
+      Go to <a target="_blank" href="https://www.google.com/recaptcha/admin">google.com/recaptcha/admin</a> and regisiter a new site for your recaptcha, making sure to first select <strong>reCAPTCHA v2</strong> then choose the <strong>Invisible reCAPTCHA badge</strong> option.
     </p>
 
     <p>
@@ -330,18 +334,12 @@
       </ul>
     </p>
 
-    <p>
-      Once done, copy the code below into the <code class="language-markup">&lt;head></code> element in <code>src/templates/includes/_head.njk</code>. Ensuring that the google recaptcha script includes the <code class="language-js">`?onload=recaptchaReadyCallback`</code> parameter. And the <code class="language-js">window.recaptchaKey</code> variable is set with the 'Site Key' from the recaptcha you just created.
-    </p>
+    <p>Once done, get a copy of the site key, then add a meta tag to the head named '_recaptcha' and use the site key as the content.
 
     <pre class="language-markup"><code><!--
     <head>
       ...
-      <script>
-        window.recaptchaKey = '6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a'
-      </script>
-
-      <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaReadyCallback" async defer/></script>
+      <meta name="_recaptcha" content="6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a">
     </head>
     --></code></pre>
 
@@ -355,13 +353,11 @@
 
         import { setupRecaptcha } from './modules/recaptcha';
 
-        // Needs to be initiated ASAP, DO NOT PUT IN initalise function below
         setupRecaptcha();
       </code>
     </pre>
 
     <p>We are now ready to use recaptcha on our forms.</p>
-
 
     <h5>Using <code class="language-markup">js-recaptcha</code> css class on the form element.</h5>
 
@@ -410,6 +406,47 @@
     </pre>
 
     <p>The <code class="language-js">attachRecaptcha()</code> function should be called anytime a form is added to the current view. This function will keep track of the forms that recaptcha has been attached to, and will not re-attached if already done so, meaning that the <code>attachRecaptcha()</code> can be called as many times as needed without issue.</p>
+
+    <div id="recaptcha-v2-alt">
+      <h5>v2 Tickbox Setup</h5>
+
+      <p>
+        If you'd prefer to use a visible tickbox on forms, follow the setup process above except for the following. 
+      </p>
+
+      <p>
+        Go to <a target="_blank" href="https://www.google.com/recaptcha/admin">google.com/recaptcha/admin</a> and regisiter a new site for your recaptcha, making sure to first select <strong>reCAPTCHA v2</strong> then choose the <strong>"I'm not a robot" tickbox</strong> option.
+      </p>
+
+      <p>When calling the setupRecaptcha function in <code>src/js/main.js</code> ensure to specify the badge size in the options.
+
+      <pre>
+        <code class="language-js">
+          ...
+
+          import { setupRecaptcha } from './modules/recaptcha';
+
+          setupRecaptcha({ size: 'normal' });
+
+          // Or
+          // setupRecaptcha({ size: 'compact' });
+        </code>
+      </pre>
+
+
+      <p>The size will also need to be specified when the attachRecaptcha function is used in dialogs, etc.</p>
+
+      <pre>
+        <code class="language-js">
+          ...
+
+          attachRecaptcha({ size: 'normal' });
+
+          // Or
+          // attachRecaptcha({ size: 'compact' });
+        </code>
+      </pre>
+    </div>
   </section>
 
   <section id="scroll-to">

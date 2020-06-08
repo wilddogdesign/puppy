@@ -1,5 +1,6 @@
 const recaptchaKey =
-  typeof window.recaptchaKey !== 'undefined' ? window.recaptchaKey : '';
+  (typeof window.recaptchaKey !== 'undefined' ? window.recaptchaKey : '') ||
+  document.getElementsByName('_recaptcha')[0].getAttribute('content');
 
 /**
  * Submit the active recaptcha form, if it exists.
@@ -24,6 +25,8 @@ export function recaptchaSubmit() {
 export function attachRecaptcha({
   target = '.js-recaptcha',
   validate = true,
+  size = 'invisible', // options = 'normal', 'compact', 'invisible'
+  theme = 'light', // options = 'light', 'dark'
 } = {}) {
   const forms = Array.from(document.querySelectorAll(target));
 
@@ -43,8 +46,9 @@ export function attachRecaptcha({
       // The recaptcha render method returns an id that we can target further down.
       const widgetID = window.grecaptcha.render(recaptcha, {
         sitekey: recaptchaKey,
-        size: 'invisible',
+        size,
         callback: recaptchaSubmit,
+        theme,
       });
 
       form.addEventListener('submit', (ev) => {
@@ -65,17 +69,26 @@ export function attachRecaptcha({
 }
 
 /**
- * Initial setup of recaptcha
+ * Initial setup of recpatcha
  *
  * @export
  * @param {*} [options={}] The setup options
  */
-export function setupRecaptcha() {
-  // Recaptcha needs to be initiated by the recaptcha script tag in <head> - DO NOT PUT IN initialise function
-  // https://developers.google.com/recaptcha/docs/invisible#examples
-  window.recaptchaReadyCallback = attachRecaptcha;
+export function setupRecaptcha(options) {
+  window.recaptchaReadyCallback = () => attachRecaptcha(options);
+
   window.recaptchaForms = [];
   window.activeRecaptchaForm = null;
+
+  const existingScript = document.getElementById('google-recaptcha');
+
+  if (!existingScript) {
+    const script = document.createElement('script');
+    script.src =
+      'https://www.google.com/recaptcha/api.js?onload=recaptchaReadyCallback';
+    script.id = 'google-recaptcha';
+    document.body.appendChild(script);
+  }
 }
 
 export default { recaptchaSubmit, attachRecaptcha, setupRecaptcha };

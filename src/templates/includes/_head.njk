@@ -1,9 +1,12 @@
 <head>
- 	<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
- 	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
+  <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0"/>
   <meta name="description" content="">
   <meta name="author" content="">
+
+  {# Set recaptcha site key #}
+  <meta name="_recaptcha" content="6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a">
 
   {% for p in pages %}
     {% if page == p.file %}
@@ -12,19 +15,4 @@
   {% endfor %}
 
   <!-- inline_css_plugin -->
-
-  {% set recaptcha_key = '6LcqPbgUAAAAADzSyygzDiduNftUvKuw5NMCla_a' %}
-
-  {% if recaptcha_key %}
-    {# <style type="text/css">
-      .grecaptcha-badge {visibility: hidden;}
-    </style> #}
-
-    <script>
-      window.recaptchaKey = '{{ recaptcha_key }}'
-    </script>
-
-    {# If you find that this script is loading before your main js file, then move it below that script #}
-    <script src='https://www.google.com/recaptcha/api.js?onload=recaptchaReadyCallback' async defer></script>
-  {% endif %}
 </head>

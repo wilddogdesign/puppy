@@ -5,6 +5,11 @@ import { setupTriggers } from './modules/triggers';
 import { setupDialogs } from './modules/dialogs';
 import { setupRecaptcha } from './modules/recaptcha';
 
+// Lazysizes
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+import 'lazysizes/plugins/respimg/ls.respimg';
+
 function isJsAvailable() {
   document.documentElement.classList.remove('no-js');
   document.documentElement.classList.add('js');

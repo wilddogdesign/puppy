@@ -23,6 +23,7 @@
     "babel-polyfill": "^6.26.0",
     "domready": "^1.0.8",
     "inuitcss": "^6.0.0",
+    "lazysizes": "^5.2.2",
     "scroll-to-element": "^2.0.3"
   },
   "devDependencies": {

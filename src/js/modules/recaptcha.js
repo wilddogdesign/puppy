@@ -1,6 +1,8 @@
 const recaptchaKey =
   (typeof window.recaptchaKey !== 'undefined' ? window.recaptchaKey : '') ||
-  document.getElementsByName('_recaptcha')[0].getAttribute('content');
+  (Array.from(document.getElementsByName('_recaptcha')).length
+    ? document.getElementsByName('_recaptcha')[0].getAttribute('content')
+    : false);
 
 /**
  * Submit the active recaptcha form, if it exists.
@@ -75,19 +77,21 @@ export function attachRecaptcha({
  * @param {*} [options={}] The setup options
  */
 export function setupRecaptcha(options) {
-  window.recaptchaReadyCallback = () => attachRecaptcha(options);
+  if (recaptchaKey) {
+    window.recaptchaReadyCallback = () => attachRecaptcha(options);
 
-  window.recaptchaForms = [];
-  window.activeRecaptchaForm = null;
+    window.recaptchaForms = [];
+    window.activeRecaptchaForm = null;
 
-  const existingScript = document.getElementById('google-recaptcha');
+    const existingScript = document.getElementById('google-recaptcha');
 
-  if (!existingScript) {
-    const script = document.createElement('script');
-    script.src =
-      'https://www.google.com/recaptcha/api.js?onload=recaptchaReadyCallback';
-    script.id = 'google-recaptcha';
-    document.body.appendChild(script);
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src =
+        'https://www.google.com/recaptcha/api.js?onload=recaptchaReadyCallback';
+      script.id = 'google-recaptcha';
+      document.body.appendChild(script);
+    }
   }
 }
 

@@ -4,6 +4,7 @@
 const projectTitle = 'Puppy';
 const now = new Date();
 
+const { readdirSync, readFileSync } = require('fs');
 // Path and webpack are required
 const path = require('path');
 // const webpack = require("webpack");
@@ -70,6 +71,24 @@ const afterHTMLWebpackPlugin = [
   new HtmlBeautifyPlugin(),
 ];
 
+// Get mock data from json files in src/mockData folder
+const mockData = () => {
+  const data = {};
+
+  const dir = path.join(__dirname, 'src/mockData');
+  const files = readdirSync(dir);
+
+  files.forEach((file) => {
+    const i = file.indexOf('.json');
+
+    if (i > -1) {
+      data[file.slice(0, i)] = JSON.parse(readFileSync(path.join(dir, file)));
+    }
+  });
+
+  return data;
+};
+
 module.exports = {
   // Entry files are the files webpack will run against so we set our main js and sass
   // along with their output locations
@@ -98,6 +117,7 @@ module.exports = {
                   otherNunjucksFiles
                 ),
                 projectTitle,
+                mockData: mockData(),
                 isProduction:
                   process.argv[process.argv.indexOf('--mode') + 1] ===
                   'production',
@@ -157,11 +177,13 @@ module.exports = {
     // Copy the service worker to dist root. We can't run it through webpack as it adds
     // code related to window etc.
     // Also copy images and fonts this way.
-    new CopyWebpackPlugin([
-      { from: './src/js/service-worker.js' },
-      { from: './src/images', to: './assets/images' },
-      { from: './src/fonts', to: './assets/fonts' },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: './src/js/service-worker.js' },
+        { from: './src/images', to: './assets/images' },
+        { from: './src/fonts', to: './assets/fonts' },
+      ],
+    }),
     // Generate the SVG sprite
     new SVGSpritemapPlugin({
       src: './src/icons/*.svg',

@@ -1,0 +1,14 @@
+// Reset browser styles
+button,
+[type='submit'] {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  font-family: $font--main;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+}

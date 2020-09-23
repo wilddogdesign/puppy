@@ -72,18 +72,6 @@ textarea {
   letter-spacing: .3em;
 }
 
-[type='submit'],
-button {
-  // Styles should be in o-btn really.
-  // Use this to kill off nasty iOS / other browser styles
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background-color: transparent;
-  cursor: pointer;
-  appearance: none;
-}
-
 textarea {
   max-width: 100%;
   height: auto;

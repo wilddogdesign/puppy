@@ -14,6 +14,9 @@ $inuit-wrapper-width: 1200px !default;
  * Vertical spacing helpers to add consistent margin and padding between elements
  * These are all multiples of $global-spacing-unit
  * eg. `u-mt-2 u-mt-4@tablet` - Adds 8px margin-top at mobile, then 16px at tablet
+ *
+ * Because of the ordering below, specific top or bottom rules trump -y rules
+ * eg. `u-my-2 u-mb-4` results in bigger margin bottom
  */
 
 $global-spacing-unit: 4px !default;

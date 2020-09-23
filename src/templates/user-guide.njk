@@ -1,0 +1,183 @@
+{% set page = "user-guide" %}
+{% extends 'includes/_base.njk' %}
+
+{% block main %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-okaidia.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/toolbar/prism-toolbar.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <style>
+    section {
+      padding-bottom: 2rem;
+      margin-bottom: 3rem;
+      border-bottom: 2px solid #ccc;
+      overflow-x: hidden;
+    }
+
+    section:first-of-type {
+      margin-top: 2rem;
+    }
+
+    ul {
+      margin-left: 0;
+    }
+
+    li {
+      margin-bottom: 1em;
+    }
+
+    a {
+      color: #f44336;
+    }
+
+    code {
+      color: #f44336;
+      background-color: #eee;
+    }
+
+    pre[class*=language-] {
+      margin: 2rem 0;
+    }
+  </style>
+
+  <div class="o-wrapper u-py-10 u-py-16@tablet">
+    <h1>Puppy user guide</h1>
+
+    <p>This is a quick guide to how Puppy is structured. Please update if you change anything!</p>
+
+    <section id="scss">
+      <h2>SCSS</h2>
+
+      <p>We use <a href="https://github.com/inuitcss">Inuit CSS</a> as our base. It’s pretty lightweight and un-opinionated, and most of the bits we use are for browser resets/normalising.</p>
+
+      <p>We use the <a href="http://getbem.com/naming/">BEM naming convention</a> for classes.</p>
+
+      <p>Sass files are organised into 6 folders:</p>
+
+      <h3>Settings</h3>
+
+      <p>These come first, defining site-wide variables:</p>
+
+      <ul>
+        <li>
+          <strong>Config</strong> - Inuit config settings. You shouldn’t need to change these.
+        </li>
+        <li>
+          <strong>Global</strong> - Includes wrapper widths and breakpoints, vertical spacing utility classes (these use Inuit CSS, but with naming <s>ripped off from</s> inspired by <a href="https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale">Tailwind</a>), plus other global variables like global transitions and border-radius.
+        </li>
+        <li>
+          <strong>Fonts</strong> - Any font variables used on the site should be declared in here.
+        </li>
+        <li>
+          <strong>Colours</strong> - Colours - including rgba transparencies - should be declared in here, and NOT in individual selectors.
+        </li>
+      </ul>
+
+      <h3>Tools</h3>
+
+      <p>Useful mixins and functions:</p>
+
+      <ul>
+        <li>
+          <strong>Full</strong> - Makes any element fill the width of the viewport, regardless of the container width.
+        </li>
+        <li>
+          <strong>Hiding</strong> - Function to let us selectively hide content at different breakpoints, with options to just hide it visually (ie. still visible to screen readers) or make it full-on display: none.
+        </li>
+        <li>
+          <strong>Line</strong> - A simple mixin to add a line. Used on hamburger menus mostly, but flexible enough that it can be used elsewhere if needed.
+        </li>
+        <li>
+          <strong>Proportionate-height</strong> - Much-used mixin to control the aspect ratio of a given element. Just pass a % as an argument, eg. <code>@include proportionate-height(50%)</code> will make an element half as tall as it is wide. Often used in conjunction with <code>u-object-fit</code> for images.
+        </li>
+      </ul>
+
+      <h3>Elements</h3>
+
+      <p>These are top level styles for base elements, and as such you want to make sure you use a light touch. If you add anything too specific, you may find yourself fighting against it for the rest of the project.</p>
+
+      <p>In light of this, the default rules are pretty light touch. Except for forms - those are pretty comprehensive to get rid of inconsistent (and ugly) browser defaults. However, even these form styles can be easily overwritten using classes.</p>
+
+      <p>As a starting point, we do the following:</p>
+
+      <ul>
+        <li>
+          <strong>Page</strong> - This is where you should add any styles to the <code>html</code> or <code>body</code> elements if necessary. The defaults here are pretty self-explanatory.
+        </li>
+        <li>
+          <strong>Buttons</strong> - Effectively reset both <code>button</code> and <code>input[type="submit"]</code> styles.
+        </li>
+        <li>
+          <strong>Forms</strong> - Strip out browser styles to make inputs look a lot nicer.
+        </li>
+        <li>
+          <strong>Headings</strong> - Ditch margin-top, set margin-bottom to be relative to font-size, set line-height.
+        </li>
+        <li>
+          <strong>Paragraphs</strong> - Again, ditching margin-top and setting margin-bottom to be relative to font-size.
+        </li>
+        <li>
+          <strong>Images</strong> - Block and 100% width by default as usually they'll be in a container or have their own class with a max-width.
+        </li>
+        <li>
+          <strong>Links</strong> - Text-decoration turned off, color set to <code>inherit</code> and a transition added for hover and focus animations.
+        </li>
+      </ul>
+
+      <h3>Objects</h3>
+
+      <p>These can be small, reusable bits of UI like <code>o-btn</code>, or more general things like <code>o-wrapper</code>.</p>
+
+      <p>As these are meant to be reusable within all sorts of components, be careful with specificity. If attributes aren't totally consistent, it's better to overwrite attributes using a component-specific class like this:</p>
+
+      <script type="text/plain" class="language-markup">
+        <p class="o-btn c-header__btn"></p>
+      </script>
+
+      <h3>Components</h3>
+
+      <p>These are the big boys: think of them as segments of a page. They can be reused, but only in their entirety (in an ideal world at least).</p>
+
+      <p>Components can contain objects, but never the other way around.</p>
+
+      <p>The example components here are the <code>c-header</code>, <code>c-footer</code> and <code>c-dialog</code>.</p>
+    </section>
+
+    <section id="nunjucks">
+      <h2>Nunjucks / HTML</h2>
+
+      <p>We use <a href="https://mozilla.github.io/nunjucks/templating.html">Nunjucks</a> to create our HTML templates. The syntax is almost identical to Twig, which we use in the CMS, and it makes both back- and front-end development quicker, at least in theory. It gives you the power to do all sorts of things with your HTML templates, such as looping, conditional statements, variables and so on.</p>
+
+      <p>Nunjucks files live inside the <code>templates</code> folder. Full pages live in that folder's root, and reusable code chunks go in the <code>includes</code> folder.</p>
+
+      <p>What should and shouldn't be an include is up to you, but usually I'd say if it's being used more than a couple of times, it should be in there. Loads of articles on a page? Make it an include and loop through one instance rather than write it out 30 times.</p>
+    </section>
+
+    <section id="js">
+      <h2>JavaScript</h2>
+
+      <p>All functions are eventually run from the <code>main.js</code> file, but it's good practice to split longer functions into their own module within the <code>modules</code> folder.</p>
+
+      <p>A few commonly-used modules are included, and documented on the <a href="/examples.html">examples</a> page.</p>
+    </section>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+
+  {# Prism JS Code Highlter - https://prismjs.com #}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/unescaped-markup/prism-unescaped-markup.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-scss.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/toolbar/prism-toolbar.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/show-language/prism-show-language.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+{% endblock %}

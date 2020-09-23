@@ -160,6 +160,53 @@
 
       <p>A few commonly-used modules are included, and documented on the <a href="/examples.html">examples</a> page.</p>
     </section>
+
+    <section id="images">
+      <h2>Lazyloading images</h2>
+
+      <p>Our sites often contain a lot of images, which can make pages slow to load. To remedy this we use <a href="https://github.com/aFarkas/lazysizes">Lazysizes</a> to load the smallest image possible. This library automatically picks the best image for the device, and loads it only when it comes into the viewport.</p>
+
+      <p>A basic example is:</p>
+
+      <script type="text/plain" class="language-markup">
+        <img
+          data-src="/assets/images/logo.svg"
+          class="lazyload"
+          alt="Wild Dog logo"
+        >
+      </script>
+
+      <p>For larger images, we use a set of images. Lazysizes cleverly loads the best image from <code>data-srcset</code> and lazyloads it. Note that we use a small blurred <code>src</code> image as a placeholder while the javascript loads. This means that you don't get a jump from whitespace to the real image.</p>
+
+      <script type="text/plain" class="language-markup">
+        <img
+          src="/assets/images/some-image@blur.jpg"
+          data-srcset="
+            /assets/images/some-image@large.jpg 700w,
+            /assets/images/some-image@small.jpg 400w"
+          class="lazyload"
+          alt="Some image"
+        >
+      </script>
+    </section>
+
+    <section id="icons">
+      <h2>Icons</h2>
+
+      <p>SVGs in the <code>icons</code> folder are compiled into a sprite sheet by webpack.</p>
+
+      <p>Here's an example:</p>
+
+      <script type="text/plain" class="language-markup">
+        <svg class="some__classname">
+          <use xlink:href="/assets.icons/icons.svg#sprite-github" />
+        </svg>
+      </script>
+
+      <p>You can then use a class to style the icon, with access to its size, fill and stroke attributes.</p>
+
+      <p>Note that icons can be used as background images in your CSS, but <strong>not</strong> within <code>img</code> tags.</p>
+    </section>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>

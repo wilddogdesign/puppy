@@ -10,6 +10,41 @@ $global-transition: .2s !default; // Used for link text colour transitions
 
 $inuit-wrapper-width: 1200px !default;
 
+/**
+ * Vertical spacing helpers to add consistent margin and padding between elements
+ * These are all multiples of $global-spacing-unit
+ * eg. `u-mt-2 u-mt-4@tablet` - Adds 8px margin-top at mobile, then 16px at tablet
+ */
+
+$global-spacing-unit: 4px !default;
+
+$inuit-spacing-directions: (
+  'y': '-top' '-bottom',
+  't': '-top',
+  'b': '-bottom'
+);
+
+$inuit-spacing-properties: ('p': 'padding', 'm': 'margin');
+
+$inuit-spacing-sizes: (
+  null: $global-spacing-unit * 4, // 16px
+  '-0': 0,
+  '-1': $global-spacing-unit, // 4px
+  '-2': $global-spacing-unit * 2, // 8px
+  '-3': $global-spacing-unit * 3, // 12px
+  '-4': $global-spacing-unit * 4, // 16px
+  '-6': $global-spacing-unit * 6, // 24px
+  '-8': $global-spacing-unit * 8, // 32px
+  '-10': $global-spacing-unit * 10, // 40px
+  '-12': $global-spacing-unit * 12, // 48px
+  '-16': $global-spacing-unit * 16, // 64px
+  '-24': $global-spacing-unit * 24, // 96px
+);
+
+$inuit-responsive-spacing-directions: $inuit-spacing-directions !default;
+$inuit-responsive-spacing-properties: $inuit-spacing-properties !default;
+$inuit-responsive-spacing-sizes: $inuit-spacing-sizes !default;
+
 $mq-breakpoints: (
   mobile:         375px,
   landscape:      480px,

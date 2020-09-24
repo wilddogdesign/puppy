@@ -52,7 +52,7 @@
 
       <p>We use the <a href="http://getbem.com/naming/">BEM naming convention</a> for classes.</p>
 
-      <p>Sass files are organised into 6 folders:</p>
+      <p>Sass files are organised into 6 folders.</p>
 
       <h3>Settings</h3>
 
@@ -141,6 +141,37 @@
       <p>Components can contain objects, but never the other way around.</p>
 
       <p>The example components here are the <code>c-header</code>, <code>c-footer</code> and <code>c-dialog</code>.</p>
+
+    </section>
+
+    <section id="critical-css">
+
+      <h2>Critical CSS</h2>
+
+      <p>Critical CSS is loaded inline in the <code>head</code> before the main stylesheet, which means it loads super fast. If a component or object appears 'above the fold', critical will make sure you don't get a flash of unstyled content. Typical examples include the header and hero.</p>
+
+      <p>You can mark whole SCSS files as critical in <code>styles.scss</code> like so:</p>
+
+      <script type="text/plain" class="language-scss">
+        /* critical:start */
+        @import 'node_modules/inuitcss/generic/generic.box-sizing';
+        @import 'node_modules/inuitcss/generic/generic.normalize';
+        @import 'node_modules/inuitcss/generic/generic.shared';
+        /* critical:end */
+      </script>
+
+      <p>Additionally, you can add the critical tags to sections of an individual SCSS file like so:</p>
+
+      <script type="text/plain" class="language-scss">
+       /* critical:start */
+       .c-header {
+         position: relative;
+         padding: rem(16px) 0;
+         overflow: hidden;
+         border-bottom: 1px solid $color--primary;
+       }
+       /* critical:end */
+      </script>
     </section>
 
     <section id="nunjucks">
@@ -176,7 +207,7 @@
         >
       </script>
 
-      <p>For larger images, we use a set of images. Lazysizes cleverly loads the best image from <code>data-srcset</code> and lazyloads it. Note that we use a small blurred <code>src</code> image as a placeholder while the javascript loads. This means that you don't get a jump from whitespace to the real image.</p>
+      <p>For larger images, we use a set of images. Lazysizes cleverly loads the best image from <code>data-srcset</code> and lazyloads it. Note that we use a small blurred <code>src</code> image as a placeholder while the javascript loads, which means that you don't get a jump from whitespace to the real image.</p>
 
       <script type="text/plain" class="language-markup">
         <img
@@ -195,7 +226,7 @@
 
       <p>SVGs in the <code>icons</code> folder are compiled into a sprite sheet by webpack.</p>
 
-      <p>Here's an example:</p>
+      <p>Here's an example of the HTML markup needed to display an individual icon:</p>
 
       <script type="text/plain" class="language-markup">
         <svg class="some__classname">

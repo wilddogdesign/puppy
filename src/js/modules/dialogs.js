@@ -35,7 +35,9 @@ export function setupDialogs({
       }
 
       // call attachRecpatcha function incase the dialog contains a form requiring recaptcha.
-      attachRecaptcha();
+      if (window.recaptchaLoaded) {
+        setTimeout(() => attachRecaptcha(), 0);
+      }
     });
 
     dialog.on('hide', () => {

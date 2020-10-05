@@ -91,6 +91,10 @@ export function setupRecaptcha(options) {
         'https://www.google.com/recaptcha/api.js?onload=recaptchaReadyCallback';
       script.id = 'google-recaptcha';
       document.body.appendChild(script);
+
+      setTimeout(() => {
+        window.recaptchaLoaded = true;
+      }, 0);
     }
   }
 }

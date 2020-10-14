@@ -1,0 +1,44 @@
+.c-square {
+  margin: rem(20px) 0;
+  padding: rem(30px);
+  border: rem(1px) solid $color--primary;
+
+  &--blue {
+    border: rem(1px) solid $color--blue;
+  }
+
+  &--thick {
+    border-width: rem(10px);
+
+    .c-square__title {
+      font-weight: bold;
+    }
+  }
+
+  &--home {
+    padding: rem(30px) rem(50px);
+    background: $color--primary;
+    color: $color--white;
+  }
+
+  &:hover,
+  &:focus {
+    .c-square__title {
+      color: $color--blue;
+    }
+  }
+}
+
+  .c-square__title {
+    font-weight: 400;
+    text-decoration: underline;
+
+    // Prefer this way as less specificity
+    .c-square--thick & {
+      font-weight: bold;
+    }
+  }
+
+  // .c-square__text {
+
+  // }

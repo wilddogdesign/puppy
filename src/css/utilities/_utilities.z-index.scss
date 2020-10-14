@@ -4,3 +4,9 @@
 .c-header {
   z-index: 2;
 }
+
+.o-bg {
+  .c-square & {
+    z-index: -1;
+  }
+}

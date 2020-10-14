@@ -1,4 +1,5 @@
 .c-square {
+  position: relative;
   margin: rem(20px) 0;
   padding: rem(30px);
   border: rem(1px) solid $color--primary;
@@ -10,9 +11,9 @@
   &--thick {
     border-width: rem(10px);
 
-    .c-square__title {
-      font-weight: bold;
-    }
+    // .c-square__title {
+    //   font-weight: bold;
+    // }
   }
 
   &--home {
@@ -20,6 +21,10 @@
     background: $color--primary;
     color: $color--white;
   }
+
+  // &--bg {
+
+  // }
 
   &:hover,
   &:focus {
@@ -37,8 +42,60 @@
     .c-square--thick & {
       font-weight: bold;
     }
+
+    .c-square--bg & {
+      color: $color--white;
+    }
   }
 
   // .c-square__text {
 
   // }
+
+  .c-square__columns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+
+    @include mq($from: tablet) {
+      flex-direction: row;
+    }
+
+    &--reverse {
+      @include mq($from: tablet) {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+    .c-square__columns__left,
+    .c-square__columns__right {
+      padding: rem(30px) 0;
+    }
+
+    .c-square__columns__left {
+      padding-left: 10px;
+      background: $color--white;
+      color: $color--text;
+
+      @include mq($from: tablet) {
+        width: 55%;
+      }
+
+      .c-square__columns--reverse & {
+        padding-left: 0;
+      }
+    }
+
+    .c-square__columns__right {
+      background: $color--blue;
+
+      @include mq($from: tablet) {
+        width: 40%;
+      }
+
+      .c-square__columns--reverse & {
+        padding-left: 10px;
+      }
+    }

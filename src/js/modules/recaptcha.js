@@ -87,6 +87,8 @@ export function setupRecaptcha(options) {
 
     if (!existingScript) {
       const script = document.createElement('script');
+      script.setAttribute('async', null);
+      script.setAttribute('defer', null);
       script.src =
         'https://www.google.com/recaptcha/api.js?onload=recaptchaReadyCallback';
       script.id = 'google-recaptcha';

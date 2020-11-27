@@ -25,10 +25,8 @@ const SassLintPlugin = require('sass-lint-webpack');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 // Allows us to make an SVG sprite for including SVGs on page
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
-// Tidy the generated HTML
-const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
-// Generates a progessive web app manifest file and favicons
-const WebappWebpackPlugin = require('webapp-webpack-plugin');
+// Generates favicons
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 // this person is a hero
 // https://dev.to/rodeghiero_/multiple-html-files-with-htmlwebpackplugin-19bf
@@ -37,6 +35,7 @@ const HtmlWebPackPluginConfig = new HtmlWebPackPlugin({
   filename: 'index.html',
   inject: 'body',
   template: 'nunjucks-html-loader!./src/templates/index.njk',
+  minify: false,
 });
 
 // Our other pages.
@@ -54,21 +53,25 @@ const multipleFiles = otherNunjucksFiles.map((entry) => {
 
 // Generate a manifest using the provided images and tidy the html AFTER Html
 const afterHTMLWebpackPlugin = [
-  new WebappWebpackPlugin({
+  // https://github.com/jantimon/favicons-webpack-plugin#advanced-usage
+  new FaviconsWebpackPlugin({
+    logo: path.resolve('src/misc/favicon.png'),
+    publicPath: '/',
+    outputPath: '/assets/favicons',
+    prefix: 'assets/favicons',
+    inject: true,
+    // https://github.com/itgalaxy/favicons#usage
     favicons: {
       name: 'Puppy',
       short_name: 'puppy',
+      // lang: "en-GB",
       orientation: 'portrait',
       display: 'standalone',
       start_url: '.',
-      description: 'Some description about puppy',
+      description: '',
       background_color: '#F44336',
     },
-    prefix: 'assets/favicons',
-    logo: path.resolve('src/misc/favicon.png'),
-    cache: true,
   }),
-  new HtmlBeautifyPlugin(),
 ];
 
 // Get mock data from json files in src/mockData folder
@@ -117,7 +120,7 @@ module.exports = {
                   otherNunjucksFiles
                 ),
                 projectTitle,
-                // mockData: mockData(),
+                mockData: mockData(),
                 isProduction:
                   process.argv[process.argv.indexOf('--mode') + 1] ===
                   'production',

@@ -1,9 +1,7 @@
-const path = require('path');
 const merge = require('webpack-merge');
 
-const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
-const WebappWebpackPlugin = require('webapp-webpack-plugin');
-const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
+// const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin-wilddog')
   .default;
 const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
@@ -16,24 +14,10 @@ const criticalSplit = require('postcss-critical-split');
 const common = require('./webpack.common.js');
 
 const afterHTMLWebpackPlugin = [
-  new WebappWebpackPlugin({
-    favicons: {
-      name: 'Puppy',
-      short_name: 'puppy',
-      orientation: 'portrait',
-      display: 'standalone',
-      start_url: '.',
-      description: 'Some description about puppy',
-      background_color: '#F44336',
-    },
-    prefix: 'assets/favicons',
-    logo: path.resolve('src/misc/favicon.png'),
-    cache: true,
-  }),
-  new HtmlBeautifyPlugin(),
-  new AsyncStylesheetWebpackPlugin({
-    preloadPolyfill: true,
-  }),
+  // new AsyncStylesheetWebpackPlugin({
+  //   preloadPolyfill: true,
+  // }),
+  new PreloadWebpackPlugin(),
   new HTMLInlineCSSWebpackPlugin({
     filter(fileName) {
       return fileName.includes('critical.css');
@@ -45,6 +29,7 @@ const afterHTMLWebpackPlugin = [
       leaveCssFile: true,
     },
   }),
+  // new PreloadWebpackPlugin(),
 ];
 
 module.exports = merge(common, {
@@ -111,6 +96,18 @@ module.exports = merge(common, {
           {
             search: /#VERSION_NO#/,
             replace: new Date().toISOString(),
+          },
+        ],
+      },
+      {
+        dir: 'dist/',
+        test: /\.html$/,
+        rules: [
+          {
+            search: '<!-- critial_script_plugin -->',
+            replace: `<script id="criticalCss">
+    !function(a){"use strict";var b=function(b,c,d){function j(a){return e.body?a():void setTimeout(function(){j(a)})}function l(){f.addEventListener&&f.removeEventListener("load",l),f.media=d||"all"}var g,e=a.document,f=e.createElement("link");if(c)g=c;else{var h=(e.body||e.getElementsByTagName("head")[0]).childNodes;g=h[h.length-1]}var i=e.styleSheets;f.rel="stylesheet",f.href=b,f.media="only x",j(function(){g.parentNode.insertBefore(f,c?g:g.nextSibling)});var k=function(a){for(var b=f.href,c=i.length;c--;)if(i[c].href===b)return a();setTimeout(function(){k(a)})};return f.addEventListener&&f.addEventListener("load",l),f.onloadcssdefined=k,k(l),f};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this),function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(a){ }},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d),d.rel=null) }},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){a.clearInterval(c)}) }}}(this);
+  </script>`,
           },
         ],
       },

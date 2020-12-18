@@ -1,0 +1,101 @@
+<div class="c-hero {{ 'c-hero--video' if hero.video }} {{ 'c-hero--slider' if hero.slides }}">
+
+  {% if hero.video %}
+    <div class="c-hero__video-wrap">
+      <iframe
+        class="o-iframe js-video js-hero-video"
+        frameborder="0"
+        allowfullscreen=""
+        allow="autoplay"
+        scrolling="no"
+        src="{{ hero.video }}?background=1&loop=1"
+      ></iframe>
+    </div>
+
+  {% elif hero.slides %}
+    <div class="o-slider glide js-slider" data-autoplay="5000">
+      <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
+          {% for slide in hero.slides %}
+            <li class="glide__slide">
+              <div class="o-slider__slide__container">
+                <div class="o-slider__slide__container__img-wrap">
+                  <img
+                    src="/example-images/heroes/{{ slide.image }}@blur.jpg"
+                    data-src="/example-images/heroes/{{ slide.image }}@blur.jpg"
+                    data-srcset="
+                      /example-images/heroes/{{ slide.image }}@huge.jpg 1800w,
+                      /example-images/heroes/{{ slide.image }}@large.jpg 1440w,
+                      /example-images/heroes/{{ slide.image }}.jpg 1024w,
+                      /example-images/heroes/{{ slide.image }}@med.jpg 768w,
+                      /example-images/heroes/{{ slide.image }}@small.jpg 480w"
+                    data-sizes="auto"
+                    alt=""
+                    class="u-object-fit lazyload">
+                </div>
+
+                {% if slide.content %}
+                  <div class="o-wrapper o-slider__slide__container__content">
+                    <div class="c-hero__slider__content__inner">
+                      <h1 class="c-hero__title">{{ slide.content.title }}</h1>
+
+                      <p class="c-hero__subtitle">{{ slide.content.subtitle }}</p>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      {% if hero.slides|length > 1 %}
+        <div class="o-slider__controls o-wrapper">
+          <div class="o-slider__bullets glide__bullets" data-glide-el="controls[nav]">
+            {% for slide, key in hero.slides %}
+              <a href="#" class="o-slider__bullet" data-glide-dir="={{ loop.index0 }}">{{ loop.index0 }}</a>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="o-slider__controls o-slider__controls--center o-wrapper">
+          <div class="o-slider__arrows">
+            <div class="o-slider__arrow o-slider__arrow--left glide__arrows" data-glide-el="controls">
+              <button class="o-slider__arrow__btn" data-glide-dir="<">prev</button>
+            </div>
+
+            <div class="o-slider__arrow o-slider__arrow--right glide__arrows" data-glide-el="controls">
+              <button class="o-slider__arrow__btn" data-glide-dir=">">next</button>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+  {% else %}
+    <div class="c-hero__img-wrap">
+      <img
+        src="/example-images/heroes/{{ hero.image }}@blur.jpg"
+        data-src="/example-images/heroes/{{ hero.image }}@blur.jpg"
+        data-srcset="
+          /example-images/heroes/{{ hero.image }}@huge.jpg 1800w,
+          /example-images/heroes/{{ hero.image }}@large.jpg 1440w,
+          /example-images/heroes/{{ hero.image }}.jpg 1024w,
+          /example-images/heroes/{{ hero.image }}@med.jpg 768w,
+          /example-images/heroes/{{ hero.image }}@small.jpg 480w"
+        data-sizes="auto"
+        alt=""
+        class="u-object-fit lazyload">
+    </div>
+  {% endif %}
+
+  {% if hero.content %}
+    <div class="o-wrapper c-hero__content">
+      <div class="c-hero__content__inner">
+        <h1 class="c-hero__title">{{ hero.content.title }}</h1>
+
+        <p class="c-hero__subtitle">{{ hero.content.subtitle }}</p>
+      </div>
+    </div>
+  {% endif %}
+</div>

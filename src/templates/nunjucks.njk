@@ -1,0 +1,26 @@
+{% set page = "nunjucks" %}
+{% extends 'includes/_base.njk' %}
+
+{% block main %}
+  <div class="o-wrapper u-py-10 u-py-16@table ">
+    <h1>Nunjucks</h1>
+    <p>The front-end runs on Nunjucks before it's ported to Twig by our lovely back-end team. Add to this guide if you do anything crazy with Nunjucks.</p>
+
+    <h2>Extending Nunjucks</h2>
+    <p>The following string is incredibly long in the template and should be shorted to 5 characters by a filter! <code>{{ 'fooooooooooooooobar' | shorten }}</code></p>
+    <p>Extensions are optional and can be set via <code>nunjucks.env.js</code> file.
+
+    <h3>Custom filters</h3>
+    <p>If you're  extending Nunjucks, its likely for custom filters.</p>
+    <p>You can read more about custom filters in the <u><a href="https://mozilla.github.io/nunjucks/api.html#custom-filters">official docs</a></u>.</p>
+    <p>Only use filters back-end team use, otherwise inform them before putting in something brand new, don't waste their time trying to figure out <b>your</b> javascript.</p>
+
+    <h2>Diff between <code>nunjucks-html-loader</code> vs <code>puppy-nunjucks-html-loader</code>??</h2>
+    <p><code>puppy-nunjucks-html-loader</code> is a modified version of <code>nunjucks-html-loader</code>, it is installed into <code>node_modules</code> (via sym link) so behaves like any other module, just this time from the local source, rather than npm.</p>
+
+
+
+    {# Just an example of the path needed to include an image #}
+    {# <img src="/assets/images/logo.svg" /> #}
+  </div>
+{% endblock %}

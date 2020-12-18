@@ -58,14 +58,24 @@
           </div>
         </div>
 
+        {# Slider controls need to be wrapper & then immediate children:
+          data-glide-el="controls"
+            data-glide-dir=">"
+            data-glide-dir="<"
+
+          Doesn't matter if the element is a button or not
+
+          See: https://glidejs.com/docs/setup/#Arrows
+        #}
+
         <div class="o-slider__controls o-slider__controls--center o-wrapper">
-          <div class="o-slider__arrows">
-            <div class="o-slider__arrow o-slider__arrow--left glide__arrows" data-glide-el="controls">
-              <button class="o-slider__arrow__btn" data-glide-dir="<">prev</button>
+          <div class="o-slider__arrows" data-glide-el="controls">
+            <div class="o-slider__arrow o-slider__arrow--left glide__arrows" data-glide-dir="<">
+              <button class="o-slider__arrow__btn">prev</button>
             </div>
 
-            <div class="o-slider__arrow o-slider__arrow--right glide__arrows" data-glide-el="controls">
-              <button class="o-slider__arrow__btn" data-glide-dir=">">next</button>
+            <div class="o-slider__arrow o-slider__arrow--right glide__arrows" data-glide-dir=">">
+              <button class="o-slider__arrow__btn">next</button>
             </div>
           </div>
         </div>

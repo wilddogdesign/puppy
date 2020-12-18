@@ -71,6 +71,7 @@
       background-image: svg-load('../icons/chevron.svg', stroke=$color--white);
       background-size: rem(24px) rem(12px);
       text-indent: rem(-9999px);
+      cursor: pointer;
 
       + .o-slider__arrow {
         margin-left: rem(10px);

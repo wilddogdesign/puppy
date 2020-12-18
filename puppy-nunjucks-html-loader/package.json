@@ -1,0 +1,30 @@
+{
+  "author": {
+    "name": "Ryan Hornberger / Eric D'Addio @ Wild Dog",
+    "email": "ryhornberger@gmail.com / eric@wilddogdesign.co.yk",
+    "url": "https://github.com/ryanhornberger"
+  },
+  "bugs": {
+    "url": "https://github.com/ryanhornberger/nunjucks-html-loader/issues"
+  },
+  "dependencies": {
+    "loader-utils": "^0.2.16",
+    "nunjucks": "^3.0.0"
+  },
+  "description": "A webpack loader that takes nunjucks templates and returns raw html. It also works with webpack's watch command. Modified locally to allow modified Env",
+  "devDependencies": {},
+  "homepage": "https://github.com/ryanhornberger/nunjucks-html-loader",
+  "keywords": [
+    "webpack",
+    "nunjucks",
+    "html",
+    "raw",
+    "watch",
+    "hmr",
+    "live"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "puppy-nunjucks-html-loader",
+  "version": "1.1.0"
+}

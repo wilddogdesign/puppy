@@ -30,13 +30,18 @@ const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 // Generates a progessive web app manifest file and favicons
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 
+const envCallback = require('./nunjucks.env');
+
 // this person is a hero
 // https://dev.to/rodeghiero_/multiple-html-files-with-htmlwebpackplugin-19bf
 // The first HTMLWebPackPlugin for generating the index.html via nunjucks-html-loader
 const HtmlWebPackPluginConfig = new HtmlWebPackPlugin({
   filename: 'index.html',
   inject: 'body',
-  template: 'nunjucks-html-loader!./src/templates/index.njk',
+  template: 'puppy-nunjucks-html-loader!./src/templates/index.njk',
+  templateParameters: {
+    envCallback,
+  },
 });
 
 // Our other pages.
@@ -47,8 +52,11 @@ const otherNunjucksFiles = require('./pages.js');
 const multipleFiles = otherNunjucksFiles.map((entry) => {
   return new HtmlWebPackPlugin({
     filename: `${entry.file}.html`,
-    template: `nunjucks-html-loader!./src/templates/${entry.file}.njk`,
+    template: `puppy-nunjucks-html-loader!./src/templates/${entry.file}.njk`,
     inject: entry.file !== 'all',
+    templateParameters: {
+      envCallback,
+    },
   });
 });
 
@@ -105,10 +113,12 @@ module.exports = {
         use: [
           'html-loader',
           {
-            loader: 'nunjucks-html-loader',
+            loader: 'puppy-nunjucks-html-loader',
             options: {
               // where are the nunjucks files?
               searchPaths: ['./src/templates'],
+              // custom env manipulations
+              envCallback,
               // content is passed into every nunjucks file to be used like {{ kenobi }}
               context: {
                 nowYear: dateFormat(now, 'yyyy'),

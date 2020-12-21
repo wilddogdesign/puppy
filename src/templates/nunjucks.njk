@@ -7,7 +7,7 @@
     <p>The front-end runs on Nunjucks before it's ported to Twig by our lovely back-end team. Add to this guide if you do anything crazy with Nunjucks or add new custom filters.</p>
 
     <h2>Extending Nunjucks</h2>
-    <p>The following string is incredibly long in the template and should be shorted to 5 characters by a filter! <code>{{ 'fooooooooooooooobar' | shorten }}</code></p>
+    <p>The following string is incredibly long in the template and should be shorted to 5 characters by a filter! <code>&lcub;&lcub; 'fooooooooooooooobar' | shorten &rcub;&rcub;</code></p>
     <p>Extensions are optional and can be set via <code>nunjucks.env.js</code> file.
 
     <h3>Custom filters</h3>
@@ -30,7 +30,32 @@
       <li>Copy the <code>nunjucks.env.js</code> from this repo.</li>
     </ol>
     <p>If you try to use custom filters without steps 4 &amp; 5 your Nunjucks instance will crash.</p>
-    <code>
+
+    <hr>
+
+    <h2>Available Filters</h2>
+    <p>Check the filters that <u><a href="https://mozilla.github.io/nunjucks/templating.html">ship with Nunjucks</a></u> first.</p>
+
+    <h3>shorten</h3>
+    <p>The following string has been shortened {{ 'fooooooooo' | shorten }}</p>
+    <code>&lcub;&lcub; message | shorten &rcub;&rcub; or  &lcub;&lcub; message | shorten(20) &rcub;&rcub;</code>
+
+    <br>
+    <br>
+
+    <h3>wpautop</h3>
+    <p>The following multiline string has been wpautop'd.</p>
+    <p>bool optional. If set, this will convert all remaining line-breaks after paragraphing. Default true.</p>
+    <p><strong>Warning: This performs " | safe" on the output!</strong></p>
+    {% set message %}
+        Hello World,
+        this is a test
+        of wit and might
+
+        good luck
+    {% endset %}
+    {{ message | wpautop  }}
+    <code>&lcub;&lcub; message | wpautop &rcub;&rcub; or  &lcub;&lcub; message | wpautop(false) &rcub;&rcub;</code>
 
 
 

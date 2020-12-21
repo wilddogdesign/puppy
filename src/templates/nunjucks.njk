@@ -7,7 +7,7 @@
     <p>The front-end runs on Nunjucks before it's ported to Twig by our lovely back-end team. Add to this guide if you do anything crazy with Nunjucks or add new custom filters.</p>
 
     <h2>Extending Nunjucks</h2>
-    <p>The following string is incredibly long in the template and should be shorted to 5 characters by a filter! <code>&lcub;&lcub; 'fooooooooooooooobar' | shorten &rcub;&rcub;</code></p>
+    <p>The following string is incredibly long in the template and should be shorted to 5 characters by a filter! <code>{{ 'fooooooooooooooobar' | shorten }}</code></p>
     <p>Extensions are optional and can be set via <code>nunjucks.env.js</code> file.
 
     <h3>Custom filters</h3>

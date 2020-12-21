@@ -4,7 +4,7 @@
 {% block main %}
   <div class="o-wrapper u-py-10 u-py-16@table ">
     <h1>Nunjucks</h1>
-    <p>The front-end runs on Nunjucks before it's ported to Twig by our lovely back-end team. Add to this guide if you do anything crazy with Nunjucks.</p>
+    <p>The front-end runs on Nunjucks before it's ported to Twig by our lovely back-end team. Add to this guide if you do anything crazy with Nunjucks or add new custom filters.</p>
 
     <h2>Extending Nunjucks</h2>
     <p>The following string is incredibly long in the template and should be shorted to 5 characters by a filter! <code>{{ 'fooooooooooooooobar' | shorten }}</code></p>
@@ -13,14 +13,25 @@
     <h3>Custom filters</h3>
     <p>If you're  extending Nunjucks, its likely for custom filters.</p>
     <p>You can read more about custom filters in the <u><a href="https://mozilla.github.io/nunjucks/api.html#custom-filters">official docs</a></u>.</p>
-    <p>Only use filters back-end team use, otherwise inform them before putting in something brand new, don't waste their time trying to figure out <b>your</b> javascript.</p>
+    <p>Only create filters the back-end team use, otherwise inform them before putting in something brand new, don't waste their time trying to figure out <b>your</b> javascript.</p>
 
-    <h2>Diff between <code>nunjucks-html-loader</code> vs <code>puppy-nunjucks-html-loader</code>??</h2>
-    <p><code>puppy-nunjucks-html-loader</code> is a modified version of <code>nunjucks-html-loader</code>, it is installed into <code>node_modules</code> (via sym link) so behaves like any other module, just this time from the local source, rather than npm.</p>
+    <h2>Differences</h2>
+    <p><strong>You don't have to be aware of this unless you are changing things in Webpack or upgrading an existing project to the new Nunjucks Loader.</strong></p>
+    <p>Our forked <code><u><a href="https://github.com/wilddogdesign/nunjucks-html-loader">nunjucks-html-loader</a></u></code> is a modified version of <code><u><a href="https://github.com/ryanhornberger/nunjucks-html-loader">nunjucks-html-loader</a></u></code>, it is installed by npm via our GitHub repo URL so behaves like any other module, just this time from our source, rather than npm's repository.</p>
+
+    <h2>Upgrading an existing project</h2>
+    <p>To upgrade an existing project (only do this if it is very young to avoid confusion):</p>
+    <ol>
+      <li>Uninstall the existing loader; <code>npm uninstall nunjucks-html-loader</code></li>
+      <li>Install the forked loader; <code>npm install --save-dev git+https://github.com/wilddogdesign/nunjucks-html-loader.git</code></li>
+      <li><strong>You can stop here if you do not want to use any extendability.</strong></li>
+      <li>Copy the <code>webpack.common.js</code> from this repo and amend to fit your existing variant.</li>
+      <li>Copy the <code>nunjucks.env.js</code> from this repo.</li>
+    </ol>
+    <p>If you try to use custom filters without steps 4 &amp; 5 your Nunjucks instance will crash.</p>
+    <code>
 
 
 
-    {# Just an example of the path needed to include an image #}
-    {# <img src="/assets/images/logo.svg" /> #}
   </div>
 {% endblock %}

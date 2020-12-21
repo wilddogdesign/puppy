@@ -38,7 +38,7 @@ const envCallback = require('./nunjucks.env');
 const HtmlWebPackPluginConfig = new HtmlWebPackPlugin({
   filename: 'index.html',
   inject: 'body',
-  template: 'puppy-nunjucks-html-loader!./src/templates/index.njk',
+  template: 'nunjucks-html-loader!./src/templates/index.njk',
   templateParameters: {
     envCallback,
   },
@@ -52,7 +52,7 @@ const otherNunjucksFiles = require('./pages.js');
 const multipleFiles = otherNunjucksFiles.map((entry) => {
   return new HtmlWebPackPlugin({
     filename: `${entry.file}.html`,
-    template: `puppy-nunjucks-html-loader!./src/templates/${entry.file}.njk`,
+    template: `nunjucks-html-loader!./src/templates/${entry.file}.njk`,
     inject: entry.file !== 'all',
     templateParameters: {
       envCallback,
@@ -113,7 +113,7 @@ module.exports = {
         use: [
           'html-loader',
           {
-            loader: 'puppy-nunjucks-html-loader',
+            loader: 'nunjucks-html-loader',
             options: {
               // where are the nunjucks files?
               searchPaths: ['./src/templates'],

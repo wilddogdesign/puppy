@@ -181,6 +181,7 @@ module.exports = {
       patterns: [
         { from: './src/js/service-worker.js' },
         { from: './src/images', to: './assets/images' },
+        { from: './src/example-images', to: './assets/example-images' },
         { from: './src/fonts', to: './assets/fonts' },
       ],
     }),

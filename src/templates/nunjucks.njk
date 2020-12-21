@@ -57,6 +57,77 @@
     {{ message | wpautop  }}
     <code>&lcub;&lcub; message | wpautop &rcub;&rcub; or  &lcub;&lcub; message | wpautop(false) &rcub;&rcub;</code>
 
+    <br>
+    <br>
+
+    <h3>pclass</h3>
+    <p>The following multiline string has been wpautop'd then pclass'd.</p>
+    <p><strong>Warning: This performs " | safe" on the output!</strong></p>
+    <style>
+      .red {
+        color: red;
+      }
+    </style>
+    {% set message %}
+        "their heart grew cold
+
+        they let their wings down"
+    {% endset %}
+    {{ message | wpautop | pclass('red')  }}
+    <code>&lcub;&lcub; message | wpautop | pclass('red') &rcub;&rcub;</code>
+
+
+    <br>
+    <br>
+
+    <h3>pclasslede</h3>
+    <p>The following multiline string has been wpautop'd then pclasslede'd.</p>
+    <p>Add class to 1st paragraph and another to 2nd paragraph</p>
+    <p><strong>Warning: This performs " | safe" on the output!</strong></p>
+    <style>
+      .gold {
+        color: gold;
+      }
+
+      .forest {
+        color: forestgreen;
+      }
+    </style>
+    {% set message %}
+        "neither for me nor the honey bee
+
+        someone will remember us
+          I say
+          even in another time
+
+        wealth without virtue is no harmless neighbor
+        but a mixture of both attains the height of happiness"
+    {% endset %}
+    {{ message | wpautop | pclasslede('gold', 'forest')  }}
+    <code>&lcub;&lcub; message | wpautop | pclass('gold', 'forest') &rcub;&rcub;</code>
+
+
+    <br>
+    <br>
+
+    <h3>nltoobr</h3>
+    <p>The following multiline string has been nltoobr'd.</p>
+    <p>nl2br exists nativily in nunjucks but is <u><a href="https://mozilla.github.io/nunjucks/templating.html#nl2br">very verbose</a></u>,
+    this performs a <u><a href="https://locutus.io/php/strings/nl2br/">JS mirror of the PHP method</a></u> instead.</p>
+    <p>Optional bool of isXhtml, can be ignored in most cases.</p>
+    <p><strong>Warning: This performs " | safe" on the output!</strong></p>
+
+    {% set message %}
+      "You may forget but
+      let me tell you
+      this: someone in
+      some future time
+      will think of us."
+    {% endset %}
+    {{ message | nltoobr  }}
+
+    <br>
+    <code>&lcub;&lcub; message | nltoobr &rcub;&rcub; or &lcub;&lcub; message | nltoobr(true) &rcub;&rcub;</code>
 
 
   </div>

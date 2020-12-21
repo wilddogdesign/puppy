@@ -153,6 +153,38 @@ const envCallback = (env) => {
     return safe(res);
   });
 
+  // ...
+  // example usage, {{ message | pclass("className") }}
+  env.addFilter('pclass', function (str, className) {
+    const safe = env.getFilter('safe');
+    const res = str.replace(/<p>/g, `<p class="${className}">`);
+    return safe(res);
+  });
+
+  // ...
+  // example usage, {{ message | pclasslede("className", "className2") }}
+  env.addFilter('pclasslede', function (str, className, className2) {
+    const safe = env.getFilter('safe');
+    const res = str
+      .replace('<p>', `<p class="${className}">`)
+      .replace('<p>', `<p class="${className2}">`);
+    return safe(res);
+  });
+
+  // ...
+  // example usage, {{ message | nltoobr }}
+  // nl2br exists nativily in nunjucks but is very verbose:
+  // https://mozilla.github.io/nunjucks/templating.html#nl2br
+  // this performs a JS mirror of the PHP method instead
+  // https://locutus.io/php/strings/nl2br/
+  env.addFilter('nltoobr', function (str, isXhtml) {
+    const safe = env.getFilter('safe');
+    const breakTag =
+      isXhtml || typeof isXhtml === 'undefined' ? '<br ' + '/>' : '<br>';
+    const res = (str + '').replace(/(\r\n|\n\r|\r|\n)/g, breakTag + '$1');
+    return safe(res);
+  });
+
   // env MUST ALWAYS BE RETURNED
   return env;
 };

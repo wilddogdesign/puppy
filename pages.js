@@ -11,6 +11,11 @@ module.exports = [
     desc: 'Page that shows how to use built in functionality.',
   },
   {
+    file: 'nunjucks',
+    name: 'Nunjucks',
+    desc: 'Page that shows how to use Nunjucks functionality.',
+  },
+  {
     file: 'offline',
     name: 'Offline',
     desc: 'Page a user will see with no active internet connection.',

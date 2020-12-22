@@ -7,7 +7,7 @@ const now = new Date();
 const { readdirSync, readFileSync } = require('fs');
 // Path and webpack are required
 const path = require('path');
-// const webpack = require("webpack");
+const webpack = require('webpack');
 // Date formatting plugin for the all template
 const dateFormat = require('dateformat');
 
@@ -172,6 +172,11 @@ module.exports = {
     ],
   },
   plugins: [
+    // Set custom env variables
+    new webpack.DefinePlugin({
+      API_URL: JSON.stringify(process.env.API_URL || ''),
+      ASSET_DIR: JSON.stringify(process.env.ASSET_DIR || '/assets'),
+    }),
     // Runs the first HTMLWebPackPlugin for index
     HtmlWebPackPluginConfig,
     // Adds async to all JS files inserted
@@ -189,10 +194,12 @@ module.exports = {
     // Also copy images and fonts this way.
     new CopyWebpackPlugin({
       patterns: [
+        { from: './src/index' },
         { from: './src/js/service-worker.js' },
+        { from: './src/fonts', to: './assets/fonts' },
+        { from: './src/json', to: './assets/json' },
         { from: './src/images', to: './assets/images' },
         { from: './src/example-images', to: './assets/example-images' },
-        { from: './src/fonts', to: './assets/fonts' },
       ],
     }),
     // Generate the SVG sprite

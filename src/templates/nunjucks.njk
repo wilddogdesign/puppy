@@ -48,11 +48,11 @@
     <p>bool optional. If set, this will convert all remaining line-breaks after paragraphing. Default true.</p>
     <p><strong>Warning: This performs " | safe" on the output!</strong></p>
     {% set message %}
-        Hello World,
+        "Hello World,
         this is a test
         of wit and might
 
-        good luck
+        good luck"
     {% endset %}
     {{ message | wpautop  }}
     <code>&lcub;&lcub; message | wpautop &rcub;&rcub; or  &lcub;&lcub; message | wpautop(false) &rcub;&rcub;</code>
@@ -82,7 +82,7 @@
 
     <h3>pclasslede</h3>
     <p>The following multiline string has been wpautop'd then pclasslede'd.</p>
-    <p>Add class to 1st paragraph and another to 2nd paragraph</p>
+    <p>Add class to 1st paragraph and another to 2nd and subsequent paragraphs</p>
     <p><strong>Warning: This performs " | safe" on the output!</strong></p>
     <style>
       .gold {

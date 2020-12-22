@@ -167,7 +167,7 @@ const envCallback = (env) => {
     const safe = env.getFilter('safe');
     const res = str
       .replace('<p>', `<p class="${className}">`)
-      .replace('<p>', `<p class="${className2}">`);
+      .replace(/<p>/g, `<p class="${className2}">`);
     return safe(res);
   });
 

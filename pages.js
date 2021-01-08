@@ -21,6 +21,11 @@ module.exports = [
     desc: 'Page a user will see with no active internet connection.',
   },
   {
+    file: '404',
+    name: '404',
+    desc: 'Page a user will see if landing on a page that doesnt exist.',
+  },
+  {
     file: 'all',
     name: 'All ',
   },

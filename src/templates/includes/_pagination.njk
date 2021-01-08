@@ -1,0 +1,90 @@
+{# pagination example object to mimic the BE Timber default pagination setup #}
+{# We are simulating page two for this example #}
+{# eg. set listingItems.pagination.prev.link to '' to disable the back #}
+{% set listingItems = {
+    pagination: {
+      prev: {
+        link: '#'
+      },
+      next: {
+        link: '#'
+      },
+      pages: [
+        {
+          title: '1',
+          link: '#',
+          class: ''
+        },
+        {
+          title: '2',
+          link: '#',
+          class: '',
+          current: true
+        },
+        {
+          title: '3',
+          link: '#',
+          class: ''
+        },
+        {
+          title: '4',
+          link: '#',
+          class: ''
+        },
+        {
+          title: '5',
+          link: '#',
+          class: ''
+        },
+        {
+          title: '6',
+          link: '#',
+          class: ''
+        },
+        {
+          title: '7',
+          link: '#',
+          class: ''
+        }
+      ]
+    }
+}
+%}
+
+{% if listingItems.pagination.pages %}
+  <div class="c-pagination">
+    <a
+      href="{{ listingItems.pagination.prev.link }}"
+      class="c-pagination__nav c-pagination__nav--back
+      {% if listingItems.pagination.prev.link|length == '' %} c-pagination__nav--disabled{% endif %}
+    ">
+      <span class="u-a11y">Prev</span>
+    </a>
+    <ul class="c-pagination__list">
+      {% for page in listingItems.pagination.pages %}
+        <li class="c-pagination__item">
+          {% if page.current %}
+            {{ page.title }}
+          {% elseif page.link %}
+            <a
+              href="{{ page.link }}"
+              class="c-pagination__link {{ page.class }}"
+              title="{{ page.title }}"
+            >
+              {{ page.title }}
+            </a>
+          {% else %}
+            <span class="c-pagination__link {{ page.class }}">{{ page.title }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </uL>
+    <a
+      href="{{ listingItems.pagination.next.link }}"
+      class="c-pagination__nav c-pagination__nav--next
+      {% if listingItems.pagination.next.link|length == '' %} c-pagination__nav--disabled{% endif %}
+    ">
+      <span class="u-a11y">Next</span>
+    </a>
+  </div>
+{% endif %}

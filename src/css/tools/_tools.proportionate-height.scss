@@ -12,3 +12,7 @@
       clear: both;
   }
 }
+
+@mixin ratio-height($width, $height) {
+  @include proportionate-height(($height / $width) * 100%);
+}

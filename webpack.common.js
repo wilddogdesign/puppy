@@ -7,7 +7,7 @@ const now = new Date();
 const { readdirSync, readFileSync } = require('fs');
 // Path and webpack are required
 const path = require('path');
-// const webpack = require("webpack");
+const webpack = require('webpack');
 // Date formatting plugin for the all template
 const dateFormat = require('dateformat');
 
@@ -30,6 +30,8 @@ const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 // Generates a progessive web app manifest file and favicons
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 
+const envCallback = require('./nunjucks.env');
+
 // this person is a hero
 // https://dev.to/rodeghiero_/multiple-html-files-with-htmlwebpackplugin-19bf
 // The first HTMLWebPackPlugin for generating the index.html via nunjucks-html-loader
@@ -37,6 +39,9 @@ const HtmlWebPackPluginConfig = new HtmlWebPackPlugin({
   filename: 'index.html',
   inject: 'body',
   template: 'nunjucks-html-loader!./src/templates/index.njk',
+  templateParameters: {
+    envCallback,
+  },
 });
 
 // Our other pages.
@@ -49,6 +54,9 @@ const multipleFiles = otherNunjucksFiles.map((entry) => {
     filename: `${entry.file}.html`,
     template: `nunjucks-html-loader!./src/templates/${entry.file}.njk`,
     inject: entry.file !== 'all',
+    templateParameters: {
+      envCallback,
+    },
   });
 });
 
@@ -109,6 +117,8 @@ module.exports = {
             options: {
               // where are the nunjucks files?
               searchPaths: ['./src/templates'],
+              // custom env manipulations
+              envCallback,
               // content is passed into every nunjucks file to be used like {{ kenobi }}
               context: {
                 nowYear: dateFormat(now, 'yyyy'),
@@ -162,6 +172,11 @@ module.exports = {
     ],
   },
   plugins: [
+    // Set custom env variables
+    new webpack.DefinePlugin({
+      API_URL: JSON.stringify(process.env.API_URL || ''),
+      ASSET_DIR: JSON.stringify(process.env.ASSET_DIR || '/assets'),
+    }),
     // Runs the first HTMLWebPackPlugin for index
     HtmlWebPackPluginConfig,
     // Adds async to all JS files inserted
@@ -179,9 +194,12 @@ module.exports = {
     // Also copy images and fonts this way.
     new CopyWebpackPlugin({
       patterns: [
+        { from: './src/index' },
         { from: './src/js/service-worker.js' },
-        { from: './src/images', to: './assets/images' },
         { from: './src/fonts', to: './assets/fonts' },
+        { from: './src/json', to: './assets/json' },
+        { from: './src/images', to: './assets/images' },
+        { from: './src/example-images', to: './assets/example-images' },
       ],
     }),
     // Generate the SVG sprite

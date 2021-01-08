@@ -1,0 +1,134 @@
+{% set page = "nunjucks" %}
+{% extends 'includes/_base.njk' %}
+
+{% block main %}
+  <div class="o-wrapper u-py-10 u-py-16@table ">
+    <h1>Nunjucks</h1>
+    <p>The front-end runs on Nunjucks before it's ported to Twig by our lovely back-end team. Add to this guide if you do anything crazy with Nunjucks or add new custom filters.</p>
+
+    <h2>Extending Nunjucks</h2>
+    <p>The following string is incredibly long in the template and should be shorted to 5 characters by a filter! <code>{{ 'fooooooooooooooobar' | shorten }}</code></p>
+    <p>Extensions are optional and can be set via <code>nunjucks.env.js</code> file.
+
+    <h3>Custom filters</h3>
+    <p>If you're  extending Nunjucks, its likely for custom filters.</p>
+    <p>You can read more about custom filters in the <u><a href="https://mozilla.github.io/nunjucks/api.html#custom-filters">official docs</a></u>.</p>
+    <p>Only create filters the back-end team use, otherwise inform them before putting in something brand new, don't waste their time trying to figure out <b>your</b> javascript.</p>
+
+    <h2>Differences</h2>
+    <p><strong>You don't have to be aware of this unless you are changing things in Webpack or upgrading an existing project to the new Nunjucks Loader.</strong></p>
+    <p>Our forked <code><u><a href="https://github.com/wilddogdesign/nunjucks-html-loader">nunjucks-html-loader</a></u></code> is a modified version of <code><u><a href="https://github.com/ryanhornberger/nunjucks-html-loader">nunjucks-html-loader</a></u></code>, it is installed by npm via our GitHub repo URL so behaves like any other module, just this time from our source, rather than npm's repository.</p>
+
+    <h2>Upgrading an existing project</h2>
+    <p>To upgrade an existing project (only do this if it is very young to avoid confusion):</p>
+    <ol>
+      <li>Uninstall the existing loader; <code>npm uninstall nunjucks-html-loader</code></li>
+      <li>Install the forked loader (check the release version);
+      <br><code>npm install --save-dev git+https://github.com/wilddogdesign/nunjucks-html-loader.git#1.1.1</code></li>
+      <li><strong>You can stop here if you do not want to use any extendability.</strong></li>
+      <li>Copy the <code>webpack.common.js</code> from this repo and amend to fit your existing variant.</li>
+      <li>Copy the <code>nunjucks.env.js</code> from this repo.</li>
+    </ol>
+    <p>If you try to use custom filters without steps 4 &amp; 5 your Nunjucks instance will crash.</p>
+
+    <hr>
+
+    <h2>Available Filters</h2>
+    <p>Check the filters that <u><a href="https://mozilla.github.io/nunjucks/templating.html">ship with Nunjucks</a></u> first.</p>
+
+    <h3>shorten</h3>
+    <p>The following string has been shortened {{ 'fooooooooo' | shorten }}</p>
+    <code>&lcub;&lcub; message | shorten &rcub;&rcub; or  &lcub;&lcub; message | shorten(20) &rcub;&rcub;</code>
+
+    <br>
+    <br>
+
+    <h3>wpautop</h3>
+    <p>The following multiline string has been wpautop'd.</p>
+    <p>bool optional. If set, this will convert all remaining line-breaks after paragraphing. Default true.</p>
+    <p><strong>Warning: This performs " | safe" on the output!</strong></p>
+    {% set message %}
+        "Hello World,
+        this is a test
+        of wit and might
+
+        good luck"
+    {% endset %}
+    {{ message | wpautop  }}
+    <code>&lcub;&lcub; message | wpautop &rcub;&rcub; or  &lcub;&lcub; message | wpautop(false) &rcub;&rcub;</code>
+
+    <br>
+    <br>
+
+    <h3>pclass</h3>
+    <p>The following multiline string has been wpautop'd then pclass'd.</p>
+    <p><strong>Warning: This performs " | safe" on the output!</strong></p>
+    <style>
+      .red {
+        color: red;
+      }
+    </style>
+    {% set message %}
+        "their heart grew cold
+
+        they let their wings down"
+    {% endset %}
+    {{ message | wpautop | pclass('red')  }}
+    <code>&lcub;&lcub; message | wpautop | pclass('red') &rcub;&rcub;</code>
+
+
+    <br>
+    <br>
+
+    <h3>pclasslede</h3>
+    <p>The following multiline string has been wpautop'd then pclasslede'd.</p>
+    <p>Add class to 1st paragraph and another to 2nd and subsequent paragraphs</p>
+    <p><strong>Warning: This performs " | safe" on the output!</strong></p>
+    <style>
+      .gold {
+        color: gold;
+      }
+
+      .forest {
+        color: forestgreen;
+      }
+    </style>
+    {% set message %}
+        "neither for me nor the honey bee
+
+        someone will remember us
+          I say
+          even in another time
+
+        wealth without virtue is no harmless neighbor
+        but a mixture of both attains the height of happiness"
+    {% endset %}
+    {{ message | wpautop | pclasslede('gold', 'forest')  }}
+    <code>&lcub;&lcub; message | wpautop | pclass('gold', 'forest') &rcub;&rcub;</code>
+
+
+    <br>
+    <br>
+
+    <h3>nltoobr</h3>
+    <p>The following multiline string has been nltoobr'd.</p>
+    <p>nl2br exists nativily in nunjucks but is <u><a href="https://mozilla.github.io/nunjucks/templating.html#nl2br">very verbose</a></u>,
+    this performs a <u><a href="https://locutus.io/php/strings/nl2br/">JS mirror of the PHP method</a></u> instead.</p>
+    <p>Optional bool of isXhtml, can be ignored in most cases.</p>
+    <p><strong>Warning: This performs " | safe" on the output!</strong></p>
+
+    {% set message %}
+      "You may forget but
+      let me tell you
+      this: someone in
+      some future time
+      will think of us."
+    {% endset %}
+    {{ message | nltoobr  }}
+
+    <br>
+    <code>&lcub;&lcub; message | nltoobr &rcub;&rcub; or &lcub;&lcub; message | nltoobr(true) &rcub;&rcub;</code>
+
+
+  </div>
+{% endblock %}

@@ -7,6 +7,11 @@ module.exports = {
     es2020: true,
   },
 
+  globals: {
+    API_URL: 'readonly',
+    ASSET_DIR: 'readonly',
+  },
+
   parserOptions: {
     parser: 'babel-eslint',
     sourceType: 'module',

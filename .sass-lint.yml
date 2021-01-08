@@ -15,6 +15,10 @@ rules:
   no-qualifying-elements:
     - 1
     - allow-element-with-attribute: true
+  no-misspelled-properties:
+    - 1
+    - 'extra-properties':
+        - 'row-gap'
   property-sort-order:
     - 1
     - order:

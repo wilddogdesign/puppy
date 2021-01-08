@@ -25,6 +25,11 @@ $inuit-global-font-size: 16px;
 @import 'node_modules/inuitcss/generic/generic.shared';
 /* critical:end */
 
+// PLUGINS
+/* critical:start */
+@import 'plugins/plugins.glide';
+/* critical:end */
+
 // ELEMENTS
 @import 'node_modules/inuitcss/elements/elements.headings';
 @import 'elements/elements.buttons';
@@ -38,6 +43,8 @@ $inuit-global-font-size: 16px;
 // OBJECTS
 // Add your custom objects here
 @import 'objects/objects.buttons';
+@import 'objects/objects.iframe';
+@import 'objects/objects.slider';
 @import 'objects/objects.wrapper';
 
 // COMPONENTS
@@ -45,6 +52,7 @@ $inuit-global-font-size: 16px;
 @import 'components/components.footer';
 @import 'components/components.header';
 @import 'components/components.dialog';
+@import 'components/components.hero';
 
 // UTILITIES
 @import 'node_modules/inuitcss/utilities/utilities.headings';

@@ -1,0 +1,39 @@
+{% set page = "listing" %}
+{% extends 'includes/_base.njk' %}
+
+{% block main %}
+
+  <div class="o-wrapper u-py-10 u-py-16@tablet">
+    <div class="o-freetext">
+      <h1>Heading 1 </h1>
+
+      <p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem <a href="#">ipsum dolor sit amet</a>, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p>
+
+      <p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p>
+    </div>
+
+    {# Filters #}
+    <nav class="c-filters">
+      <a href="#" class="c-filters__all c-filters__all--active">View All</a>
+      <a href="#" class="c-filters__link {# c-filters__link--active #}">Category 1</a>
+      <a href="#" class="c-filters__link">Category 2</a>
+      <a href="#" class="c-filters__link">Category 3</a>
+      <a href="#" class="c-filters__link">Category 4</a>
+      <a href="#" class="c-filters__link">Category 5</a>
+      <a href="#" class="c-filters__link">Category 6</a>
+      <a href="#" class="c-filters__link">Category 7</a>
+    </nav>
+
+    <div class="c-listing-items u-py-10 u-py-16@tablet">
+      {# loop the mock data a few times over to test better #}
+      {% for demoLoops in [1, 2] %}
+        {% for block in mockData.listingItems %}
+          {% include 'includes/_listing-item.njk' %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+
+    {% include 'includes/_pagination.njk' %}
+
+  </div>
+{% endblock %}

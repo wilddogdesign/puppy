@@ -16,6 +16,11 @@ module.exports = [
     desc: 'Page that shows how to use Nunjucks functionality.',
   },
   {
+    file: 'listing',
+    name: 'listing',
+    desc: 'Generic listing page.',
+  },
+  {
     file: 'default',
     name: 'default',
     desc: 'Generic default text page.',

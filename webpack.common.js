@@ -127,7 +127,7 @@ module.exports = {
                   otherNunjucksFiles
                 ),
                 projectTitle,
-                // mockData: mockData(),
+                mockData: mockData(),
                 isProduction:
                   process.argv[process.argv.indexOf('--mode') + 1] ===
                   'production',

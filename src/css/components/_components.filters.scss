@@ -1,0 +1,51 @@
+.c-filters {
+  // ..
+  display: flex;
+  justify-content: space-between;
+  margin-top: rem(60px);
+  font-weight: 600;
+
+
+  @include mq($until: tablet) {
+    display: none;
+  }
+
+  @include mq($from: desktop) {
+    font-weight: normal;
+  }
+}
+
+.c-filters__all {
+  margin-right: rem(50px);
+
+  @include mq($from: tablet-wide) {
+    margin-right: rem(150px);
+  }
+
+  @include mq($from: desktop) {
+    margin-right: auto;
+  }
+}
+
+.c-filters__link,
+.c-filters__pipe {
+  text-transform: lowercase;
+
+  @include mq($from: desktop) {
+    padding-left: rem(50px);
+  }
+}
+
+.c-filters__all,
+.c-filters__link {
+  &:active,
+  &:hover,
+  &--active {
+    color: $color--primary;
+  }
+}
+
+.c-filters__pipe {
+  color: $color--primary;
+}
+

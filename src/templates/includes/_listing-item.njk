@@ -1,0 +1,25 @@
+<a href="#{{ block.href }}" class="c-listing-item" title="{{ block.title }}">
+  <div class="c-listing-item__img-wrap">
+    <img
+      src="/assets/example-images/listing-items/{{ block.image }}@blur.jpg"
+      data-src="/assets/example-images/listing-items/{{ block.image }}@blur.jpg"
+      data-srcset="
+        /assets/example-images/listing-items/{{ block.image }}@large.jpg 1280w,
+        /assets/example-images/listing-items/{{ block.image }}.jpg 1024w,
+        /assets/example-images/listing-items/{{ block.image }}@small.jpg 480w"
+      data-sizes="auto"
+      class="u-object-fit lazyload"
+      alt=""
+    />
+  </div>
+
+  <div class="c-listing-item__content">
+    <h4 class="c-listing-item__title">{{ block.title }}</h4>
+
+    <p class="c-listing-item__subtitle">{{ block.subtitle | safe }}</p>
+
+    <p class="c-listing-item__text">{{ block.excerpt | safe }}</p>
+
+    <button class="o-btn">Learn more</button>
+  </div>
+</a>

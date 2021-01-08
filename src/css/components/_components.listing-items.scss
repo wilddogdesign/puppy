@@ -1,0 +1,59 @@
+.c-listing-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+  .c-listing-item {
+    display: block;
+    position: relative;
+    flex-basis: 100%;
+    padding: 0 .5rem 3rem;
+
+    @include mq($from: landscape) {
+      flex-basis: 50%;
+    }
+
+    @include mq($from: tablet-wide) {
+      flex-basis: 33%;
+    }
+
+
+    @include mq($from: desktop) {
+      flex-basis: 25%;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      .c-listing-item__img-wrap {
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+    .c-listing-item__img-wrap {
+      @include proportionate-height(100%);
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      transition: $global-transition ease-in;
+      background: $color--primary;
+    }
+
+    // .c-listing-item__content {
+
+    // }
+
+    //   .c-listing-item__title {
+
+    //   }
+
+    //   .c-listing-item__subtitle {
+
+    //   }
+
+    //   .c-listing-item__text {
+
+    //   }

@@ -54,6 +54,11 @@ $inuit-global-font-size: 16px;
 @import 'components/components.header';
 @import 'components/components.dialog';
 @import 'components/components.hero';
+@import 'components/components.pagination';
+
+// Listing Template
+@import 'components/components.filters';
+@import 'components/components.listing-items';
 
 // UTILITIES
 @import 'node_modules/inuitcss/utilities/utilities.headings';

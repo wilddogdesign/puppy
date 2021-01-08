@@ -1,0 +1,158 @@
+{% set page = "default" %}
+{% extends 'includes/_base.njk' %}
+
+{% block main %}
+
+  {# IMAGE #}
+  {% set hero = {
+    image: 'puppies',
+    content: {
+      title: 'Default Template',
+      subtitle: 'Maecenas sed diam eget risus varius blandit sit amet non magna.'
+    }
+  } %}
+
+  {# VIDEO #}
+  {# {% set hero = {
+    video: "https://player.vimeo.com/video/77111226",
+    content: {
+      title: 'Default Template',
+      subtitle: 'Maecenas sed diam eget risus varius blandit sit amet non magna.'
+    }
+  } %} #}
+
+  {# SLIDER #}
+  {# {% set hero = {
+    slides: [
+      {
+        image: 'puppies',
+        content: {
+          title: 'Default Template',
+          subtitle: 'Maecenas sed diam eget risus varius blandit sit amet non magna.'
+        }
+      },
+      {
+        image: 'puppy-sleeping',
+        content: {
+          title: 'Default Template',
+          subtitle: 'Maecenas sed diam eget risus varius blandit sit amet non magna.'
+        }
+      }
+    ]
+  } %} #}
+
+  {% include "includes/heroes/_default.njk" %}
+
+
+  <div class="o-wrapper u-py-10 u-py-16@tablet">
+    <div class="o-freetext">
+
+      <h2>Headings (like this!)</h2>
+
+      <h1>Heading 1 (Only if no hero)</h1>
+
+      <h2>Heading 2</h2>
+
+      <h3>Heading 3</h3>
+
+      <h4>Heading 4</h4>
+
+      <h5>Heading 5</h5>
+
+      <h6>Heading 6</h6>
+
+      <h2>Paragraphs</h2>
+
+      <p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem <a href="#">ipsum dolor sit amet</a>, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p>
+
+      <p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p>
+
+      <p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.
+      Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.
+      Lorem ipsum dolor sit amet, cons <a href="#">etetur sadips cing elitr, sed diam</a> nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p>
+
+      <h2>Lists</h2>
+
+      <h3>Without p's inside</h3>
+
+      <ul>
+        <li>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </li>
+        <li>Donec <a href="#">ullamcorper nulla non</a> metus auctor fringilla. </li>
+        <li>Etiam porta sem malesuada magna mollis euismod. </li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+        <li>Sed posuere consectetur est at lobortis.</li>
+        <li>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</li>
+      </ul>
+
+      <h3>ul With p's</h3>
+
+      <ul>
+        <li><p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p></li>
+        <li><p>Donec <a href="#">ullamcorper nulla non</a> metus auctor fringilla. </p></li>
+        <li><p>Etiam porta sem malesuada magna mollis euismod. </p></li>
+        <li><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p></li>
+        <li><p>Sed posuere consectetur est at lobortis.</p></li>
+        <li><p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p><p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p></li>
+      </ul>
+
+      <h3>ol Without p's inside</h3>
+
+      <ol>
+        <li>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </li>
+        <li>Donec <a href="#">ullamcorper nulla non</a> metus auctor fringilla. </li>
+        <li>Etiam porta sem malesuada magna mollis euismod. </li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+        <li>Sed posuere consectetur est at lobortis.</li>
+        <li>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</li>
+      </ol>
+
+      <h3>ol With p's</h3>
+
+      <ol>
+        <li><p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p></li>
+        <li><p>Donec <a href="#">ullamcorper nulla non</a> metus auctor fringilla. </p></li>
+        <li><p>Etiam porta sem malesuada magna mollis euismod. </p></li>
+        <li><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p></li>
+        <li><p>Sed posuere consectetur est at lobortis.</p></li>
+        <li><p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p><p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p></li>
+      </ol>
+
+      <h2>Blockquotes</h2>
+
+      <h3>Raw</h3>
+
+      <blockquote>
+        Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.
+      </blockquote>
+
+      <h3>Paragraphed</h3>
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p>
+        <p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p>
+      </blockquote>
+
+      <h3>Paragraphed with cite</h3>
+      {# http://html5doctor.com/blockquote-q-cite/ #}
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p>
+        <footer>
+            <b><a href="http://www.imdb.com/character/ch0000672/quotes">Crazy hunch-backed old guy in Aladdin</a></b><br>
+            Some place we don't speak of
+        </footer>
+      </blockquote>
+
+      <h4>and without link</h4>
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam. Lorem ipsum dolor sit amet, cons etetur sadips cing elitr, sed diam nonumy eirmod tempor. Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam.</p>
+        <footer>
+            <b>Crazy hunch-backed old guy in Aladdin</b><br>
+            Some place we don't speak of
+        </footer>
+      </blockquote>
+
+      <h2>Images</h2>
+      <p>These max-width 100%, but width auto</p>
+      <img src="../example-images/standard/husky-puppy@large.jpg" />
+    </div>
+  </div>
+{% endblock %}

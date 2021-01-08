@@ -16,6 +16,11 @@ module.exports = [
     desc: 'Page that shows how to use Nunjucks functionality.',
   },
   {
+    file: 'default',
+    name: 'default',
+    desc: 'Generic default text page.',
+  },
+  {
     file: 'offline',
     name: 'Offline',
     desc: 'Page a user will see with no active internet connection.',

@@ -1,6 +1,17 @@
 // All z-index stuff goes here
 // Never write z-index inline with property in other scss files
 
+// Above everything!
+.c-dialog {
+  z-index: 10;
+}
+
+// Above everything except dialogs
 .c-header {
-  z-index: 2;
+  z-index: 9;
+}
+
+.c-hero__img-wrap,
+.c-hero__video-wrap {
+  z-index: -1;
 }

@@ -1,0 +1,116 @@
+.o-slider {
+  width: 100%;
+  overflow: hidden;
+}
+
+  // .o-slider__slide__container {
+
+  // }
+
+    .o-slider__slide__container__img-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      // Overlay
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $color--black--thin;
+      }
+
+      .c-hero--slider & {
+        height: 500px; // Change Based on Hero Height
+      }
+    }
+
+    .o-slider__slide__container__content {
+      position: absolute;
+      top: rem(32px);
+      right: 0;
+      left: 0;
+      width: 100%;
+      color: $color--white;
+    }
+
+  .o-slider__controls {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: rem(50px);
+    left: 0;
+    align-items: center;
+    justify-content: center;
+
+    &--center {
+      bottom: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .o-slider__arrows {
+    display: flex;
+
+    .o-slider__controls--center & {
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+    .o-slider__arrow {
+      width: rem(24px);
+      height: rem(12px);
+      overflow: hidden;
+      background-color: transparent;
+      background-image: svg-load('../icons/chevron.svg', stroke=$color--white);
+      background-size: rem(24px) rem(12px);
+      text-indent: rem(-9999px);
+      cursor: pointer;
+
+      + .o-slider__arrow {
+        margin-left: rem(10px);
+      }
+
+      &--left {
+        transform: rotate(90deg);
+      }
+
+      &--right {
+        transform: rotate(-90deg);
+      }
+    }
+
+  .o-slider__bullets {
+    display: flex;
+    align-items: center;
+  }
+
+    .o-slider__bullet {
+      width: rem(11px);
+      height: rem(11px);
+      overflow: hidden;
+      transition:
+        border-color .15s ease-in,
+        background-color .15s ease-in;
+      border: 1px solid $color--white;
+      border-radius: 50%;
+      background-color: $color--white;
+      text-indent: rem(-9999px);
+      cursor: pointer;
+      appearance: none;
+
+      + .o-slider__bullet {
+        margin-left: rem(8px);
+      }
+
+      &.glide__bullet--active {
+        border-color: $color--primary;
+        background-color: $color--primary;
+      }
+    }

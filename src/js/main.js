@@ -5,7 +5,6 @@ import { setupSliders } from './modules/setup-sliders';
 import { setupTriggers } from './modules/triggers';
 import { setupDialogs } from './modules/dialogs';
 import { setupRecaptcha } from './modules/recaptcha';
-import setupVideos from './modules/setup-videos';
 
 // Lazysizes
 import 'lazysizes';
@@ -34,7 +33,6 @@ function initialise() {
   setupScrollTo();
   setupTriggers();
   setupSliders();
-  setupVideos();
   setupDialogs({
     onShowCallback: onShowDialog,
     onHideCallback: onHideDialog,

@@ -1,9 +1,6 @@
-const path = require('path');
+// const path = require('path');
 const merge = require('webpack-merge');
 
-const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
-const WebappWebpackPlugin = require('webapp-webpack-plugin');
-const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin-wilddog')
   .default;
 const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
@@ -16,24 +13,6 @@ const criticalSplit = require('postcss-critical-split');
 const common = require('./webpack.common.js');
 
 const afterHTMLWebpackPlugin = [
-  new WebappWebpackPlugin({
-    favicons: {
-      name: 'Puppy',
-      short_name: 'puppy',
-      orientation: 'portrait',
-      display: 'standalone',
-      start_url: '.',
-      description: 'Some description about puppy',
-      background_color: '#F44336',
-    },
-    prefix: 'assets/favicons',
-    logo: path.resolve('src/misc/favicon.png'),
-    cache: true,
-  }),
-  new HtmlBeautifyPlugin(),
-  new AsyncStylesheetWebpackPlugin({
-    preloadPolyfill: true,
-  }),
   new HTMLInlineCSSWebpackPlugin({
     filter(fileName) {
       return fileName.includes('critical.css');

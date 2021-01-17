@@ -21,13 +21,11 @@
   "license": "ISC",
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
-    "@vimeo/player": "^2.14.1",
     "a11y-dialog": "^5.2.0",
     "babel-polyfill": "^6.26.0",
     "domready": "^1.0.8",
     "inuitcss": "^6.0.0",
     "lazysizes": "^5.2.2",
-    "lodash.throttle": "^4.1.1",
     "scroll-to-element": "^2.0.3"
   },
   "devDependencies": {

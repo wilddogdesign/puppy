@@ -3,12 +3,12 @@
   {% if hero.video %}
     <div class="c-hero__video-wrap">
       <iframe
-        class="o-iframe js-video js-hero-video"
+        class="o-iframe"
+        src="{{ hero.video }}?background=1&loop=1&muted=1"
         frameborder="0"
-        allowfullscreen=""
-        allow="autoplay"
         scrolling="no"
-        src="{{ hero.video }}?background=1&loop=1"
+        allow="autoplay; encrypted-media;"
+        webkitAllowFullScreen mozallowfullscreen allowFullScreen
       ></iframe>
     </div>
 
@@ -49,7 +49,7 @@
         </ul>
       </div>
 
-      {% if hero.slides|length > 1 %}
+      {% if hero.slides | length > 1 %}
         <div class="o-slider__controls o-wrapper">
           <div class="o-slider__bullets glide__bullets" data-glide-el="controls[nav]">
             {% for slide, key in hero.slides %}
@@ -72,19 +72,19 @@
           <div class="o-slider__arrows" data-glide-el="controls">
             <div class="o-slider__arrow o-slider__arrow--left glide__arrows" data-glide-dir="<">
               <button class="o-slider__arrow__btn">prev</button>
-            </div>
+          </div>
 
-            <div class="o-slider__arrow o-slider__arrow--right glide__arrows" data-glide-dir=">">
+          <div class="o-slider__arrow o-slider__arrow--right glide__arrows" data-glide-dir=">">
               <button class="o-slider__arrow__btn">next</button>
-            </div>
           </div>
         </div>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
+  </div>
 
-  {% else %}
-    <div class="c-hero__img-wrap">
-      <img
+{% else %}
+  <div class="c-hero__img-wrap">
+    <img
         src="/example-images/heroes/{{ hero.image }}@blur.jpg"
         data-src="/example-images/heroes/{{ hero.image }}@blur.jpg"
         data-srcset="
@@ -96,16 +96,16 @@
         data-sizes="auto"
         alt=""
         class="u-object-fit lazyload">
-    </div>
-  {% endif %}
+  </div>
+{% endif %}
 
-  {% if hero.content %}
-    <div class="o-wrapper c-hero__content">
-      <div class="c-hero__content__inner">
-        <h1 class="c-hero__title">{{ hero.content.title }}</h1>
+{% if hero.content %}
+  <div class="o-wrapper c-hero__content">
+    <div class="c-hero__content__inner">
+      <h1 class="c-hero__title">{{ hero.content.title }}</h1>
 
-        <p class="c-hero__subtitle">{{ hero.content.subtitle }}</p>
-      </div>
+      <p class="c-hero__subtitle">{{ hero.content.subtitle }}</p>
     </div>
-  {% endif %}
+  </div>
+{% endif %}
 </div>

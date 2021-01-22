@@ -3,6 +3,46 @@
 
 {% block main %}
 
+  {# IMAGE #}
+  {% set hero = {
+    image: 'puppies',
+    content: {
+      title: 'Default Template',
+      subtitle: 'Maecenas sed diam eget risus varius blandit sit amet non magna.'
+    }
+  } %}
+
+  {# VIDEO #}
+  {# {% set hero = {
+    video: "https://player.vimeo.com/video/77111226",
+    content: {
+      title: 'Default Template',
+      subtitle: 'Maecenas sed diam eget risus varius blandit sit amet non magna.'
+    }
+  } %} #}
+
+  {# SLIDER #}
+  {# {% set hero = {
+    slides: [
+      {
+        image: 'puppies',
+        content: {
+          title: 'Default Template',
+          subtitle: 'Maecenas sed diam eget risus varius blandit sit amet non magna.'
+        }
+      },
+      {
+        image: 'puppy-sleeping',
+        content: {
+          title: 'Default Template',
+          subtitle: 'Maecenas sed diam eget risus varius blandit sit amet non magna.'
+        }
+      }
+    ]
+  } %} #}
+
+  {% include "includes/heroes/_default.njk" %}
+
   <div class="o-wrapper u-py-10 u-py-16@tablet">
     <div class="o-freetext">
 

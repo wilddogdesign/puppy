@@ -26,6 +26,11 @@ module.exports = [
     desc: 'Generic default text page.',
   },
   {
+    file: 'default-hero',
+    name: 'default-hero',
+    desc: 'Generic default text page with Hero.',
+  },
+  {
     file: 'offline',
     name: 'Offline',
     desc: 'Page a user will see with no active internet connection.',

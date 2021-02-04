@@ -4,6 +4,8 @@
 // The global settings file contains any project-wide variables; things that
 // need to be made available to the entire codebase.
 
+// $asset-dir: this is set via the webpack, treat as readonly
+
 // Standardise some UI treatments.
 $global-radius: 3px !default;
 $global-transition: .2s !default; // Used for link text colour transitions

@@ -35,7 +35,13 @@ module.exports = merge(common, {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader?url=false',
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: false,
+              data: `$asset-dir: "${process.env.ASSET_DIR || '/assets'}";`,
+            },
+          },
         ],
         // post css config in /src/sass/postcss.config.js
       },

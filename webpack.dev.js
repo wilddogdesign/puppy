@@ -32,6 +32,7 @@ module.exports = merge(common, {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
+              data: `$asset-dir: "${process.env.ASSET_DIR || '/assets'}";`,
             },
           },
         ],

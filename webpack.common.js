@@ -2,6 +2,10 @@
 
 // Variables for use in the all template.
 const projectTitle = 'Puppy';
+
+const API_URL = process.env.API_URL || '';
+const ASSET_DIR = process.env.ASSET_DIR || '/assets';
+
 const now = new Date();
 
 const { readdirSync, readFileSync } = require('fs');
@@ -66,20 +70,33 @@ const afterHTMLWebpackPlugin = [
   new FaviconsWebpackPlugin({
     // https://github.com/itgalaxy/favicons#usage
     favicons: {
-      name: 'Puppy',
-      short_name: 'puppy',
-      // lang: "en-GB",
+      appName: 'Puppy',
+      appShortName: 'puppy',
+      appDescription: '',
+      lang: 'en-GB',
       orientation: 'portrait',
       display: 'standalone',
-      start_url: '.',
-      description: '',
+      dir: 'auto',
+      start_url: '/',
       background_color: '#F44336',
+      developerName: 'Wild Dog Design',
+      developerURL: 'https://wilddogdesign.co.uk',
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        windows: false,
+        yandex: false,
+      },
     },
-    prefix: 'assets/favicons',
-    logo: path.resolve('src/misc/favicon.png'),
-    cache: true,
     publicPath: '/',
     outputPath: '/assets/favicons',
+    prefix: `${ASSET_DIR}/favicons`,
+    logo: path.resolve('src/misc/favicon.png'),
+    cache: true,
     inject: true,
   }),
 ];
@@ -179,8 +196,8 @@ module.exports = {
   plugins: [
     // Set custom env variables
     new webpack.DefinePlugin({
-      API_URL: JSON.stringify(process.env.API_URL || ''),
-      ASSET_DIR: JSON.stringify(process.env.ASSET_DIR || '/assets'),
+      API_URL: JSON.stringify(API_URL),
+      ASSET_DIR: JSON.stringify(ASSET_DIR),
     }),
     // Runs the first HTMLWebPackPlugin for index
     HtmlWebPackPluginConfig,

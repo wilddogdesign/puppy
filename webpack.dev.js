@@ -65,8 +65,14 @@ module.exports = merge(common, {
       const url = `http://${server.options.host}:${server.options.port}${server.options.publicPath}`;
       const projectPackage = require('./package.json');
       const { exec } = require('child_process');
-      const command = projectPackage.scripts.afterStart.replace(/%URL%/g, url);
-      exec(command); // fails silently
+      const afterStartCommand = projectPackage.scripts.afterStart || false;
+      if (afterStartCommand) {
+        const command = projectPackage.scripts.afterStart.replace(
+          /%URL%/g,
+          url
+        );
+        exec(command); // fails silently
+      }
     },
     // Not a fan of a lot of this output
     stats: {

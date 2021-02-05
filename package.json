@@ -14,7 +14,8 @@
     "serve": "http-server dist/ -p 8888 -o",
     "deploy": "fly deploy:development",
     "fix": "eslint --fix .",
-    "format": "prettier-eslint --write $PWD/'src/**/*.[jt]s?(x)' && eslint --fix ."
+    "format": "prettier-eslint --write $PWD/'src/**/*.[jt]s?(x)' && eslint --fix .",
+    "afterStart": "xcrun simctl list devices | grep \"(Booted)\" | grep -E -o -i \"([0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12})\" | while read line ; do xcrun simctl openurl $line \"%URL%\"; done"
   },
   "keywords": [],
   "author": "",

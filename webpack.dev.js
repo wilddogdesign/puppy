@@ -58,6 +58,16 @@ module.exports = merge(common, {
         server.sockWrite(server.sockets, 'content-changed');
       });
     },
+    // passes url to afterStart command (if any)
+    // replaces %URL% in the afterStart command with the URL of the instance
+    // useful for things like booting all simulated devices to the same url
+    after(app, server) {
+      const url = `http://${server.options.host}:${server.options.port}${server.options.publicPath}`;
+      const projectPackage = require('./package.json');
+      const { exec } = require('child_process');
+      const command = projectPackage.scripts.afterStart.replace(/%URL%/g, url);
+      exec(command); // fails silently
+    },
     // Not a fan of a lot of this output
     stats: {
       hash: false,

@@ -26,7 +26,8 @@
     &:focus,
     &:active {
       .c-listing-item__img-wrap {
-        img {
+        img,
+        picture {
           transform: scale(1.1);
         }
       }

@@ -2,6 +2,7 @@ import domready from 'domready';
 import setupScrollTo from './modules/scroll-to';
 import { setupSliders } from './modules/setup-sliders';
 
+import { setupUTMInputs } from './modules/utms';
 import { setupTriggers } from './modules/triggers';
 import { setupDialogs } from './modules/dialogs';
 import { setupRecaptcha } from './modules/recaptcha';
@@ -30,6 +31,7 @@ function onHideDialog(dialog) {
 
 function initialise() {
   isJsAvailable();
+  setupUTMInputs();
   setupScrollTo();
   setupTriggers();
   setupSliders();

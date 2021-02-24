@@ -1,22 +1,13 @@
 const plan = require('flightplan');
 
 const project = 'puppy';
-
-// let user = "Someone";
-
-const remoteRoot = '/var/www/';
-const remoteHost = 'wilddogdevelopment.com';
-
-// const args = {
-//   critical: !(process.argv.indexOf("--no-critical-css") > -1),
-//   minify: !(process.argv.indexOf("--no-minification") > -1),
-// };
+const remoteHost = 'wilddog.dev';
 
 // configuration
 plan.target('development', {
   host: remoteHost,
-  projectRoot: `${remoteRoot}${project}`,
-  username: 'deployer',
+  projectRoot: `~/${project}.${remoteHost}`,
+  username: 'forge',
   agent: process.env.SSH_AUTH_SOCK,
   maxDeploys: 5,
   port: 2022,

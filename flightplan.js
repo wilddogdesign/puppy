@@ -33,6 +33,9 @@ plan.local('deploy', (local) => {
 plan.remote('deploy', (remote) => {
   remote.hostname();
 
+  remote.log('Create needed folders');
+  remote.exec(`mkdir -p ${remote.runtime.projectRoot}/releases`);
+
   remote.log('Move version folder to project releases folder');
   remote.exec(
     `mv /tmp/${versionDir}/dist ${remote.runtime.projectRoot}/releases/${versionDir}`,
@@ -43,7 +46,7 @@ plan.remote('deploy', (remote) => {
   remote.rm(`-rf /tmp/${versionDir}`);
   remote.log('Point to current version');
   remote.exec(
-    `rm -f ${remote.runtime.projectRoot}/current && ln -snf ${remote.runtime.projectRoot}/releases/${versionDir} ${remote.runtime.projectRoot}/current`
+    `rm -rf ${remote.runtime.projectRoot}/current && ln -snf ${remote.runtime.projectRoot}/releases/${versionDir} ${remote.runtime.projectRoot}/current`
   );
 
   if (remote.runtime.maxDeploys > 0) {

@@ -1,0 +1,3 @@
+@mixin letter-spacing($font-size: $inuit-global-font-size, $xd-spacing: 0) {
+  letter-spacing: ($xd-spacing * $font-size) / 1000;
+}

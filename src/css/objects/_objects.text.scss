@@ -1,0 +1,38 @@
+.o-text {
+  @include letter-spacing(14px, -10);
+  font-size: rem(14px);
+  line-height: rem(18px);
+  $color: $color--text;
+
+  @include mq($from: wide) {
+    @include letter-spacing(16px, -10);
+    font-size: rem(16px);
+    line-height: rem(21px);
+  }
+
+  &--small {
+    // font-size: rem(14px);
+
+    @include mq($from: wide) {
+      @include letter-spacing(14px, -10);
+      font-size: rem(14px);
+      line-height: rem(18px);
+    }
+  }
+
+  &--large {
+    @include letter-spacing(16px, -10);
+    font-size: rem(16px);
+    line-height: rem(21px);
+
+    @include mq($from: wide) {
+      @include letter-spacing(20px, -20);
+      font-size: rem(20px);
+      line-height: rem(24px);
+    }
+  }
+
+  &--center {
+    text-align: center;
+  }
+}

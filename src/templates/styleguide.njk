@@ -1,0 +1,153 @@
+{% set page = "styleguide" %}
+{% extends 'includes/_base.njk' %}
+
+{% block main %}
+
+  {# Default Page Styling unattached to the theme #}
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/open-sauce-one" type="text/css"/>
+  <style>
+    section {
+      margin: 40px 0;
+    }
+
+    .wilddog {
+      font-family: 'OpenSauceOneRegular', Helvetica Neue, Georgia, serif;
+    }
+
+  </style>
+
+  <div class="o-wrapper u-py-10 u-py-16@tablet">
+    <h1 class="wilddog">Styleguide</h1>
+
+    <section>
+      <h2 class="wilddog">Typography</h2>
+
+      <style>
+        typography {
+          display: flex;
+          justify-content: space-between;
+          margin: 40px 0;
+        }
+
+        typographyColumn {
+          display: block;
+          width: 100%;
+        }
+      </style>
+
+        Including size, line spacing, letter spacing and weight.
+        <h3 class="wilddog">Fonts</h3>
+        Primary Font
+        Secondary Font
+
+        <typography>
+          <typographyColumn>
+            <h3 class="wilddog">Headers</h3>
+            <h1>Header 1</h1>
+            <h2>Header 2</h2>
+            <h3>Header 3</h3>
+            <h4>Header 4</h4>
+            <h5>Header 5</h5>
+            <h6>Header 6</h6>
+          </typographyColumn>
+
+          <typographyColumn>
+            <h3 class="wilddog">Body</h3>
+            <p>Body 1 .. Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. </p>
+
+            <p>Body 2 .. Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec sed odio dui. </p>
+            Ordered List
+            Unordered List
+          </typographyColumn>
+        </typography>
+    </section>
+
+    <section>
+      <h2 class="wilddog">Colours</h2>
+
+      <style>
+        colours {
+          display: flex;
+          justify-content: space-evenly;
+        }
+
+        colour {
+          display: block;
+          text-align: center;
+        }
+
+        circle {
+          border-radius: 100%;
+          width: 100px;
+          height: 100px;
+          display: block;
+          margin: 20px auto;
+        }
+
+        square {
+          width: 20px;
+          height: 20px;
+          display: inline-block;
+          margin: 10px 4px -4px;
+        }
+      </style>
+
+      <colours>
+        <colour>
+          <circle class="u-bg--primary"></circle>
+          <p class="wilddog">Primary Colour<br>
+            <square class="u-bg--primary"></square> #000abc
+          </p>
+        </colour>
+
+        <colour>
+          <circle class="u-bg--secondary"></circle>
+          <p class="wilddog">Secondary Colour<br>
+            <square class="u-bg--secondary"></square> #000abc
+          </p>
+        </colour>
+
+        <colour>
+          <circle class="u-bg--accent"></circle>
+          <p class="wilddog">Accent Colour<br>
+            <square class="u-bg--accent"></square> #000abc
+          </p>
+        </colour>
+
+        <colour>
+          <circle class="u-bg--text"></circle>
+          <p class="wilddog">Text Colour<br>
+            <square class="u-bg--text"></square> #000abc
+          </p>
+        </colour>
+      </colours>
+    </section>
+
+    <section>
+      <h2 class="wilddog">Navigation</h2>
+      Menu Navigation
+      Tab Navigation
+    </section>
+
+    <section>
+      <h2 class="wilddog">Buttons</h2>
+      Including inactive, active, hover and disabled states.
+      Primary Button
+      Secondary Button
+      Tertiary Button
+      Hyperlink
+    </section>
+
+    <section>
+      <h2 class="wilddog">Form Elements</h2>
+      Including inactive, active, hover and disabled states.
+      Search
+      Filter (may be comprised of below)
+      Text Input
+      Dropdown Menu
+      Checkbox
+      Radio Button
+    </section>
+
+  </div>
+{% endblock %}

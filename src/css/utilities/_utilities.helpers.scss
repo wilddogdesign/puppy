@@ -86,6 +86,8 @@
  * Apply specific color.
  *
  * - `.u-color--primary` - brand colour
+ * - `.u-color--secondary` - brand colour
+ * - `.u-color--accent` - brand colour
  * - `.u-color--text` - main text colour
  * - `.u-color--white` - white colour
  * - `.u-color--black` - black colour
@@ -95,6 +97,22 @@
 
   &:hover {
     color: $color--primary !important;
+  }
+}
+
+.u-color--secondary {
+  color: $color--secondary !important;
+
+  &:hover {
+    color: $color--secondary !important;
+  }
+}
+
+.u-color--accent {
+  color: $color--accent !important;
+
+  &:hover {
+    color: $color--accent !important;
   }
 }
 
@@ -114,7 +132,9 @@
  * Background colors:
  * Apply specific color to background.
  *
- * - `.u-bg--brand` - brand colour
+ * - `.u-color--primary` - brand colour
+ * - `.u-color--secondary` - brand colour
+ * - `.u-color--accent` - brand colour
  * - `.u-bg--text` - main text colour
  * - `.u-bg--white` - white colour
  * - `.u-bg--black` - black colour
@@ -124,6 +144,14 @@
  */
 .u-bg--primary {
   background-color: $color--primary !important;
+}
+
+.u-bg--secondary {
+  background-color: $color--secondary !important;
+}
+
+.u-bg--accent {
+  background-color: $color--accent !important;
 }
 
 .u-bg--text {

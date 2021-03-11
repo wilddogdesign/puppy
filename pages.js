@@ -41,6 +41,11 @@ module.exports = [
     desc: 'Page a user will see if landing on a page that doesnt exist.',
   },
   {
+    file: 'styleguide',
+    name: 'Styleguide',
+    desc: 'Page full of branding and website styleguide.',
+  },
+  {
     file: 'all',
     name: 'All ',
   },

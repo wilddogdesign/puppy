@@ -82,6 +82,21 @@
 }
 
 /**
+ * Font Specific text:
+ * Make text apear in a different font.
+ *
+ * - `.u-font--main` - main font
+ * - `.u-font--title` - title font
+ */
+.u-font--main {
+  font-family: $font--main !important;
+}
+
+.u-font--title {
+  font-family: $font--title !important;
+}
+
+/**
  * Foreground colors:
  * Apply specific color.
  *

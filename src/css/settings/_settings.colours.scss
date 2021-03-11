@@ -1,27 +1,40 @@
-$color--primary:        #e6223d;
-$color--secondary:      #0ba1e6;
+$color--primary:          #e6223d;
+$color--secondary:        #0ba1e6;
 
-$color--accent:         #e6df39;
+$color--accent:           #e6df39;
 
-$color--white:          #fff;
-$color--black:          #111;
-$color--grey:           #a3a3a3;
+$color--white:            #fff;
+$color--black:            #111;
+$color--grey:             #a3a3a3;
 
-$color--text:           $color--black;
-$color--true-black:     #000;
+$color--text:               $color--black;
+$color--true-black:       #000;
 
 // Variants
-$color--primary--light: lighten($color--primary, 10%);
-$color--primary--dark:  darken($color--primary, 5%);
-$color--grey--light:    #fafafa;
-$color--grey--dark:     #6e6e6e;
+$color--primary--light:     lighten($color--primary, 10%);
+$color--primary--dark:      darken($color--primary, 5%);
+
+$color--secondary--light:   lighten($color--secondary, 10%);
+$color--secondary--dark:      darken($color--secondary, 5%);
+
+$color--accent--light:      lighten($color--accent, 10%);
+$color--accent--dark:      darken($color--accent, 5%);
+
+$color--white--light:       lighten($color--white, 10%);
+$color--white--dark:      darken($color--white, 5%);
+
+$color--black--light:       lighten($color--black, 10%);
+$color--black--dark:      darken($color--black, 5%);
+
+$color--grey--light:      #fafafa;
+$color--grey--dark:       #6e6e6e;
 
 // Transparencies
-$color--primary--thin:  rgba($color--primary, .2);
-$color--white--thick:   rgba($color--white, .8);
-$color--black--thin:    rgba($color--black, .2);
+$color--primary--thin:      rgba($color--primary, .2);
+$color--white--thick:       rgba($color--white, .8);
+$color--black--thin:        rgba($color--black, .2);
 
 // Forms
-$color--disabled:       #cecece;
-$color--alert--red:     #ff2929;
-$color--alert--green:   #00b500;
+$color--disabled:         #cecece;
+$color--alert--red:       #ff2929;
+$color--alert--green:     #00b500;

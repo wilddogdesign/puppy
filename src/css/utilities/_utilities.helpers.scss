@@ -33,12 +33,12 @@
  * - `.u-weight--light` - font weight of 200
  * - `.u-weight--normal` - font weight of 400
  * - `.u-weight--semibold` - font weight of 600
- * - `.u-weight--bold` - font weight of 800
+ * - `.u-weight--bold` - font weight of 900
  */
 .u-weight--light      { font-weight: 200 !important; }
 .u-weight--normal     { font-weight: 400 !important; }
 .u-weight--semibold   { font-weight: 600 !important; }
-.u-weight--bold       { font-weight: 800 !important; }
+.u-weight--bold       { font-weight: 900 !important; }
 
 /**
  * Information cursor:
@@ -82,10 +82,27 @@
 }
 
 /**
+ * Font Specific text:
+ * Make text apear in a different font.
+ *
+ * - `.u-font--main` - main font
+ * - `.u-font--title` - title font
+ */
+.u-font--main {
+  font-family: $font--main !important;
+}
+
+.u-font--title {
+  font-family: $font--title !important;
+}
+
+/**
  * Foreground colors:
  * Apply specific color.
  *
  * - `.u-color--primary` - brand colour
+ * - `.u-color--secondary` - brand colour
+ * - `.u-color--accent` - brand colour
  * - `.u-color--text` - main text colour
  * - `.u-color--white` - white colour
  * - `.u-color--black` - black colour
@@ -95,6 +112,22 @@
 
   &:hover {
     color: $color--primary !important;
+  }
+}
+
+.u-color--secondary {
+  color: $color--secondary !important;
+
+  &:hover {
+    color: $color--secondary !important;
+  }
+}
+
+.u-color--accent {
+  color: $color--accent !important;
+
+  &:hover {
+    color: $color--accent !important;
   }
 }
 
@@ -114,7 +147,9 @@
  * Background colors:
  * Apply specific color to background.
  *
- * - `.u-bg--brand` - brand colour
+ * - `.u-color--primary` - brand colour
+ * - `.u-color--secondary` - brand colour
+ * - `.u-color--accent` - brand colour
  * - `.u-bg--text` - main text colour
  * - `.u-bg--white` - white colour
  * - `.u-bg--black` - black colour
@@ -124,6 +159,14 @@
  */
 .u-bg--primary {
   background-color: $color--primary !important;
+}
+
+.u-bg--secondary {
+  background-color: $color--secondary !important;
+}
+
+.u-bg--accent {
+  background-color: $color--accent !important;
 }
 
 .u-bg--text {

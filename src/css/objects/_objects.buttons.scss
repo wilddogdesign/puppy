@@ -1,4 +1,7 @@
-.o-btn {
+button,
+.o-btn,
+[type='submit'],
+[type='reset'] {
   display: inline-block;
   padding: .75em 1.5em;
   transition: background .15s ease-in;
@@ -22,7 +25,66 @@
   }
 
   &[disabled] {
+    border: rem(1px) solid $color--grey;
     background-color: $color--grey;
     cursor: not-allowed;
+  }
+}
+
+.o-btn {
+  &--secondary {
+    border: rem(1px) solid $color--secondary;
+    background-color: $color--secondary;
+    color: $color--white;
+
+    &:hover,
+    &:focus,
+    &--active {
+      border: rem(1px) solid $color--secondary--light;
+      background-color: $color--secondary--light;
+    }
+  }
+
+  &--accent {
+    border: rem(1px) solid $color--accent;
+    background-color: $color--accent;
+    color: $color--white;
+
+    &:hover,
+    &:focus,
+    &--active {
+      border: rem(1px) solid $color--accent--light;
+      background-color: $color--accent--light;
+    }
+  }
+
+  &--white {
+    border: rem(1px) solid $color--black;
+    background-color: $color--white;
+    color: $color--black;
+
+    &:hover,
+    &:focus,
+    &--active {
+      border: rem(1px) solid $color--black--light;
+      background-color: $color--white--light;
+    }
+
+    &[disabled] {
+      color: $color--white;
+    }
+  }
+
+  &--black {
+    border: rem(1px) solid $color--black;
+    background-color: $color--black;
+    color: $color--white;
+
+    &:hover,
+    &:focus,
+    &--active {
+      border: rem(1px) solid $color--black--light;
+      background-color: $color--black--light;
+    }
   }
 }

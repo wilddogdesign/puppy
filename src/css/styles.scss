@@ -31,6 +31,9 @@ $inuit-global-font-size: 16px;
 @import 'plugins/plugins.glide';
 /* critical:end */
 
+// ACCESSIBILITY
+@import 'settings/settings.accessibility';
+
 // ELEMENTS
 @import 'node_modules/inuitcss/elements/elements.headings';
 @import 'elements/elements.buttons';

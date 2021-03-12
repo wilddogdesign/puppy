@@ -1,4 +1,45 @@
 //sass-lint:disable force-attribute-nesting force-pseudo-nesting
+
+/**
+ * ALL BASIC FORM ELEMENTS
+ *
+ * Fieldsets & Legends
+ * Labels
+ * Defaults
+ * Passwords
+ * Text Area
+ * Select
+ * Radio Buttons & Checkboxes
+ */
+
+/**
+ * Fieldsets & Legends
+ */
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  @extend h5;
+  display: block;
+  position: relative;
+  margin-bottom: .5em;
+}
+
+/**
+ * Labels
+ */
+label {
+  display: block;
+  position: relative;
+  margin-bottom: .5em;
+}
+
+/**
+ * Defaults
+ */
 [type='email'],
 [type='number'],
 [type='password'],
@@ -68,10 +109,16 @@ textarea {
   }
 }
 
+/**
+ * Password
+ */
 [type='password'] {
   letter-spacing: .3em;
 }
 
+/**
+ * Text Area
+ */
 textarea {
   max-width: 100%;
   height: auto;
@@ -79,8 +126,9 @@ textarea {
   padding: rem(10px) rem(12px);
   line-height: 1.5em;
 }
-
-// selects
+/**
+ * Select
+ */
 select {
   padding-right: rem(32px);
   background-color: $color--white;
@@ -91,21 +139,10 @@ select {
   appearance: none;
 }
 
-fieldset {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
+/**
+ * Radio Buttons & Checkboxes
+ */
 
-// Label
-// Remember you can change these if you want not to block
-label {
-  display: block;
-  position: relative;
-  margin-bottom: .5em;
-}
-
-// Custom checkboxes
 [type='checkbox'],
 [type='radio'] {
   @include inuit-hidden-visually;
@@ -175,4 +212,9 @@ label {
 [type='checkbox'][disabled]:checked + span::before,
 [type='radio'][disabled]:checked + span::before {
   opacity: .5;
+}
+
+[type='checkbox'] + span abbr,
+[type='radio'] + span abbr {
+  display: contents;
 }

@@ -1,5 +1,7 @@
 button,
-.o-btn {
+.o-btn,
+[type='submit'],
+[type='reset'] {
   display: inline-block;
   padding: .75em 1.5em;
   transition: background .15s ease-in;
@@ -23,11 +25,13 @@ button,
   }
 
   &[disabled] {
-    background-color: $color--grey;
     border: rem(1px) solid $color--grey;
+    background-color: $color--grey;
     cursor: not-allowed;
   }
+}
 
+.o-btn {
   &--secondary {
     border: rem(1px) solid $color--secondary;
     background-color: $color--secondary;

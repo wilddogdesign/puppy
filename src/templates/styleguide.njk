@@ -316,81 +316,741 @@
     {# *************** FORM ELEMENTS *************** #}
     <section>
       <h2 class="wilddog-red">Form Elements</h2>
+      <style>
+        fieldset {
+          display: flex;
+          flex-wrap: wrap;
+          margin: 20px 0;
+        }
 
-      <form>
+        legend {
+          width: 100%;
+        }
+
+        fieldset div {
+          width: 35%;
+        }
+
+        fieldset div:nth-of-type(2n) {
+          margin-left: 40px;
+        }
+
+        fieldset button:nth-of-type(2n) {
+          margin-left: 40px;
+        }
+      </style>
+
+      <form
+        id="form-id"
+        action="#"
+        method="post"
+        class="js-recaptcha"
+      >
+        <label class="u-hidden">Form Name<input name="form" type="hidden" value="form-name" /></label>
+        <label class="u-hidden">Form ID<input name="id" type="hidden" value="form-id" /></label>
+        <label class="u-hidden">Form Submission<input name="form_name_submission" type="hidden" /></label>
+
         <h3 class="wilddog">Example Form Title</h3>
         <p>Required fields are followed by <abbr title="required" aria-label="required">*</abbr>.</p>
         {# Note that this piece of help text states a rule for required elements. The rule must be included before it is used so that sighted users and users of assistive technologies such as screen readers can learn what it means before they encounter a required element. While this helps inform users what an asterisk means, it can not be relied upon. #}
 
         <section> {# Form should be sectioned based on the content #}
-          <h4 class="wilddog">Contact information</h4> {# Each Section should have a title #}
+          <h4 class="wilddog">Text Inputs</h4> {# Each Section should have a title #}
 
-          <div>
-            <label for="username">Name: <abbr title="required" aria-label="required">*</abbr></label>
-            <input id="username" type="text" name="username">
-          </div>
-
-          <div>
-            <label for="username">Name: <abbr title="required" aria-label="required">*</abbr></label>
-            <input id="username" type="text" name="username">
-          </div>
-
-          <div>
-            <label for="username">Email: <abbr title="required" aria-label="required">*</abbr></label>
-            <input id="username" type="email" name="username">
-          </div>
-
-
+          {# ******** TEXT BOX FIELD ******** #}
           <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
-            <legend class="u-a11y">Your address</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+            <legend>Text Box</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
 
-            <label for="street">Street</label>
-            <input type="text" id="street">
+            <div>
+              <label for="text-box-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="text"
+                name="tb_active"
+                id="text-box-active"
+                placeholder="Active Text Box Placeholder"
+                class=""
+                required
+              >
+            </div>
 
-            <label for="postcode">Postcode</label>
-            <input type="text" id="postcode">
+            <div>
+              <label for="text-box-active">Disabled Label</label>
+              <input
+                type="text"
+                name="tb_disabled"
+                id="text-box-disabled"
+                placeholder="Disabled Text Box Placeholder"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** EMAIL FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Email</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="email-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="email"
+                name="email_active"
+                id="email-active"
+                placeholder="example@wilddogdesign.co.uk"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="email-active">Disabled Label</label>
+              <input
+                type="email"
+                name="email_disabled"
+                id="email-disabled"
+                placeholder="example@wilddogdesign.co.uk"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** PHONE FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Phone Numbers</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="tel-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="tel"
+                name="tel_active"
+                id="tel-active"
+                placeholder="01273 278766"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="tel-active">Disabled Label</label>
+              <input
+                type="tel"
+                name="tel_disabled"
+                id="tel-disabled"
+                placeholder="01273 278766"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** TEXT AREA FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Text Area</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="text-area-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <textarea
+                name="text_area_active"
+                id="text-area-active"
+                rows="1"
+                placeholder="Active Text Area Placeholder"
+                class=""
+                required
+              ></textarea>
+            </div>
+
+            <div>
+              <label for="text-area-active">Disabled Label</label>
+              <textarea
+                name="text_area_disabled"
+                rows="1"
+                id="text-area-disabled"
+                placeholder="Disabled Text Area Placeholder"
+                class=""
+                disabled
+              ></textarea>
+            </div>
+          </fieldset>
+
+          {# ******** NUMBER FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Number</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="number-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="number"
+                name="number_active"
+                id="number-active"
+                value="50"
+                step="10"
+                min="0"
+                max="100"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="number-active">Disabled Label</label>
+              <input
+                type="number"
+                name="number_disabled"
+                id="number-disabled"
+                value="50"
+                step="10"
+                min="0"
+                max="100"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** POST CODE FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Post Codes</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="pc-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="text"
+                name="pc_active"
+                id="pc-active"
+                placeholder="BN1 1NH"
+                maxlength="10"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="pc-active">Disabled Label</label>
+              <input
+                type="text"
+                name="pc_disabled"
+                id="pc-disabled"
+                placeholder="BN1 1NH"
+                maxlength="10"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** PASSWORD FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Passwords</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="pw-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="password"
+                name="pw_active"
+                id="pw-active"
+                placeholder="Active Password Placeholder"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="pw-active">Disabled Label</label>
+              <input
+                type="password"
+                name="pw_disabled"
+                id="pw-disabled"
+                placeholder="Disabled Password Placeholder"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** URL FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>URLs</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="url-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="url"
+                name="url_active"
+                id="url-active"
+                placeholder="https://wilddogdesign.co.uk/"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="url-active">Disabled Label</label>
+              <input
+                type="url"
+                name="url_disabled"
+                id="url-disabled"
+                placeholder="https://wilddogdesign.co.uk/"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** SEARCH FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Search Fields</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="search-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="search"
+                name="search_active"
+                id="search-active"
+                placeholder="Active Search Placeholder"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="search-active">Disabled Label</label>
+              <input
+                type="search"
+                name="search_disabled"
+                id="search-disabled"
+                placeholder="Disabled Search Placeholder"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+        </section>
+
+        <section>
+          <h4 class="wilddog">Options Fields</h4>
+
+          {# ******** SELECT FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Select Field</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="select-active">Active & Required Select Options <abbr title="required" aria-label="required">*</abbr></label>
+              <select
+                name="select_active"
+                id="select-active"
+                class=""
+                required
+              >
+                <option selected>Please select...</option>
+                <option value="UK">UK</option>
+                <option value="france">France</option>
+                <option value="germany">Germany</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="select-disabled">Disabled Select Options</label>
+              <select
+                name="select_disabled"
+                id="select-disabled"
+                class=""
+                disabled
+              >
+                <option selected>Please select...</option>
+                <option value="UK">UK</option>
+                <option value="france">France</option>
+                <option value="germany">Germany</option>
+              </select>
+            </div>
+          </fieldset>
+
+          {# ******** RADIO BUTTONS ******** #}
+          <fieldset> {# Radio Buttons should be grouped in a fieldset #}
+            <legend>Radio Buttons</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="radio-one" class="">
+                <input
+                  type="radio"
+                  name="radios"
+                  id="radio-one"
+                  value="radio 1"
+                  class=""
+                  required
+                  checked
+                >
+                <span>Active & Required Radio Option 1 Label (Pre Selected) <abbr title="required" aria-label="required">*</abbr></span>
+              </label>
+            </div>
+
+            <div>
+              <label for="radio-two" class="">
+                <input
+                  type="radio"
+                  name="radios"
+                  id="radio-two"
+                  value="Radio 1"
+                  class=""
+                  required
+                >
+                <span>Required Radio Option 2 Label <abbr title="required" aria-label="required">*</abbr></span>
+              </label>
+            </div>
+
+            <div>
+              <label for="radio-three" class="">
+                <input
+                  type="radio"
+                  name="radios"
+                  id="radio-three"
+                  value="Radio 3"
+                  class=""
+                  disabled
+                >
+                <span>Radio Option 3 Label (Disabled)</span>
+              </label>
+            </div>
+          </fieldset>
+
+          {# ******** CHECKBOX FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Checkboxes</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="cb-active">
+                <input
+                  type="checkbox"
+                  name="cb_active"
+                  id="cb-active"
+                  class=""
+                  required
+                >
+                <span>Active & Required Checkbox ... donec id elit non mi porta gravida at eget metus <abbr title="required" aria-label="required">*</abbr></span>
+              </label>
+            </div>
+
+            <div>
+              <label for="cb-checked">
+                <input
+                  type="checkbox"
+                  name="cb_checked"
+                  id="cb-checked"
+                  class=""
+                  required
+                  checked
+                >
+                <span>Checked Checkbox ... donec id elit non mi porta gravida at eget metus <abbr title="required" aria-label="required">*</abbr></span>
+              </label>
+            </div>
+
+            <div>
+              <label for="cb-disabled">
+                <input
+                  type="checkbox"
+                  name="cb_disabled"
+                  id="cb-disabled"
+                  class=""
+                  disabled
+                >
+                <span>Disabled Checkbox ... donec id elit non mi porta gravida at eget metus</span>
+              </label>
+            </div>
+          </fieldset>
+
+          {# ******** RANGE FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Range Field</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="range-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="range"
+                name="range_active"
+                id="range-active"
+                step="1"
+                min="0"
+                max="5"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="range-disabled">Disabled Label</label>
+              <input
+                type="range"
+                name="range_disabled"
+                id="range-disabled"
+                step="1"
+                min="0"
+                max="5"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** RANGE FIELD WITH MARKERS ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Range Field with Markers</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="range-list-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="range"
+                name="range_list_active"
+                id="range-list-active"
+                list="range-list"
+                step="10"
+                min="0"
+                max="50"
+                class=""
+                required
+              >
+              <datalist id="range-list">
+                <option value="0"></option>
+                <option value="10"></option>
+                <option value="20"></option>
+                <option value="30"></option>
+                <option value="40"></option>
+                <option value="50"></option>
+                <option value="60"></option>
+                <option value="70"></option>
+                <option value="80"></option>
+                <option value="90"></option>
+                <option value="100"></option>
+              </datalist>
+            </div>
+
+            <div>
+              <label for="range-disabled">Disabled Label</label>
+              <input
+                type="range"
+                name="range_list_disabled"
+                id="range-list-disabled"
+                list="range-list-two"
+                step="10"
+                min="0"
+                max="60"
+                class=""
+                disabled
+              >
+              <datalist id="range-list-two">
+                <option value="0"></option>
+                <option value="10"></option>
+                <option value="20"></option>
+                <option value="30"></option>
+                <option value="40"></option>
+                <option value="50"></option>
+                <option value="60"></option>
+                <option value="70"></option>
+                <option value="80"></option>
+                <option value="90"></option>
+                <option value="100"></option>
+              </datalist>
+            </div>
+          </fieldset>
+        </section>
+
+        <section>
+          <h4 class="wilddog">Date Fields</h4>
+
+          {# ******** DATE FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Date</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="date-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="date"
+                name="date_active"
+                id="date-active"
+                value="2021-07-22"
+                min="2021-01-01"
+                max="2021-12-31"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="date-active">Disabled Label</label>
+              <input
+                type="date"
+                name="date_disabled"
+                id="date-disabled"
+                value="2021-07-22"
+                min="2021-01-01"
+                max="2021-12-31"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** TIME FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Time</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="time-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="time"
+                name="time_active"
+                id="time-active"
+                value="13:30"
+                min="09:00"
+                max="18:00"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="time-active">Disabled Label</label>
+              <input
+                type="time"
+                name="time_disabled"
+                id="time-disabled"
+                value="13:30"
+                min="09:00"
+                max="18:00"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** DATETIME FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Date & Time</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="datetime-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="datetime-local"
+                name="datetime_active"
+                id="datetime-active"
+                value="2021-06-12T19:30"
+                min="2021-01-07T00:00"
+                max="2021-06-14T00:00"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="datetime-active">Disabled Label</label>
+              <input
+                type="datetime-local"
+                name="datetime_disabled"
+                id="datetime-disabled"
+                value="2021-06-12T19:30"
+                min="2021-01-07T00:00"
+                max="2021-06-14T00:00"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** WEEK FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Week</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="week-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="week"
+                name="week_active"
+                id="week-active"
+                value="2021-W20"
+                min="2021-W18"
+                max="2021-W26"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="week-active">Disabled Label</label>
+              <input
+                type="week"
+                name="week_disabled"
+                id="week-disabled"
+                value="2021-W20"
+                min="2021-W18"
+                max="2021-W26"
+                class=""
+                disabled
+              >
+            </div>
+          </fieldset>
+
+          {# ******** MONTH FIELD ******** #}
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Month</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <div>
+              <label for="month-active">Active & Required Label <abbr title="required" aria-label="required">*</abbr></label>
+              <input
+                type="month"
+                name="month_active"
+                id="month-active"
+                value="2021-03"
+                min="2021-01"
+                max="2021-12"
+                class=""
+                required
+              >
+            </div>
+
+            <div>
+              <label for="month-active">Disabled Label</label>
+              <input
+                type="month"
+                name="month_disabled"
+                id="month-disabled"
+                value="2021-03"
+                min="2021-01"
+                max="2021-12"
+                class=""
+                disabled
+              >
+            </div>
           </fieldset>
 
         </section>
 
         <section>
-          <h4 class="wilddog">Other information</h4>
+          <h4 class="wilddog">Form Buttons</h4>
 
-          <fieldset> {# Radio Buttons should be grouped in a fieldset #}
-            <legend>Do you have a passport?</legend>
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Submit Buttons</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+            <button type="submit">
+              This is a <strong>submit button</strong>
+            </button>
 
-            <input type="radio" id="yes">
-            <label for="yes">Yes</label>
-
-            <input type="radio" id="no">
-            <label for="no">No</label>
+            <button type="submit" disabled>
+              This is a <strong>disabled submit button</strong>
+            </button>
           </fieldset>
 
-          <div>
-            <label for="username">Password: <abbr title="required" aria-label="required">*</abbr></label>
-            <input id="username" type="email" name="username">
-          </div>
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend>Reset Buttons</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
 
-          <div>
-            <label for="card">Select Options: <abbr title="required" aria-label="required">*</abbr></label>
-            <select id="card" name="usercard">
-              <option value="visa">Visa</option>
-              <option value="mc">Mastercard</option>
-              <option value="amex">American Express</option>
-            </select>
-          </div>
+            <button type="reset">
+              This is a <strong>reset button</strong>
+            </button>
 
+            <button type="reset" disabled>
+              This is a <strong>disabled reset button</strong>
+            </button>
+          </fieldset>
         </section>
 
-
       </form>
-      Including inactive, active, hover and disabled states.
-      Search
-      Filter (may be comprised of below)
-      Text Input
-      Dropdown Menu
-      Checkbox
-      Radio Button
     </section>
 
   </div>

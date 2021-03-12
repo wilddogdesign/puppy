@@ -22,7 +22,7 @@ fieldset {
 }
 
 legend {
-  @extend h5;
+  @extend %h5;
   display: block;
   position: relative;
   margin-bottom: .5em;
@@ -126,6 +126,7 @@ textarea {
   padding: rem(10px) rem(12px);
   line-height: 1.5em;
 }
+
 /**
  * Select
  */
@@ -161,6 +162,10 @@ select {
   margin-right: rem(8px);
   font-size: rem(16px);
   cursor: pointer;
+
+  abbr {
+    display: contents;
+  }
 }
 
 [type='checkbox'][disabled] + span::before,
@@ -212,9 +217,4 @@ select {
 [type='checkbox'][disabled]:checked + span::before,
 [type='radio'][disabled]:checked + span::before {
   opacity: .5;
-}
-
-[type='checkbox'] + span abbr,
-[type='radio'] + span abbr {
-  display: contents;
 }

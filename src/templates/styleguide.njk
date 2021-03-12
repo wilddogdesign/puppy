@@ -23,7 +23,7 @@
 
   <div class="o-wrapper u-py-10 u-py-16@tablet">
     <h1 class="wilddog-red">Styleguide</h1>
-    <p>This styleguide is beneficial to both the client and the developers, for it allows clients to understand the branding and guidelines of the site, whilst developers can use this page to cross-browser test the core components including fonts, colours, hover effects and default states.</p>
+    <p class="o-text o-text--large">This styleguide is beneficial to both the client and the developers, for it allows clients to understand the branding and guidelines of the site, whilst developers can use this page to cross-browser test the core components including fonts, colours, hover effects and default states.</p>
 
     {# *************** TYPOGRAPHY *************** #}
     <section>
@@ -184,6 +184,13 @@
           margin: 20px auto;
         }
 
+        circle img {
+          height: 100%;
+          max-width: 75px;
+          margin-left: 10px; /* Wild Dog Logo Only to account for the tail! */
+          /* margin: 0 auto; */ /* Most Logos will be centered */
+        }
+
         square {
           width: 20px;
           height: 20px;
@@ -194,28 +201,28 @@
 
       <colours>
         <colour>
-          <circle class="u-bg--primary"></circle>
+          <circle class="u-bg--primary"><img src="../images/logo-white.svg"/></circle>
           <p class="wilddog">Primary Colour<br>
             <square class="u-bg--primary"></square> #000abc
           </p>
         </colour>
 
         <colour>
-          <circle class="u-bg--secondary"></circle>
+          <circle class="u-bg--secondary"><img src="../images/logo-white.svg"/></circle>
           <p class="wilddog">Secondary Colour<br>
             <square class="u-bg--secondary"></square> #000abc
           </p>
         </colour>
 
         <colour>
-          <circle class="u-bg--accent"></circle>
+          <circle class="u-bg--accent"><img src="../images/logo-white.svg"/></circle>
           <p class="wilddog">Accent Colour<br>
             <square class="u-bg--accent"></square> #000abc
           </p>
         </colour>
 
         <colour>
-          <circle class="u-bg--text"></circle>
+          <circle class="u-bg--text"><img src="../images/logo-white.svg"/></circle>
           <p class="wilddog">Text Colour<br>
             <square class="u-bg--text"></square> #000abc
           </p>
@@ -293,15 +300,90 @@
           <button class="o-btn o-btn--white" disabled>Disabled White Button</button>
         </div>
       </buttons>
+    </section>
 
-      <buttons>
-        <a href="#">Anchor: example-link.com</a>
-      </buttons>
+    {# *************** LINKS *************** #}
+    <section>
+      <h2 class="wilddog-red">Links</h2>
+
+      <p class="o-text">
+        <a href="#">https://www.example-link.com</a>
+      </p>
+
+      <p class="o-text">Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia <a href="#">bibendum nulla sed consectetur</a>. Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="#">Lorem ipsum</a> dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nulla vitae elit libero, <a href="#">a pharetra augue</a>.</p>
     </section>
 
     {# *************** FORM ELEMENTS *************** #}
     <section>
       <h2 class="wilddog-red">Form Elements</h2>
+
+      <form>
+        <h3 class="wilddog">Example Form Title</h3>
+        <p>Required fields are followed by <abbr title="required" aria-label="required">*</abbr>.</p>
+        {# Note that this piece of help text states a rule for required elements. The rule must be included before it is used so that sighted users and users of assistive technologies such as screen readers can learn what it means before they encounter a required element. While this helps inform users what an asterisk means, it can not be relied upon. #}
+
+        <section> {# Form should be sectioned based on the content #}
+          <h4 class="wilddog">Contact information</h4> {# Each Section should have a title #}
+
+          <div>
+            <label for="username">Name: <abbr title="required" aria-label="required">*</abbr></label>
+            <input id="username" type="text" name="username">
+          </div>
+
+          <div>
+            <label for="username">Name: <abbr title="required" aria-label="required">*</abbr></label>
+            <input id="username" type="text" name="username">
+          </div>
+
+          <div>
+            <label for="username">Email: <abbr title="required" aria-label="required">*</abbr></label>
+            <input id="username" type="email" name="username">
+          </div>
+
+
+          <fieldset> {# Groups of inputs that relate to one piece of content should be grouped in a fieldset #}
+            <legend class="u-a11y">Your address</legend> {# Each Fieldset should have a title that makes sense being read before each field label inside it. #}
+
+            <label for="street">Street</label>
+            <input type="text" id="street">
+
+            <label for="postcode">Postcode</label>
+            <input type="text" id="postcode">
+          </fieldset>
+
+        </section>
+
+        <section>
+          <h4 class="wilddog">Other information</h4>
+
+          <fieldset> {# Radio Buttons should be grouped in a fieldset #}
+            <legend>Do you have a passport?</legend>
+
+            <input type="radio" id="yes">
+            <label for="yes">Yes</label>
+
+            <input type="radio" id="no">
+            <label for="no">No</label>
+          </fieldset>
+
+          <div>
+            <label for="username">Password: <abbr title="required" aria-label="required">*</abbr></label>
+            <input id="username" type="email" name="username">
+          </div>
+
+          <div>
+            <label for="card">Select Options: <abbr title="required" aria-label="required">*</abbr></label>
+            <select id="card" name="usercard">
+              <option value="visa">Visa</option>
+              <option value="mc">Mastercard</option>
+              <option value="amex">American Express</option>
+            </select>
+          </div>
+
+        </section>
+
+
+      </form>
       Including inactive, active, hover and disabled states.
       Search
       Filter (may be comprised of below)

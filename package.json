@@ -10,7 +10,7 @@
     "start": "webpack-dev-server --open --mode development --hot --config webpack.dev.js",
     "setup": "npm install",
     "build": "webpack --mode production --config webpack.prod.js",
-    "build:bedrock": "ASSET_DIR=/app/themes/bedrock-theme/static webpack --mode production --config webpack.prod.js",
+    "build:bedrock": "OFFLINE_URL=/offline ASSET_DIR=/app/themes/bedrock-theme/static webpack --mode production --config webpack.prod.js",
     "serve": "http-server dist/ -p 8888 -o",
     "deploy": "fly deploy:development",
     "fix": "eslint --fix .",

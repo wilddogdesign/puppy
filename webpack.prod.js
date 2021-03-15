@@ -97,6 +97,10 @@ module.exports = merge(common, {
             search: /#VERSION_NO#/,
             replace: new Date().toISOString(),
           },
+          {
+            search: /#OFFLINE_URL#/,
+            replace: process.env.OFFLINE_URL || '/offline',
+          },
         ],
       },
     ]),

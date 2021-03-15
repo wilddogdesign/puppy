@@ -21,7 +21,7 @@ if (workbox) {
   // cache specific pages as HTML for offline fallback
   workbox.routing.registerRoute(
     function matchFunction({ url }) {
-      const pages = ['/', '/offline.html'];
+      const pages = ['/', '/offline.html', '/offline'];
       return pages.includes(url.pathname);
     },
     new workbox.strategies.NetworkFirst({

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-arrow-callback */
-const version = '#VERSION_NO.1.0.12#';
+const version = '#VERSION_NO#';
 
 importScripts(
   'https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js'

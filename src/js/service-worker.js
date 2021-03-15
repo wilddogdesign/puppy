@@ -5,12 +5,10 @@ const version = '#VERSION_NO#';
 const offlineUrl = '#OFFLINE_URL#'; // change to '/offline.html' if you want to test this locally
 
 importScripts(
-  'https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js'
+  'https://storage.googleapis.com/workbox-cdn/releases/6.1.1/workbox-sw.js'
 );
 
 if (workbox) {
-  console.log('Workbox found, doing the thing..');
-
   // Skip waiting for service worker update
   self.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'SKIP_WAITING') {

@@ -55,7 +55,11 @@ if (workbox) {
             // due to a network error.
             // If fetch() returns a valid HTTP response with a response code in
             // the 4xx or 5xx range, the catch() will NOT be called.
-            console.log('Fetch failed; returning offline page instead.', error);
+            console.log(
+              'Fetch failed; returning offline page instead.',
+              error,
+              event
+            );
 
             const cache = await caches.open(offlineCacheName);
             const cachedResponse = await cache.match(offlineUrl);

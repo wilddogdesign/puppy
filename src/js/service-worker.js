@@ -49,11 +49,11 @@ if (workbox) {
           return await fetch(request);
         } catch (err) {
           // If this was a navigation, show the offline page:
-          if (request.mode === 'navigate') {
+          if (request.mode === 'navigate' || request.url.pathname === '/') {
             return caches.match(offlineUrl);
           }
           // Otherwise throw
-          throw err;
+          console.info('Fetch issue', err);
         }
       })()
     );

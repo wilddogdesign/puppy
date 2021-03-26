@@ -3,7 +3,6 @@
 /* eslint-disable prefer-arrow-callback */
 const version = '#VERSION_NO#';
 let offlineUrl = '#OFFLINE_URL#';
-const offlineCacheName = 'offline-cache';
 
 // if its a local instance, then switch to /offline.html
 // use includes(..) on a substr so it doesn't get caught in the find/replace of prod
@@ -24,27 +23,31 @@ if (workbox) {
     }
   });
 
-  // new junk to satisfy August 2021 update
-  self.addEventListener('install', async (event) => {
-    event.waitUntil(
-      caches.open(offlineCacheName).then((cache) => cache.add(offlineUrl))
-    );
-  });
-
-  // navigationPreload.enable();
+  // cache specific pages as HTML for offline fallback
+  workbox.routing.registerRoute(
+    function matchFunction({ url }) {
+      const pages = ['/', offlineUrl]; // home & designated offline page
+      return pages.includes(url.pathname);
+    },
+    new workbox.strategies.NetworkFirst({
+      // with these pages..
+      // always try Network First, fallback to Cache for offline
+      cacheName: 'html-cache',
+    })
+  );
 
   const networkOnly = new workbox.strategies.NetworkOnly();
   const navigationHandler = async (params) => {
     try {
       // Attempt a network request.
-      console.log('trying ...', params.url.pathname);
-      return await networkOnly.handle(params).catch(() => {
-        console.log('fail ...', params.url.pathname);
-      });
+      // if we've cached this resource seperately (eg. home or offline.html or CSS, or JS)
+      // then this will not fail
+      return await networkOnly.handle(params);
     } catch (error) {
-      // If it fails, return the cached HTML.
+      // If it fails, return the cached HTML for offline.html
+      // eg. pages that aren't home or seperately cached
       return caches.match(offlineUrl, {
-        cacheName: offlineCacheName,
+        cacheName: 'html-cache',
       });
     }
   };
@@ -52,12 +55,6 @@ if (workbox) {
   // Register this strategy to handle all navigations.
   workbox.routing.registerRoute(
     new workbox.routing.NavigationRoute(navigationHandler)
-  );
-
-  // no caching on wordpress routes
-  workbox.routing.registerRoute(
-    new RegExp('/wp/'),
-    new workbox.strategies.NetworkOnly()
   );
 
   // Javascript

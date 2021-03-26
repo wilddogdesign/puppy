@@ -120,6 +120,13 @@ if (workbox) {
         if (cachedResponse) return cachedResponse;
 
         console.log(request);
+        if (
+          request.mode === 'navigate' &&
+          request.referrerPolicy === 'unsafe-url'
+        ) {
+          console.log('Service worker pinging root, why?');
+          return;
+        }
 
         try {
           // get from the network

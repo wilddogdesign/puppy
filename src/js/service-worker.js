@@ -119,7 +119,7 @@ if (workbox) {
         const cachedResponse = await caches.match(request);
         if (cachedResponse) return cachedResponse;
 
-        console.log(request.url.pathname);
+        console.log(request);
 
         try {
           // get from the network

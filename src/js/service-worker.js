@@ -40,7 +40,7 @@ if (workbox) {
   const navigationHandler = async (params) => {
     try {
       // Attempt a network request.
-      // if we've cached this resource seperately (eg. home or offline.html or CSS, or JS)
+      // if we've cached this resource seperately (eg. offline.html or CSS, or JS)
       // then this will not fail
       return await networkOnly.handle(params);
     } catch (error) {

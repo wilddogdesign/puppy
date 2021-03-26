@@ -113,20 +113,22 @@ if (workbox) {
 
     // Always bypass for range requests, due to browser bugs
     if (request.headers.has('range')) return;
+
+    // Service Worker needlessly pinging root, skip this.
+    // Due to WordPress?
+    if (
+      request.mode === 'navigate' &&
+      request.referrerPolicy === 'unsafe-url'
+    ) {
+      console.log('Service Worker needlessly pinging root, skip this.');
+      return caches.match(offlineUrl);
+    }
+
     event.respondWith(
       (async function () {
         // Try to get from the cache:
         const cachedResponse = await caches.match(request);
         if (cachedResponse) return cachedResponse;
-
-        console.log(request);
-        if (
-          request.mode === 'navigate' &&
-          request.referrerPolicy === 'unsafe-url'
-        ) {
-          console.log('Service worker pinging root, why?');
-          return;
-        }
 
         try {
           // get from the network

@@ -25,56 +25,29 @@ if (workbox) {
   });
 
   // new junk to satisfy August 2021 update
-  self.addEventListener('install', (event) => {
+  self.addEventListener('install', async (event) => {
     event.waitUntil(
-      (async () => {
-        const cache = await caches.open(offlineCacheName);
-        // Setting {cache: 'reload'} in the new request will ensure that the
-        // response isn't fulfilled from the HTTP cache; i.e., it will be from
-        // the network.
-        await cache.add(new Request(offlineUrl, { cache: 'reload' }));
-      })()
+      caches.open(CACHE_NAME).then((cache) => cache.add(offlineUrl))
     );
-    // Force the waiting service worker to become the active service worker.
-    self.skipWaiting();
   });
 
-  // new junk to satisfy August 2021 update
-  self.addEventListener('fetch', (event) => {
-    // We only want to call event.respondWith() if this is a navigation request
-    // for an HTML page.
-    if (event.request.mode === 'navigate') {
-      event.respondWith(
-        (async () => {
-          try {
-            // Always try the network first.
-            const networkResponse = await fetch(event.request);
-            return networkResponse;
-          } catch (error) {
-            // catch is only triggered if an exception is thrown, which is likely
-            // due to a network error.
-            // If fetch() returns a valid HTTP response with a response code in
-            // the 4xx or 5xx range, the catch() will NOT be called.
-            console.log(
-              'Fetch failed; returning offline page instead.',
-              error,
-              event
-            );
+  navigationPreload.enable();
 
-            const cache = await caches.open(offlineCacheName);
-            const cachedResponse = await cache.match(offlineUrl);
-            return cachedResponse;
-          }
-        })()
-      );
+  const networkOnly = new NetworkOnly();
+  const navigationHandler = async (params) => {
+    try {
+      // Attempt a network request.
+      return await networkOnly.handle(params);
+    } catch (error) {
+      // If it fails, return the cached HTML.
+      return caches.match(offlineUrl, {
+        cacheName: offlineCacheName,
+      });
     }
+  };
 
-    // If our if() condition is false, then this fetch handler won't intercept the
-    // request. If there are any other fetch handlers registered, they will get a
-    // chance to call event.respondWith(). If no fetch handlers call
-    // event.respondWith(), the request will be handled by the browser as if there
-    // were no service worker involvement.
-  });
+  // Register this strategy to handle all navigations.
+  registerRoute(new NavigationRoute(navigationHandler));
 
   // no caching on wordpress routes
   workbox.routing.registerRoute(

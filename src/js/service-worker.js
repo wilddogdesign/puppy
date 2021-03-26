@@ -23,6 +23,7 @@ if (workbox) {
     }
   });
 
+  /*
   // cache specific pages as HTML for offline fallback
   workbox.routing.registerRoute(
     function matchFunction({ url }) {
@@ -55,6 +56,13 @@ if (workbox) {
   // Register this strategy to handle all navigations.
   workbox.routing.registerRoute(
     new workbox.routing.NavigationRoute(navigationHandler)
+  );
+  */
+
+  // no caching on wordpress routes
+  workbox.routing.registerRoute(
+    new RegExp('/wp/'),
+    new workbox.strategies.NetworkOnly()
   );
 
   // Javascript

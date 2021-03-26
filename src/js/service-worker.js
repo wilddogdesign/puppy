@@ -49,6 +49,7 @@ if (workbox) {
           return await fetch(request);
         } catch (err) {
           // If this was a navigation, show the offline page:
+          console.log(request);
           if (request.mode === 'navigate' || request.url.pathname === '/') {
             return caches.match(offlineUrl);
           }

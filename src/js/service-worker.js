@@ -38,7 +38,7 @@ if (workbox) {
     try {
       // Attempt a network request.
       return await networkOnly.handle(params).catch(() => {
-        console.log('...');
+        console.log('...', params);
       });
     } catch (error) {
       // If it fails, return the cached HTML.

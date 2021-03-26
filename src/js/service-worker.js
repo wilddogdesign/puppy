@@ -25,37 +25,12 @@ if (workbox) {
 
   // this is the install of the service-worker NOT the install of the WPA to desktop
   // here we establish the offline-cache which contains the offline page.
+  // if the user somehow nukes this specific cache they will have issues
   addEventListener('install', (event) => {
     event.waitUntil(
       (async function () {
         const cache = await caches.open('offline-cache');
         await cache.addAll([offlineUrl]);
-      })()
-    );
-  });
-
-  addEventListener('fetch', (event) => {
-    const { request } = event;
-
-    // Always bypass for range requests, due to browser bugs
-    if (request.headers.has('range')) return;
-    event.respondWith(
-      (async function () {
-        // Try to get from the cache:
-        const cachedResponse = await caches.match(request);
-        if (cachedResponse) return cachedResponse;
-
-        try {
-          // get from the network
-          return await fetch(request);
-        } catch (err) {
-          // If this was a navigation, show the offline page:
-          if (request.mode === 'navigate' || request.url.pathname === '/') {
-            return caches.match(offlineUrl);
-          }
-          // Otherwise throw
-          console.info('Service Worker Fetch Issue', err);
-        }
       })()
     );
   });
@@ -131,4 +106,31 @@ if (workbox) {
       ],
     })
   );
+
+  // this listener must be set AFTER all the caches are setup
+  addEventListener('fetch', (event) => {
+    const { request } = event;
+
+    // Always bypass for range requests, due to browser bugs
+    if (request.headers.has('range')) return;
+    event.respondWith(
+      (async function () {
+        // Try to get from the cache:
+        const cachedResponse = await caches.match(request);
+        if (cachedResponse) return cachedResponse;
+
+        try {
+          // get from the network
+          return await fetch(request);
+        } catch (err) {
+          // If this was a navigation, show the offline page:
+          if (request.mode === 'navigate' || request.url.pathname === '/') {
+            return caches.match(offlineUrl);
+          }
+          // Otherwise throw
+          console.info('Service Worker Fetch Issue', err);
+        }
+      })()
+    );
+  });
 }

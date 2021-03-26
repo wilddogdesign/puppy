@@ -120,23 +120,12 @@ if (workbox) {
         const cachedResponse = await caches.match(request);
         if (cachedResponse) return cachedResponse;
 
-        // Service Worker needlessly pinging root, skip this.
-        // Due to WordPress?
-        if (
-          request.mode === 'navigate' &&
-          request.referrerPolicy === 'unsafe-url'
-        ) {
-          console.log('Service Worker needlessly pinging root, skip this.');
-          await new Promise((r) => setTimeout(r, 1)); // Google demands some form of await
-          return caches.match(offlineUrl);
-        }
-
         try {
           // get from the network
           return await fetch(request);
         } catch (err) {
           // If this was a navigation, show the offline page:
-          if (request.mode === 'navigate' || request.url.pathname === '/') {
+          if (request.mode === 'navigate') {
             return caches.match(offlineUrl);
           }
           // Otherwise throw

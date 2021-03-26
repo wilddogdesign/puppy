@@ -40,22 +40,6 @@ if (workbox) {
   });
 
   // new junk to satisfy August 2021 update
-  self.addEventListener('activate', (event) => {
-    event.waitUntil(
-      (async () => {
-        // Enable navigation preload if it's supported.
-        // See https://developers.google.com/web/updates/2017/02/navigation-preload
-        if ('navigationPreload' in self.registration) {
-          await self.registration.navigationPreload.enable();
-        }
-      })()
-    );
-
-    // Tell the active service worker to take control of the page immediately.
-    self.clients.claim();
-  });
-
-  // new junk to satisfy August 2021 update
   self.addEventListener('fetch', (event) => {
     // We only want to call event.respondWith() if this is a navigation request
     // for an HTML page.
@@ -63,12 +47,6 @@ if (workbox) {
       event.respondWith(
         (async () => {
           try {
-            // First, try to use the navigation preload response if it's supported.
-            const preloadResponse = await event.preloadResponse;
-            if (preloadResponse) {
-              return preloadResponse;
-            }
-
             // Always try the network first.
             const networkResponse = await fetch(event.request);
             return networkResponse;

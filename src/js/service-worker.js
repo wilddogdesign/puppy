@@ -23,7 +23,8 @@ if (workbox) {
     }
   });
 
-  // wip
+  // this is the install of the service-worker NOT the install of the WPA to desktop
+  // here we establish the offline-cache which contains the offline page.
   addEventListener('install', (event) => {
     event.waitUntil(
       (async function () {

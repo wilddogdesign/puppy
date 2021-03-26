@@ -26,6 +26,7 @@ if (workbox) {
   // cache specific pages as HTML for offline fallback
   workbox.routing.registerRoute(
     function matchFunction({ url }) {
+      console.log({ 'PWA is sniffing.. ': url }); // log all the urls
       const pages = ['/', offlineUrl]; // home & designated offline page
       return pages.includes(url.pathname);
     },

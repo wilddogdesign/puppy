@@ -23,40 +23,6 @@ if (workbox) {
     }
   });
 
-  // cache specific pages as HTML for offline fallback
-  workbox.routing.registerRoute(
-    function matchFunction({ url }) {
-      const pages = [offlineUrl]; // home & designated offline page
-      return pages.includes(url.pathname);
-    },
-    new workbox.strategies.NetworkFirst({
-      // with these pages..
-      // always try Network First, fallback to Cache for offline
-      cacheName: 'html-cache',
-    })
-  );
-
-  const networkOnly = new workbox.strategies.NetworkOnly();
-  const navigationHandler = async (params) => {
-    try {
-      // Attempt a network request.
-      // if we've cached this resource seperately (eg. home or offline.html or CSS, or JS)
-      // then this will not fail
-      return await networkOnly.handle(params);
-    } catch (error) {
-      // If it fails, return the cached HTML for offline.html
-      // eg. pages that aren't home or seperately cached
-      return caches.match(offlineUrl, {
-        cacheName: 'html-cache',
-      });
-    }
-  };
-
-  // Register this strategy to handle all navigations.
-  workbox.routing.registerRoute(
-    new workbox.routing.NavigationRoute(navigationHandler)
-  );
-
   // Javascript
   workbox.routing.registerRoute(
     /\.js$/,

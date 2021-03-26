@@ -27,7 +27,6 @@ if (workbox) {
   workbox.routing.registerRoute(
     function matchFunction({ url }) {
       const pages = ['/', offlineUrl]; // home & designated offline page
-      console.log(url.pathname, pages, pages.includes(url.pathname));
       return pages.includes(url.pathname);
     },
     new workbox.strategies.NetworkFirst({

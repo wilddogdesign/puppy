@@ -27,13 +27,13 @@ if (workbox) {
   // new junk to satisfy August 2021 update
   self.addEventListener('install', async (event) => {
     event.waitUntil(
-      caches.open(CACHE_NAME).then((cache) => cache.add(offlineUrl))
+      caches.open(offlineCacheName).then((cache) => cache.add(offlineUrl))
     );
   });
 
   navigationPreload.enable();
 
-  const networkOnly = new NetworkOnly();
+  const networkOnly = new workbox.strategies.NetworkOnly();
   const navigationHandler = async (params) => {
     try {
       // Attempt a network request.
@@ -47,7 +47,9 @@ if (workbox) {
   };
 
   // Register this strategy to handle all navigations.
-  registerRoute(new NavigationRoute(navigationHandler));
+  workbox.routing.registerRoute(
+    new workbox.routing.NavigationRoute(navigationHandler)
+  );
 
   // no caching on wordpress routes
   workbox.routing.registerRoute(

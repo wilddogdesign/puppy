@@ -2,7 +2,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-arrow-callback */
 const version = '#VERSION_NO#';
-const offlineUrl = '#OFFLINE_URL#'; // change to '/offline.html' if you want to test this locally
+let offlineUrl = '#OFFLINE_URL#';
+
+// if its a local instance, then switch to /offline.html
+// use includes(..) on a substr so it doesn't get caught in the find/replace of prod
+if (offlineUrl.includes('OFFLINE_URL')) {
+  offlineUrl = 'offline.html';
+}
 
 importScripts(
   'https://storage.googleapis.com/workbox-cdn/releases/6.1.1/workbox-sw.js'
@@ -20,7 +26,8 @@ if (workbox) {
   // cache specific pages as HTML for offline fallback
   workbox.routing.registerRoute(
     function matchFunction({ url }) {
-      const pages = ['/', offlineUrl, offlineUrl + '/']; // home & designated offline page
+      const pages = ['/', offlineUrl]; // home & designated offline page
+      console.log(url.pathname, pages, pages.includes(url.pathname));
       return pages.includes(url.pathname);
     },
     new workbox.strategies.NetworkFirst({

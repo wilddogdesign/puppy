@@ -99,7 +99,7 @@ module.exports = merge(common, {
           },
           {
             search: /#OFFLINE_URL#/,
-            replace: process.env.OFFLINE_URL || '/offline',
+            replace: process.env.OFFLINE_URL || '/offline/',
           },
         ],
       },

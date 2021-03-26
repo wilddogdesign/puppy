@@ -23,6 +23,12 @@ if (workbox) {
     }
   });
 
+  // no caching on wordpress routes
+  workbox.routing.registerRoute(
+    new RegExp('/wp/'),
+    new workbox.strategies.NetworkOnly()
+  );
+
   // Javascript
   workbox.routing.registerRoute(
     /\.js$/,

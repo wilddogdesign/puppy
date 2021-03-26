@@ -119,6 +119,8 @@ if (workbox) {
         const cachedResponse = await caches.match(request);
         if (cachedResponse) return cachedResponse;
 
+        console.log(request.url.pathname);
+
         try {
           // get from the network
           return await fetch(request);

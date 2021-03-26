@@ -37,8 +37,9 @@ if (workbox) {
   const navigationHandler = async (params) => {
     try {
       // Attempt a network request.
+      console.log('trying ...', params.url.pathname);
       return await networkOnly.handle(params).catch(() => {
-        console.log('...', params);
+        console.log('fail ...', params.url.pathname);
       });
     } catch (error) {
       // If it fails, return the cached HTML.

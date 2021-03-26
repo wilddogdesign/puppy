@@ -7,7 +7,7 @@ let offlineUrl = '#OFFLINE_URL#';
 // if its a local instance, then switch to /offline.html
 // use includes(..) on a substr so it doesn't get caught in the find/replace of prod
 if (offlineUrl.includes('OFFLINE_URL')) {
-  offlineUrl = 'offline.html';
+  offlineUrl = '/offline.html';
 }
 
 importScripts(
@@ -21,6 +21,42 @@ if (workbox) {
       console.log('skip waiting');
       skipWaiting();
     }
+  });
+
+  // wip
+  addEventListener('install', (event) => {
+    event.waitUntil(
+      (async function () {
+        const cache = await caches.open('offline-cache');
+        await cache.addAll([offlineUrl]);
+      })()
+    );
+  });
+
+  addEventListener('fetch', (event) => {
+    const { request } = event;
+
+    // Always bypass for range requests, due to browser bugs
+    if (request.headers.has('range')) return;
+    event.respondWith(
+      (async function () {
+        // Try to get from the cache:
+        const cachedResponse = await caches.match(request);
+        if (cachedResponse) return cachedResponse;
+
+        try {
+          // get from the network
+          return await fetch(request);
+        } catch (err) {
+          // If this was a navigation, show the offline page:
+          if (request.mode === 'navigate') {
+            return caches.match(offlineUrl);
+          }
+          // Otherwise throw
+          throw err;
+        }
+      })()
+    );
   });
 
   // no caching on wordpress routes

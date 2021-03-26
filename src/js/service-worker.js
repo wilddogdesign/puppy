@@ -37,7 +37,21 @@ if (workbox) {
   const navigationHandler = async (params) => {
     try {
       // Attempt a network request.
-      return await networkOnly.handle(params);
+      return await networkOnly
+        .handle(params)
+        .then((response) => {
+          return (
+            response ||
+            caches.match(offlineUrl, {
+              cacheName: offlineCacheName,
+            })
+          );
+        })
+        .catch(() =>
+          caches.match(offlineUrl, {
+            cacheName: offlineCacheName,
+          })
+        );
     } catch (error) {
       // If it fails, return the cached HTML.
       return caches.match(offlineUrl, {

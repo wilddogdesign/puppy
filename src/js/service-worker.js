@@ -37,7 +37,9 @@ if (workbox) {
   const navigationHandler = async (params) => {
     try {
       // Attempt a network request.
-      return await networkOnly.handle(params);
+      return await networkOnly.handle(params).catch(() => {
+        console.log('...');
+      });
     } catch (error) {
       // If it fails, return the cached HTML.
       return caches.match(offlineUrl, {

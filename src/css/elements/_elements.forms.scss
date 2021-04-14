@@ -161,6 +161,10 @@ select {
   margin-right: rem(8px);
   font-size: rem(16px);
   cursor: pointer;
+
+  abbr {
+    display: contents;
+  }
 }
 
 [type='checkbox'][disabled] + span::before,
@@ -212,9 +216,4 @@ select {
 [type='checkbox'][disabled]:checked + span::before,
 [type='radio'][disabled]:checked + span::before {
   opacity: .5;
-}
-
-[type='checkbox'] + span abbr,
-[type='radio'] + span abbr {
-  display: contents;
 }

@@ -61,6 +61,7 @@ const multipleFiles = otherNunjucksFiles.map((entry) => {
     templateParameters: {
       envCallback,
     },
+    minify: false,
   });
 });
 

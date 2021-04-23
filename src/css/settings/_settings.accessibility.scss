@@ -1,4 +1,5 @@
+/* sass-lint:disable-block force-attribute-nesting */
 abbr,
-abbr[title] { /* sass-lint:disable force-attribute-nesting */
+abbr[title] {
   text-decoration: none;
 }

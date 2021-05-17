@@ -14,5 +14,22 @@
     {% endif %}
   {% endfor %}
 
+  {#
+    default UTM inputs if not set by URL params, see utms.js
+  #}
+  <script>
+    window.UTMInputs = {
+      utm_source: 'utm_source',
+      utm_medium: 'utm_medium',
+      utm_campaign: 'utm_campaign',
+      utm_term: 'utm_term',
+      utm_content: 'utm_content',
+      gclid: 'gclid',
+      gclsrc: 'gclsrc',
+      dclid: 'dclid',
+      fbclid: 'fbclid',
+    };
+  </script>
+
   <!-- inline_css_plugin -->
 </head>

@@ -7,7 +7,7 @@ export function setupUTMInputs() {
   const params = getUrlParams();
 
   if (params) {
-    const inputs = {
+    const inputs = window.UTMInputs || {
       utm_source: 'utm_source',
       utm_medium: 'utm_medium',
       utm_campaign: 'utm_campaign',

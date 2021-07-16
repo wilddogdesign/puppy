@@ -105,11 +105,6 @@ It will do all the magic for you.
 
 If you want to port to another project copy sass-lint.yml (or the order part) and the .postcss-sorting.json.
 
-### TODO
-
-- Styleguide
-- Add filters to nunjucks
-
 ## Brought to you by
 
 ```
